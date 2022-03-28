@@ -7,6 +7,7 @@ public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private float movementSpeed;
     [SerializeField] private bool isMoving;
+    [SerializeField] private LayerMask blockingLayer;
 
     private Animator _animator;
     private Vector2 inputDirection;
@@ -37,7 +38,7 @@ public class PlayerMovement : MonoBehaviour
             targetPosition.y += inputDirection.y;
         }
 
-        StartCoroutine(MovePlayer(targetPosition));
+        if (IsTargetPositionWalkable(targetPosition)) StartCoroutine(MovePlayer(targetPosition));
         
     }
 
@@ -58,5 +59,10 @@ public class PlayerMovement : MonoBehaviour
 
         transform.position = targetPosition;
         isMoving = false;
+    }
+
+    private bool IsTargetPositionWalkable(Vector3 targetPosition)
+    {
+        return !Physics2D.OverlapCircle(targetPosition, 0.15f, blockingLayer);
     }
 }
