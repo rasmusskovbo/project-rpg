@@ -8,6 +8,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float movementSpeed;
     [SerializeField] private bool isMoving;
     [SerializeField] private LayerMask blockingLayer;
+    [SerializeField] private LayerMask waterLayer;
 
     private Animator _animator;
     private Vector2 inputDirection;
@@ -63,6 +64,7 @@ public class PlayerMovement : MonoBehaviour
 
     private bool IsTargetPositionWalkable(Vector3 targetPosition)
     {
-        return !Physics2D.OverlapCircle(targetPosition, 0.15f, blockingLayer);
+        return !Physics2D.OverlapCircle(targetPosition, 0.15f, blockingLayer) 
+               && !Physics2D.OverlapCircle(targetPosition, 0.15f, waterLayer);
     }
 }

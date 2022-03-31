@@ -2,12 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fa8ce64e-188e-4703-b5a4-6b2e025cebde" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.project-rpg/.idea/shelf/Uncommitted_changes_before_rebase__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.project-rpg/.idea/shelf/Uncommitted_changes_before_rebase__Changes_.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/CombatStats.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/CombatStats/CombatMoveType.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/CombatStats/CombatStatus.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/CombatStats/CombatStatus.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.project-rpg/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.project-rpg/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Assets/Tilemap/Outdoor.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Assets/Tilemap/Outdoor.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/Exploration.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Exploration.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/PlayerMovement.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player/PlayerMovement.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/manifest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/packages-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/packages-lock.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -78,7 +81,9 @@
       <option name="presentableId" value="Default" />
       <updated>1648472487250</updated>
       <workItem from="1648472492841" duration="899000" />
-      <workItem from="1648502356628" duration="388000" />
+      <workItem from="1648502356628" duration="644000" />
+      <workItem from="1648583410845" duration="237000" />
+      <workItem from="1648730095931" duration="6577000" />
     </task>
     <servers />
   </component>
