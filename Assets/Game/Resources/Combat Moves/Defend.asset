@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf01d04594b1a204980701fef3bded61, type: 3}
   m_Name: Defend
   m_EditorClassIdentifier: 
-  name: 
-  description: 
-  type: 0
-  power: 0
+  name: Defend
+  description: Enter a defensive stance for minimum damage reduction.
+  type: 3
+  power: 3
   cooldown: 0
