@@ -53,6 +53,9 @@ TagManager:
   - name: Blocking Objects
     uniqueID: 2739932317
     locked: 0
+  - name: Enemies
+    uniqueID: 687554413
+    locked: 0
   - name: Player
     uniqueID: 2114440755
     locked: 0

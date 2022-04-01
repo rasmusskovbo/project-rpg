@@ -2,15 +2,50 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fa8ce64e-188e-4703-b5a4-6b2e025cebde" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/CombatStats.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/CombatStats/CombatMoveType.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/CombatStats/CombatStatus.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/CombatStats/CombatStatus.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.project-rpg/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.project-rpg/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Asset Packs/Game Dev TV/Hero/SwordAttack.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Asset Packs/Game Dev TV/Hero/SwordAttack.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Asset Packs/Pixel Monster Pack/64x64 monsters/boneworm-black.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Asset Packs/Pixel Monster Pack/64x64 monsters/boneworm-black.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Asset Packs/Pixel Monster Pack/64x64 monsters/boneworm-blue.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Asset Packs/Pixel Monster Pack/64x64 monsters/boneworm-blue.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Asset Packs/Pixel Monster Pack/64x64 monsters/boneworm-green.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Asset Packs/Pixel Monster Pack/64x64 monsters/boneworm-green.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Asset Packs/Pixel Monster Pack/64x64 monsters/boneworm-white.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Asset Packs/Pixel Monster Pack/64x64 monsters/boneworm-white.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Asset Packs/Pixel Monster Pack/64x64 monsters/cerberus-black.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Asset Packs/Pixel Monster Pack/64x64 monsters/cerberus-black.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Asset Packs/Pixel Monster Pack/64x64 monsters/cerberus-green.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Asset Packs/Pixel Monster Pack/64x64 monsters/cerberus-green.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Asset Packs/Pixel Monster Pack/64x64 monsters/cerberus-red.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Asset Packs/Pixel Monster Pack/64x64 monsters/cerberus-red.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Asset Packs/Pixel Monster Pack/64x64 monsters/cerberus-white.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Asset Packs/Pixel Monster Pack/64x64 monsters/cerberus-white.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Asset Packs/Pixel Monster Pack/64x64 monsters/ooze-black.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Asset Packs/Pixel Monster Pack/64x64 monsters/ooze-black.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Asset Packs/Pixel Monster Pack/64x64 monsters/ooze-blue.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Asset Packs/Pixel Monster Pack/64x64 monsters/ooze-blue.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Asset Packs/Pixel Monster Pack/64x64 monsters/ooze-green.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Asset Packs/Pixel Monster Pack/64x64 monsters/ooze-green.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Asset Packs/Pixel Monster Pack/64x64 monsters/ooze-red.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Asset Packs/Pixel Monster Pack/64x64 monsters/ooze-red.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Asset Packs/Pixel Monster Pack/64x64 monsters/rat-black.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Asset Packs/Pixel Monster Pack/64x64 monsters/rat-black.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Asset Packs/Pixel Monster Pack/64x64 monsters/rat-brown.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Asset Packs/Pixel Monster Pack/64x64 monsters/rat-brown.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Asset Packs/Pixel Monster Pack/64x64 monsters/rat-green.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Asset Packs/Pixel Monster Pack/64x64 monsters/rat-green.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Asset Packs/Pixel Monster Pack/64x64 monsters/rat-white.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Asset Packs/Pixel Monster Pack/64x64 monsters/rat-white.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Asset Packs/Pixel Monster Pack/64x64 monsters/scorpion-black.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Asset Packs/Pixel Monster Pack/64x64 monsters/scorpion-black.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Asset Packs/Pixel Monster Pack/64x64 monsters/scorpion-blue.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Asset Packs/Pixel Monster Pack/64x64 monsters/scorpion-blue.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Asset Packs/Pixel Monster Pack/64x64 monsters/scorpion-green.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Asset Packs/Pixel Monster Pack/64x64 monsters/scorpion-green.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Asset Packs/Pixel Monster Pack/64x64 monsters/scorpion-white.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Asset Packs/Pixel Monster Pack/64x64 monsters/scorpion-white.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Asset Packs/Pixel Monster Pack/64x64 monsters/skull-blue.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Asset Packs/Pixel Monster Pack/64x64 monsters/skull-blue.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Asset Packs/Pixel Monster Pack/64x64 monsters/skull-green.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Asset Packs/Pixel Monster Pack/64x64 monsters/skull-green.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Asset Packs/Pixel Monster Pack/64x64 monsters/skull-red.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Asset Packs/Pixel Monster Pack/64x64 monsters/skull-red.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Asset Packs/Pixel Monster Pack/64x64 monsters/skull-violet.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Asset Packs/Pixel Monster Pack/64x64 monsters/skull-violet.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Asset Packs/Pixel Monster Pack/64x64 monsters/slime-black.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Asset Packs/Pixel Monster Pack/64x64 monsters/slime-black.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Asset Packs/Pixel Monster Pack/64x64 monsters/slime-blue.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Asset Packs/Pixel Monster Pack/64x64 monsters/slime-blue.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Asset Packs/Pixel Monster Pack/64x64 monsters/slime-green.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Asset Packs/Pixel Monster Pack/64x64 monsters/slime-green.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Asset Packs/Pixel Monster Pack/64x64 monsters/slime-red.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Asset Packs/Pixel Monster Pack/64x64 monsters/slime-red.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Asset Packs/Pixel Monster Pack/64x64 monsters/spider-black.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Asset Packs/Pixel Monster Pack/64x64 monsters/spider-black.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Asset Packs/Pixel Monster Pack/64x64 monsters/spider-blue.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Asset Packs/Pixel Monster Pack/64x64 monsters/spider-blue.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Asset Packs/Pixel Monster Pack/64x64 monsters/spider-green.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Asset Packs/Pixel Monster Pack/64x64 monsters/spider-green.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Asset Packs/Pixel Monster Pack/64x64 monsters/spider-white.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Asset Packs/Pixel Monster Pack/64x64 monsters/spider-white.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Asset Packs/Pixel Monster Pack/64x64 monsters/wolf-black.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Asset Packs/Pixel Monster Pack/64x64 monsters/wolf-black.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Asset Packs/Pixel Monster Pack/64x64 monsters/wolf-blue.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Asset Packs/Pixel Monster Pack/64x64 monsters/wolf-blue.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Asset Packs/Pixel Monster Pack/64x64 monsters/wolf-green.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Asset Packs/Pixel Monster Pack/64x64 monsters/wolf-green.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Asset Packs/Pixel Monster Pack/64x64 monsters/wolf-white.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Asset Packs/Pixel Monster Pack/64x64 monsters/wolf-white.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Asset Packs/Pixel Monster Pack/64x64 monsters/worm-black.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Asset Packs/Pixel Monster Pack/64x64 monsters/worm-black.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Asset Packs/Pixel Monster Pack/64x64 monsters/worm-brown.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Asset Packs/Pixel Monster Pack/64x64 monsters/worm-brown.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Asset Packs/Pixel Monster Pack/64x64 monsters/worm-green.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Asset Packs/Pixel Monster Pack/64x64 monsters/worm-green.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Asset Packs/Pixel Monster Pack/64x64 monsters/worm-white.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Asset Packs/Pixel Monster Pack/64x64 monsters/worm-white.png.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/Exploration.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Exploration.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/PlayerMovement.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player/PlayerMovement.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Packages/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/manifest.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Packages/packages-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/packages-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -83,7 +118,8 @@
       <workItem from="1648472492841" duration="899000" />
       <workItem from="1648502356628" duration="644000" />
       <workItem from="1648583410845" duration="237000" />
-      <workItem from="1648730095931" duration="6674000" />
+      <workItem from="1648730095931" duration="6752000" />
+      <workItem from="1648804853169" duration="602000" />
     </task>
     <servers />
   </component>
