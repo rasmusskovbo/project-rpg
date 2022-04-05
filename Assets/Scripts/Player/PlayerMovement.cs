@@ -10,24 +10,29 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private LayerMask blockingLayer;
     [SerializeField] private LayerMask waterLayer;
 
-    private Animator _animator;
+    private Animator animator;
     private Vector2 inputDirection;
+    
+    // Cached animator references
+    private static readonly int MoveX = Animator.StringToHash("moveX");
+    private static readonly int MoveY = Animator.StringToHash("moveY");
+    private static readonly int IsMoving = Animator.StringToHash("isMoving");
 
     private void Awake()
     {
-        _animator = GetComponent<Animator>();
+        animator = GetComponent<Animator>();
     }
 
     void Update()
     {
-        _animator.SetBool("isMoving", isMoving);
+        animator.SetBool(IsMoving, isMoving);
         
         if (isMoving) return;
         if (inputDirection.Equals(Vector2.zero)) return;
 
         var targetPosition = transform.position;
-        _animator.SetFloat("moveX", inputDirection.x);
-        _animator.SetFloat("moveY", inputDirection.y);
+        animator.SetFloat(MoveX, inputDirection.x);
+        animator.SetFloat(MoveY, inputDirection.y);
             
         if (inputDirection.Equals(Vector2.left) || inputDirection.Equals(Vector2.right))
         {
@@ -43,6 +48,7 @@ public class PlayerMovement : MonoBehaviour
         
     }
 
+    // Input system reference.
     void OnMove(InputValue input)
     {
         inputDirection = input.Get<Vector2>();
