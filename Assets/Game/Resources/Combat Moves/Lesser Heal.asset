@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Lesser Heal
   description: A weak healing spell.
-  type: 4
+  type: {fileID: 11400000, guid: 98a81b10d9f664d4285c2b5bffc9625c, type: 2}
   power: 3
   cooldown: 1
   icon_image: {fileID: 7044500474904259683, guid: ad4da72aba31b684490b8b8a3d8c6727, type: 3}

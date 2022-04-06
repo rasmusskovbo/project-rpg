@@ -37,7 +37,12 @@ public class CombatMove
 
     public CombatMoveType GetType()
     {
-        return _base.Type;
+        return _base.Type.GetType();
+    }
+
+    public Sprite GetIcon()
+    {
+        return _base.Type.GetIcon();
     }
     
 }

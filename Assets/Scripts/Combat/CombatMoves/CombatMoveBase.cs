@@ -12,7 +12,7 @@ public class CombatMoveBase : ScriptableObject
     [TextArea] [SerializeField] private string description;
 
     [Header("Stats")] 
-    [SerializeField] private CombatMoveType type;
+    [SerializeField] private CombatMoveTypeSO type;
     [SerializeField] private int power;
     [SerializeField] private int cooldown;
 
@@ -31,7 +31,7 @@ public class CombatMoveBase : ScriptableObject
         set => description = value;
     }
 
-    public CombatMoveType Type
+    public CombatMoveTypeSO Type
     {
         get => type;
         set => type = value;

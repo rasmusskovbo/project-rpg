@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cf01d04594b1a204980701fef3bded61, type: 3}
-  m_Name: Defend
+  m_Name: Block
   m_EditorClassIdentifier: 
-  name: Defend
-  description: Enter a defensive stance for minimum damage reduction.
-  type: {fileID: 11400000, guid: 54454fd0be6f0704ea980c591816754e, type: 2}
-  power: 3
+  name: Block
+  description: Attempt to block incoming damage, reducing it by a flat amount.
+  type: {fileID: 11400000, guid: a69e2e6902aafe5438f9a8ddbed28f8b, type: 2}
+  power: 5
   cooldown: 0
-  icon_image: {fileID: -6547247261374270028, guid: ad4da72aba31b684490b8b8a3d8c6727, type: 3}
+  icon_image: {fileID: -6656216676778557703, guid: ad4da72aba31b684490b8b8a3d8c6727, type: 3}

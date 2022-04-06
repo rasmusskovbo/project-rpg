@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cf01d04594b1a204980701fef3bded61, type: 3}
-  m_Name: Defend
+  m_Name: Strengthen
   m_EditorClassIdentifier: 
-  name: Defend
-  description: Enter a defensive stance for minimum damage reduction.
-  type: {fileID: 11400000, guid: 54454fd0be6f0704ea980c591816754e, type: 2}
+  name: Strengthen
+  description: Strengthen yourself, raising your attack power for 3 rounds.
+  type: {fileID: 11400000, guid: 0bcbc3d62d4074d48a3bb5160c2e93c4, type: 2}
   power: 3
-  cooldown: 0
-  icon_image: {fileID: -6547247261374270028, guid: ad4da72aba31b684490b8b8a3d8c6727, type: 3}
+  cooldown: 5
+  icon_image: {fileID: -7859556164035846671, guid: ad4da72aba31b684490b8b8a3d8c6727, type: 3}
