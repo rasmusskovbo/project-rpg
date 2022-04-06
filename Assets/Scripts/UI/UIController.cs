@@ -14,13 +14,4 @@ public class UIController : MonoBehaviour
         skillMenuUI.SetActive(false);
     }
 
-    public void SetActiveAction(CombatAction action)
-    {
-        this.activeAction = action;
-    }
-
-    public CombatAction GetActiveAction()
-    {
-        return activeAction;
-    }
 }

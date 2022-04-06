@@ -25,13 +25,14 @@ public class UICombatMoveSelect : MonoBehaviour
     [SerializeField] private float selectorMoveDistance;
     [SerializeField] private RectTransform selector;
     [SerializeField] private float scrollOffset;
-    [SerializeField] private RectTransform rectTransform;
+    [SerializeField] private RectTransform contentRectTransform;
     private Vector2 defaultSelectorPosition;
     private int selectorPosition;
     private Vector2 inputDirection;
     private int index;
     private int maxIndex;
     private int selectorScrollCap = 3;
+    private bool isSelectingSkill;
     
     private void Awake()
     {
@@ -90,13 +91,13 @@ public class UICombatMoveSelect : MonoBehaviour
         item.GetComponentsInChildren<TextMeshProUGUI>()[2].SetText(combatMove.GetCooldown().ToString());
 
         activeCombatMoves.Add(combatMove);
-        item.transform.SetParent(rectTransform);
+        item.transform.SetParent(contentRectTransform);
         item.transform.localScale = Vector2.one;
     }
 
     private void ClearSkillUI()
     {
-        foreach (Transform child in transform)
+        foreach (Transform child in contentRectTransform)
         {
             Destroy(child.gameObject);
         }
@@ -116,16 +117,23 @@ public class UICombatMoveSelect : MonoBehaviour
 
     void OnSubmit()
     {
-        // flash select animation
-        // Send scriptable object of skill to combat system.
-        _combatSystem.OnSkillSelect(activeCombatMoves[index]);
+        if (isSelectingSkill)
+        {
+            // flash select animation
+            // Send scriptable object of skill to combat system.
+            _combatSystem.OnSkillSelect(activeCombatMoves[index]);
+        }
     }
 
     void OnCancel()
     {
-        actionSelectUI.gameObject.SetActive(true);
-        actionSelectUI.SetPrimaryButton();
-        skillMenuUI.SetActive(false);
+        if (isSelectingSkill)
+        {
+            actionSelectUI.gameObject.SetActive(true);
+            actionSelectUI.SetPrimaryButton();
+            skillMenuUI.SetActive(false);
+            SetIsSelectingSkill(false);
+        }
     }
     
     // Animate selector transitions
@@ -151,7 +159,7 @@ public class UICombatMoveSelect : MonoBehaviour
                 }
                 else if (selectorPosition == 0)
                 {
-                    this.rectTransform.offsetMax -= new Vector2(0, +scrollOffset);
+                    this.contentRectTransform.offsetMax -= new Vector2(0, +scrollOffset);
                 }
                 
                 index--;
@@ -170,7 +178,7 @@ public class UICombatMoveSelect : MonoBehaviour
                 }
                 else if (selectorPosition == selectorScrollCap)
                 {
-                    this.rectTransform.offsetMax -= new Vector2(0, -scrollOffset);
+                    this.contentRectTransform.offsetMax -= new Vector2(0, -scrollOffset);
                 }
                 
                 index++;
@@ -180,6 +188,11 @@ public class UICombatMoveSelect : MonoBehaviour
         
         selector.position = transformPosition;
         
+    }
+
+    public void SetIsSelectingSkill(bool value)
+    {
+        isSelectingSkill = value;
     }
 
 }

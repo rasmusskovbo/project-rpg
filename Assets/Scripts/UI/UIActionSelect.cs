@@ -42,6 +42,7 @@ public class UIActionSelect : MonoBehaviour
     {
         skillMenuUI.SetActive(true);
         gameObject.SetActive(false);
+        _uiCombatMoveSelect.SetIsSelectingSkill(true);
     }
 
     public void SetPrimaryButton()

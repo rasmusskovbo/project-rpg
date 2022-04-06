@@ -154,7 +154,7 @@ Transform:
   - {fileID: 1038874025}
   - {fileID: 1489927280}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &278740569
 GameObject:
@@ -259,7 +259,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &354888607
 GameObject:
@@ -1121,8 +1121,101 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &931491997
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 931491999}
+  - component: {fileID: 931491998}
+  - component: {fileID: 931492000}
+  m_Layer: 0
+  m_Name: SkillSelector
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &931491998
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 931491997}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ed62527feade4f4c9c85b741123dcb7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillItemPrefab: {fileID: 5985974311135010796, guid: 93f213648f7c8f642bfe8de9ccc18683, type: 3}
+  combatMoveBases:
+  - {fileID: 11400000, guid: c392ede540fd2dc42a64da3179134b2a, type: 2}
+  - {fileID: 11400000, guid: 87d1b77830d82ff4d9a980f7046c816e, type: 2}
+  - {fileID: 11400000, guid: 9a0992fcb7f39e2409c00a23c6f6907a, type: 2}
+  - {fileID: 11400000, guid: 4d6fe4b2c8e7e234d8aa877433dbd03b, type: 2}
+  - {fileID: 11400000, guid: 78c6dde369c3d8849bd399fc9419784a, type: 2}
+  - {fileID: 11400000, guid: 2e11c1716211f7240a67fe76c045ad03, type: 2}
+  - {fileID: 11400000, guid: c9c5f277d30c19644968c005763f7624, type: 2}
+  - {fileID: 11400000, guid: ec655e117c13f934cb2c1b50641d2f29, type: 2}
+  - {fileID: 11400000, guid: 1c36726a9c9a93148bfe7d72f2e753b4, type: 2}
+  - {fileID: 11400000, guid: 38143543abac54c46939a7c51434ad3c, type: 2}
+  - {fileID: 11400000, guid: 051d7c5652271e3438b01d6bbb86080e, type: 2}
+  actionSelectUI: {fileID: 881160212}
+  skillMenuUI: {fileID: 474687825}
+  selectorMoveDistance: 0.33
+  selector: {fileID: 520036780}
+  scrollOffset: 20
+  contentRectTransform: {fileID: 1164366020}
+--- !u!4 &931491999
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 931491997}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.08492648, y: -0.36597645, z: 74.46667}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &931492000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 931491997}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: 4307d26660f92de4c90231ed869ff4d9, type: 3}
+  m_NotificationBehavior: 0
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents: []
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: Keyboard&Mouse
+  m_DefaultActionMap: Combat
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
 --- !u!1 &990239903
 GameObject:
   m_ObjectHideFlags: 0
@@ -1600,10 +1693,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1164366020}
-  - component: {fileID: 1164366023}
   - component: {fileID: 1164366022}
   - component: {fileID: 1164366021}
-  - component: {fileID: 1164366024}
   m_Layer: 5
   m_Name: Content
   m_TagString: Untagged
@@ -1627,7 +1718,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -0.000045776367}
+  m_AnchoredPosition: {x: 0, y: -0.00016784668}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1164366021
@@ -1670,64 +1761,6 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
---- !u!114 &1164366023
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1164366019}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2ed62527feade4f4c9c85b741123dcb7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  skillItemPrefab: {fileID: 5985974311135010796, guid: 93f213648f7c8f642bfe8de9ccc18683, type: 3}
-  combatMoveBases:
-  - {fileID: 11400000, guid: c392ede540fd2dc42a64da3179134b2a, type: 2}
-  - {fileID: 11400000, guid: 87d1b77830d82ff4d9a980f7046c816e, type: 2}
-  - {fileID: 11400000, guid: 9a0992fcb7f39e2409c00a23c6f6907a, type: 2}
-  - {fileID: 11400000, guid: 4d6fe4b2c8e7e234d8aa877433dbd03b, type: 2}
-  - {fileID: 11400000, guid: 78c6dde369c3d8849bd399fc9419784a, type: 2}
-  - {fileID: 11400000, guid: 2e11c1716211f7240a67fe76c045ad03, type: 2}
-  - {fileID: 11400000, guid: c9c5f277d30c19644968c005763f7624, type: 2}
-  - {fileID: 11400000, guid: ec655e117c13f934cb2c1b50641d2f29, type: 2}
-  actionSelectUI: {fileID: 881160212}
-  skillMenuUI: {fileID: 474687825}
-  selectorMoveDistance: 0.33
-  selector: {fileID: 520036780}
-  scrollOffset: 20
-  rectTransform: {fileID: 1164366020}
---- !u!114 &1164366024
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1164366019}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Actions: {fileID: -944628639613478452, guid: 4307d26660f92de4c90231ed869ff4d9, type: 3}
-  m_NotificationBehavior: 0
-  m_UIInputModule: {fileID: 0}
-  m_DeviceLostEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_DeviceRegainedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ControlsChangedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ActionEvents: []
-  m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: Keyboard&Mouse
-  m_DefaultActionMap: Combat
-  m_SplitScreenIndex: -1
-  m_Camera: {fileID: 0}
 --- !u!1 &1261914152
 GameObject:
   m_ObjectHideFlags: 0
@@ -2250,7 +2283,7 @@ RectTransform:
   m_Children:
   - {fileID: 1121625119}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -2299,7 +2332,7 @@ Transform:
   m_LocalScale: {x: 2.1, y: 2.1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1514986820
 SpriteRenderer:

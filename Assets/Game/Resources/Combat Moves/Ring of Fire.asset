@@ -10,12 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cf01d04594b1a204980701fef3bded61, type: 3}
-  m_Name: Weaken
+  m_Name: Ring of Fire
   m_EditorClassIdentifier: 
-  name: Poison
-  description: "Permanently poison the enemy, making it lose health before each action
-    it takes.\t"
-  type: {fileID: 11400000, guid: b2e71b6f84c1e6249a80e30eabb34c4d, type: 2}
-  power: 2
-  cooldown: 3
-  icon_image: {fileID: -7859556164035846671, guid: ad4da72aba31b684490b8b8a3d8c6727, type: 3}
+  name: Ring of Fire
+  description: Engulf the target in flames.l.
+  type: {fileID: 11400000, guid: d1f8a2e47277d9c46b3b391da5194bc9, type: 2}
+  power: 20
+  cooldown: 5
+  icon_image: {fileID: 2319615266087630857, guid: ad4da72aba31b684490b8b8a3d8c6727, type: 3}
