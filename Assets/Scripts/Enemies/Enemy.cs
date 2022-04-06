@@ -1,17 +1,17 @@
 using Enemies;
 using UnityEngine;
 
-public class Enemy
+public class Enemy : MonoBehaviour
 {
     private EnemyBase _base;
     private int level;
-    
-    public Enemy(EnemyBase eBase, int eLevel)
+
+    public void LoadEnemyScriptableObject(EnemyBase scriptableObject, int level)
     {
-        _base = eBase;
-        level = eLevel;
+        _base = scriptableObject;
+        this.level = level;
+        GetComponent<SpriteRenderer>().sprite = _base.IdleSprite;
     }
-    
     // Growth multipliers
     private float maxHpGrowth = 10;
     private float attackPowerGrowth = 5;
@@ -22,6 +22,10 @@ public class Enemy
     private float speedGrowth = 5;
     
     // Getters after multipliers
+    public string Name
+    {
+        get => _base.Name;
+    }
     public int Level
     {
         get => level;

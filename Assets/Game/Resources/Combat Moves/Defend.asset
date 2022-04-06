@@ -17,3 +17,4 @@ MonoBehaviour:
   type: 3
   power: 3
   cooldown: 0
+  icon_image: {fileID: -1770164563340201545, guid: ad4da72aba31b684490b8b8a3d8c6727, type: 3}

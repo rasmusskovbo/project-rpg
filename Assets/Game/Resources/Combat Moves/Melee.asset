@@ -16,3 +16,5 @@ MonoBehaviour:
   description: Simple melee attack.
   type: 0
   power: 5
+  cooldown: 0
+  icon_image: {fileID: -661775723740484451, guid: ad4da72aba31b684490b8b8a3d8c6727, type: 3}
