@@ -3,6 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="fa8ce64e-188e-4703-b5a4-6b2e025cebde" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.project-rpg/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.project-rpg/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Resources/Combat Moves/Melee.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Resources/Combat Moves/Melee.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Resources/Combat Moves/Weaken.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Resources/Combat Moves/Weaken.asset.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/Combat.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Combat.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/UIActionSelect.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/UIActionSelect.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/UICombatMoveSelect.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/UICombatMoveSelect.cs" afterDir="false" />
@@ -84,7 +87,7 @@
       <workItem from="1648583410845" duration="237000" />
       <workItem from="1648730095931" duration="6752000" />
       <workItem from="1648804853169" duration="722000" />
-      <workItem from="1649230555575" duration="31035000" />
+      <workItem from="1649230555575" duration="31369000" />
     </task>
     <servers />
   </component>
