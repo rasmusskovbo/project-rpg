@@ -1,9 +1,6 @@
-﻿namespace Enemies
+﻿public enum CombatAction
 {
-    public enum CombatAction
-    {
-        ATTACK,
-        DEFEND,
-        SUPPORT
-    }
+    ATTACK,
+    DEFEND,
+    SUPPORT
 }

@@ -1,8 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-using Enemies;
 using UnityEngine;
-using UnityEngine.UI;
 
 [CreateAssetMenu(fileName = "CombatMove", menuName = "Combat/Create new Combat Move")]
 public class CombatMoveBase : ScriptableObject

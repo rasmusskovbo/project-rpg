@@ -1,11 +1,10 @@
-﻿namespace Enemies
+﻿public enum CombatState
 {
-    public enum CombatState
-    {
-        START,
-        PLAYERTURN,
-        ENEMYTURN,
-        VICTORY,
-        DEFEAT
-    }
+    START,
+    PLAYER_ACTION_SELECT,
+    PLAYER_SKILL_SELECT,
+    PLAYER_TARGET_SELECT,
+    ENEMY_TURN,
+    VICTORY,
+    DEFEAT
 }

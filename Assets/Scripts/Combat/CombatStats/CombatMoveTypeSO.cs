@@ -1,6 +1,4 @@
-﻿
-using Enemies;
-using UnityEngine;
+﻿using UnityEngine;
 
 [CreateAssetMenu(fileName = "CombatMoveType", menuName = "Combat/Create new Type SO")]
 public class CombatMoveTypeSO : ScriptableObject

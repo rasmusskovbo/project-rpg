@@ -1,9 +1,6 @@
-﻿namespace Enemies
+﻿public enum CombatStatus
 {
-    public enum CombatStatus
-    {
-        None,
-        Poisoned
-        // Weakened, Strengthened, Burning, etc
-    }
+    None,
+    Poisoned
+    // Weakened, Strengthened, Burning, etc
 }

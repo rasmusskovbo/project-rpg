@@ -1,13 +1,10 @@
-﻿namespace Enemies
+﻿public enum CombatMoveType
 {
-    public enum CombatMoveType
-    {
-        Physical,
-        Magical,
-        Mitigate,
-        Defend,
-        Heal,
-        Buff,
-        Debuff
-    }
+    Physical,
+    Magical,
+    Mitigate,
+    Defend,
+    Heal,
+    Buff,
+    Debuff
 }

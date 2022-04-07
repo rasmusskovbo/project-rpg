@@ -1,6 +1,6 @@
-using Enemies;
 using UnityEngine;
 
+// Enemy scriptable object
 [CreateAssetMenu(fileName = "Enemy", menuName = "Combat/Create new Enemy")]
 public class EnemyBase : ScriptableObject
 {
@@ -15,6 +15,7 @@ public class EnemyBase : ScriptableObject
     [SerializeField] private float abilityPower;
     [SerializeField] private float physicalDefense;
     [SerializeField] private float magicalDefense;
+    [SerializeField] private float physicalBlockPower;
     [SerializeField] private float dodge;
     [SerializeField] private float speed;
 
@@ -68,6 +69,12 @@ public class EnemyBase : ScriptableObject
     {
         get => magicalDefense;
         set => magicalDefense = value;
+    }
+
+    public float PhysicalBlockPower
+    {
+        get => physicalBlockPower;
+        set => physicalBlockPower = value;
     }
 
     public float Dodge

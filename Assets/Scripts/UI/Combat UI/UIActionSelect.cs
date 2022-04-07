@@ -1,48 +1,46 @@
-using System;
-using Enemies;
 using UnityEngine.UI;
 using UnityEngine;
 
 public class UIActionSelect : MonoBehaviour
 {
-    [SerializeField] private GameObject skillMenuUI; // can be fetched with FindObject
     [SerializeField] private Button attackButton;
     [SerializeField] private Button defendButton;
     [SerializeField] private Button supportButton;
     private CombatAction lastAction;
-    private UICombatMoveSelect _uiCombatMoveSelect;
+    private UISkillSelect _uiSkillSelect;
+    private CombatSystem _combatSystem;
 
     private void Awake()
     {
-        _uiCombatMoveSelect = FindObjectOfType<UICombatMoveSelect>();
+        _uiSkillSelect = FindObjectOfType<UISkillSelect>();
+        _combatSystem = FindObjectOfType<CombatSystem>();
     }
 
     public void OnAttackSelect()
     {
         lastAction = CombatAction.ATTACK;
-        _uiCombatMoveSelect.InitiateCombatMoves(lastAction);
+        _uiSkillSelect.InitiateCombatMoves(lastAction);
         ShowSkillSelect();
     }
     
     public void OnDefendSelect()
     {
         lastAction = CombatAction.DEFEND;
-        _uiCombatMoveSelect.InitiateCombatMoves(lastAction);
+        _uiSkillSelect.InitiateCombatMoves(lastAction);
         ShowSkillSelect();
     }
     
     public void OnSupportSelect()
     {
         lastAction = CombatAction.SUPPORT;
-        _uiCombatMoveSelect.InitiateCombatMoves(lastAction);
+        _uiSkillSelect.InitiateCombatMoves(lastAction);
         ShowSkillSelect();
     }
 
     private void ShowSkillSelect()
     {
-        skillMenuUI.SetActive(true);
-        gameObject.SetActive(false);
-        _uiCombatMoveSelect.SetIsSelectingSkill(true);
+        _combatSystem.State = CombatState.PLAYER_SKILL_SELECT;
+        _uiSkillSelect.SetIsSelectingSkill(true);
     }
 
     public void SetPrimaryButton()

@@ -1,13 +1,11 @@
 using System.Collections.Generic;
-using System.Numerics;
-using Enemies;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using Vector2 = UnityEngine.Vector2;
 
-public class UICombatMoveSelect : MonoBehaviour
+public class UISkillSelect : MonoBehaviour
 {
     [Header("Dynamic Skills")]
     [SerializeField] private GameObject skillItemPrefab; // The prefab for the list item (logo, name etc)
@@ -129,9 +127,8 @@ public class UICombatMoveSelect : MonoBehaviour
     {
         if (isSelectingSkill)
         {
-            actionSelectUI.gameObject.SetActive(true);
+            _combatSystem.State = CombatState.PLAYER_ACTION_SELECT;
             actionSelectUI.SetPrimaryButton();
-            skillMenuUI.SetActive(false);
             SetIsSelectingSkill(false);
         }
     }
@@ -139,6 +136,9 @@ public class UICombatMoveSelect : MonoBehaviour
     // Animate selector transitions
     void OnMoveSelector(InputValue value)
     {
+        Debug.Log("SKILL SELECT MOVE INPUT!");
+        if (_combatSystem.State != CombatState.PLAYER_SKILL_SELECT) return;
+        
         inputDirection = value.Get<Vector2>();
         var transformPosition = selector.transform.position;
 
@@ -168,7 +168,6 @@ public class UICombatMoveSelect : MonoBehaviour
         
         if (inputDirection.Equals(Vector2.down))
         {
-            Debug.Log("Index & max index: " + index + ", " + maxIndex);
             if (index < maxIndex)
             {
                 if (selectorPosition < selectorScrollCap)
