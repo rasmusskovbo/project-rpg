@@ -161,7 +161,7 @@ public class CombatSystem : MonoBehaviour
     void PlayerTurn()
     {
         combatLog.PrintToLog("Player's turn!");
-        state = CombatState.PLAYER_TARGET_SELECT; // TODO should be action select
+        state = CombatState.PLAYER_ACTION_SELECT;
     }
 
     public void OnSkillSelect(CombatMove move)
@@ -171,7 +171,6 @@ public class CombatSystem : MonoBehaviour
         chosenSkill = move;
         state = CombatState.PLAYER_TARGET_SELECT;
         
-        //OnTargetSelect(centerEnemy); // test
     }
 
     // Maybe better to pass a target index (1-3) than to pass Enemies around and let Combat System handle enemy data.

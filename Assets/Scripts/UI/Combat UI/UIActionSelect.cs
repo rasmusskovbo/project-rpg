@@ -7,40 +7,39 @@ public class UIActionSelect : MonoBehaviour
     [SerializeField] private Button defendButton;
     [SerializeField] private Button supportButton;
     private CombatAction lastAction;
-    private UISkillSelect _uiSkillSelect;
+    private UISkillLoader _uiSkillLoader;
     private CombatSystem _combatSystem;
 
     private void Awake()
     {
-        _uiSkillSelect = FindObjectOfType<UISkillSelect>();
+        _uiSkillLoader = FindObjectOfType<UISkillLoader>();
         _combatSystem = FindObjectOfType<CombatSystem>();
     }
 
     public void OnAttackSelect()
     {
         lastAction = CombatAction.ATTACK;
-        _uiSkillSelect.InitiateCombatMoves(lastAction);
+        _uiSkillLoader.InitiateCombatMoves(lastAction);
         ShowSkillSelect();
     }
     
     public void OnDefendSelect()
     {
         lastAction = CombatAction.DEFEND;
-        _uiSkillSelect.InitiateCombatMoves(lastAction);
+        _uiSkillLoader.InitiateCombatMoves(lastAction);
         ShowSkillSelect();
     }
     
     public void OnSupportSelect()
     {
         lastAction = CombatAction.SUPPORT;
-        _uiSkillSelect.InitiateCombatMoves(lastAction);
+        _uiSkillLoader.InitiateCombatMoves(lastAction);
         ShowSkillSelect();
     }
 
     private void ShowSkillSelect()
     {
         _combatSystem.State = CombatState.PLAYER_SKILL_SELECT;
-        _uiSkillSelect.SetIsSelectingSkill(true);
     }
 
     public void SetPrimaryButton()
