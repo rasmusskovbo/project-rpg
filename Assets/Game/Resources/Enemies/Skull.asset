@@ -20,6 +20,7 @@ MonoBehaviour:
   abilityPower: 1
   physicalDefense: 4
   magicalDefense: 4
+  physicalBlockPower: 0
   dodge: 0
-  speed: 3
+  speed: 2
   idleSprite: {fileID: 21300000, guid: c50502eaf434eca458b44aac45e8e65c, type: 3}

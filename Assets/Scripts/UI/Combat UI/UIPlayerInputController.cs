@@ -82,7 +82,7 @@ public class UIPlayerInputController : MonoBehaviour
         
         InitiateActionSelectPositions();
         InitiateSkillSelect();
-        InitiateTargetSelectPositions();
+        UpdateTargetablePositions();
         
         cursor.position = defaultActionCursorPosition;
         defaultSkillSelectorPosition = selector.position;
@@ -122,20 +122,22 @@ public class UIPlayerInputController : MonoBehaviour
         defaultSkillSelectorPosition = selector.position;
     }
     
-    private void InitiateTargetSelectPositions()
+    public void UpdateTargetablePositions()
     {
-        foreach (Transform transform in combatSystem.GetActiveEnemyStations())
+        selectableTargetPositions.Clear();
+        
+        foreach (GameObject enemyObject in combatSystem.GetActiveEnemies())
         {
-            Vector2 modifiedTransform = transform.position;
+            Vector2 modifiedTransform = enemyObject.transform.position;
             modifiedTransform.x += xCursorOffset;
             modifiedTransform.y += yCursorOffset;
             selectableTargetPositions.Add(modifiedTransform);
         }
 
-        combatSystem.GetActiveEnemyStations();
         defaultTargetCursorPosition = selectableTargetPositions[0];
         targetIndex = 0;
         maxTargetIndex = selectableTargetPositions.Count - 1;
+        
     }
 
     /*
@@ -196,7 +198,7 @@ public class UIPlayerInputController : MonoBehaviour
         {
             combatSystem.State = CombatState.PLAYER_ACTION_SELECT;
             cursor.position = lastActionPosition;
-            ResetPanelBackgrounds();
+            ResetActionSelectPanels();
         }
         
         if (combatSystem.State == CombatState.PLAYER_TARGET_SELECT)
@@ -243,15 +245,7 @@ public class UIPlayerInputController : MonoBehaviour
 
     private void MoveSkillSelector()
     {
-        Debug.Log("Inside skill selector");
         var transformPosition = selector.transform.position;
-
-        
-        Debug.Log("Current index: " + skillIndex);
-        Debug.Log("Max index: " + maxSkillIndex);
-        Debug.Log("Scrollcap: " + selectorScrollCap);
-        Debug.Log("Selector position: " + selectorPosition);
-        
         
         if (inputDirection.Equals(Vector2.up))
         {
@@ -298,6 +292,9 @@ public class UIPlayerInputController : MonoBehaviour
         // If only one enemy, do not move cursor
         if (maxTargetIndex < 1) return;
 
+        Debug.Log(targetIndex);
+        Debug.Log(maxTargetIndex);
+        
         if (inputDirection.Equals(Vector2.up))
         {
             if (targetIndex > 0)
@@ -316,6 +313,7 @@ public class UIPlayerInputController : MonoBehaviour
             }
         }
 
+        /*
         if (inputDirection.Equals(Vector2.right))
         {
             // If less than 4 monsters, disable controls.
@@ -357,6 +355,7 @@ public class UIPlayerInputController : MonoBehaviour
                 targetIndex -= 3;
             }
         }
+        */
     }
     
     /*
@@ -395,12 +394,7 @@ public class UIPlayerInputController : MonoBehaviour
         combatSystem.State = CombatState.PLAYER_SKILL_SELECT;
         
     }
-
-    private void ZoomSelectedActionIcon(GameObject action)
-    {
-        action.GetComponent<RectTransform>().localScale = new Vector3(selectedActionScale, selectedActionScale);
-    }
-
+    
     void SelectSkill()
     {
         // Save selector position
@@ -415,10 +409,16 @@ public class UIPlayerInputController : MonoBehaviour
     
     void SelectTarget()
     {
-        
+        combatSystem.OnTargetSelect(targetIndex);
+        ResetActionSelectPanels();
     }
 
-    void ResetPanelBackgrounds()
+    private void ZoomSelectedActionIcon(GameObject action)
+    {
+        action.GetComponent<RectTransform>().localScale = new Vector3(selectedActionScale, selectedActionScale);
+    }
+
+    void ResetActionSelectPanels()
     {
         attackPanel.GetComponent<Image>().sprite = defaultAttackBG;
         defendPanel.GetComponent<Image>().sprite = defaultDefendBG;

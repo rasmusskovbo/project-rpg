@@ -36,7 +36,7 @@ public class UICombatLog : MonoBehaviour
     public void PrintAttackMove(CombatMove move, Unit target, float damage)
     {
         string line = "You used " + move.GetName() +
-                      " on " + target +
+                      " on " + target.UnitName +
                       ". It hit for " + damage + " " + move.GetType() + " damage.";
         PrintToLog(line);
     }

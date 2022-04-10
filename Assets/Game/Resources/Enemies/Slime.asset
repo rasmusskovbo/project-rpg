@@ -14,12 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Slime
   description: "Red slime-goober\t"
-  maxHp: 10
+  maxHp: 9
   level: 1
   attackPower: 1
   abilityPower: 3
   physicalDefense: 5
   magicalDefense: 2
+  physicalBlockPower: 0
   dodge: 0
   speed: 3
   idleSprite: {fileID: 21300000, guid: ea2992c51326f4942a14cc6a8a85e063, type: 3}

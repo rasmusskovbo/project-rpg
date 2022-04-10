@@ -20,5 +20,26 @@ public class PlayerCombat : Unit
     private float currentMagicDef;
     private float currentSpeed;
     //private CombatStatus _status = CombatStatus.None;
-    
+
+    public void InitiatePlayerCombatStats()
+    {
+        InitiateStaticStats();
+        InitiateCurrentStats();
+    }
+
+    private void InitiateStaticStats()
+    {
+        // Should load from sessionmanager/playerstatmanager
+        UnitName = "Player";
+        UnitType = UnitType.PLAYER;
+        MaxHp = 30;
+        Level = 1;
+        AttackPower = 15;
+        AbilityPower = 12;
+        PhysicalDefense = 10;
+        MagicalDefense = 9;
+        PhysicalBlockPower = 2;
+        Dodge = 5;
+        Speed = 15;
+    }
 }

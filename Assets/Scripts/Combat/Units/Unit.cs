@@ -1,22 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-public class TakeDamageResult
-{
-    private bool isUnitDead;
-    private int damageTaken;
-
-    public TakeDamageResult(bool isUnitDead, int damageTaken)
-    {
-        this.isUnitDead = isUnitDead;
-        this.damageTaken = damageTaken;
-    }
-    
-    public bool IsUnitDead => isUnitDead;
-    public int DamageTaken => damageTaken;
-}
-
-public class Unit : MonoBehaviour
+public class Unit : MonoBehaviour, IComparable
 {
     // Static stats (loaded upon combat start)
     private string unitName;
@@ -29,6 +14,7 @@ public class Unit : MonoBehaviour
     private float physicalBlockPower;
     private float dodge;
     private float speed;
+    private UnitType unitType;
 
     // Combat tracking stats:
     private float currentHp;
@@ -146,6 +132,12 @@ public class Unit : MonoBehaviour
         get => speed;
         set => speed = value;
     }
+
+    public UnitType UnitType
+    {
+        get => unitType;
+        set => unitType = value;
+    }
     
     // Current Stats
     public float CurrentHp
@@ -219,4 +211,13 @@ public class Unit : MonoBehaviour
         get => _status;
         set => _status = value;
     }
+
+    public int CompareTo(object obj)
+    {
+        Unit other = obj as Unit;
+        return other.CurrentSpeed.CompareTo(this.CurrentSpeed);
+        //return Mathf.RoundToInt(this.CurrentSpeed - other.CurrentSpeed);
+    }
+
+
 }

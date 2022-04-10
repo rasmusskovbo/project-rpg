@@ -1,11 +1,13 @@
 using System.Collections.Generic;
 using TMPro;
-using UnityEditor;
 using UnityEngine;
-using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using Vector2 = UnityEngine.Vector2;
 
+/*
+ * Responsible for loading skills to the skill UI.
+ * The active skills for the character should be supplied from the player skill manager object
+ */
 public class UISkillLoader : MonoBehaviour
 {
 

@@ -25,7 +25,9 @@ public class CombatLoader : MonoBehaviour
 
     public GameObject SpawnPlayer()
     {
-        return Instantiate(playerPrefab, playerStation);
+        GameObject playerGO = Instantiate(playerPrefab, playerStation);
+        playerGO.GetComponent<PlayerCombat>().InitiatePlayerCombatStats();
+        return playerGO;
     }
     
     // Get level and enemybases pool from gamemanager

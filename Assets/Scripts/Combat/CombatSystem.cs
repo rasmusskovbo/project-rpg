@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class CombatSystem : MonoBehaviour
@@ -10,10 +12,14 @@ public class CombatSystem : MonoBehaviour
     
     // Systems
     private UICombatLog combatLog;
+    private UIPlayerInputController uiInputController;
     private CombatLoader combatLoader;
+    private SpeedManager speedManager;
+    private EnemyController enemyController;
     
     // Player
     private PlayerCombat player;
+    private GameObject playerGO;
 
     // Enemies
     [SerializeField] private Transform topEnemyStation;
@@ -36,6 +42,8 @@ public class CombatSystem : MonoBehaviour
     {
         combatLog = FindObjectOfType<UICombatLog>();
         combatLoader = FindObjectOfType<CombatLoader>();
+        uiInputController = FindObjectOfType<UIPlayerInputController>();
+        enemyController = FindObjectOfType<EnemyController>();
         enemyGameObjects = new List<GameObject>();
         StartCoroutine(SetupCombat());
     }
@@ -49,20 +57,37 @@ public class CombatSystem : MonoBehaviour
     {
         SetupPlayer();
         SetupEnemies();
+
+        List<GameObject> activeEnemies = GetActiveEnemies();
+        activeEnemies.Add(playerGO);
+        speedManager = new SpeedManager(activeEnemies);
         
         combatLog.Clear();
         combatLog.PrintToLog("Enemies have appeared!");
 
         yield return new WaitForSeconds(1f);
-        
-        // This should be speed based - who gets to start (SpeedManager)
-        PlayerTurn();
+
+        GetNextState();
+    }
+
+    private void GetNextState()
+    {
+        Unit nextToAct = speedManager.GetNextTurn();
+
+        if (nextToAct.UnitType == UnitType.PLAYER)
+        {
+            PlayerTurn();
+        }
+        else
+        {
+            EnemyTurn(nextToAct);
+        }
     }
 
     void SetupPlayer()
     {
-        GameObject playerGO = combatLoader.SpawnPlayer();
-        // Setup player here.
+        playerGO = combatLoader.SpawnPlayer();
+        player = playerGO.GetComponent<PlayerCombat>();
     }
     
     void SetupEnemies()
@@ -145,23 +170,81 @@ public class CombatSystem : MonoBehaviour
         }
     }
 
-    public List<Transform> GetActiveEnemyStations()
+    public List<GameObject> GetActiveEnemies()
     {
-        List<Transform> activeStations = new List<Transform>();
-        
-        if (topEnemyStation.gameObject.activeSelf.Equals(true)) activeStations.Add(topEnemyStation);
-        if (centerEnemyStation.gameObject.activeSelf.Equals(true)) activeStations.Add(centerEnemyStation);
-        if (bottomEnemyStation.gameObject.activeSelf.Equals(true)) activeStations.Add(bottomEnemyStation);
-        if (frontTopEnemyStation.gameObject.activeSelf.Equals(true)) activeStations.Add(frontTopEnemyStation);
-        if (frontBottomEnemyStation.gameObject.activeSelf.Equals(true)) activeStations.Add(frontBottomEnemyStation);
+        List<GameObject> activeEnemies = new List<GameObject>();
 
-        return activeStations;
+        if (shouldAddToList(topEnemy))
+        {
+            activeEnemies.Add(topEnemy.gameObject);
+        }
+        else
+        {
+            topEnemyStation.gameObject.SetActive(false);
+        }
+        
+        if (shouldAddToList(frontTopEnemy))
+        {
+            activeEnemies.Add(frontTopEnemy.gameObject);
+        }
+        else
+        {
+            frontTopEnemyStation.gameObject.SetActive(false);
+        }
+
+        if (shouldAddToList(centerEnemy))
+        {
+            activeEnemies.Add(centerEnemy.gameObject);
+        }
+        else
+        {
+            centerEnemyStation.gameObject.SetActive(false);
+        }
+        
+        if (shouldAddToList(frontBottomEnemy))
+        {
+            activeEnemies.Add(frontBottomEnemy.gameObject);
+        }
+        else
+        {
+            frontBottomEnemyStation.gameObject.SetActive(false);
+        }
+
+        if (shouldAddToList(bottomEnemy))
+        {
+            activeEnemies.Add(bottomEnemy.gameObject);
+        }
+        else
+        {
+            bottomEnemyStation.gameObject.SetActive(false);
+        }
+        
+        return activeEnemies;
+    }
+
+    private bool shouldAddToList(Enemy enemy)
+    {
+        return enemy && enemy.isActiveAndEnabled;
     }
     
     void PlayerTurn()
     {
         combatLog.PrintToLog("Player's turn!");
         state = CombatState.PLAYER_ACTION_SELECT;
+    }
+    
+    void EnemyTurn(Unit enemy)
+    {
+        combatLog.PrintToLog(enemy.UnitName + "'s turn!");
+        state = CombatState.ENEMY_TURN;
+        StartCoroutine(ProcessEnemyTurn());
+    }
+
+    private IEnumerator ProcessEnemyTurn()
+    {
+        player.TakePhysicalDamage(5);
+        yield return new WaitForSeconds(1);
+        GetNextState();
     }
 
     public void OnSkillSelect(CombatMove move)
@@ -174,11 +257,12 @@ public class CombatSystem : MonoBehaviour
     }
 
     // Maybe better to pass a target index (1-3) than to pass Enemies around and let Combat System handle enemy data.
-    public void OnTargetSelect(Unit target)
+    public void OnTargetSelect(int targetIndex)
     {
         if (state != CombatState.PLAYER_TARGET_SELECT) return;
 
-        StartCoroutine(UsePlayerSkill(chosenSkill, target));
+        StartCoroutine(UsePlayerSkill(chosenSkill, GetActiveEnemies()[targetIndex].GetComponent<Unit>()));
+        
     }
 
     IEnumerator UsePlayerSkill(CombatMove move, Unit target)
@@ -196,20 +280,19 @@ public class CombatSystem : MonoBehaviour
         if (result.IsUnitDead) {
             Destroy(target.gameObject); // test
             combatLog.PrintToLog("Target died!");
+            //Destroy(topEnemyStation.gameObject);// find and disable station instead
+            uiInputController.UpdateTargetablePositions();
         }
-
-        state = CombatState.PLAYER_ACTION_SELECT;
-        // Change state depending on outcome
+        
+        // Relinquish control to SpeedManager
+        // temporary AI turn
+        // temporary playerturn again
+        GetNextState();
     }
 
     public CombatState State
     {
         get => state;
         set => state = value;
-    }
-
-    public List<GameObject> GetEnemies()
-    {
-        return enemyGameObjects;
     }
 }
