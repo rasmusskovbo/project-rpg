@@ -80,6 +80,8 @@ public class SpeedManager
         });
         
         activeUnits.Sort();
+        
+        PrintTurnOrder();
     }
 
     public TurnUnit GetTurnUnit(Unit unit)
@@ -132,39 +134,8 @@ public class SpeedManager
         
     }
 
-    /*
-    public Unit GetNextTurn()
-    {
-        // Need to update active units after each turn
-        // In case a unit died, remove it from list.
-        // Seems like it doesnt add to the back of the list. Investigate
-        foreach (Unit unit in sortedUnits)
-        {
-            Debug.Log("Counter: " + fastestSpeed);
-            Debug.Log("Unit speed: " + unit.CurrentSpeed);
-            if (unit.CurrentSpeed <= fastestSpeed)
-            {
-                nextUnitToAct = unit;
-                
-                sortedUnits.Remove(nextUnitToAct);
-                fastestSpeed--;
-                Debug.Log("Next unit to act: " + nextUnitToAct.UnitName);
-                break;
-            }
-            fastestSpeed--;
-            if (fastestSpeed <= 0) SetupTurnList();
-        }
-        
-        sortedUnits.Add(nextUnitToAct);
-        return nextUnitToAct;
-    }
-    */
-
     public void PrintTurnOrder()
     {
-        foreach (Unit unit in sortedUnits)
-        {
-            Debug.Log("Unit order: " + unit.UnitName + ". Speed: " + unit.CurrentSpeed);
-        }
+        activeUnits.ForEach(unit => Debug.Log("Name: " + unit.Unit.UnitName + " -- Speed: " + unit.Unit.CurrentSpeed));
     }
 }
