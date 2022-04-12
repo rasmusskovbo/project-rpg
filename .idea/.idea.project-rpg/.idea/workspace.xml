@@ -2,32 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fa8ce64e-188e-4703-b5a4-6b2e025cebde" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Combat/EnemyController.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Combat/EnemyController.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Combat/Units.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Combat/Units/Player.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Combat/Units/UnitType.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Combat/Units/UnitType.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.project-rpg/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.project-rpg/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Assets/UI/panel.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Assets/UI/panel.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Game/Prefabs/Player (Combat).prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Prefabs/Player (Combat).prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Game/Resources/Enemies/Skull.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Resources/Enemies/Skull.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Game/Resources/Enemies/Slime.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Resources/Enemies/Slime.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Combat.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Combat.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Combat/CombatLoader.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Combat/CombatLoader.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Combat/CombatSystem.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Combat/CombatSystem.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Combat/Unit.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Combat/Units/Unit.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Combat/Unit.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Combat/Units/Unit.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Enemies.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Combat/Units/Enemies.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Enemies/Enemy.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Combat/Units/Enemies/Enemy.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Enemies/Enemy.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Combat/Units/Enemies/Enemy.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Enemies/EnemyBase.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Combat/Units/Enemies/EnemyBase.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Enemies/EnemyBase.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Combat/Units/Enemies/EnemyBase.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/PlayerCombat.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Combat/Units/Player/PlayerCombat.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/PlayerCombat.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Combat/Units/Player/PlayerCombat.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/Combat UI/UICombatLog.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/Combat UI/UICombatLog.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/Combat UI/UIPlayerInputController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/Combat UI/UIPlayerInputController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/Combat UI/UISkillLoader.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/Combat UI/UISkillLoader.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Combat/SpeedManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Combat/SpeedManager.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,6 +37,7 @@
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ugui@1.0.0/Tests/Runtime/LayoutGroup/LayoutGroupArrangement.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ugui@1.0.0/Tests/Editor/Canvas/AssertionFailureOnOutputVertexCount.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Combat/Units/Enemies/EnemyBase.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/5406a456cf734443b3d02a7d123287f1299290/14/e381ca11/List`1.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/9899854e5b05425ab27d31f737cde095144600/b0/6297a1e8/Object.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ugui@1.0.0/Tests/Runtime/Canvas/CanvasScalerWithChildTextObjectDoesNotCrash.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Combat/CombatLoader.cs" root0="FORCE_HIGHLIGHTING" />
@@ -97,10 +74,10 @@
       </option>
       <method v="2" />
     </configuration>
-    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="7936">
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
-      <option name="pid" value="7936" />
+      <option name="pid" />
       <option name="projectPathOnTarget" />
       <option name="selectedOptions">
         <list />
@@ -125,7 +102,8 @@
       <workItem from="1649314617236" duration="30567000" />
       <workItem from="1649360939712" duration="6497000" />
       <workItem from="1649535190987" duration="466000" />
-      <workItem from="1649584301608" duration="16789000" />
+      <workItem from="1649584301608" duration="16815000" />
+      <workItem from="1649792983982" duration="4063000" />
     </task>
     <servers />
   </component>
