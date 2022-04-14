@@ -7,6 +7,7 @@ using Vector2 = UnityEngine.Vector2;
 public class UIPlayerInputController : MonoBehaviour
 {
     private CombatSystem combatSystem;
+    private UICombatLog combatLog;
     
     // TODO UI highlighting should be refactored to Ui Animation Controller
     [Header("Action Select")]
@@ -52,7 +53,7 @@ public class UIPlayerInputController : MonoBehaviour
     private int maxActionIndex = 2;
     
     // Skill selecting
-    private UISkillLoader _skillLoader;
+    private UISkillLoader skillLoader;
     private Vector2 defaultSkillSelectorPosition;
     private Vector2 lastSkillSelectorPosition;
     private int selectorPosition;
@@ -68,7 +69,8 @@ public class UIPlayerInputController : MonoBehaviour
 
     void Awake()
     {
-        _skillLoader = FindObjectOfType<UISkillLoader>();
+        skillLoader = FindObjectOfType<UISkillLoader>();
+        combatLog = FindObjectOfType<UICombatLog>();
         
         // Action list
         // TODO When implementing multiple skills per turn, this needs to be updated
@@ -118,22 +120,25 @@ public class UIPlayerInputController : MonoBehaviour
 
     private void InitiateSkillSelect()
     {
-        maxSkillIndex = _skillLoader.GetMaxIndex();
         defaultSkillSelectorPosition = selector.position;
+        skillIndex = 0;
     }
     
     public void UpdateTargetablePositions()
     {
         selectableTargetPositions.Clear();
-        
-        foreach (GameObject enemyObject in combatSystem.GetActiveEnemies())
+
+        List<GameObject> activeEnemies = combatSystem.GetActiveEnemies();
+        if (activeEnemies.Count <= 0) return;
+
+        activeEnemies.ForEach(enemyObject =>
         {
             Vector2 modifiedTransform = enemyObject.transform.position;
             modifiedTransform.x += xCursorOffset;
             modifiedTransform.y += yCursorOffset;
             selectableTargetPositions.Add(modifiedTransform);
-        }
-
+        });
+        
         defaultTargetCursorPosition = selectableTargetPositions[0];
         targetIndex = 0;
         maxTargetIndex = selectableTargetPositions.Count - 1;
@@ -291,71 +296,34 @@ public class UIPlayerInputController : MonoBehaviour
     {
         // If only one enemy, do not move cursor
         if (maxTargetIndex < 1) return;
-
-        Debug.Log(targetIndex);
-        Debug.Log(maxTargetIndex);
         
-        if (inputDirection.Equals(Vector2.up))
+        if (inputDirection.Equals(Vector2.up) || inputDirection.Equals(Vector2.left))
         {
             if (targetIndex > 0)
             {
                 cursor.position = selectableTargetPositions[targetIndex - 1];
                 targetIndex--;
             }
+            else
+            {
+                targetIndex = maxTargetIndex;
+                cursor.position = selectableTargetPositions[maxTargetIndex];
+            }
         }
 
-        if (inputDirection.Equals(Vector2.down))
+        if (inputDirection.Equals(Vector2.down) || inputDirection.Equals(Vector2.right))
         {
             if (targetIndex < maxTargetIndex)
             {
                 cursor.position = selectableTargetPositions[targetIndex + 1];
                 targetIndex++;
             }
-        }
-
-        /*
-        if (inputDirection.Equals(Vector2.right))
-        {
-            // If less than 4 monsters, disable controls.
-            // If on the rightmost places in a group of 4, disable controls
-            // If on the rightmost places in a group of 5, disable controls
-            if (maxTargetIndex < 3) return;
-            if (maxTargetIndex == 3 && targetIndex >= 2) return;
-            if (maxTargetIndex == 4 && targetIndex >= 3) return;
-
-            if ((maxTargetIndex == 4 && targetIndex == 2) || maxTargetIndex == 3)
+            else
             {
-                cursor.position = selectableTargetPositions[targetIndex + 2];
-                targetIndex += 2;
-            }
-            else if (maxTargetIndex == 4)
-            {
-                cursor.position = selectableTargetPositions[targetIndex + 3];
-                targetIndex += 3;
+                targetIndex = 0;
+                cursor.position = selectableTargetPositions[0];
             }
         }
-
-        if (inputDirection.Equals(Vector2.left))
-        {
-            // If less than 4 monsters, disable controls.
-            // If on the leftmost places in a group of 4, disable controls
-            // If on the leftmost places in a group of 5, disable controls
-            if (maxTargetIndex < 3) return;
-            if (maxTargetIndex == 3 && targetIndex <= 1) return;
-            if (maxTargetIndex == 4 && targetIndex <= 2) return;
-
-            if (maxTargetIndex == 3)
-            {
-                cursor.position = selectableTargetPositions[targetIndex - 2];
-                targetIndex -= 2;
-            }
-            else if (maxTargetIndex == 4)
-            {
-                cursor.position = selectableTargetPositions[targetIndex - 3];
-                targetIndex -= 3;
-            }
-        }
-        */
     }
     
     /*
@@ -385,26 +353,33 @@ public class UIPlayerInputController : MonoBehaviour
         lastActionPosition = cursor.position;
         
         // Reset Skill Selector
-        _skillLoader.InitiateCombatMoves(activeAction);
+        maxSkillIndex = skillLoader.InitiateCombatMoves(activeAction);
         selector.position = defaultSkillSelectorPosition; 
         selectorPosition = 0;
         skillIndex = 0;
-        maxSkillIndex = _skillLoader.GetMaxIndex();
-        
+
         combatSystem.State = CombatState.PLAYER_SKILL_SELECT;
         
     }
     
     void SelectSkill()
     {
+        CombatMove chosenSkill = skillLoader.GetSkill(skillIndex);
+        
+        if (chosenSkill.GetCooldownTracker().isMoveOnCooldown())
+        {
+            combatLog.MoveIsOnCooldown(chosenSkill);
+            return;
+        }
+        
         // Save selector position
         // Set target cursor position to default or last selected target.
         lastSkillSelectorPosition = selector.position;
         
         cursor.position = defaultTargetCursorPosition; // Should be last selected target
         targetIndex = 0; // When above is last selected target, do not reset index.
-
-        combatSystem.OnSkillSelect(_skillLoader.GetSkill(skillIndex));
+        
+        combatSystem.OnSkillSelect(chosenSkill);
     }
     
     void SelectTarget()
@@ -412,7 +387,7 @@ public class UIPlayerInputController : MonoBehaviour
         combatSystem.OnTargetSelect(targetIndex);
         ResetActionSelectPanels();
     }
-
+    
     private void ZoomSelectedActionIcon(GameObject action)
     {
         action.GetComponent<RectTransform>().localScale = new Vector3(selectedActionScale, selectedActionScale);
@@ -427,5 +402,10 @@ public class UIPlayerInputController : MonoBehaviour
         attackAction.GetComponent<RectTransform>().localScale = new Vector3(1, 1);
         defendAction.GetComponent<RectTransform>().localScale = new Vector3(1, 1);
         supportAction.GetComponent<RectTransform>().localScale = new Vector3(1, 1);
+    }
+
+    public void MoveCursorToDefaultActionSelect()
+    {
+        cursor.position = defaultActionCursorPosition;
     }
 }

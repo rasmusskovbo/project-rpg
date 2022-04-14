@@ -1,7 +1,5 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class CombatSystem : MonoBehaviour
@@ -14,10 +12,12 @@ public class CombatSystem : MonoBehaviour
     private UICombatLog combatLog;
     private UIPlayerInputController uiInputController;
     private CombatLoader combatLoader;
-    private SpeedManager speedManager;
+    private TurnManager turnManager;
     private EnemyController enemyController;
+    private SkillManager skillManager;
     
     // Player
+    [SerializeField] private Transform playerStation;
     private PlayerCombat player;
     private GameObject playerGO;
 
@@ -44,49 +44,66 @@ public class CombatSystem : MonoBehaviour
         combatLoader = FindObjectOfType<CombatLoader>();
         uiInputController = FindObjectOfType<UIPlayerInputController>();
         enemyController = FindObjectOfType<EnemyController>();
+        skillManager = FindObjectOfType<SkillManager>();
         enemyGameObjects = new List<GameObject>();
         StartCoroutine(SetupCombat());
-    }
-
-    private void Update()
-    {
-        //Debug.Log("Current combat state: " + state);
     }
 
     IEnumerator SetupCombat()
     {
         SetupPlayer();
         SetupEnemies();
+        SetupTurnManager();
 
-        List<GameObject> activeEnemies = GetActiveEnemies();
-        activeEnemies.Add(playerGO);
-        speedManager = new SpeedManager(activeEnemies);
-        
         combatLog.Clear();
-        combatLog.PrintToLog("Enemies have appeared!");
+        combatLog.StartOfCombat();
 
-        yield return new WaitForSeconds(1f);
-
-        GetNextState();
+        yield return new WaitForSecondsRealtime(1);
+        
+        SetNextState();
     }
 
-    private void GetNextState()
+    private void SetupTurnManager()
     {
-        Unit nextToAct = speedManager.GetNextTurn();
+        List<GameObject> activeEnemies = GetActiveEnemies();
+        activeEnemies.Add(playerGO);
+        turnManager = new TurnManager(activeEnemies);
+    }
 
-        if (nextToAct.UnitType == UnitType.PLAYER)
+    private void SetNextState()
+    {
+        if (player.isActiveAndEnabled)
         {
-            PlayerTurn();
+            //GetActiveEnemies().ForEach(go => Debug.Log(go.name));
+            
+            if (GetActiveEnemies().Count > 0) {
+                Unit nextToAct = turnManager.GetNextTurn();
+
+                if (nextToAct.UnitType == UnitType.PLAYER)
+                {
+                    PlayerTurn();
+                }
+                else if (nextToAct.UnitType == UnitType.ENEMY)
+                {
+                    EnemyTurn(nextToAct);
+                }
+            }
+            else
+            {
+                state = CombatState.VICTORY;
+            }  
         }
         else
         {
-            EnemyTurn(nextToAct);
+            state = CombatState.DEFEAT;
         }
+
+        Debug.Log("Current state: " + state);
     }
 
     void SetupPlayer()
     {
-        playerGO = combatLoader.SpawnPlayer();
+        playerGO = combatLoader.SpawnPlayer(playerStation);
         player = playerGO.GetComponent<PlayerCombat>();
     }
     
@@ -229,7 +246,9 @@ public class CombatSystem : MonoBehaviour
     
     void PlayerTurn()
     {
-        combatLog.PrintToLog("Player's turn!");
+        skillManager.DecreaseCooldowns();
+        combatLog.PlayerTurn();
+        uiInputController.MoveCursorToDefaultActionSelect();
         state = CombatState.PLAYER_ACTION_SELECT;
     }
     
@@ -239,14 +258,7 @@ public class CombatSystem : MonoBehaviour
         state = CombatState.ENEMY_TURN;
         StartCoroutine(ProcessEnemyTurn());
     }
-
-    private IEnumerator ProcessEnemyTurn()
-    {
-        player.TakePhysicalDamage(5);
-        yield return new WaitForSeconds(1);
-        GetNextState();
-    }
-
+    
     public void OnSkillSelect(CombatMove move)
     {
         if (state != CombatState.PLAYER_SKILL_SELECT) return;
@@ -272,22 +284,43 @@ public class CombatSystem : MonoBehaviour
             VFX (particle effects etc) - Maybe this is animation layer as well
             Combat calculations
         */
+        FindObjectOfType<SkillManager>().PutCombatMoveOnCooldown(move);
         TakeDamageResult result = target.TakePhysicalDamage(move.GetPower()); // test needs skillhandler to provide decide whether skill is physical etc
-        combatLog.PrintAttackMove(move, target, result.DamageTaken);
-        
+        combatLog.PlayerUsedCombatMove(move, target, result.DamageTaken);
+
         yield return new WaitForSeconds(2); // TODO Decide how long moves should take - dynamic, static or variable. Dont hardcode '2'
         
-        if (result.IsUnitDead) {
-            Destroy(target.gameObject); // test
-            combatLog.PrintToLog("Target died!");
-            //Destroy(topEnemyStation.gameObject);// find and disable station instead
-            uiInputController.UpdateTargetablePositions();
-        }
+        // Check for death of target.
+        CheckForDeath(target, result);
         
-        // Relinquish control to SpeedManager
-        // temporary AI turn
-        // temporary playerturn again
-        GetNextState();
+        SetNextState();
+    }
+    
+    /*
+     * Simple test impl of enemy AI
+     */
+    private IEnumerator ProcessEnemyTurn()
+    {
+        TakeDamageResult result = player.TakePhysicalDamage(15); 
+        combatLog.PrintToLog("Player hit for : " + result.DamageTaken + ". Player HP: " + player.CurrentHp);
+        yield return new WaitForSeconds(1);
+        
+        CheckForDeath(player, result);
+        SetNextState();
+    }
+
+    private void CheckForDeath(Unit target, TakeDamageResult result)
+    {
+        if (result.IsUnitDead)
+        {
+            Destroy(target.gameObject);
+            if (target.UnitType == UnitType.PLAYER) playerStation.gameObject.SetActive(false);
+            
+            combatLog.PrintToLog(target.UnitName + " died!");
+            
+            uiInputController.UpdateTargetablePositions();
+            turnManager.RemoveFromActiveUnits(target);
+        }
     }
 
     public CombatState State

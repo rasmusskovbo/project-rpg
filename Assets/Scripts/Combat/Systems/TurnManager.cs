@@ -1,57 +1,18 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TurnUnit : IComparable
+/*
+ * 1) Get all active units
+ * 2) Find the fastest (sort)
+ * 3) Fastest is the baseline (will first every round)
+ * 4) Use ratio (fastest speed/slower unit speed)
+ * 5) If unit's turn counter < current turn + 1 -> act and increment (unit's turn counter + unit's turn ratio)
+ * 6) Else, do not increment and check again next round.
+ */
+
+public class TurnManager
 {
-    public TurnUnit(Unit unit, float turnRatio)
-    {
-        this.unit = unit;
-        this.turnRatio = turnRatio;
-        turnCounter = turnRatio;
-    }
-
-    private Unit unit;
-    private float turnRatio;
-    private float turnCounter;
-
-    public Unit Unit
-    {
-        get => unit;
-        set => unit = value;
-    }
-
-    public float TurnRatio
-    {
-        get => turnRatio;
-        set => turnRatio = value;
-    }
-
-    public float TurnCounter
-    {
-        get => turnCounter;
-        set => turnCounter = value;
-    }
-    
-    public int CompareTo(object obj)
-    {
-        TurnUnit other = obj as TurnUnit;
-        return this.turnCounter.CompareTo(other.turnCounter);
-        //return Mathf.RoundToInt(this.CurrentSpeed - other.CurrentSpeed);
-    }
-}
-
-public class SpeedManager
-{
-    /*
-     * 1) Get all active units
-     * 2) Find the fastest (sort)
-     * 3) Fastest is the baseline (will first every round)
-     * 4) Use ratio (fastest speed/slower unit speed)
-     * 5) If unit's turn counter < current turn + 1 -> act and increment (unit's turn counter + unit's turn ratio)
-     * 6) Else, do not increment and check again next round.
-     */
-    public SpeedManager(List<GameObject> incomingUnits)
+    public TurnManager(List<GameObject> incomingUnits)
     {
         sortedUnits = new List<Unit>();
         activeUnits = new List<TurnUnit>();
@@ -63,10 +24,7 @@ public class SpeedManager
     }
 
     private List<Unit> sortedUnits;
-    
     private List<TurnUnit> activeUnits;
-    private Unit nextUnitToAct;
-    
     private float fastestSpeed;
     private int currentTurn = 1;
 
@@ -81,7 +39,6 @@ public class SpeedManager
         
         activeUnits.Sort();
         
-        PrintTurnOrder();
     }
 
     public TurnUnit GetTurnUnit(Unit unit)
@@ -123,7 +80,6 @@ public class SpeedManager
                 nextUnitToActThisTurn.TurnRatio;  
         
             // Return the unit to combat system.
-        
             return unitsToActThisTurn[0].Unit;
         }
         else
@@ -134,7 +90,20 @@ public class SpeedManager
         
     }
 
-    public void PrintTurnOrder()
+    public void RemoveFromActiveUnits(Unit disabledUnit)
+    {
+        for (int i = activeUnits.Count-1; i >= 0; i--)
+        {
+            if (activeUnits[i].Unit.Equals(disabledUnit))
+            {
+                Debug.Log("Removed from speed manager list: " + activeUnits[i].Unit.UnitName);
+                activeUnits.RemoveAt(i);
+            }
+        }
+        
+    }
+
+    public void DebugPrintTurnOrder()
     {
         activeUnits.ForEach(unit => Debug.Log("Name: " + unit.Unit.UnitName + " -- Speed: " + unit.Unit.CurrentSpeed));
     }

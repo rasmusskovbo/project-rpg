@@ -1,30 +1,37 @@
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using Vector2 = UnityEngine.Vector2;
 
 /*
- * Responsible for loading skills to the skill UI.
+ * Should ONLY be Responsible for loading skills to the skill UI - tracking active skills should be: 
  * The active skills for the character should be supplied from the player skill manager object
+ * The active skills will be CombatMoves directly, and will include a variable or object indicating whether the skill is currently on cooldown
  */
 public class UISkillLoader : MonoBehaviour
 {
 
     [SerializeField] private GameObject skillItemPrefab; // The prefab for the list item (logo, name etc)
-    [SerializeField] private List<CombatMoveBase> combatMoveBases; // A comprehensive list of all combat moves in the game
-    [SerializeField] private RectTransform contentRectTransform;
-    private List<CombatMove> activeCombatMoves;
-    
+    [SerializeField] private RectTransform contentRectTransform; // Scroll window transform
+
+    private SkillManager SkillManager;
+    private List<CombatMove> combatMovesInUI;
+
     private void Awake()
     {
-        activeCombatMoves = new List<CombatMove>();
+        SkillManager = FindObjectOfType<SkillManager>();
+        combatMovesInUI = new List<CombatMove>();
     }
 
-    public void InitiateCombatMoves(CombatAction action)
+    /*
+     * also check if the supplied combatmove is on a cooldown, if then make not selectable
+     */
+    public int InitiateCombatMoves(CombatAction action)
     {
-        activeCombatMoves.Clear();
         ClearSkillUI();
+        combatMovesInUI.Clear();
         
         List<CombatMoveType> filters = new List<CombatMoveType>();
         
@@ -45,30 +52,47 @@ public class UISkillLoader : MonoBehaviour
             filters.Add(CombatMoveType.Debuff);
         }
 
-        foreach (var moveBase in combatMoveBases)
+        SkillManager.GetActiveCombatMoves().ForEach(combatMove =>
         {
-            if (filters.Contains(moveBase.Type.GetType()))
+            if (filters.Contains(combatMove.GetType()))
             {
-                AddMoveToUI(moveBase);
+                //Debug.Log("Move added: " + combatMove.GetName());
+                AddMoveToUI(combatMove);
             }
-        }
+        });
+
+        return GetMaxIndex();
 
     }
 
-    private void AddMoveToUI(CombatMoveBase moveBase)
+    private void AddMoveToUI(CombatMove combatMove)
     {
         var item = Instantiate(skillItemPrefab);
-        CombatMove combatMove = new CombatMove(moveBase, 1); // TODO DYNAMIC lvl for scaling
-
+        
         item.GetComponentsInChildren<Image>()[0].sprite = combatMove.getIconImage();
         item.GetComponentsInChildren<Image>()[1].sprite = combatMove.GetIcon();
         item.GetComponentsInChildren<TextMeshProUGUI>()[0].SetText(combatMove.GetName());
         item.GetComponentsInChildren<TextMeshProUGUI>()[1].SetText(combatMove.GetPower().ToString());
         item.GetComponentsInChildren<TextMeshProUGUI>()[2].SetText(combatMove.GetCooldown().ToString());
-
-        activeCombatMoves.Add(combatMove);
+        
         item.transform.SetParent(contentRectTransform);
         item.transform.localScale = Vector2.one;
+
+        combatMovesInUI.Add(combatMove);
+        
+        Debug.Log("Is move on CD: " + combatMove.GetName() + ", " + combatMove.GetCooldownTracker().isMoveOnCooldown());
+        
+        if (combatMove.GetCooldownTracker().isMoveOnCooldown())
+        {
+            item.GetComponentsInChildren<Image>()[0].color = Color.black;
+            item.GetComponentsInChildren<TextMeshProUGUI>()[2].color = Color.red;
+            item.GetComponentsInChildren<TextMeshProUGUI>()[2].SetText(combatMove.GetCooldownTracker().GetRemainingCooldown().ToString() + "/" + combatMove.GetCooldown().ToString());
+        }
+        else
+        {
+            item.GetComponentsInChildren<Image>()[0].color = Color.white;
+            item.GetComponentsInChildren<TextMeshProUGUI>()[2].color = Color.white;
+        }
     }
 
     public void ClearSkillUI()
@@ -81,12 +105,12 @@ public class UISkillLoader : MonoBehaviour
 
     public int GetMaxIndex()
     {
-        return activeCombatMoves.Count > 0 ? activeCombatMoves.Count - 1 : 0;
+        return combatMovesInUI.Count > 0 ? combatMovesInUI.Count - 1 : 0;
     }
 
     public CombatMove GetSkill(int index)
     {
-        return activeCombatMoves[index];
+        return combatMovesInUI[index];
     }
 }
     

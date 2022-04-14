@@ -19,10 +19,11 @@ public class UICombatLog : MonoBehaviour
         }
         
     }
-
-    // TODO Should only provide types and then combatlog will format.
-    // e.g. enemy name, skill, damage, type etc
-    // This print function is for testing, however moving the log up works.
+    
+    /*
+     * Printing to the combatlog and moving the lines in the UI.
+     * Functionality methods
+     */
     public void PrintToLog(string msg)
     {
         for (int i = 0; i < combatLog.Count - 1; i++)
@@ -32,8 +33,28 @@ public class UICombatLog : MonoBehaviour
 
         combatLog[combatLog.Count - 1].text = msg;
     }
+    
+    public void Clear()
+    {
+        combatLog.ForEach(textObject => textObject.text = "");
+    }
+    
+    /*
+     * Event specific text:
+     */
+    public void StartOfCombat()
+    {
+        string line = "Enemies have appeared. Speed determines turn order.";
+        PrintToLog(line);
+    }
 
-    public void PrintAttackMove(CombatMove move, Unit target, float damage)
+    public void PlayerTurn()
+    {
+        string line = "Player's turn! Choose an action.";
+        PrintToLog(line);
+    }
+
+    public void PlayerUsedCombatMove(CombatMove move, Unit target, float damage)
     {
         string line = "You used " + move.GetName() +
                       " on " + target.UnitName +
@@ -41,11 +62,11 @@ public class UICombatLog : MonoBehaviour
         PrintToLog(line);
     }
 
-    public void Clear()
+    public void MoveIsOnCooldown(CombatMove move)
     {
-        foreach (var textMeshProUGUI in combatLog)
-        {
-            textMeshProUGUI.text = "";
-        }
+        string line = move.GetName() + " is currently on cooldown.";
+        PrintToLog(line);
     }
+
+
 }

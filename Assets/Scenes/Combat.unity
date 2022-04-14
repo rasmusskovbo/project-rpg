@@ -500,7 +500,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerPrefab: {fileID: 9136100889898898815, guid: 71dcd6388ace302449a64aca1c4ff9fe, type: 3}
-  playerStation: {fileID: 334992928}
   enemyBases:
   - {fileID: 11400000, guid: 903592bcc2be5244d91a9603e0961e09, type: 2}
   - {fileID: 11400000, guid: 8144cdab7f9828146a84a4634f1e7bcb, type: 2}
@@ -1085,6 +1084,61 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 600339143}
   m_CullTransparentMesh: 1
+--- !u!1 &610044769
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 610044770}
+  - component: {fileID: 610044771}
+  m_Layer: 0
+  m_Name: SkillManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &610044770
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 610044769}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1047782243}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &610044771
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 610044769}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9a3fa82b46f4664daa62d215a102103, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  combatMoveBases:
+  - {fileID: 11400000, guid: 87d1b77830d82ff4d9a980f7046c816e, type: 2}
+  - {fileID: 11400000, guid: 9a0992fcb7f39e2409c00a23c6f6907a, type: 2}
+  - {fileID: 11400000, guid: c392ede540fd2dc42a64da3179134b2a, type: 2}
+  - {fileID: 11400000, guid: ec655e117c13f934cb2c1b50641d2f29, type: 2}
+  - {fileID: 11400000, guid: 38143543abac54c46939a7c51434ad3c, type: 2}
+  - {fileID: 11400000, guid: 78c6dde369c3d8849bd399fc9419784a, type: 2}
+  - {fileID: 11400000, guid: 2e11c1716211f7240a67fe76c045ad03, type: 2}
+  - {fileID: 11400000, guid: c9c5f277d30c19644968c005763f7624, type: 2}
+  - {fileID: 11400000, guid: 1c36726a9c9a93148bfe7d72f2e753b4, type: 2}
+  - {fileID: 11400000, guid: 051d7c5652271e3438b01d6bbb86080e, type: 2}
+  - {fileID: 11400000, guid: 4d6fe4b2c8e7e234d8aa877433dbd03b, type: 2}
 --- !u!1 &615774913
 GameObject:
   m_ObjectHideFlags: 0
@@ -2528,18 +2582,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillItemPrefab: {fileID: 5985974311135010796, guid: 93f213648f7c8f642bfe8de9ccc18683, type: 3}
-  combatMoveBases:
-  - {fileID: 11400000, guid: c392ede540fd2dc42a64da3179134b2a, type: 2}
-  - {fileID: 11400000, guid: 87d1b77830d82ff4d9a980f7046c816e, type: 2}
-  - {fileID: 11400000, guid: 9a0992fcb7f39e2409c00a23c6f6907a, type: 2}
-  - {fileID: 11400000, guid: 4d6fe4b2c8e7e234d8aa877433dbd03b, type: 2}
-  - {fileID: 11400000, guid: 78c6dde369c3d8849bd399fc9419784a, type: 2}
-  - {fileID: 11400000, guid: 2e11c1716211f7240a67fe76c045ad03, type: 2}
-  - {fileID: 11400000, guid: c9c5f277d30c19644968c005763f7624, type: 2}
-  - {fileID: 11400000, guid: ec655e117c13f934cb2c1b50641d2f29, type: 2}
-  - {fileID: 11400000, guid: 1c36726a9c9a93148bfe7d72f2e753b4, type: 2}
-  - {fileID: 11400000, guid: 38143543abac54c46939a7c51434ad3c, type: 2}
-  - {fileID: 11400000, guid: 051d7c5652271e3438b01d6bbb86080e, type: 2}
   contentRectTransform: {fileID: 1164366020}
 --- !u!1 &1047782242
 GameObject:
@@ -2572,6 +2614,7 @@ Transform:
   - {fileID: 1137026391}
   - {fileID: 1042410030}
   - {fileID: 2118725003}
+  - {fileID: 610044770}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2779,12 +2822,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6b31f9b6d90e1047a6718f1201f82b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerStation: {fileID: 334992928}
   topEnemyStation: {fileID: 354888608}
   centerEnemyStation: {fileID: 1924524107}
   bottomEnemyStation: {fileID: 564620973}
   frontTopEnemyStation: {fileID: 1535339211}
   frontBottomEnemyStation: {fileID: 1139207582}
-  amountToSpawn: 5
+  amountToSpawn: 1
   levelOfEnemies: 1
 --- !u!4 &1139207582 stripped
 Transform:

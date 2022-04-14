@@ -4,11 +4,18 @@ public class CombatMove
 {
     private CombatMoveBase _base;
     private int level;
+    private CooldownTracker cooldownTracker;
 
     public CombatMove(CombatMoveBase mBase, int mLevel)
     {
         _base = mBase;
         level = mLevel;
+        cooldownTracker = new CooldownTracker(0);
+    }
+
+    public CooldownTracker GetCooldownTracker()
+    {
+        return cooldownTracker;
     }
 
     public Sprite getIconImage()

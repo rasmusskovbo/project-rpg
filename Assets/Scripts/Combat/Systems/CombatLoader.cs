@@ -8,7 +8,6 @@ public class CombatLoader : MonoBehaviour
     // Positions for spawning
     [Header("Player")]
     [SerializeField] GameObject playerPrefab;
-    [SerializeField] private Transform playerStation;
     
     [Header("Enemies")] 
     [SerializeField] private List<EnemyBase> enemyBases; // List of Scriptable Objects to instantiate prefabs from
@@ -23,7 +22,7 @@ public class CombatLoader : MonoBehaviour
         SetupBackground();
     }
 
-    public GameObject SpawnPlayer()
+    public GameObject SpawnPlayer(Transform playerStation)
     {
         GameObject playerGO = Instantiate(playerPrefab, playerStation);
         playerGO.GetComponent<PlayerCombat>().InitiatePlayerCombatStats();
