@@ -18,8 +18,10 @@ public class CombatSystem : MonoBehaviour
     
     // Player
     [SerializeField] private Transform playerStation;
+    [SerializeField] private int maxPlayerActions = 2;
     private PlayerCombat player;
     private GameObject playerGO;
+    private int remainingPlayerActions = 2;
 
     // Enemies
     [SerializeField] private Transform topEnemyStation;
@@ -46,6 +48,7 @@ public class CombatSystem : MonoBehaviour
         enemyController = FindObjectOfType<EnemyController>();
         skillManager = FindObjectOfType<SkillManager>();
         enemyGameObjects = new List<GameObject>();
+        remainingPlayerActions = maxPlayerActions;
         StartCoroutine(SetupCombat());
     }
 
@@ -69,7 +72,7 @@ public class CombatSystem : MonoBehaviour
         activeEnemies.Add(playerGO);
         turnManager = new TurnManager(activeEnemies);
     }
-
+    
     private void SetNextState()
     {
         if (player.isActiveAndEnabled)
@@ -77,15 +80,22 @@ public class CombatSystem : MonoBehaviour
             //GetActiveEnemies().ForEach(go => Debug.Log(go.name));
             
             if (GetActiveEnemies().Count > 0) {
+
+                if (remainingPlayerActions > 0)
+                {
+                    NextPlayerAction();
+                    return;
+                }
+                
                 Unit nextToAct = turnManager.GetNextTurn();
 
                 if (nextToAct.UnitType == UnitType.PLAYER)
                 {
-                    PlayerTurn();
+                    NewPlayerTurn();
                 }
                 else if (nextToAct.UnitType == UnitType.ENEMY)
                 {
-                    EnemyTurn(nextToAct);
+                    NewEnemyTurn(nextToAct);
                 }
             }
             else
@@ -244,15 +254,23 @@ public class CombatSystem : MonoBehaviour
         return enemy && enemy.isActiveAndEnabled;
     }
     
-    void PlayerTurn()
+    void NextPlayerAction()
     {
-        skillManager.DecreaseCooldowns();
-        combatLog.PlayerTurn();
+        combatLog.NextPlayerAction(remainingPlayerActions);
         uiInputController.MoveCursorToDefaultActionSelect();
         state = CombatState.PLAYER_ACTION_SELECT;
     }
     
-    void EnemyTurn(Unit enemy)
+    void NewPlayerTurn()
+    {
+        remainingPlayerActions = maxPlayerActions;
+        skillManager.DecreaseCooldowns();
+        combatLog.PlayerTurn();
+        uiInputController.ResetActionSelectUI();
+        state = CombatState.PLAYER_ACTION_SELECT;
+    }
+    
+    void NewEnemyTurn(Unit enemy)
     {
         combatLog.PrintToLog(enemy.UnitName + "'s turn!");
         state = CombatState.ENEMY_TURN;
@@ -274,6 +292,12 @@ public class CombatSystem : MonoBehaviour
         if (state != CombatState.PLAYER_TARGET_SELECT) return;
 
         StartCoroutine(UsePlayerSkill(chosenSkill, GetActiveEnemies()[targetIndex].GetComponent<Unit>()));
+
+        if (remainingPlayerActions > 0)
+        {
+            remainingPlayerActions--;
+            uiInputController.DisableChosenAction(chosenSkill.GetActionType());    
+        }
         
     }
 
@@ -295,7 +319,6 @@ public class CombatSystem : MonoBehaviour
         
         SetNextState();
     }
-    
     /*
      * Simple test impl of enemy AI
      */

@@ -48,6 +48,21 @@ public class UICombatLog : MonoBehaviour
         PrintToLog(line);
     }
 
+    public void NextPlayerAction(int remainingActions)
+    {
+        string line = "";
+        if (remainingActions > 1)
+        {
+            line = "You have " + remainingActions + " remaining actions left.";
+        }
+        else
+        {
+            line = "You have another action left.";
+        }
+
+        PrintToLog(line);
+    }
+
     public void PlayerTurn()
     {
         string line = "Player's turn! Choose an action.";

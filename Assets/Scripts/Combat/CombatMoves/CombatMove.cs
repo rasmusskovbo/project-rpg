@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class CombatMove
@@ -41,6 +42,11 @@ public class CombatMove
     public CombatMoveType GetType()
     {
         return _base.Type.GetType();
+    }
+
+    public CombatAction GetActionType()
+    {
+        return _base.ActionType;
     }
 
     public Sprite GetIcon()

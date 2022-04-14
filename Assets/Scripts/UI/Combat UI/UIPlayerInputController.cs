@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Unity.VisualScripting.Dependencies.NCalc;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -45,7 +46,8 @@ public class UIPlayerInputController : MonoBehaviour
     
     // Action selecting
     private Vector2 defaultActionCursorPosition;
-    private List<GameObject> actionButtons;
+    private List<GameObject> actionButtonsGameObjects; // used for targetting etc
+    private List<GameObject> activeActionButtons; // used to disable action in SelectAction()
     private List<Vector2> selectableActionPositions;
     private CombatAction activeAction;
     private Vector2 lastActionPosition;
@@ -72,9 +74,8 @@ public class UIPlayerInputController : MonoBehaviour
         skillLoader = FindObjectOfType<UISkillLoader>();
         combatLog = FindObjectOfType<UICombatLog>();
         
-        // Action list
-        // TODO When implementing multiple skills per turn, this needs to be updated
         InitiateActionSelectLists();
+
         selectableTargetPositions = new List<Vector2>();
     }
     
@@ -82,7 +83,7 @@ public class UIPlayerInputController : MonoBehaviour
     {
         combatSystem = FindObjectOfType<CombatSystem>();
         
-        InitiateActionSelectPositions();
+        SetActiveSelectPositions();
         InitiateSkillSelect();
         UpdateTargetablePositions();
         
@@ -93,20 +94,27 @@ public class UIPlayerInputController : MonoBehaviour
     
     private void InitiateActionSelectLists()
     {
-        actionButtons = new List<GameObject>();
-        actionButtons.Add(attackAction);
-        actionButtons.Add(defendAction);
-        actionButtons.Add(supportAction);
-
+        actionButtonsGameObjects = new List<GameObject>();
         selectableActionPositions = new List<Vector2>();
+        activeActionButtons = new List<GameObject>();
+        
+        // Load default action buttons
+        actionButtonsGameObjects.Add(attackAction);
+        actionButtonsGameObjects.Add(defendAction);
+        actionButtonsGameObjects.Add(supportAction);
+        
+        // Load default into active
+        actionButtonsGameObjects.ForEach(buttonGO => activeActionButtons.Add(buttonGO));
     }
     
     /*
-     * Initiating cursor positions
+     * Set active positions for choosing action
      */
-    private void InitiateActionSelectPositions()
+    private void SetActiveSelectPositions()
     {
-        foreach (GameObject gameObject in actionButtons)
+        selectableActionPositions.Clear();
+
+        foreach (GameObject gameObject in actionButtonsGameObjects)
         {
             Vector2 modifiedTransform = gameObject.transform.position;
             modifiedTransform.x += xActionCursorOffset;
@@ -116,6 +124,44 @@ public class UIPlayerInputController : MonoBehaviour
 
         defaultActionCursorPosition = selectableActionPositions[0];
         actionIndex = 0;
+        maxActionIndex = selectableActionPositions.Count - 1;
+    }
+
+    public void ResetActionSelectUI()
+    {
+        activeActionButtons.Clear();
+        actionButtonsGameObjects.ForEach(buttonGO =>
+        {
+            activeActionButtons.Add(buttonGO);
+            buttonGO.GetComponent<Image>().color = Color.white;
+        });
+        MoveCursorToDefaultActionSelect();
+    }
+
+    public void DisableChosenAction(CombatAction action)
+    {
+
+        GameObject actionButtonGO = activeActionButtons.Find(buttonGO =>
+            buttonGO.name
+                .ToLower()
+                .Contains(
+                    action.ToString().ToLower()
+                )
+        );
+
+        activeActionButtons.Remove(actionButtonGO);
+        actionButtonGO.gameObject.GetComponent<Image>().color = Color.black;
+    }
+
+    public bool IsActionDisabled(CombatAction action)
+    {
+        return !activeActionButtons.Find(buttonGO =>
+            buttonGO.name
+                .ToLower()
+                .Contains(
+                    action.ToString().ToLower()
+                )
+        );
     }
 
     private void InitiateSkillSelect()
@@ -328,22 +374,32 @@ public class UIPlayerInputController : MonoBehaviour
     
     /*
      * OnSubmit Functions
+     * Rework to compare chosen action
+     * with active actions instead.
+     * Alternatively, do not disable or destroy anything
+     * and simply grey it out (e.g skill select)
      */
     void SelectAction()
     {
         switch (actionIndex)
         {
             case 0:
+                if (IsActionDisabled(CombatAction.ATTACK)) return;
+                
                 activeAction = CombatAction.ATTACK;
                 attackPanel.GetComponent<Image>().sprite = selectedAttackBG;
                 ZoomSelectedActionIcon(attackAction);
                 break;
             case 1:
+                if (IsActionDisabled(CombatAction.DEFEND)) return;
+                
                 activeAction = CombatAction.DEFEND;
                 defendPanel.GetComponent<Image>().sprite = selectedDefendBG;
                 ZoomSelectedActionIcon(defendAction);
                 break;
             case 2:
+                if (IsActionDisabled(CombatAction.SUPPORT)) return;
+                
                 activeAction = CombatAction.SUPPORT;
                 supportPanel.GetComponent<Image>().sprite = selectedSupportBG;
                 ZoomSelectedActionIcon(supportAction);
@@ -390,6 +446,7 @@ public class UIPlayerInputController : MonoBehaviour
     
     private void ZoomSelectedActionIcon(GameObject action)
     {
+        Debug.Log("Zoom action: "+ action);
         action.GetComponent<RectTransform>().localScale = new Vector3(selectedActionScale, selectedActionScale);
     }
 
@@ -406,6 +463,7 @@ public class UIPlayerInputController : MonoBehaviour
 
     public void MoveCursorToDefaultActionSelect()
     {
+        actionIndex = 0;
         cursor.position = defaultActionCursorPosition;
     }
 }

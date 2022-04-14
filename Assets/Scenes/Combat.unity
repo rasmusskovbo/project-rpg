@@ -2823,12 +2823,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerStation: {fileID: 334992928}
+  maxPlayerActions: 2
   topEnemyStation: {fileID: 354888608}
   centerEnemyStation: {fileID: 1924524107}
   bottomEnemyStation: {fileID: 564620973}
   frontTopEnemyStation: {fileID: 1535339211}
   frontBottomEnemyStation: {fileID: 1139207582}
-  amountToSpawn: 1
+  amountToSpawn: 3
   levelOfEnemies: 1
 --- !u!4 &1139207582 stripped
 Transform:
