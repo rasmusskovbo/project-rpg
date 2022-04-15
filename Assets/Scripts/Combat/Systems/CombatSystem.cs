@@ -15,6 +15,7 @@ public class CombatSystem : MonoBehaviour
     private TurnManager turnManager;
     private EnemyController enemyController;
     private SkillManager skillManager;
+    private SkillExecutor skillExecutor;
     
     // Player
     [SerializeField] private Transform playerStation;
@@ -47,6 +48,7 @@ public class CombatSystem : MonoBehaviour
         uiInputController = FindObjectOfType<UIPlayerInputController>();
         enemyController = FindObjectOfType<EnemyController>();
         skillManager = FindObjectOfType<SkillManager>();
+        skillExecutor = FindObjectOfType<SkillExecutor>();
         enemyGameObjects = new List<GameObject>();
         remainingPlayerActions = maxPlayerActions;
         StartCoroutine(SetupCombat());
@@ -258,6 +260,7 @@ public class CombatSystem : MonoBehaviour
     {
         combatLog.NextPlayerAction(remainingPlayerActions);
         uiInputController.MoveCursorToDefaultActionSelect();
+        uiInputController.PlayerHasChosenATarget = false;
         state = CombatState.PLAYER_ACTION_SELECT;
     }
     
@@ -267,6 +270,7 @@ public class CombatSystem : MonoBehaviour
         skillManager.DecreaseCooldowns();
         combatLog.PlayerTurn();
         uiInputController.ResetActionSelectUI();
+        uiInputController.PlayerHasChosenATarget = false;
         state = CombatState.PLAYER_ACTION_SELECT;
     }
     
@@ -282,8 +286,14 @@ public class CombatSystem : MonoBehaviour
         if (state != CombatState.PLAYER_SKILL_SELECT) return;
         
         chosenSkill = move;
-        state = CombatState.PLAYER_TARGET_SELECT;
+
+        if (skillExecutor.ExecuteMove(move))
+        {
+            state = CombatState.PLAYER_TARGET_SELECT;    
+        }
         
+        state = CombatState.PLAYER_TARGET_SELECT;    
+        // Do something with coroutines here or in skillexec.
     }
 
     // Maybe better to pass a target index (1-3) than to pass Enemies around and let Combat System handle enemy data.
@@ -332,7 +342,7 @@ public class CombatSystem : MonoBehaviour
         SetNextState();
     }
 
-    private void CheckForDeath(Unit target, TakeDamageResult result)
+    public void CheckForDeath(Unit target, TakeDamageResult result)
     {
         if (result.IsUnitDead)
         {
@@ -350,5 +360,10 @@ public class CombatSystem : MonoBehaviour
     {
         get => state;
         set => state = value;
+    }
+
+    public PlayerCombat Player
+    {
+        get => player;
     }
 }

@@ -10,8 +10,11 @@ public class CombatMoveBase : ScriptableObject
     [Header("Stats")] 
     [SerializeField] private CombatMoveTypeSO type;
     [SerializeField] private CombatAction actionType;
+    [SerializeField] private CombatMoveTargets targets; 
     [SerializeField] private int power;
-    [SerializeField] private int cooldown;
+    [SerializeField] private int cooldown = 0;
+    [SerializeField] private int duration = 0;
+    
 
     [Header("VFX")] 
     [SerializeField] private Sprite icon_image;
@@ -57,5 +60,16 @@ public class CombatMoveBase : ScriptableObject
         get => icon_image;
         set => icon_image = value;
     }
-    
+
+    public CombatMoveTargets Targets
+    {
+        get => targets;
+        set => targets = value;
+    }
+
+    public int Duration
+    {
+        get => duration;
+        set => duration = value;
+    }
 }

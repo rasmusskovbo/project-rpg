@@ -53,5 +53,15 @@ public class CombatMove
     {
         return _base.Type.GetIcon();
     }
+
+    public int GetDuration()
+    {
+        return _base.Duration;
+    }
+
+    public CombatMoveTargets GetTargets()
+    {
+        return _base.Targets;
+    }
     
 }

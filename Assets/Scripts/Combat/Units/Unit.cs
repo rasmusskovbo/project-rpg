@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Unit : MonoBehaviour, IComparable
@@ -28,7 +29,7 @@ public class Unit : MonoBehaviour, IComparable
     private float currentMagicalMitigation;
     private float currentDodge;
     private float currentSpeed;
-    private CombatStatus _status = CombatStatus.None;
+    private List<CombatEffect> activeEffects = new List<CombatEffect>();
 
     public void InitiateCurrentStats()
     {
@@ -70,6 +71,30 @@ public class Unit : MonoBehaviour, IComparable
         TakeDamageResult result = new TakeDamageResult(currentHp <= 0, finalDamageAfterArmor);
         
         return result;
+    }
+
+    public TakeDamageResult SufferDamage(float amount)
+    {
+        // currently no mitigation for 'suffer' damage
+        currentHp -= Mathf.RoundToInt(amount);
+
+        TakeDamageResult result = new TakeDamageResult(currentHp <= 0, Mathf.RoundToInt(amount));
+
+        return result;
+    }
+
+    public void Heal(float amount)
+    {
+        
+        if ((currentHp + amount) > maxHp)
+        {
+            currentHp = maxHp;
+        }
+        else
+        {
+            currentHp += amount;
+            currentHp = Mathf.Round(currentHp);
+        }
     }
     
     // Static stats
@@ -206,10 +231,20 @@ public class Unit : MonoBehaviour, IComparable
         set => currentSpeed = value;
     }
 
-    public CombatStatus Status
+    public List<CombatEffect> ActiveEffects
     {
-        get => _status;
-        set => _status = value;
+        get => activeEffects;
+        set => activeEffects = value;
+    }
+
+    public void AddCombatEffect(CombatMove move, CombatEffectType effectType)
+    {
+        activeEffects.Add(new CombatEffect(move, effectType));
+    }
+    
+    public void RemoveCombatEffect(CombatEffectType effectType)
+    {
+        //activeEffects.Remove(effectType);
     }
 
     public int CompareTo(object obj)

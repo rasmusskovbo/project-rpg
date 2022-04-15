@@ -1,6 +1,7 @@
-﻿public enum CombatStatus
+﻿public enum CombatEffectType
 {
     None,
-    Poisoned
+    Renew,
+    Poison
     // Weakened, Strengthened, Burning, etc
 }

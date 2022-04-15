@@ -1,5 +1,6 @@
+using System;
+using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting.Dependencies.NCalc;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -40,6 +41,8 @@ public class UIPlayerInputController : MonoBehaviour
     [SerializeField] private Sprite cursorOnSelect;
     [SerializeField] private float xCursorOffset;
     [SerializeField] private float yCursorOffset;
+    [SerializeField] private float pointerClickAnimationTime = 1;
+    private bool playerHasChosenATarget;
     
     // General selecting
     private Vector2 inputDirection;
@@ -140,7 +143,7 @@ public class UIPlayerInputController : MonoBehaviour
 
     public void DisableChosenAction(CombatAction action)
     {
-
+        Debug.Log("Combat action chosen: " + action);
         GameObject actionButtonGO = activeActionButtons.Find(buttonGO =>
             buttonGO.name
                 .ToLower()
@@ -231,6 +234,8 @@ public class UIPlayerInputController : MonoBehaviour
             SelectSkill();
         } else if (combatSystem.State == CombatState.PLAYER_TARGET_SELECT)
         {
+            StartCoroutine(AnimateCursorClick());
+            playerHasChosenATarget = true;
             SelectTarget();
         }
     }
@@ -254,6 +259,7 @@ public class UIPlayerInputController : MonoBehaviour
         
         if (combatSystem.State == CombatState.PLAYER_TARGET_SELECT)
         {
+            if (playerHasChosenATarget) return;
             combatSystem.State = CombatState.PLAYER_SKILL_SELECT;
             selector.position = lastSkillSelectorPosition;
         }
@@ -450,6 +456,13 @@ public class UIPlayerInputController : MonoBehaviour
         action.GetComponent<RectTransform>().localScale = new Vector3(selectedActionScale, selectedActionScale);
     }
 
+    private IEnumerator AnimateCursorClick()
+    {
+        cursor.GetComponentInChildren<SpriteRenderer>().sprite = cursorOnSelect;
+        yield return new WaitForSeconds(pointerClickAnimationTime);
+        cursor.GetComponentInChildren<SpriteRenderer>().sprite = cursorIdle;
+    }
+
     void ResetActionSelectPanels()
     {
         attackPanel.GetComponent<Image>().sprite = defaultAttackBG;
@@ -465,5 +478,11 @@ public class UIPlayerInputController : MonoBehaviour
     {
         actionIndex = 0;
         cursor.position = defaultActionCursorPosition;
+    }
+
+    public bool PlayerHasChosenATarget
+    {
+        get => playerHasChosenATarget;
+        set => playerHasChosenATarget = value;
     }
 }
