@@ -10,12 +10,33 @@ using UnityEngine;
 public class SkillExecutor : MonoBehaviour
 {
     private CombatSystem combatSystem;
+    private SkillManager skillManager;
 
     private void Awake()
     {
         combatSystem = FindObjectOfType<CombatSystem>();
+        skillManager = FindObjectOfType<SkillManager>();
     }
+    
+    /*
+     * Filtering through the different move types.
+     * e.g. determining whether it needs a or more targets (mostly offensive)
+     * or whether it's a heal or defensive.
+     * if it has a special effect such as renew, set's up a self tracking effect on the unit
+     *
+     * Should return TRUE if move does not have target selection.  
+     */
+    public bool ExecuteMove(Unit unit, CombatMove move)
+    {
+        ProcessHealingTypeMoves(unit, move);
+        //ProcessBuffMoves
+        //ProcessDebuffMoves
+        // Skills that needs a target, singular or adjacent, needs different method in target select.
+        // (to get adjacent units for dmg)
 
+        return DoesMoveNeedTargets(move);
+    }
+    
     /*
      * Handles all active effects that requires action on a unit, each round.
      * Called by the Unit or the system before it's turn.
@@ -23,18 +44,20 @@ public class SkillExecutor : MonoBehaviour
     public void ProcessAllEffects(Unit unit)
     {
         List<CombatEffect> expiredEffects = new List<CombatEffect>();
-        
+        Debug.Log("Unit's active effect list: " + unit.UnitName + ", "+ unit.ActiveEffects.Count);
         unit.ActiveEffects.ForEach(activeEffect =>
         {
-            if (activeEffect.Equals(CombatEffectType.Renew))
+            if (activeEffect.CombatEffectType.Equals(CombatEffectType.Renew))
             {
+                Debug.Log("Applying renew's heal!");
                 unit.Heal(activeEffect.Power);
                 activeEffect.DurationTracker.DecreaseDuration();
                 if (!activeEffect.DurationTracker.isEffectActive()) expiredEffects.Add(activeEffect);
+                Debug.Log("Remaining duration: " + activeEffect.DurationTracker.GetRemainingDuration());
             }
 
             // WIP, pseudo code
-            if (activeEffect.Equals(CombatEffectType.Poison))
+            if (activeEffect.CombatEffectType.Equals(CombatEffectType.Poison))
             {
                 TakeDamageResult result = unit.SufferDamage(activeEffect.Power);
                 combatSystem.CheckForDeath(unit, result);
@@ -42,45 +65,41 @@ public class SkillExecutor : MonoBehaviour
         });
         
         // done after-the-fact to avoid list manipulation.
-        expiredEffects.ForEach(expiredEfect => unit.ActiveEffects.Remove(expiredEfect));
+        Debug.Log("Expired effects size: " + expiredEffects.Count);
+        expiredEffects.ForEach(expiredEffect => unit.ActiveEffects.Remove(expiredEffect));
         
-
     }
 
     /*
-     * Filtering through the different move types.
-     * e.g. determining whether it needs a or more targets (mostly offensive)
-     * or whether it's a heal or defensive.
-     * if it has a special effect such as renew, set's up a self tracking effect on the unit
+     * Scripting
      */
-    public bool ExecuteMove(CombatMove move)
+    private bool DoesMoveNeedTargets(CombatMove move)
     {
-        PlayerCombat player = combatSystem.Player;
+        if (move.GetTargets().Equals(CombatMoveTargets.Self) || move.GetTargets().Equals(CombatMoveTargets.Global))
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+    }
+
+    private void ProcessHealingTypeMoves(Unit unit, CombatMove move)
+    {
         if (move.GetType().Equals(CombatMoveType.Heal))
         {
-            // RENEW STYLE
-            if (move.GetDuration() > 0)
+            if (move.GetEffectType().Equals(CombatEffectType.Renew))
             {
-                combatSystem.Player.AddCombatEffect(move, CombatEffectType.Renew);
-                return true;  
+                Debug.Log("Added Renew effect");
+                unit.AddCombatEffect(move, CombatEffectType.Renew);
+                skillManager.PutCombatMoveOnCooldown(move);
             }
             else
             {
-                Debug.Log("HEALTH B4: " + combatSystem.Player.CurrentHp);
-                player.Heal(move.GetPower());
-                Debug.Log("HEALTH AFTER: " + combatSystem.Player.CurrentHp);
-                return true;  
+                unit.Heal(move.GetPower());
+                skillManager.PutCombatMoveOnCooldown(move);
             }
-            
         }
-        
-        
-
-        return false;
     }
-
-    
-    
-    
-    
 }

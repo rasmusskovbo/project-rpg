@@ -34,6 +34,7 @@ public class UIPlayerInputController : MonoBehaviour
     [SerializeField] private RectTransform selector;
     [SerializeField] private float scrollOffset;
     [SerializeField] private RectTransform contentRectTransform;
+    private Vector2 defaultRectTransformOffset;
     
     [Header("Target Select")] 
     [SerializeField] private Transform cursor;
@@ -138,6 +139,8 @@ public class UIPlayerInputController : MonoBehaviour
             activeActionButtons.Add(buttonGO);
             buttonGO.GetComponent<Image>().color = Color.white;
         });
+        
+        ResetActionSelectPanels();
         MoveCursorToDefaultActionSelect();
     }
 
@@ -170,6 +173,7 @@ public class UIPlayerInputController : MonoBehaviour
     private void InitiateSkillSelect()
     {
         defaultSkillSelectorPosition = selector.position;
+        defaultRectTransformOffset = contentRectTransform.offsetMax;
         skillIndex = 0;
     }
     
@@ -419,6 +423,7 @@ public class UIPlayerInputController : MonoBehaviour
         selector.position = defaultSkillSelectorPosition; 
         selectorPosition = 0;
         skillIndex = 0;
+        contentRectTransform.offsetMax = defaultRectTransformOffset;
 
         combatSystem.State = CombatState.PLAYER_SKILL_SELECT;
         
@@ -452,7 +457,6 @@ public class UIPlayerInputController : MonoBehaviour
     
     private void ZoomSelectedActionIcon(GameObject action)
     {
-        Debug.Log("Zoom action: "+ action);
         action.GetComponent<RectTransform>().localScale = new Vector3(selectedActionScale, selectedActionScale);
     }
 

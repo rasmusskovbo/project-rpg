@@ -4,7 +4,7 @@
 
     public DurationTracker(int duration)
     {
-        this.remainingDuration = duration;
+        SetDuration(duration);
     }
 
     public int GetRemainingDuration()
@@ -14,7 +14,7 @@
 
     public void SetDuration(int amountOfTurns)
     {
-        remainingDuration = amountOfTurns + 1; // CHECK when live
+        remainingDuration = amountOfTurns + 1;
     }
 
     public bool isEffectActive()

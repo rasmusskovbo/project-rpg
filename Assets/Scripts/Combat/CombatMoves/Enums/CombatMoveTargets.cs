@@ -1,6 +1,7 @@
 ﻿public enum CombatMoveTargets
     {
-       Singular,
-       Adjacent,
-       Global
+        Self,
+        Singular,
+        Adjacent, 
+        Global
     }

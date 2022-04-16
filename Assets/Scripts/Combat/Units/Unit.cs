@@ -88,13 +88,16 @@ public class Unit : MonoBehaviour, IComparable
         
         if ((currentHp + amount) > maxHp)
         {
+            Debug.Log("Healed "+ UnitName +" to maxHP ("+maxHp+")");
             currentHp = maxHp;
         }
         else
         {
+            Debug.Log("Healed "+ UnitName +" for " + amount);
             currentHp += amount;
             currentHp = Mathf.Round(currentHp);
         }
+        
     }
     
     // Static stats

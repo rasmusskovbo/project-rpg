@@ -16,6 +16,9 @@ MonoBehaviour:
   description: Enter a defensive stance for minimum damage reduction.
   type: {fileID: 11400000, guid: 54454fd0be6f0704ea980c591816754e, type: 2}
   actionType: 1
+  targets: 2
+  effectType: 0
   power: 3
   cooldown: 0
+  duration: 0
   icon_image: {fileID: -6547247261374270028, guid: ad4da72aba31b684490b8b8a3d8c6727, type: 3}

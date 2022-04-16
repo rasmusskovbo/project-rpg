@@ -13,10 +13,11 @@ MonoBehaviour:
   m_Name: Ring of Fire
   m_EditorClassIdentifier: 
   name: Ring of Fire
-  description: Engulf the target in flames.l.
+  description: Engulf the target in flames.
   type: {fileID: 11400000, guid: d1f8a2e47277d9c46b3b391da5194bc9, type: 2}
   actionType: 0
-  targets: 0
+  targets: 2
+  effectType: 0
   power: 20
   cooldown: 5
   duration: 0

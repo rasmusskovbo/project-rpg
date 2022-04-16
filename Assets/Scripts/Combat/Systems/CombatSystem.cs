@@ -266,6 +266,7 @@ public class CombatSystem : MonoBehaviour
     
     void NewPlayerTurn()
     {
+        skillExecutor.ProcessAllEffects(player);
         remainingPlayerActions = maxPlayerActions;
         skillManager.DecreaseCooldowns();
         combatLog.PlayerTurn();
@@ -276,7 +277,8 @@ public class CombatSystem : MonoBehaviour
     
     void NewEnemyTurn(Unit enemy)
     {
-        combatLog.PrintToLog(enemy.UnitName + "'s turn!");
+        skillExecutor.ProcessAllEffects(enemy);
+        combatLog.EnemyTurn(enemy);
         state = CombatState.ENEMY_TURN;
         StartCoroutine(ProcessEnemyTurn());
     }
@@ -287,30 +289,33 @@ public class CombatSystem : MonoBehaviour
         
         chosenSkill = move;
 
-        if (skillExecutor.ExecuteMove(move))
+        // If the move has been executed, and does not have targets, else go to target select.
+        if (skillExecutor.ExecuteMove(player, move))
         {
-            state = CombatState.PLAYER_TARGET_SELECT;    
+            UpdateRemainingActions();
+            // reset
+            SetNextState();
+        }
+        else
+        {
+            state = CombatState.PLAYER_TARGET_SELECT; 
         }
         
-        state = CombatState.PLAYER_TARGET_SELECT;    
+         
         // Do something with coroutines here or in skillexec.
     }
-
+    
     // Maybe better to pass a target index (1-3) than to pass Enemies around and let Combat System handle enemy data.
     public void OnTargetSelect(int targetIndex)
     {
         if (state != CombatState.PLAYER_TARGET_SELECT) return;
 
+        UpdateRemainingActions();
         StartCoroutine(UsePlayerSkill(chosenSkill, GetActiveEnemies()[targetIndex].GetComponent<Unit>()));
-
-        if (remainingPlayerActions > 0)
-        {
-            remainingPlayerActions--;
-            uiInputController.DisableChosenAction(chosenSkill.GetActionType());    
-        }
         
     }
 
+    // TODO Refactor to SkillExecutor ************************** 16-04-22 
     IEnumerator UsePlayerSkill(CombatMove move, Unit target)
     {
         /* Apply Skill ->
@@ -329,6 +334,15 @@ public class CombatSystem : MonoBehaviour
         
         SetNextState();
     }
+    
+    private void UpdateRemainingActions()
+    {
+        if (remainingPlayerActions > 0)
+        {
+            remainingPlayerActions--;
+            uiInputController.DisableChosenAction(chosenSkill.GetActionType());
+        }
+    }
     /*
      * Simple test impl of enemy AI
      */
@@ -336,7 +350,7 @@ public class CombatSystem : MonoBehaviour
     {
         TakeDamageResult result = player.TakePhysicalDamage(15); 
         combatLog.PrintToLog("Player hit for : " + result.DamageTaken + ". Player HP: " + player.CurrentHp);
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(0.5f);
         
         CheckForDeath(player, result);
         SetNextState();

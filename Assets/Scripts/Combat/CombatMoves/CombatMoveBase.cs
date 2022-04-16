@@ -10,7 +10,8 @@ public class CombatMoveBase : ScriptableObject
     [Header("Stats")] 
     [SerializeField] private CombatMoveTypeSO type;
     [SerializeField] private CombatAction actionType;
-    [SerializeField] private CombatMoveTargets targets; 
+    [SerializeField] private CombatMoveTargets targets;
+    [SerializeField] private CombatEffectType effectType;
     [SerializeField] private int power;
     [SerializeField] private int cooldown = 0;
     [SerializeField] private int duration = 0;
@@ -65,6 +66,12 @@ public class CombatMoveBase : ScriptableObject
     {
         get => targets;
         set => targets = value;
+    }
+
+    public CombatEffectType EffectType
+    {
+        get => effectType;
+        set => effectType = value;
     }
 
     public int Duration

@@ -16,6 +16,9 @@ MonoBehaviour:
   description: Attempt to block incoming damage, reducing it by a flat amount.
   type: {fileID: 11400000, guid: a69e2e6902aafe5438f9a8ddbed28f8b, type: 2}
   actionType: 1
+  targets: 2
+  effectType: 0
   power: 5
   cooldown: 0
+  duration: 0
   icon_image: {fileID: -6656216676778557703, guid: ad4da72aba31b684490b8b8a3d8c6727, type: 3}

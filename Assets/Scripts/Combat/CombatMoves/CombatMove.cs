@@ -63,5 +63,9 @@ public class CombatMove
     {
         return _base.Targets;
     }
-    
+
+    public CombatEffectType GetEffectType()
+    {
+        return _base.EffectType;
+    }
 }

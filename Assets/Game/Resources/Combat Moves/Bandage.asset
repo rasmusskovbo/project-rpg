@@ -12,9 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf01d04594b1a204980701fef3bded61, type: 3}
   m_Name: Bandage
   m_EditorClassIdentifier: 
-  name: Lesser Heal
-  description: A weak healing spell.
+  name: Bandage
+  description: Apply bandage to your wounds.
   type: {fileID: 11400000, guid: 98a81b10d9f664d4285c2b5bffc9625c, type: 2}
+  actionType: 2
+  targets: 2
+  effectType: 0
   power: 1
   cooldown: 0
+  duration: 0
   icon_image: {fileID: 8297922940463836954, guid: ad4da72aba31b684490b8b8a3d8c6727, type: 3}

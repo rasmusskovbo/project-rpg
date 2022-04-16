@@ -80,7 +80,7 @@ public class UISkillLoader : MonoBehaviour
 
         combatMovesInUI.Add(combatMove);
         
-        Debug.Log("Is move on CD: " + combatMove.GetName() + ", " + combatMove.GetCooldownTracker().isMoveOnCooldown());
+        //Debug.Log("Is move on CD: " + combatMove.GetName() + ", " + combatMove.GetCooldownTracker().isMoveOnCooldown());
         
         if (combatMove.GetCooldownTracker().isMoveOnCooldown())
         {
