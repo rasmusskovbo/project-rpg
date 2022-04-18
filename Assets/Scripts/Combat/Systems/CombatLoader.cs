@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -8,8 +7,9 @@ public class CombatLoader : MonoBehaviour
     // Positions for spawning
     [Header("Player")]
     [SerializeField] GameObject playerPrefab;
-    
+
     [Header("Enemies")] 
+    [SerializeField] private List<CombatUnit> enemies;
     [SerializeField] private List<EnemyBase> enemyBases; // List of Scriptable Objects to instantiate prefabs from
     [SerializeField] private GameObject enemyPrefab;
 

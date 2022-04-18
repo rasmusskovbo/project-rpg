@@ -244,18 +244,11 @@ public class Unit : MonoBehaviour, IComparable
     {
         activeEffects.Add(new CombatEffect(move, effectType));
     }
-    
-    public void RemoveCombatEffect(CombatEffectType effectType)
-    {
-        //activeEffects.Remove(effectType);
-    }
-
+ 
     public int CompareTo(object obj)
     {
         Unit other = obj as Unit;
         return other.CurrentSpeed.CompareTo(this.CurrentSpeed);
-        //return Mathf.RoundToInt(this.CurrentSpeed - other.CurrentSpeed);
     }
-
-
+    
 }

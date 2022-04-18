@@ -2,6 +2,7 @@
 {
     Physical,
     Magical,
+    Suffer,
     Mitigate,
     Defend,
     Heal,
