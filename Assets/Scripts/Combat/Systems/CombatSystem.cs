@@ -54,8 +54,15 @@ public class CombatSystem : MonoBehaviour
         StartCoroutine(SetupCombat());
     }
 
+    /*
+     * Setup combat scene
+     * Instantiate and init players, enemies and systems.
+     * Then call SetNextState to begin combat.
+     */
     IEnumerator SetupCombat()
     {
+        state = CombatState.START;
+        
         SetupPlayer();
         SetupEnemies();
         SetupTurnManager();
@@ -74,45 +81,7 @@ public class CombatSystem : MonoBehaviour
         activeEnemies.Add(playerGO);
         turnManager = new TurnManager(activeEnemies);
     }
-    
-    private void SetNextState()
-    {
-        if (player.isActiveAndEnabled)
-        {
-            //GetActiveEnemies().ForEach(go => Debug.Log(go.name));
-            
-            if (GetActiveEnemies().Count > 0) {
-
-                if (remainingPlayerActions > 0)
-                {
-                    NextPlayerAction();
-                    return;
-                }
-                
-                Unit nextToAct = turnManager.GetNextTurn();
-
-                if (nextToAct.UnitType == UnitType.PLAYER)
-                {
-                    NewPlayerTurn();
-                }
-                else if (nextToAct.UnitType == UnitType.ENEMY)
-                {
-                    NewEnemyTurn(nextToAct);
-                }
-            }
-            else
-            {
-                state = CombatState.VICTORY;
-            }  
-        }
-        else
-        {
-            state = CombatState.DEFEAT;
-        }
-
-        Debug.Log("Current state: " + state);
-    }
-
+   
     void SetupPlayer()
     {
         playerGO = combatLoader.SpawnPlayer(playerStation);
@@ -198,7 +167,53 @@ public class CombatSystem : MonoBehaviour
                 break;
         }
     }
+    
+    /*
+     * Updates the CombatState depending on the state of the scene.
+     * This is the core of state management for combat.
+     */
+    private void SetNextState()
+    {
+        if (player.isActiveAndEnabled)
+        {
+            //GetActiveEnemies().ForEach(go => Debug.Log(go.name));
+            
+            if (GetActiveEnemies().Count > 0) {
 
+                if (remainingPlayerActions > 0)
+                {
+                    NextPlayerAction();
+                    return;
+                }
+                
+                Unit nextToAct = turnManager.GetNextTurn();
+
+                if (nextToAct.UnitType == UnitType.PLAYER)
+                {
+                    NewPlayerTurn();
+                }
+                else if (nextToAct.UnitType == UnitType.ENEMY)
+                {
+                    NewEnemyTurn(nextToAct);
+                }
+            }
+            else
+            {
+                state = CombatState.VICTORY;
+            }  
+        }
+        else
+        {
+            state = CombatState.DEFEAT;
+        }
+
+        Debug.Log("Current state: " + state);
+    }
+
+    /*
+     * Checks and returns all enemies and their stations.
+     * Disable all inactive stations.
+     */
     public List<GameObject> GetActiveEnemies()
     {
         List<GameObject> activeEnemies = new List<GameObject>();
@@ -256,6 +271,10 @@ public class CombatSystem : MonoBehaviour
         return enemy && enemy.isActiveAndEnabled;
     }
     
+    /*
+     * Resets respective game elements for next player action
+     * Called just before the player gets the action by SetNextState
+     */
     void NextPlayerAction()
     {
         combatLog.NextPlayerAction(remainingPlayerActions);
@@ -264,6 +283,10 @@ public class CombatSystem : MonoBehaviour
         state = CombatState.PLAYER_ACTION_SELECT;
     }
     
+    /*
+     * Resets respective game elements for the players turn.
+     * Called just before the player's turn by SetNextState
+     */
     void NewPlayerTurn()
     {
         skillExecutor.ProcessAllEffects(player);
@@ -275,6 +298,10 @@ public class CombatSystem : MonoBehaviour
         state = CombatState.PLAYER_ACTION_SELECT;
     }
     
+    /*
+     * Resets respective game elements for the enemy's turn
+     * Called just before the enemy's turn by SetNextState
+     */
     void NewEnemyTurn(Unit enemy)
     {
         skillExecutor.ProcessAllEffects(enemy);
@@ -283,6 +310,10 @@ public class CombatSystem : MonoBehaviour
         StartCoroutine(ProcessEnemyTurn());
     }
     
+    /*
+     * When the player selects a skill
+     * Called by InputController
+     */
     public void OnSkillSelect(CombatMove move)
     {
         if (state != CombatState.PLAYER_SKILL_SELECT) return;
@@ -301,18 +332,45 @@ public class CombatSystem : MonoBehaviour
             state = CombatState.PLAYER_TARGET_SELECT; 
         }
         
-         
         // Do something with coroutines here or in skillexec.
     }
     
-    // Maybe better to pass a target index (1-3) than to pass Enemies around and let Combat System handle enemy data.
+    /*
+     * When the player selects a target (if skill is not self or globally targetted)
+     * Called by InputController
+     */
     public void OnTargetSelect(int targetIndex)
     {
         if (state != CombatState.PLAYER_TARGET_SELECT) return;
 
         UpdateRemainingActions();
+        
+        // See TO DO note below
         StartCoroutine(UsePlayerSkill(chosenSkill, GetActiveEnemies()[targetIndex].GetComponent<Unit>()));
         
+    }
+    
+    private void UpdateRemainingActions()
+    {
+        if (remainingPlayerActions > 0)
+        {
+            remainingPlayerActions--;
+            uiInputController.DisableChosenAction(chosenSkill.GetActionType());
+        }
+    }
+    
+    public void CheckForDeath(Unit target, TakeDamageResult result)
+    {
+        if (result.IsUnitDead)
+        {
+            Destroy(target.gameObject);
+            if (target.UnitType == UnitType.PLAYER) playerStation.gameObject.SetActive(false);
+            
+            combatLog.PrintToLog(target.UnitName + " died!");
+            
+            uiInputController.UpdateTargetablePositions();
+            turnManager.RemoveFromActiveUnits(target);
+        }
     }
 
     // TODO Refactor to SkillExecutor ************************** 16-04-22 
@@ -335,16 +393,10 @@ public class CombatSystem : MonoBehaviour
         SetNextState();
     }
     
-    private void UpdateRemainingActions()
-    {
-        if (remainingPlayerActions > 0)
-        {
-            remainingPlayerActions--;
-            uiInputController.DisableChosenAction(chosenSkill.GetActionType());
-        }
-    }
+    
     /*
      * Simple test impl of enemy AI
+     * Will be delegated to EnemyController
      */
     private IEnumerator ProcessEnemyTurn()
     {
@@ -355,29 +407,12 @@ public class CombatSystem : MonoBehaviour
         CheckForDeath(player, result);
         SetNextState();
     }
-
-    public void CheckForDeath(Unit target, TakeDamageResult result)
-    {
-        if (result.IsUnitDead)
-        {
-            Destroy(target.gameObject);
-            if (target.UnitType == UnitType.PLAYER) playerStation.gameObject.SetActive(false);
-            
-            combatLog.PrintToLog(target.UnitName + " died!");
-            
-            uiInputController.UpdateTargetablePositions();
-            turnManager.RemoveFromActiveUnits(target);
-        }
-    }
-
+    
+    // Properties
     public CombatState State
     {
         get => state;
         set => state = value;
     }
-
-    public PlayerCombat Player
-    {
-        get => player;
-    }
+    
 }
