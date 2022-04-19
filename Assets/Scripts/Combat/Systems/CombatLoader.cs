@@ -25,7 +25,7 @@ public class CombatLoader : MonoBehaviour
     public GameObject SpawnPlayer(Transform playerStation)
     {
         GameObject playerGO = Instantiate(playerPrefab, playerStation);
-        playerGO.GetComponent<PlayerCombat>().InitiatePlayerCombatStats();
+        playerGO.GetComponent<CombatUnit>().InitiateCurrentStatsForCombat();
         return playerGO;
     }
     

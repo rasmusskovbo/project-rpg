@@ -73,6 +73,26 @@ public class CombatUnit : MonoBehaviour
         {CombatMoveType.Physical, CombatMoveType.Magical, CombatMoveType.Suffer};
     private List<CombatEffect> activeEffects = new List<CombatEffect>();
 
+    public void InitiateCurrentStatsForCombat()
+    {
+        CurrentHp = MaxHp;
+        CurrentMaxHp = MaxHp;
+        CurrentStrength = Strength;
+        CurrentAgility = Agility;
+        CurrentIntellect = Intellect;
+        CurrentAttackPower = AttackPower;
+        CurrentAbilityPower = AbilityPower;
+        CurrentPhysicalCritChance = PhysicalCritChance;
+        CurrentMagicalCritChance = MagicalCritChance;
+        CurrentPhysDef = PhysicalDefense;
+        CurrentMagicDef = MagicalDefense;
+        CurrentPhysicalMitigation = 0;
+        CurrentPhysicalBlock = PhysicalBlockPower;
+        CurrentMagicalMitigation = 0;
+        CurrentDodge = DodgeChance;
+        CurrentSpeed = Speed;
+    }
+
     public TakeDamageResult TakeDamage(float damage, CombatMoveType moveType)
     {
         if (!acceptedDamageTypes.Contains(moveType))

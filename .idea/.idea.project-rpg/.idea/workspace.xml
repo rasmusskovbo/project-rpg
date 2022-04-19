@@ -3,11 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="fa8ce64e-188e-4703-b5a4-6b2e025cebde" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.project-rpg/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.project-rpg/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Combat/CombatMoves/Enums/CombatMoveType.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Combat/CombatMoves/Enums/CombatMoveType.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Combat/Systems/CombatLoader.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Combat/Systems/CombatLoader.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Combat/Units/Unit.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Combat/Units/Unit.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Diagrams/SkillExecutor Logic (flowchart).drawio" beforeDir="false" afterPath="$PROJECT_DIR$/Diagrams/SkillExecutor Logic (flowchart).drawio" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Diagrams/~$SkillExecutor Logic (flowchart).drawio.bkp" beforeDir="false" afterPath="$PROJECT_DIR$/Diagrams/~$SkillExecutor Logic (flowchart).drawio.bkp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Combat/Units/CombatUnit.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Combat/Units/CombatUnit.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -118,7 +115,7 @@
       <workItem from="1649958488300" duration="5786000" />
       <workItem from="1650052514542" duration="8100000" />
       <workItem from="1650096595288" duration="5539000" />
-      <workItem from="1650308970080" duration="6581000" />
+      <workItem from="1650308970080" duration="7974000" />
     </task>
     <servers />
   </component>
