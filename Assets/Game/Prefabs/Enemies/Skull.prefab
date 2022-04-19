@@ -58,8 +58,8 @@ MonoBehaviour:
   abilityPower: 5
   physicalCritChance: 0.1
   magicalCritChance: 0.1
-  physicalDefense: 5
-  magicalDefense: 5
+  physicalDefense: 0
+  magicalDefense: 0
   physicalBlockPower: 0
   dodgeChance: 0.05
   speed: 5

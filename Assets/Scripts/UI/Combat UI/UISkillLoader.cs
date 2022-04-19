@@ -26,37 +26,17 @@ public class UISkillLoader : MonoBehaviour
     }
 
     /*
-     * also check if the supplied combatmove is on a cooldown, if then make not selectable
+     * Currently not sorted - sort here or in skillmanager.
      */
-    public int InitiateCombatMoves(CombatAction action)
+    public int InitiateCombatMoves(CombatAction chosenAction)
     {
         ClearSkillUI();
         combatMovesInUI.Clear();
-        
-        List<CombatMoveType> filters = new List<CombatMoveType>();
-        
-        if (action == CombatAction.ATTACK)
-        {
-            filters.Add(CombatMoveType.Physical);
-            filters.Add(CombatMoveType.Magical);
-        }
-        else if (action == CombatAction.DEFEND)
-        {
-            filters.Add(CombatMoveType.Defend);
-            filters.Add(CombatMoveType.Mitigate);
-        }
-        else if (action == CombatAction.SUPPORT)
-        {
-            filters.Add(CombatMoveType.Heal);
-            filters.Add(CombatMoveType.Buff);
-            filters.Add(CombatMoveType.Debuff);
-        }
 
         SkillManager.GetActiveCombatMoves().ForEach(combatMove =>
         {
-            if (filters.Contains(combatMove.GetType()))
+            if (combatMove.GetActionType().Equals(chosenAction))
             {
-                //Debug.Log("Move added: " + combatMove.GetName());
                 AddMoveToUI(combatMove);
             }
         });
@@ -67,7 +47,7 @@ public class UISkillLoader : MonoBehaviour
 
     private void AddMoveToUI(CombatMove combatMove)
     {
-        var item = Instantiate(skillItemPrefab);
+        var item = Instantiate(skillItemPrefab, contentRectTransform);
         
         item.GetComponentsInChildren<Image>()[0].sprite = combatMove.getIconImage();
         item.GetComponentsInChildren<Image>()[1].sprite = combatMove.GetIcon();
@@ -75,7 +55,6 @@ public class UISkillLoader : MonoBehaviour
         item.GetComponentsInChildren<TextMeshProUGUI>()[1].SetText(combatMove.GetPower().ToString());
         item.GetComponentsInChildren<TextMeshProUGUI>()[2].SetText(combatMove.GetCooldown().ToString());
         
-        item.transform.SetParent(contentRectTransform);
         item.transform.localScale = Vector2.one;
 
         combatMovesInUI.Add(combatMove);

@@ -26,8 +26,9 @@ public class SkillExecutor : MonoBehaviour
      *
      * Should return TRUE if move does not have target selection.  
      */
-    public bool ExecuteMove(Unit unit, CombatMove move)
+    public bool ExecuteMove(CombatUnit unit, CombatMove move)
     {
+        Debug.Log("Trying to execute move: " + move.GetName() + ", " + move.GetType() + ", " + move.GetEffectType());
         ProcessHealingTypeMoves(unit, move);
         //ProcessBuffMoves
         //ProcessDebuffMoves
@@ -41,7 +42,7 @@ public class SkillExecutor : MonoBehaviour
      * Handles all active effects that requires action on a unit, each round.
      * Called by the Unit or the system before it's turn.
      */
-    public void ProcessAllEffects(Unit unit)
+    public void ProcessAllEffects(CombatUnit unit)
     {
         List<CombatEffect> expiredEffects = new List<CombatEffect>();
         Debug.Log("Unit's active effect list: " + unit.UnitName + ", "+ unit.ActiveEffects.Count);
@@ -59,7 +60,7 @@ public class SkillExecutor : MonoBehaviour
             // WIP, pseudo code
             if (activeEffect.CombatEffectType.Equals(CombatEffectType.Poison))
             {
-                TakeDamageResult result = unit.SufferDamage(activeEffect.Power);
+                TakeDamageResult result = unit.TakeDamage(5, CombatMoveType.Suffer);
                 combatSystem.CheckForDeath(unit, result);
             }
         });
@@ -85,7 +86,7 @@ public class SkillExecutor : MonoBehaviour
         }
     }
 
-    private void ProcessHealingTypeMoves(Unit unit, CombatMove move)
+    private void ProcessHealingTypeMoves(CombatUnit unit, CombatMove move)
     {
         if (move.GetType().Equals(CombatMoveType.Heal))
         {

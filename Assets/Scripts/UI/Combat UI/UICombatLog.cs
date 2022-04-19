@@ -69,13 +69,13 @@ public class UICombatLog : MonoBehaviour
         PrintToLog(line);
     }
 
-    public void EnemyTurn(Unit enemy)
+    public void EnemyTurn(CombatUnit enemy)
     {
         string line = enemy.UnitName + "'s turn to act:";
         PrintToLog(line);
     }
 
-    public void PlayerUsedCombatMove(CombatMove move, Unit target, float damage)
+    public void PlayerUsedCombatMove(CombatMove move, CombatUnit target, float damage)
     {
         string line = "You used " + move.GetName() +
                       " on " + target.UnitName +

@@ -20,7 +20,7 @@ public class CombatSystem : MonoBehaviour
     // Player
     [SerializeField] private Transform playerStation;
     [SerializeField] private int maxPlayerActions = 2;
-    private PlayerCombat player;
+    private CombatUnit player;
     private GameObject playerGO;
     private int remainingPlayerActions = 2;
 
@@ -30,11 +30,11 @@ public class CombatSystem : MonoBehaviour
     [SerializeField] private Transform bottomEnemyStation;
     [SerializeField] private Transform frontTopEnemyStation;
     [SerializeField] private Transform frontBottomEnemyStation;
-    private Enemy topEnemy;
-    private Enemy centerEnemy;
-    private Enemy bottomEnemy;
-    private Enemy frontTopEnemy;
-    private Enemy frontBottomEnemy;
+    private CombatUnit topEnemy;
+    private CombatUnit centerEnemy;
+    private CombatUnit bottomEnemy;
+    private CombatUnit frontTopEnemy;
+    private CombatUnit frontBottomEnemy;
     private List<GameObject> enemyGameObjects;
     
     // Temporary references
@@ -85,7 +85,7 @@ public class CombatSystem : MonoBehaviour
     void SetupPlayer()
     {
         playerGO = combatLoader.SpawnPlayer(playerStation);
-        player = playerGO.GetComponent<PlayerCombat>();
+        player = playerGO.GetComponent<CombatUnit>();
     }
     
     void SetupEnemies()
@@ -109,7 +109,7 @@ public class CombatSystem : MonoBehaviour
                 centerEnemyGO = combatLoader.SpawnEnemy(centerEnemyStation, levelOfEnemies);
 
                 topEnemyStation.gameObject.SetActive(false);
-                centerEnemy = centerEnemyGO.GetComponent<Enemy>();
+                centerEnemy = centerEnemyGO.GetComponent<CombatUnit>();
                 bottomEnemyStation.gameObject.SetActive(false);
                 frontTopEnemyStation.gameObject.SetActive(false);
                 frontBottomEnemyStation.gameObject.SetActive(false);
@@ -122,8 +122,8 @@ public class CombatSystem : MonoBehaviour
                 topEnemyStation.gameObject.SetActive(false);
                 centerEnemyStation.gameObject.SetActive(false);
                 bottomEnemyStation.gameObject.SetActive(false);
-                frontTopEnemy = frontTopEnemyGO.GetComponent<Enemy>();
-                frontBottomEnemy = frontBottomEnemyGO.GetComponent<Enemy>();
+                frontTopEnemy = frontTopEnemyGO.GetComponent<CombatUnit>();
+                frontBottomEnemy = frontBottomEnemyGO.GetComponent<CombatUnit>();
                 
                 break;
             case 3:
@@ -131,9 +131,9 @@ public class CombatSystem : MonoBehaviour
                 centerEnemyGO = combatLoader.SpawnEnemy(centerEnemyStation, levelOfEnemies);
                 bottomEnemyGO = combatLoader.SpawnEnemy(bottomEnemyStation, levelOfEnemies);
                 
-                topEnemy = topEnemyGO.GetComponent<Enemy>();
-                centerEnemy = centerEnemyGO.GetComponent<Enemy>();
-                bottomEnemy = bottomEnemyGO.GetComponent<Enemy>();
+                topEnemy = topEnemyGO.GetComponent<CombatUnit>();
+                centerEnemy = centerEnemyGO.GetComponent<CombatUnit>();
+                bottomEnemy = bottomEnemyGO.GetComponent<CombatUnit>();
                 frontTopEnemyStation.gameObject.SetActive(false);
                 frontBottomEnemyStation.gameObject.SetActive(false);
                 
@@ -144,11 +144,11 @@ public class CombatSystem : MonoBehaviour
                 frontTopEnemyGO = combatLoader.SpawnEnemy(frontTopEnemyStation, levelOfEnemies);
                 frontBottomEnemyGO = combatLoader.SpawnEnemy(frontBottomEnemyStation, levelOfEnemies);
                 
-                topEnemy = topEnemyGO.GetComponent<Enemy>();
+                topEnemy = topEnemyGO.GetComponent<CombatUnit>();
                 centerEnemyStation.gameObject.SetActive(false);
-                bottomEnemy = bottomEnemyGO.GetComponent<Enemy>();
-                frontTopEnemy = frontTopEnemyGO.GetComponent<Enemy>();
-                frontBottomEnemy = frontBottomEnemyGO.GetComponent<Enemy>();
+                bottomEnemy = bottomEnemyGO.GetComponent<CombatUnit>();
+                frontTopEnemy = frontTopEnemyGO.GetComponent<CombatUnit>();
+                frontBottomEnemy = frontBottomEnemyGO.GetComponent<CombatUnit>();
                 
                 break;
             case 5:
@@ -158,11 +158,11 @@ public class CombatSystem : MonoBehaviour
                 frontTopEnemyGO = combatLoader.SpawnEnemy(frontTopEnemyStation, levelOfEnemies);
                 frontBottomEnemyGO = combatLoader.SpawnEnemy(frontBottomEnemyStation, levelOfEnemies);
                 
-                topEnemy = topEnemyGO.GetComponent<Enemy>();
-                centerEnemy = centerEnemyGO.GetComponent<Enemy>();
-                bottomEnemy = bottomEnemyGO.GetComponent<Enemy>();
-                frontTopEnemy = frontTopEnemyGO.GetComponent<Enemy>();
-                frontBottomEnemy = frontBottomEnemyGO.GetComponent<Enemy>();
+                topEnemy = topEnemyGO.GetComponent<CombatUnit>();
+                centerEnemy = centerEnemyGO.GetComponent<CombatUnit>();
+                bottomEnemy = bottomEnemyGO.GetComponent<CombatUnit>();
+                frontTopEnemy = frontTopEnemyGO.GetComponent<CombatUnit>();
+                frontBottomEnemy = frontBottomEnemyGO.GetComponent<CombatUnit>();
                 
                 break;
         }
@@ -186,7 +186,7 @@ public class CombatSystem : MonoBehaviour
                     return;
                 }
                 
-                Unit nextToAct = turnManager.GetNextTurn();
+                CombatUnit nextToAct = turnManager.GetNextTurn();
 
                 if (nextToAct.UnitType == UnitType.PLAYER)
                 {
@@ -266,7 +266,7 @@ public class CombatSystem : MonoBehaviour
         return activeEnemies;
     }
 
-    private bool shouldAddToList(Enemy enemy)
+    private bool shouldAddToList(CombatUnit enemy)
     {
         return enemy && enemy.isActiveAndEnabled;
     }
@@ -302,7 +302,7 @@ public class CombatSystem : MonoBehaviour
      * Resets respective game elements for the enemy's turn
      * Called just before the enemy's turn by SetNextState
      */
-    void NewEnemyTurn(Unit enemy)
+    void NewEnemyTurn(CombatUnit enemy)
     {
         skillExecutor.ProcessAllEffects(enemy);
         combatLog.EnemyTurn(enemy);
@@ -346,7 +346,7 @@ public class CombatSystem : MonoBehaviour
         UpdateRemainingActions();
         
         // See TO DO note below
-        StartCoroutine(UsePlayerSkill(chosenSkill, GetActiveEnemies()[targetIndex].GetComponent<Unit>()));
+        StartCoroutine(UsePlayerSkill(chosenSkill, GetActiveEnemies()[targetIndex].GetComponent<CombatUnit>()));
         
     }
     
@@ -359,7 +359,7 @@ public class CombatSystem : MonoBehaviour
         }
     }
     
-    public void CheckForDeath(Unit target, TakeDamageResult result)
+    public void CheckForDeath(CombatUnit target, TakeDamageResult result)
     {
         if (result.IsUnitDead)
         {
@@ -374,7 +374,7 @@ public class CombatSystem : MonoBehaviour
     }
 
     // TODO Refactor to SkillExecutor ************************** 16-04-22 
-    IEnumerator UsePlayerSkill(CombatMove move, Unit target)
+    IEnumerator UsePlayerSkill(CombatMove move, CombatUnit target)
     {
         /* Apply Skill ->
             Animation through facade (abstraction layer)
@@ -382,7 +382,7 @@ public class CombatSystem : MonoBehaviour
             Combat calculations
         */
         FindObjectOfType<SkillManager>().PutCombatMoveOnCooldown(move);
-        TakeDamageResult result = target.TakePhysicalDamage(move.GetPower()); // test needs skillhandler to provide decide whether skill is physical etc
+        TakeDamageResult result = target.TakeDamage(move.GetPower(), CombatMoveType.Physical); // test needs skillhandler to provide decide whether skill is physical etc
         combatLog.PlayerUsedCombatMove(move, target, result.DamageTaken);
 
         yield return new WaitForSeconds(2); // TODO Decide how long moves should take - dynamic, static or variable. Dont hardcode '2'
@@ -400,7 +400,7 @@ public class CombatSystem : MonoBehaviour
      */
     private IEnumerator ProcessEnemyTurn()
     {
-        TakeDamageResult result = player.TakePhysicalDamage(15); 
+        TakeDamageResult result = player.TakeDamage(15, CombatMoveType.Physical); 
         combatLog.PrintToLog("Player hit for : " + result.DamageTaken + ". Player HP: " + player.CurrentHp);
         yield return new WaitForSeconds(0.5f);
         

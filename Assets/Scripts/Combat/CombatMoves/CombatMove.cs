@@ -4,13 +4,11 @@ using UnityEngine;
 public class CombatMove
 {
     private CombatMoveBase _base;
-    private int level;
     private CooldownTracker cooldownTracker;
 
-    public CombatMove(CombatMoveBase mBase, int mLevel)
+    public CombatMove(CombatMoveBase mBase)
     {
         _base = mBase;
-        level = mLevel;
         cooldownTracker = new CooldownTracker(0);
     }
 

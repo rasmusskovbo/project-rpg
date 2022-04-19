@@ -1,8 +1,9 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class CombatUnit : MonoBehaviour
+public class CombatUnit : MonoBehaviour, IComparable
 {
     [Header("Description")]
     [SerializeField] private string unitName;
@@ -73,8 +74,9 @@ public class CombatUnit : MonoBehaviour
         {CombatMoveType.Physical, CombatMoveType.Magical, CombatMoveType.Suffer};
     private List<CombatEffect> activeEffects = new List<CombatEffect>();
 
-    public void InitiateCurrentStatsForCombat()
+    public void InitiateCurrentStatsForCombat(int spawnLevel)
     {
+        Level = spawnLevel;
         CurrentHp = MaxHp;
         CurrentMaxHp = MaxHp;
         CurrentStrength = Strength;
@@ -115,14 +117,18 @@ public class CombatUnit : MonoBehaviour
              * Mathf.Clamp to avoid subtracting negative numbers
              * Damage is returned rounded to int for UI purposes
              */
-                float hitChance = Random.Range(0, 100) / 100;
-            
-                if (hitChance < CurrentDodge)
+                float hitChance = Random.Range(0, 100);
+
+                Debug.Log("Hit chance: " + hitChance);
+                Debug.Log("Dodge chance: " + CurrentDodge);
+                if (hitChance < CurrentDodge * 100)
                 {
+                    Debug.Log("Attack was dodged");
                     return new TakeDamageResult(false, 0);
                 }
                 else
                 {
+                    Debug.Log("initial damage: " + damage);
                     float damageAfterMitigation = damage * (1 - CurrentPhysicalMitigation);
                     float damageAfterBlock = Mathf.Clamp(
                         (damageAfterMitigation - (CurrentPhysicalBlock * PhysicalBlockPower)),
@@ -131,7 +137,8 @@ public class CombatUnit : MonoBehaviour
                         (damageAfterBlock - CurrentPhysDef),
                         0, float.MaxValue);
                     int finalDamageAfterArmor = Mathf.RoundToInt(damageAfterArmor);
-        
+
+                    Debug.Log("Damage taken: " + finalDamageAfterArmor);
                     CurrentHp -= finalDamageAfterArmor;
             
                     return new TakeDamageResult(CurrentHp <= 0, finalDamageAfterArmor);;    
@@ -173,13 +180,15 @@ public class CombatUnit : MonoBehaviour
     // Compare Units by Speed
     public int CompareTo(object obj)
     {
-        Unit other = obj as Unit;
+        CombatUnit other = obj as CombatUnit;
         return other.CurrentSpeed.CompareTo(this.CurrentSpeed);
     }
     
     // Active effects
     public void AddCombatEffect(CombatMove move, CombatEffectType effectType)
     {
+        Debug.Log("Adding " + effectType + " to " + UnitName);
+        
         activeEffects.Add(new CombatEffect(move, effectType));
     }
     
@@ -193,25 +202,25 @@ public class CombatUnit : MonoBehaviour
 
     public int MaxHp
     {
-        get => Mathf.RoundToInt(maxHp + maxHpGrowth * level - 1);
+        get => Mathf.RoundToInt(maxHp + (maxHpGrowth * (level - 1)));
         set => maxHp = value;
     }
 
     public float Strength
     {
-        get => strength + strengthGrowth * level - 1;
+        get => strength + (strengthGrowth * (level - 1));
         set => strength = value;
     }
 
     public float Agility
     {
-        get => agility + agilityGrowth * level - 1;
+        get => agility + (agilityGrowth * (level - 1));
         set => agility = value;
     }
 
     public float Intellect
     {
-        get => intellect * intellectGrowth * level - 1;
+        get => intellect + (intellectGrowth * (level - 1));
         set => intellect = value;
     }
 
@@ -227,59 +236,60 @@ public class CombatUnit : MonoBehaviour
     public float AbilityPower
     {
         get => abilityPower 
-               + intellect * intellectAbpRatio;
+               + (intellect * intellectAbpRatio);
         set => abilityPower = value;
     }
 
     public float PhysicalCritChance
     {
         get => physicalCritChance 
-               + agility * agilityCritRatio;
+               + (agility * agilityCritRatio) / 100;
         set => physicalCritChance = value;
     }
 
     public float MagicalCritChance
     {
         get => magicalCritChance 
-               + intellect * intellectCritRatio;
+               + (intellect * intellectCritRatio) / 100;
         set => magicalCritChance = value;
     }
 
     public float PhysicalDefense
     {
-        get => physicalDefense 
-               + physicalDefenseGrowth * level - 1
-               + strength * strengthPhysDefRatio
-               + agility * agilityPhysDefRatio;
+        get => 
+            physicalDefense 
+               + (physicalDefenseGrowth * (level - 1))
+               + (strength * strengthPhysDefRatio)
+               + (agility * agilityPhysDefRatio);
         set => physicalDefense = value;
     }
 
     public float MagicalDefense
     {
         get => magicalDefense 
-               + magicalDefenseGrowth * level - 1;
+               + (magicalDefenseGrowth * (level - 1));
         set => magicalDefense = value;
     }
 
     public float PhysicalBlockPower
     {
         get => physicalBlockPower 
-               + physicalBlockPowerGrowth * level - 1;
+               + (physicalBlockPowerGrowth * (level - 1));
         set => physicalBlockPower = value;
     }
 
     public float DodgeChance
     {
         get => dodgeChance 
-               + agility * agilityDodgeRatio;
+               + (agility * agilityDodgeRatio) / 100;
         set => dodgeChance = value;
     }
 
     public float Speed
     {
         get => speed 
-               + speedGrowth * level - 1
-               + agility * agilitySpeedRatio;
+               + (speedGrowth * (level - 1))
+               + (agility * agilitySpeedRatio);
         set => speed = value;
     }
     

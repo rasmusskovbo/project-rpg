@@ -9,9 +9,7 @@ public class CombatLoader : MonoBehaviour
     [SerializeField] GameObject playerPrefab;
 
     [Header("Enemies")] 
-    [SerializeField] private List<CombatUnit> enemies;
-    [SerializeField] private List<EnemyBase> enemyBases; // List of Scriptable Objects to instantiate prefabs from
-    [SerializeField] private GameObject enemyPrefab;
+    [SerializeField] private List<GameObject> enemies;
 
     [Header("Background")] 
     [SerializeField] private GameObject backgroundGO;
@@ -24,25 +22,27 @@ public class CombatLoader : MonoBehaviour
 
     public GameObject SpawnPlayer(Transform playerStation)
     {
-        GameObject playerGO = Instantiate(playerPrefab, playerStation);
-        playerGO.GetComponent<CombatUnit>().InitiateCurrentStatsForCombat();
-        return playerGO;
+        return SpawnCombatUnit(playerPrefab, playerStation, 1);
     }
     
     // Get level and enemybases pool from gamemanager
     public GameObject SpawnEnemy(Transform station, int level)
     {
-        GameObject enemyGO = Instantiate(enemyPrefab, station);
-        enemyGO.GetComponent<Enemy>().InitiateEnemy(GetRandomEnemyBase(), level);
-        
-        return enemyGO;
+        return SpawnCombatUnit(GetRandomEnemyPrefab(), station, level);
+    }
+
+    public GameObject SpawnCombatUnit(GameObject unitPrefab, Transform station, int level)
+    {
+        GameObject spawnedUnit = Instantiate(unitPrefab, station);
+        spawnedUnit.GetComponent<CombatUnit>().InitiateCurrentStatsForCombat(level);
+        return spawnedUnit;
     }
 
     // This shouldnt be random, but should be selected from a pool depending on gamemanager
-    private EnemyBase GetRandomEnemyBase()
+    private GameObject GetRandomEnemyPrefab()
     {
-        int randomIndex = Random.Range(0, enemyBases.Count);
-        return enemyBases[randomIndex];
+        int randomEnemyIndex = Random.Range(0, enemies.Count);
+        return enemies[randomEnemyIndex];
     }
 
     // This shouldnt be random, but should be selected from a pool depending on gamemanager

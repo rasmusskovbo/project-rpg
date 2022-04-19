@@ -2,21 +2,21 @@
 
 public class TurnUnit : IComparable
 {
-    public TurnUnit(Unit unit, float turnRatio)
+    public TurnUnit(CombatUnit combatUnit, float turnRatio)
     {
-        this.unit = unit;
+        this._combatUnit = combatUnit;
         this.turnRatio = turnRatio;
         turnCounter = turnRatio;
     }
 
-    private Unit unit;
+    private CombatUnit _combatUnit;
     private float turnRatio;
     private float turnCounter;
 
-    public Unit Unit
+    public CombatUnit CombatUnit
     {
-        get => unit;
-        set => unit = value;
+        get => _combatUnit;
+        set => _combatUnit = value;
     }
 
     public float TurnRatio

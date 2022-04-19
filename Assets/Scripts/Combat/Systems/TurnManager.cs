@@ -14,16 +14,16 @@ public class TurnManager
 {
     public TurnManager(List<GameObject> incomingUnits)
     {
-        sortedUnits = new List<Unit>();
+        sortedUnits = new List<CombatUnit>();
         activeUnits = new List<TurnUnit>();
         
-        incomingUnits.ForEach(go => sortedUnits.Add(go.GetComponent<Unit>()));
+        incomingUnits.ForEach(go => sortedUnits.Add(go.GetComponent<CombatUnit>()));
         sortedUnits.Sort();
         
         SetupTurnList();
     }
 
-    private List<Unit> sortedUnits;
+    private List<CombatUnit> sortedUnits;
     private List<TurnUnit> activeUnits;
     private float fastestSpeed;
     private int currentTurn = 1;
@@ -41,7 +41,7 @@ public class TurnManager
         
     }
 
-    public TurnUnit GetTurnUnit(Unit unit)
+    public TurnUnit GetTurnUnit(CombatUnit unit)
     {
         float turnRatio = fastestSpeed / unit.CurrentSpeed;
 
@@ -51,7 +51,7 @@ public class TurnManager
         );
     }
     
-    public Unit GetNextTurn()
+    public CombatUnit GetNextTurn()
     {
         List<TurnUnit> unitsToActThisTurn = new List<TurnUnit>();
         
@@ -80,7 +80,7 @@ public class TurnManager
                 nextUnitToActThisTurn.TurnRatio;  
         
             // Return the unit to combat system.
-            return unitsToActThisTurn[0].Unit;
+            return unitsToActThisTurn[0].CombatUnit;
         }
         else
         {
@@ -90,13 +90,13 @@ public class TurnManager
         
     }
 
-    public void RemoveFromActiveUnits(Unit disabledUnit)
+    public void RemoveFromActiveUnits(CombatUnit disabledUnit)
     {
         for (int i = activeUnits.Count-1; i >= 0; i--)
         {
-            if (activeUnits[i].Unit.Equals(disabledUnit))
+            if (activeUnits[i].CombatUnit.Equals(disabledUnit))
             {
-                Debug.Log("Removed from speed manager list: " + activeUnits[i].Unit.UnitName);
+                Debug.Log("Removed from speed manager list: " + activeUnits[i].CombatUnit.UnitName);
                 activeUnits.RemoveAt(i);
             }
         }
@@ -105,6 +105,6 @@ public class TurnManager
 
     public void DebugPrintTurnOrder()
     {
-        activeUnits.ForEach(unit => Debug.Log("Name: " + unit.Unit.UnitName + " -- Speed: " + unit.Unit.CurrentSpeed));
+        activeUnits.ForEach(unit => Debug.Log("Name: " + unit.CombatUnit.UnitName + " -- Speed: " + unit.CombatUnit.CurrentSpeed));
     }
 }

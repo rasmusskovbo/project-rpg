@@ -14,7 +14,7 @@ public class SkillManager : MonoBehaviour
     {
         // Temporary loader:
         activeCombatMoves = new List<CombatMove>();
-        combatMoveBases.ForEach(baze => activeCombatMoves.Add(new CombatMove(baze, 1)));
+        combatMoveBases.ForEach(baze => activeCombatMoves.Add(new CombatMove(baze)));
     }
 
     public void PutCombatMoveOnCooldown(CombatMove move)
