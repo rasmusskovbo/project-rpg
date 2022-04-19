@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Block
   description: Attempt to block incoming damage, reducing it by a flat amount.
-  type: {fileID: 11400000, guid: a69e2e6902aafe5438f9a8ddbed28f8b, type: 2}
+  type: {fileID: 11400000, guid: 54454fd0be6f0704ea980c591816754e, type: 2}
   actionType: 1
-  targets: 2
+  targets: 0
   effectType: 0
   power: 5
   cooldown: 0

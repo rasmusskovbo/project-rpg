@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8dfaccb2e0e34428afe2411c4bd0b733, type: 3}
   m_Name: Debuff
   m_EditorClassIdentifier: 
-  type: 6
+  type: 7
   icon: {fileID: 8933389600725344075, guid: ad4da72aba31b684490b8b8a3d8c6727, type: 3}

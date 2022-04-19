@@ -307,7 +307,7 @@ public class CombatSystem : MonoBehaviour
         skillExecutor.ProcessAllEffects(enemy);
         combatLog.EnemyTurn(enemy);
         state = CombatState.ENEMY_TURN;
-        StartCoroutine(ProcessEnemyTurn());
+        StartCoroutine(ProcessEnemyTurn(enemy));
     }
     
     /*
@@ -321,18 +321,30 @@ public class CombatSystem : MonoBehaviour
         chosenSkill = move;
 
         // If the move has been executed, and does not have targets, else go to target select.
-        if (skillExecutor.ExecuteMove(player, move))
-        {
-            UpdateRemainingActions();
-            // reset
-            SetNextState();
-        }
-        else
+        if (DoesMoveNeedTargets(chosenSkill))
         {
             state = CombatState.PLAYER_TARGET_SELECT; 
         }
-        
+        else
+        {
+            skillExecutor.ExecuteMove(move, player, GetActiveEnemies());
+            UpdateRemainingActions();
+            SetNextState();
+        }
+
         // Do something with coroutines here or in skillexec.
+    }
+    
+    private bool DoesMoveNeedTargets(CombatMove move)
+    {
+        if (move.GetTargets().Equals(CombatMoveTargets.Self) || move.GetTargets().Equals(CombatMoveTargets.Global))
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
     }
     
     /*
@@ -381,9 +393,8 @@ public class CombatSystem : MonoBehaviour
             VFX (particle effects etc) - Maybe this is animation layer as well
             Combat calculations
         */
-        FindObjectOfType<SkillManager>().PutCombatMoveOnCooldown(move);
-        TakeDamageResult result = target.TakeDamage(move.GetPower(), CombatMoveType.Physical); // test needs skillhandler to provide decide whether skill is physical etc
-        combatLog.PlayerUsedCombatMove(move, target, result.DamageTaken);
+        TakeDamageResult result = skillExecutor.ExecuteMove(move, target, GetActiveEnemies());
+        
 
         yield return new WaitForSeconds(2); // TODO Decide how long moves should take - dynamic, static or variable. Dont hardcode '2'
         
@@ -398,11 +409,13 @@ public class CombatSystem : MonoBehaviour
      * Simple test impl of enemy AI
      * Will be delegated to EnemyController
      */
-    private IEnumerator ProcessEnemyTurn()
+    private IEnumerator ProcessEnemyTurn(CombatUnit enemy)
     {
-        TakeDamageResult result = player.TakeDamage(15, CombatMoveType.Physical); 
-        combatLog.PrintToLog("Player hit for : " + result.DamageTaken + ". Player HP: " + player.CurrentHp);
-        yield return new WaitForSeconds(0.5f);
+        TakeDamageResult result = skillExecutor.ExecuteMoveOnTarget(player, skillManager.GetTestMove());
+        combatLog.DamagePlayer(enemy, skillManager.GetTestMove(), result.DamageTaken);
+        combatLog.PrintToLog("New player HP: " + player.CurrentHp);
+        
+        yield return new WaitForSeconds(1f);
         
         CheckForDeath(player, result);
         SetNextState();

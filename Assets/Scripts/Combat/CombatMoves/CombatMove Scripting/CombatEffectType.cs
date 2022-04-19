@@ -2,6 +2,9 @@
 {
     None,
     Renew,
-    Poison
+    Poison,
+    Silence,
+    Strengthen,
+    Weaken
     // Weakened, Strengthened, Burning, etc
 }

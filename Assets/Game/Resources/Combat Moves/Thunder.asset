@@ -15,6 +15,10 @@ MonoBehaviour:
   name: Thunder
   description: Call thunder from the sky to zap the target.
   type: {fileID: 11400000, guid: d1f8a2e47277d9c46b3b391da5194bc9, type: 2}
+  actionType: 0
+  targets: 1
+  effectType: 0
   power: 18
   cooldown: 5
+  duration: 0
   icon_image: {fileID: 5490886962739762312, guid: ad4da72aba31b684490b8b8a3d8c6727, type: 3}

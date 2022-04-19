@@ -16,7 +16,7 @@ MonoBehaviour:
   description: Apply bandage to your wounds.
   type: {fileID: 11400000, guid: 98a81b10d9f664d4285c2b5bffc9625c, type: 2}
   actionType: 2
-  targets: 2
+  targets: 0
   effectType: 0
   power: 1
   cooldown: 0

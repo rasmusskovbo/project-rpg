@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cf01d04594b1a204980701fef3bded61, type: 3}
-  m_Name: Ring of Fire
+  m_Name: Defensive Stance
   m_EditorClassIdentifier: 
-  name: Ring of Fire
-  description: Engulf all targets in a ring of fire.
-  type: {fileID: 11400000, guid: d1f8a2e47277d9c46b3b391da5194bc9, type: 2}
-  actionType: 0
-  targets: 3
+  name: Defensive Stance
+  description: Enter a defensive stance for minimum damage reduction.
+  type: {fileID: 11400000, guid: a69e2e6902aafe5438f9a8ddbed28f8b, type: 2}
+  actionType: 1
+  targets: 0
   effectType: 0
-  power: 20
-  cooldown: 5
+  power: 10
+  cooldown: 0
   duration: 0
-  icon_image: {fileID: 2319615266087630857, guid: ad4da72aba31b684490b8b8a3d8c6727, type: 3}
+  icon_image: {fileID: -6547247261374270028, guid: ad4da72aba31b684490b8b8a3d8c6727, type: 3}

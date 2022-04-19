@@ -13,8 +13,12 @@ MonoBehaviour:
   m_Name: Smash
   m_EditorClassIdentifier: 
   name: Smash
-  description: Smashes the enemy.
+  description: Massive melee smash of a single enemy.
   type: {fileID: 11400000, guid: 467adbd576a634144b7737cce2e121ed, type: 2}
+  actionType: 0
+  targets: 1
+  effectType: 0
   power: 30
   cooldown: 3
+  duration: 0
   icon_image: {fileID: 5050381174503268470, guid: ad4da72aba31b684490b8b8a3d8c6727, type: 3}

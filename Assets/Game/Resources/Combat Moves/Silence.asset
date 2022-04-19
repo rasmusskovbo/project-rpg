@@ -12,13 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf01d04594b1a204980701fef3bded61, type: 3}
   m_Name: Silence
   m_EditorClassIdentifier: 
-  name: 
-  description: 
-  type: {fileID: 0}
-  actionType: 0
-  targets: 0
-  effectType: 0
+  name: Silence
+  description: Silence the enemy, hindering it from using Magical Abilities.
+  type: {fileID: 11400000, guid: b2e71b6f84c1e6249a80e30eabb34c4d, type: 2}
+  actionType: 2
+  targets: 1
+  effectType: 3
   power: 0
-  cooldown: 0
-  duration: 0
-  icon_image: {fileID: 0}
+  cooldown: 5
+  duration: 3
+  icon_image: {fileID: 21300000, guid: 75feb710b6daca941b64d7f16fbfb831, type: 3}

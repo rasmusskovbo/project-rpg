@@ -9,16 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cf01d04594b1a204980701fef3bded61, type: 3}
-  m_Name: CombatMove
+  m_Script: {fileID: 11500000, guid: 8dfaccb2e0e34428afe2411c4bd0b733, type: 3}
+  m_Name: Block
   m_EditorClassIdentifier: 
-  name: 
-  description: 
-  type: {fileID: 0}
-  actionType: 0
-  targets: 0
-  effectType: 0
-  power: 0
-  cooldown: 0
-  duration: 0
-  icon_image: {fileID: 0}
+  type: 4
+  icon: {fileID: -1770164563340201545, guid: ad4da72aba31b684490b8b8a3d8c6727, type: 3}

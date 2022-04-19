@@ -147,10 +147,14 @@ public class CombatUnit : MonoBehaviour, IComparable
             case CombatMoveType.Magical:
             {
                 int damageAfterMitigation = Mathf.RoundToInt(damage * (1 - CurrentMagicalMitigation));
+                float damageAfterArmor = Mathf.Clamp(
+                    (damageAfterMitigation - CurrentMagicDef),
+                    0, float.MaxValue);
+                int finalDamageAfterArmor = Mathf.RoundToInt(damageAfterArmor);
 
-                CurrentHp -= damageAfterMitigation;
+                CurrentHp -= finalDamageAfterArmor;
 
-                return new TakeDamageResult(CurrentHp <= 0, damageAfterMitigation);
+                return new TakeDamageResult(CurrentHp <= 0, finalDamageAfterArmor);
             }
             // Suffer Damage
             default:

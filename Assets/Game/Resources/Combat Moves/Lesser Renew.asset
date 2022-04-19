@@ -16,9 +16,9 @@ MonoBehaviour:
   description: Heal's the player at the beginning of every round.
   type: {fileID: 11400000, guid: 98a81b10d9f664d4285c2b5bffc9625c, type: 2}
   actionType: 2
-  targets: 2
+  targets: 0
   effectType: 1
-  power: 5
+  power: 3
   cooldown: 3
   duration: 2
   icon_image: {fileID: 21300000, guid: 2eb6f0200bb9d1f4698029e2c8931f16, type: 3}

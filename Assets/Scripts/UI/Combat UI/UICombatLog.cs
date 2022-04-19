@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class UICombatLog : MonoBehaviour
@@ -75,6 +76,24 @@ public class UICombatLog : MonoBehaviour
         PrintToLog(line);
     }
 
+    public void PlayerHealed(CombatMove move)
+    {
+        string line = "Your " + move.GetName() + " healed for " + move.GetPower();
+        PrintToLog(line);
+    }
+
+    public void PlayerAppliedBuff(CombatMove move)
+    {
+        string line = "You gained " + move.GetName() + "!";
+        PrintToLog(line);
+    }
+
+    public void PlayerAppliedDebuff(CombatMove move, CombatUnit target)
+    {
+        string line = "You applied " + move.GetName() + " to " + target.UnitName;
+        PrintToLog(line);
+    }
+
     public void PlayerUsedCombatMove(CombatMove move, CombatUnit target, float damage)
     {
         string line = "You used " + move.GetName() +
@@ -83,6 +102,12 @@ public class UICombatLog : MonoBehaviour
         PrintToLog(line);
     }
 
+    public void DamagePlayer(CombatUnit enemy, CombatMove move, float incomingDamage)
+    {
+        string line = enemy.UnitName + " used " + move.GetName() +
+                      ". It hit for " + incomingDamage + " " + move.GetType() + " damage.";
+        PrintToLog(line);
+    }
     public void MoveIsOnCooldown(CombatMove move)
     {
         string line = move.GetName() + " is currently on cooldown.";

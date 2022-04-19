@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8dfaccb2e0e34428afe2411c4bd0b733, type: 3}
   m_Name: Suffer
   m_EditorClassIdentifier: 
-  type: 0
-  icon: {fileID: 0}
+  type: 2
+  icon: {fileID: 791827901513086779, guid: ad4da72aba31b684490b8b8a3d8c6727, type: 3}

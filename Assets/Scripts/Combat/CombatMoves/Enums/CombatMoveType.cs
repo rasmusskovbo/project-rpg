@@ -4,7 +4,7 @@
     Magical,
     Suffer,
     Mitigate,
-    Defend,
+    Block,
     Heal,
     Buff,
     Debuff

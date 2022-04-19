@@ -13,8 +13,12 @@ MonoBehaviour:
   m_Name: Slam
   m_EditorClassIdentifier: 
   name: Slam
-  description: A heavy overhead melee attack.
+  description: A heavy overhead melee attack that slams the target and adjacent enemies.
   type: {fileID: 11400000, guid: 467adbd576a634144b7737cce2e121ed, type: 2}
-  power: 8
-  cooldown: 1
+  actionType: 0
+  targets: 2
+  effectType: 0
+  power: 10
+  cooldown: 3
+  duration: 0
   icon_image: {fileID: -835306525517685141, guid: ad4da72aba31b684490b8b8a3d8c6727, type: 3}

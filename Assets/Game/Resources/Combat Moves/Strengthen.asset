@@ -16,6 +16,9 @@ MonoBehaviour:
   description: Strengthen yourself, raising your attack power for 3 rounds.
   type: {fileID: 11400000, guid: 0bcbc3d62d4074d48a3bb5160c2e93c4, type: 2}
   actionType: 2
+  targets: 0
+  effectType: 4
   power: 3
   cooldown: 5
+  duration: 3
   icon_image: {fileID: -7859556164035846671, guid: ad4da72aba31b684490b8b8a3d8c6727, type: 3}

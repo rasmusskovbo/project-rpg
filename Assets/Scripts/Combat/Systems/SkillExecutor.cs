@@ -11,36 +11,74 @@ public class SkillExecutor : MonoBehaviour
 {
     private CombatSystem combatSystem;
     private SkillManager skillManager;
+    private UICombatLog combatLog;
 
     private void Awake()
     {
         combatSystem = FindObjectOfType<CombatSystem>();
         skillManager = FindObjectOfType<SkillManager>();
+        combatLog = FindObjectOfType<UICombatLog>();
     }
-    
-    /*
-     * Filtering through the different move types.
-     * e.g. determining whether it needs a or more targets (mostly offensive)
-     * or whether it's a heal or defensive.
-     * if it has a special effect such as renew, set's up a self tracking effect on the unit
-     *
-     * Should return TRUE if move does not have target selection.  
-     */
-    public bool ExecuteMove(CombatUnit unit, CombatMove move)
+
+    // Take damage result on global hits. maybe always return a list.
+    public TakeDamageResult ExecuteMove(CombatMove move, CombatUnit target, List<GameObject> allEnemies = null)
     {
         Debug.Log("Trying to execute move: " + move.GetName() + ", " + move.GetType() + ", " + move.GetEffectType());
-        ProcessHealingTypeMoves(unit, move);
-        //ProcessBuffMoves
-        //ProcessDebuffMoves
-        // Skills that needs a target, singular or adjacent, needs different method in target select.
-        // (to get adjacent units for dmg)
+        
+        switch (move.GetTargets())
+        {
+            case CombatMoveTargets.Self:
+                ExecuteMoveOnSelf(target, move);
+                break;
+            case CombatMoveTargets.Adjacent:
+                ExecuteMoveOnMultipleTargets(target, allEnemies, move);
+                break;
+            case CombatMoveTargets.Global:
+                ExecuteMoveOnMultipleTargets(target, allEnemies, move);
+                break;
+            case CombatMoveTargets.Singular:
+                return ExecuteMoveOnTarget(target, move);
+        }
 
-        return DoesMoveNeedTargets(move);
+        skillManager.PutCombatMoveOnCooldown(move);
+        
+        return null;
     }
+    
+    public void ExecuteMoveOnSelf(CombatUnit player, CombatMove move)
+    {
+        if (move.GetType().Equals(CombatMoveType.Heal))
+        {
+            ExecuteHealTypeMove(player, move);
+        }
+    }
+
+    public void ExecuteMoveOnMultipleTargets(CombatUnit target, List<GameObject> allEnemies, CombatMove move)
+    {
+        Debug.Log("Executing move on multiple targets");
+        // if global = all
+        // if adjacent = some
+    }
+
+    public TakeDamageResult ExecuteMoveOnTarget(CombatUnit target, CombatMove move)
+    {
+        // Use on target
+        Debug.Log("Executing move on singular target");
+        if (move.GetType().Equals(CombatMoveType.Suffer))
+        {
+            return ExecuteSufferTypeMove(target, move);
+        }
+        else
+        {
+            return target.TakeDamage(move.GetPower(), move.GetType());
+        }
+    }
+    
     
     /*
      * Handles all active effects that requires action on a unit, each round.
      * Called by the Unit or the system before it's turn.
+     * Refactor the effect handler
      */
     public void ProcessAllEffects(CombatUnit unit)
     {
@@ -56,11 +94,10 @@ public class SkillExecutor : MonoBehaviour
                 if (!activeEffect.DurationTracker.isEffectActive()) expiredEffects.Add(activeEffect);
                 Debug.Log("Remaining duration: " + activeEffect.DurationTracker.GetRemainingDuration());
             }
-
-            // WIP, pseudo code
+            
             if (activeEffect.CombatEffectType.Equals(CombatEffectType.Poison))
             {
-                TakeDamageResult result = unit.TakeDamage(5, CombatMoveType.Suffer);
+                TakeDamageResult result = unit.TakeDamage(activeEffect.Power, CombatMoveType.Suffer);
                 combatSystem.CheckForDeath(unit, result);
             }
         });
@@ -68,39 +105,42 @@ public class SkillExecutor : MonoBehaviour
         // done after-the-fact to avoid list manipulation.
         Debug.Log("Expired effects size: " + expiredEffects.Count);
         expiredEffects.ForEach(expiredEffect => unit.ActiveEffects.Remove(expiredEffect));
-        
     }
 
     /*
      * Scripting
      */
-    private bool DoesMoveNeedTargets(CombatMove move)
+    private void ExecuteHealTypeMove(CombatUnit unit, CombatMove move)
     {
-        if (move.GetTargets().Equals(CombatMoveTargets.Self) || move.GetTargets().Equals(CombatMoveTargets.Global))
+        if (move.GetEffectType().Equals(CombatEffectType.Renew))
         {
-            return false;
+            Debug.Log("Added Renew effect");
+            
+            combatLog.PlayerAppliedBuff(move);
+            unit.AddCombatEffect(move, CombatEffectType.Renew);
         }
         else
         {
-            return true;
+            combatLog.PlayerHealed(move);
+            unit.Heal(move.GetPower());
         }
     }
-
-    private void ProcessHealingTypeMoves(CombatUnit unit, CombatMove move)
+    
+    private TakeDamageResult ExecuteSufferTypeMove(CombatUnit target, CombatMove move)
     {
-        if (move.GetType().Equals(CombatMoveType.Heal))
+        
+        if (move.GetEffectType().Equals(CombatEffectType.Poison))
         {
-            if (move.GetEffectType().Equals(CombatEffectType.Renew))
-            {
-                Debug.Log("Added Renew effect");
-                unit.AddCombatEffect(move, CombatEffectType.Renew);
-                skillManager.PutCombatMoveOnCooldown(move);
-            }
-            else
-            {
-                unit.Heal(move.GetPower());
-                skillManager.PutCombatMoveOnCooldown(move);
-            }
+            Debug.Log("Added Poison effect");
+            target.AddCombatEffect(move, CombatEffectType.Poison);
+            
+            combatLog.PlayerAppliedDebuff(move, target);
+            return new TakeDamageResult(false, 0);
+        }
+        else
+        {
+            combatLog.PlayerUsedCombatMove(move, target, move.GetPower());
+            return target.TakeDamage(move.GetPower(), CombatMoveType.Suffer);
         }
     }
 }
