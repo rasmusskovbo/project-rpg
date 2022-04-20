@@ -249,54 +249,34 @@ public class CombatSystem : MonoBehaviour
 
     public List<CombatUnit> GetTargetAndActiveAdjacentPosition(CombatUnit target)
     {
-        List<CombatUnit> allPositions = GetAllEnemyReferences();
-
-        var indexOfTarget = allPositions.FindIndex(position => position.Equals(target));
-
+        List<CombatUnit> allEnemyReferences = GetAllEnemyReferences();
+        var indexOfTarget = allEnemyReferences.FindIndex(position => position == (target));
         List<CombatUnit> targetAndActiveAdjacentTargets = new List<CombatUnit> {target};
         
         if (indexOfTarget < 3)
         {
-            Debug.Log("Should add south enemy to list: " + shouldAddToList(allPositions[indexOfTarget + 1]));
-            if (shouldAddToList(allPositions[indexOfTarget + 1]))
+            if (shouldAddToList(allEnemyReferences[indexOfTarget + 1]))
             {
-                targetAndActiveAdjacentTargets.Add(allPositions[indexOfTarget + 1]);
-            } else if (shouldAddToList(allPositions[indexOfTarget + 2]))
+                targetAndActiveAdjacentTargets.Add(allEnemyReferences[indexOfTarget + 1]);
+            } else if (shouldAddToList(allEnemyReferences[indexOfTarget + 2]))
             {
-                targetAndActiveAdjacentTargets.Add(allPositions[indexOfTarget + 2]);
+                targetAndActiveAdjacentTargets.Add(allEnemyReferences[indexOfTarget + 2]);
             }
             
         }
         else
         {
-            if (shouldAddToList(allPositions[indexOfTarget - 1]))
+            if (shouldAddToList(allEnemyReferences[indexOfTarget - 1]))
             {
-                targetAndActiveAdjacentTargets.Add(allPositions[indexOfTarget - 1]);
+                targetAndActiveAdjacentTargets.Add(allEnemyReferences[indexOfTarget - 1]);
             }
-            else if (shouldAddToList(allPositions[indexOfTarget - 2]))
+            else if (shouldAddToList(allEnemyReferences[indexOfTarget - 2]))
             {
-                targetAndActiveAdjacentTargets.Add(allPositions[indexOfTarget - 2]);
+                targetAndActiveAdjacentTargets.Add(allEnemyReferences[indexOfTarget - 2]);
             }  
         }
         
         return targetAndActiveAdjacentTargets;
-    }
-
-    private List<CombatUnit> GetAllEnemyReferences()
-    {
-        List<CombatUnit> allPositions = new List<CombatUnit>();
-
-        allPositions.Add(topEnemy);
-        allPositions.Add(frontTopEnemy);
-        allPositions.Add(centerEnemy);
-        allPositions.Add(frontBottomEnemy);
-        allPositions.Add(bottomEnemy);
-        return allPositions;
-    }
-
-    private bool shouldAddToList(CombatUnit enemy)
-    {
-        return enemy && enemy.isActiveAndEnabled;
     }
     
     /*
@@ -387,6 +367,26 @@ public class CombatSystem : MonoBehaviour
         // See TO DO note below
         StartCoroutine(UsePlayerSkillWithTarget(chosenSkill, GetActiveEnemies()[targetIndex].GetComponent<CombatUnit>()));
         
+    }
+    
+    /*
+     * Assist methods
+     */
+    private List<CombatUnit> GetAllEnemyReferences()
+    {
+        List<CombatUnit> allPositions = new List<CombatUnit>();
+
+        allPositions.Add(topEnemy);
+        allPositions.Add(frontTopEnemy);
+        allPositions.Add(centerEnemy);
+        allPositions.Add(frontBottomEnemy);
+        allPositions.Add(bottomEnemy);
+        return allPositions;
+    }
+
+    private bool shouldAddToList(CombatUnit enemy)
+    {
+        return enemy && enemy.isActiveAndEnabled;
     }
     
     private void UpdateRemainingActions()
