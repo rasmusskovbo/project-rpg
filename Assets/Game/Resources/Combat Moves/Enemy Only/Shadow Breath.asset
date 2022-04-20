@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Shadow Breath
   description: 
-  type: {fileID: 11400000, guid: d1f8a2e47277d9c46b3b391da5194bc9, type: 2}
+  type: {fileID: 11400000, guid: 467adbd576a634144b7737cce2e121ed, type: 2}
   actionType: 0
   targets: 1
   effectType: 0
-  power: 5
+  power: 10
   cooldown: 0
   duration: 0
   icon_image: {fileID: 21300000, guid: 6c8a967779d6cbb40830a1bc9f8ae464, type: 3}

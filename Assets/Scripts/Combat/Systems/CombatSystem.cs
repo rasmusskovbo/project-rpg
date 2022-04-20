@@ -313,7 +313,6 @@ public class CombatSystem : MonoBehaviour
     void NewEnemyTurn(CombatUnit enemy)
     {
         enemy.GetComponent<CombatEffectManager>().ProcessActiveEffects();
-        combatLog.EnemyTurn(enemy);
         state = CombatState.ENEMY_TURN;
         StartCoroutine(ProcessEnemyTurn(enemy));
     }
@@ -470,5 +469,15 @@ public class CombatSystem : MonoBehaviour
         get => state;
         set => state = value;
     }
-    
+
+    public int RemainingPlayerActions
+    {
+        get => remainingPlayerActions;
+        set => remainingPlayerActions = value;
+    }
+
+    public CombatUnit Player
+    {
+        get => player;
+    }
 }

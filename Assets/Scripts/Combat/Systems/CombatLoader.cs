@@ -15,20 +15,40 @@ public class CombatLoader : MonoBehaviour
     [SerializeField] private GameObject backgroundGO;
     [SerializeField] private List<Sprite> backgroundSprites;
 
+    [Header("UI Elements")] 
+    [SerializeField] private GameObject HpBars;
+    [SerializeField] private GameObject hpBarprefab;
+    [SerializeField] private float hpBarXOffset;
+    [SerializeField] private float hpBarYOffset;
+    
+
     private void Awake()
     {
         SetupBackground();
     }
 
+    /*
+    public void AddHpBar(Transform station)
+    {
+        Vector3 newPosition = station.transform.position;
+        newPosition.x += hpBarXOffset;
+        newPosition.y += hpBarYOffset;
+        
+        Instantiate(hpBarprefab, newPosition, Quaternion.identity, HpBars.transform);
+    }
+    */
+
     public GameObject SpawnPlayer(Transform playerStation)
     {
-        return SpawnCombatUnit(playerPrefab, playerStation, 1);
+        //AddHpBar(playerStation);
+        return SpawnCombatUnit(playerPrefab, playerStation, 1);;
     }
     
     // Get level and enemybases pool from gamemanager
     public GameObject SpawnEnemy(Transform station, int level)
     {
-        return SpawnCombatUnit(GetRandomEnemyPrefab(), station, level);
+        //AddHpBar(station);
+        return SpawnCombatUnit(GetRandomEnemyPrefab(), station, level);;
     }
 
     public GameObject SpawnCombatUnit(GameObject unitPrefab, Transform station, int level)

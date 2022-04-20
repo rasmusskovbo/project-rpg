@@ -66,32 +66,21 @@ public class CombatEffectManager : MonoBehaviour
     }
     
     // Active effects
-    public float GetStrengthenMultiplier()
+    public float GetEffectMultiplier(CombatEffectType type)
     {
-        List<CombatEffect> activeStrengthenEffects =
-            activeEffects.FindAll(effect => effect.CombatEffectType == CombatEffectType.Strengthen);
-
-        Debug.Log("STRENGTHEN SIZE: " + activeStrengthenEffects.Count);
-
+        List<CombatEffect> activeEffectsOfType =
+            activeEffects.FindAll(effect => effect.CombatEffectType == type);
+        
         float multiplier = 1;
         
-        if (activeStrengthenEffects.Count == 0)
+        if (activeEffectsOfType.Count == 0)
         {
             return multiplier;
         }
         
-        
-        activeEffects.ForEach(effect =>
+        for (int i = 0; i < activeEffectsOfType.Count; i++)
         {
-            if (effect.CombatEffectType == CombatEffectType.Strengthen)
-            {
-                activeStrengthenEffects.Add(effect);
-            }
-        });
-        
-        for (int i = 0; i < activeStrengthenEffects.Count; i++)
-        {
-            multiplier = multiplier * (activeStrengthenEffects[i].Power / 100) + 1;
+            multiplier = multiplier * (activeEffectsOfType[i].Power / 100) + 1;
         }
 
         Debug.Log("Multiplier: " + multiplier);

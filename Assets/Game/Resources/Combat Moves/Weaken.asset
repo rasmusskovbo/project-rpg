@@ -18,7 +18,7 @@ MonoBehaviour:
   actionType: 2
   targets: 1
   effectType: 5
-  power: 0
-  cooldown: 5
-  duration: 3
+  power: 25
+  cooldown: 3
+  duration: 1
   icon_image: {fileID: -8471668744648633537, guid: ad4da72aba31b684490b8b8a3d8c6727, type: 3}

@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 using Vector2 = UnityEngine.Vector2;
@@ -16,12 +17,14 @@ public class UISkillLoader : MonoBehaviour
     [SerializeField] private GameObject skillItemPrefab; // The prefab for the list item (logo, name etc)
     [SerializeField] private RectTransform contentRectTransform; // Scroll window transform
 
-    private SkillManager SkillManager;
+    private SkillManager skillManager;
+    private CombatSystem combatSystem;
     private List<CombatMove> combatMovesInUI;
 
     private void Awake()
     {
-        SkillManager = FindObjectOfType<SkillManager>();
+        skillManager = FindObjectOfType<SkillManager>();
+        combatSystem = FindObjectOfType<CombatSystem>();
         combatMovesInUI = new List<CombatMove>();
     }
 
@@ -33,7 +36,7 @@ public class UISkillLoader : MonoBehaviour
         ClearSkillUI();
         combatMovesInUI.Clear();
 
-        SkillManager.GetActiveCombatMoves().ForEach(combatMove =>
+        skillManager.GetActiveCombatMoves().ForEach(combatMove =>
         {
             if (combatMove.GetActionType().Equals(chosenAction))
             {
@@ -66,7 +69,7 @@ public class UISkillLoader : MonoBehaviour
         
         //Debug.Log("Is move on CD: " + combatMove.GetName() + ", " + combatMove.GetCooldownTracker().isMoveOnCooldown());
         
-        if (combatMove.GetCooldownTracker().isMoveOnCooldown())
+        if (combatMove.GetCooldownTracker().isMoveOnCooldown() || combatSystem.Player.CombatEffectsManager.IsEffectActive(CombatEffectType.Silence))
         {
             item.GetComponentsInChildren<Image>()[0].color = Color.black;
             item.GetComponentsInChildren<TextMeshProUGUI>()[2].color = Color.red;

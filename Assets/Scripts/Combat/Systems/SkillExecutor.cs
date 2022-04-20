@@ -21,8 +21,6 @@ public class SkillExecutor : MonoBehaviour
     // Filters move by target.
     public List<TakeDamageResult> ExecuteMove(CombatMove move, CombatUnit user, CombatUnit target, List<GameObject> allEnemies = null)
     {
-        Debug.Log("Trying to execute move: " + move.GetName() + ", " + move.GetType() + ", " + move.GetEffectType());
-        
         skillManager.PutCombatMoveOnCooldown(move);
         
         switch (move.GetTargets())

@@ -94,17 +94,12 @@ public class UICombatLog : MonoBehaviour
         PrintToLog(line);
     }
 
-    public void x(CombatMove move, CombatUnit target)
-    {
-        string line = "You applied " + move.GetName() + " to " + target.UnitName;
-        PrintToLog(line);
-    }
-
     public void UsedOffensiveCombatMove(CombatMove move, CombatUnit attacker, CombatUnit target, float damage)
     {
         string line = attacker.UnitName + " used " + move.GetName() +
-                      " on " + target.UnitName +
-                      ". It hit for " + damage + " " + move.GetType() + " damage.";
+                      " on " + target.UnitName;
+        PrintToLog(line);
+        line = ">> It hit for " + damage + " " + move.GetType() + " damage.";
         PrintToLog(line);
     }
 
@@ -115,6 +110,12 @@ public class UICombatLog : MonoBehaviour
         PrintToLog(line);
     }
     public void MoveIsOnCooldown(CombatMove move)
+    {
+        string line = move.GetName() + " is currently on cooldown.";
+        PrintToLog(line);
+    }
+
+    public void UnitIsSilenced(CombatMove move, CombatUnit unit)
     {
         string line = move.GetName() + " is currently on cooldown.";
         PrintToLog(line);

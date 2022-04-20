@@ -439,6 +439,14 @@ public class UIPlayerInputController : MonoBehaviour
             return;
         }
         
+        if (combatSystem.Player.CombatEffectsManager.IsEffectActive(CombatEffectType.Silence))
+        {
+            combatLog.UnitIsSilenced(chosenSkill, combatSystem.Player);
+            return;
+        }
+        
+        // TODO IF USER IS SILENCED, CANNOT CHOOSE MAGIC SKILL
+        
         // Save selector position
         // Set target cursor position to default or last selected target.
         lastSkillSelectorPosition = selector.position;

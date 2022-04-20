@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
 public class CombatUnit : MonoBehaviour, IComparable
@@ -10,10 +11,11 @@ public class CombatUnit : MonoBehaviour, IComparable
     [TextArea] [SerializeField] private string description;
     [SerializeField] private UnitType unitType;
     [SerializeField] private bool isPlayerUnit;
-    
+
     [Header("VFX")] 
     [SerializeField] private Sprite idleSprite;
-    
+    private Slider hpBar;
+
     [Header("Base Stats")]
     [SerializeField] private int level;
     [SerializeField] private int maxHp;
@@ -512,7 +514,7 @@ public class CombatUnit : MonoBehaviour, IComparable
 
     public float CurrentAttackPower
     {
-        get => currentAttackPower * combatEffectsManager.GetStrengthenMultiplier();// * combatEffectsManager.GetWeakenMultiplier();
+        get => currentAttackPower * combatEffectsManager.GetEffectMultiplier(CombatEffectType.Strengthen) * (1 - combatEffectsManager.GetEffectMultiplier(CombatEffectType.Weaken));
         set => currentAttackPower = value;
     }
 
@@ -575,5 +577,9 @@ public class CombatUnit : MonoBehaviour, IComparable
         get => currentSpeed;
         set => currentSpeed = value;
     }
-    
+
+    public CombatEffectManager CombatEffectsManager
+    {
+        get => combatEffectsManager;
+    }
 }
