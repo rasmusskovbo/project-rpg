@@ -34,6 +34,7 @@ public class CombatLoader : MonoBehaviour
     public GameObject SpawnCombatUnit(GameObject unitPrefab, Transform station, int level)
     {
         GameObject spawnedUnit = Instantiate(unitPrefab, station);
+        spawnedUnit.GetComponentInChildren<SpriteRenderer>().sprite = unitPrefab.GetComponent<CombatUnit>().IdleSprite;
         spawnedUnit.GetComponent<CombatUnit>().InitiateCurrentStatsForCombat(level);
         return spawnedUnit;
     }

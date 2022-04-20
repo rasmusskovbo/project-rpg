@@ -22,7 +22,7 @@ public class CombatSystem : MonoBehaviour
     [SerializeField] private int maxPlayerActions = 2;
     private CombatUnit player;
     private GameObject playerGO;
-    private int remainingPlayerActions = 2;
+    private int remainingPlayerActions = 0;
 
     // Enemies
     [SerializeField] private Transform topEnemyStation;
@@ -50,7 +50,6 @@ public class CombatSystem : MonoBehaviour
         skillManager = FindObjectOfType<SkillManager>();
         skillExecutor = FindObjectOfType<SkillExecutor>();
         enemyGameObjects = new List<GameObject>();
-        remainingPlayerActions = maxPlayerActions;
         StartCoroutine(SetupCombat());
     }
 
@@ -180,11 +179,12 @@ public class CombatSystem : MonoBehaviour
             
             if (GetActiveEnemies().Count > 0) {
 
+                Debug.Log("remaining pas: " + remainingPlayerActions);
                 if (remainingPlayerActions > 0)
                 {
                     NextPlayerAction();
                     return;
-                }
+                } 
                 
                 CombatUnit nextToAct = turnManager.GetNextTurn();
 
@@ -289,7 +289,7 @@ public class CombatSystem : MonoBehaviour
      */
     void NewPlayerTurn()
     {
-        skillExecutor.ProcessAllEffects(player);
+        player.GetComponent<CombatEffectManager>().ProcessActiveEffects();
         remainingPlayerActions = maxPlayerActions;
         skillManager.DecreaseCooldowns();
         combatLog.PlayerTurn();
@@ -304,7 +304,7 @@ public class CombatSystem : MonoBehaviour
      */
     void NewEnemyTurn(CombatUnit enemy)
     {
-        skillExecutor.ProcessAllEffects(enemy);
+        enemy.GetComponent<CombatEffectManager>().ProcessActiveEffects();
         combatLog.EnemyTurn(enemy);
         state = CombatState.ENEMY_TURN;
         StartCoroutine(ProcessEnemyTurn(enemy));
@@ -327,7 +327,7 @@ public class CombatSystem : MonoBehaviour
         }
         else
         {
-            skillExecutor.ExecuteMove(move, player, GetActiveEnemies());
+            skillExecutor.ExecuteMove(move, player, player, GetActiveEnemies());
             UpdateRemainingActions();
             SetNextState();
         }
@@ -393,8 +393,7 @@ public class CombatSystem : MonoBehaviour
             VFX (particle effects etc) - Maybe this is animation layer as well
             Combat calculations
         */
-        TakeDamageResult result = skillExecutor.ExecuteMove(move, target, GetActiveEnemies());
-        
+        TakeDamageResult result = skillExecutor.ExecuteMove(move, player, target, GetActiveEnemies());
 
         yield return new WaitForSeconds(2); // TODO Decide how long moves should take - dynamic, static or variable. Dont hardcode '2'
         
@@ -411,8 +410,8 @@ public class CombatSystem : MonoBehaviour
      */
     private IEnumerator ProcessEnemyTurn(CombatUnit enemy)
     {
-        TakeDamageResult result = skillExecutor.ExecuteMoveOnTarget(player, skillManager.GetTestMove());
-        combatLog.DamagePlayer(enemy, skillManager.GetTestMove(), result.DamageTaken);
+        TakeDamageResult result = skillExecutor.ExecuteMoveOnTarget(enemy, player, skillManager.GetTestMove());
+        //combatLog.DamagePlayer(enemy, skillManager.GetTestMove(), result.DamageTaken);
         combatLog.PrintToLog("New player HP: " + player.CurrentHp);
         
         yield return new WaitForSeconds(1f);

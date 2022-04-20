@@ -501,12 +501,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerPrefab: {fileID: 9136100889898898815, guid: ba1e7300e10be0e408261c675fdda336, type: 3}
   enemies:
-  - {fileID: 4600261954011213615, guid: fbff369f15af8ef4c845f582d67927c3, type: 3}
-  enemyBases:
-  - {fileID: 11400000, guid: 903592bcc2be5244d91a9603e0961e09, type: 2}
-  - {fileID: 11400000, guid: 8144cdab7f9828146a84a4634f1e7bcb, type: 2}
-  - {fileID: 11400000, guid: c8f9c19f168698c4fbfb88ff174bb43c, type: 2}
-  enemyPrefab: {fileID: 5921805155196225705, guid: 6aca80ab3d29b744b91e410763bffd7f, type: 3}
+  - {fileID: 5921805155196225705, guid: fbff369f15af8ef4c845f582d67927c3, type: 3}
   backgroundGO: {fileID: 1514986818}
   backgroundSprites:
   - {fileID: 21300000, guid: 77d335c0f8e17e94883e629b7b64e7cf, type: 3}
@@ -1142,6 +1137,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 051d7c5652271e3438b01d6bbb86080e, type: 2}
   - {fileID: 11400000, guid: 4d6fe4b2c8e7e234d8aa877433dbd03b, type: 2}
   - {fileID: 11400000, guid: ca16b760cbacac44c9f0aa40bc452378, type: 2}
+  - {fileID: 11400000, guid: d717bed5a7e44954faa1b7b7716d758d, type: 2}
+  - {fileID: 11400000, guid: dd3208e8063909a4d8bf5580cecc484f, type: 2}
+  testMove: {fileID: 11400000, guid: 0fd047b109be4c7469c0149575701afe, type: 2}
 --- !u!1 &615774913
 GameObject:
   m_ObjectHideFlags: 0
@@ -2877,7 +2875,7 @@ MonoBehaviour:
   bottomEnemyStation: {fileID: 564620973}
   frontTopEnemyStation: {fileID: 1535339211}
   frontBottomEnemyStation: {fileID: 1139207582}
-  amountToSpawn: 3
+  amountToSpawn: 2
   levelOfEnemies: 1
 --- !u!4 &1139207582 stripped
 Transform:

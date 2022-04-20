@@ -9,9 +9,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9136100889898898808}
-  - component: {fileID: 3521303896121579343}
+  - component: {fileID: 6225075588343924119}
+  - component: {fileID: 5537034655601487244}
+  - component: {fileID: -349983964908275168}
   m_Layer: 0
-  m_Name: Player (Combat)
+  m_Name: Player (Combat Unit)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -32,7 +34,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3521303896121579343
+--- !u!114 &6225075588343924119
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -41,7 +43,87 @@ MonoBehaviour:
   m_GameObject: {fileID: 9136100889898898815}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8caebecc721d440aa8f090765052e87f, type: 3}
+  m_Script: {fileID: 11500000, guid: 161a29574135eee4f8c155ce176117cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  unitName: Player
+  description: Player character
+  unitType: 1
+  isPlayerUnit: 1
+  idleSprite: {fileID: 4185320103643025961, guid: 5e42d906f00b092489cc6efa44be8318, type: 3}
+  level: 1
+  maxHp: 20
+  strength: 1
+  agility: 1
+  intellect: 1
+  attackPower: 5
+  abilityPower: 5
+  physicalCritChance: 0.1
+  magicalCritChance: 0.1
+  physicalDefense: 5
+  magicalDefense: 5
+  physicalBlockPower: 0
+  dodgeChance: 0.05
+  speed: 5
+  strengthApRatio: 2
+  agilityApRatio: 1
+  intellectAbpRatio: 2
+  agilityCritRatio: 0.05
+  intellectCritRatio: 0.05
+  strengthPhysDefRatio: 1
+  agilityPhysDefRatio: 2
+  agilityDodgeRatio: 0.05
+  agilitySpeedRatio: 1
+  maxHpGrowth: 2
+  strengthGrowth: 1
+  agilityGrowth: 1
+  intellectGrowth: 1
+  physicalDefenseGrowth: 1
+  magicalDefenseGrowth: 2
+  physicalBlockPowerGrowth: 1
+  speedGrowth: 2
+  currentHp: 0
+  currentMaxHp: 0
+  currentStrength: 0
+  currentAgility: 0
+  currentIntellect: 0
+  currentAttackPower: 0
+  currentAbilityPower: 0
+  currentPhysicalCritChance: 0
+  currentMagicalCritChance: 0
+  currentPhysDef: 0
+  currentMagicDef: 0
+  currentPhysicalMitigation: 0
+  currentPhysicalBlock: 0
+  currentMagicalMitigation: 0
+  currentDodge: 0
+  currentSpeed: 0
+--- !u!114 &5537034655601487244
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9136100889898898815}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ada099d91f455740a6812895ddbbef6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  consumeBlock: 1
+  expireBlock: 1
+  blockingCanBeSplit: 0
+  consumeMitigation: 1
+--- !u!114 &-349983964908275168
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9136100889898898815}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c428bbea0affe2449841f4a1977355e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &9136100890005272129

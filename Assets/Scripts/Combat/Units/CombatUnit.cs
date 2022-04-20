@@ -69,10 +69,18 @@ public class CombatUnit : MonoBehaviour, IComparable
     [SerializeField] private float currentMagicalMitigation;
     [SerializeField] private float currentDodge;
     [SerializeField] private float currentSpeed;
-
+    
     private List<CombatMoveType> acceptedDamageTypes = new List<CombatMoveType>
         {CombatMoveType.Physical, CombatMoveType.Magical, CombatMoveType.Suffer};
-    private List<CombatEffect> activeEffects = new List<CombatEffect>();
+    
+    private TalentManager talentManager;
+    private CombatEffectManager combatEffectsManager;
+
+    private void Awake()
+    {
+        talentManager = GetComponent<TalentManager>();
+        combatEffectsManager = GetComponent<CombatEffectManager>();
+    }
 
     public void InitiateCurrentStatsForCombat(int spawnLevel)
     {
@@ -89,7 +97,7 @@ public class CombatUnit : MonoBehaviour, IComparable
         CurrentPhysDef = PhysicalDefense;
         CurrentMagicDef = MagicalDefense;
         CurrentPhysicalMitigation = 0;
-        CurrentPhysicalBlock = PhysicalBlockPower;
+        CurrentPhysicalBlock = 0;
         CurrentMagicalMitigation = 0;
         CurrentDodge = DodgeChance;
         CurrentSpeed = Speed;
@@ -106,8 +114,8 @@ public class CombatUnit : MonoBehaviour, IComparable
         switch (moveType)
         {
             case CombatMoveType.Physical:
-            {
-                /*
+            { 
+            /*
              * Check if attack is dodged.
              * Mitigate total damage of skill with percentage (e.g. 10%, 25%) and round -- // 11 * (1 - 0.1) = 9.9 -> 10;
              * Block damage of skill by a flat amount, decided by currentPhysicalBlock (if any was applied) times the block power of unit. -- // 10 - (2 * 1) = 8;
@@ -129,13 +137,27 @@ public class CombatUnit : MonoBehaviour, IComparable
                 else
                 {
                     Debug.Log("initial damage: " + damage);
-                    float damageAfterMitigation = damage * (1 - CurrentPhysicalMitigation);
-                    float damageAfterBlock = Mathf.Clamp(
-                        (damageAfterMitigation - (CurrentPhysicalBlock * PhysicalBlockPower)),
-                        0, float.MaxValue);
-                    float damageAfterArmor = Mathf.Clamp(
-                        (damageAfterBlock - CurrentPhysDef),
-                        0, float.MaxValue);
+                    
+                    // Calculate mitigation
+                    // Mitigation should be active effect
+                    float damageAfterMitigation = damage;
+                    if (combatEffectsManager.IsEffectActive(CombatEffectType.PhysMitigation))
+                    {
+                        damageAfterMitigation = talentManager.CalculatePhysicalMitigation(damage);
+                    }
+                    
+                    // Calculate block
+                    // Only apply if block is active on unit, if not skip.
+                    float damageAfterBlock = damageAfterMitigation;
+                    if (combatEffectsManager.IsEffectActive(CombatEffectType.Block))
+                    {
+                        damageAfterBlock = talentManager.CalculateBlock(damageAfterMitigation);
+                    }
+                    
+                    // Calculate armor
+                    float damageAfterArmor = talentManager.CalculateArmor(damageAfterBlock);
+                    
+                    // Round to nearest int.
                     int finalDamageAfterArmor = Mathf.RoundToInt(damageAfterArmor);
 
                     Debug.Log("Damage taken: " + finalDamageAfterArmor);
@@ -186,14 +208,6 @@ public class CombatUnit : MonoBehaviour, IComparable
     {
         CombatUnit other = obj as CombatUnit;
         return other.CurrentSpeed.CompareTo(this.CurrentSpeed);
-    }
-    
-    // Active effects
-    public void AddCombatEffect(CombatMove move, CombatEffectType effectType)
-    {
-        Debug.Log("Adding " + effectType + " to " + UnitName);
-        
-        activeEffects.Add(new CombatEffect(move, effectType));
     }
     
     /// Getters
@@ -528,10 +542,5 @@ public class CombatUnit : MonoBehaviour, IComparable
         get => currentSpeed;
         set => currentSpeed = value;
     }
-
-    public List<CombatEffect> ActiveEffects
-    {
-        get => activeEffects;
-        set => activeEffects = value;
-    }
+    
 }

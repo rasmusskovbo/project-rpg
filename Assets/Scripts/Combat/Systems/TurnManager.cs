@@ -31,6 +31,7 @@ public class TurnManager
     public void SetupTurnList()
     {
         fastestSpeed = sortedUnits[0].CurrentSpeed;
+        Debug.Log("FASTEST UNIT: " + sortedUnits[0]);
 
         sortedUnits.ForEach(unit =>
         {
@@ -38,7 +39,7 @@ public class TurnManager
         });
         
         activeUnits.Sort();
-        
+        Debug.Log("FASTEST UNIT: " + activeUnits[0].CombatUnit.UnitName);
     }
 
     public TurnUnit GetTurnUnit(CombatUnit unit)

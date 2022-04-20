@@ -17,7 +17,7 @@ MonoBehaviour:
   type: {fileID: 11400000, guid: a69e2e6902aafe5438f9a8ddbed28f8b, type: 2}
   actionType: 1
   targets: 0
-  effectType: 0
+  effectType: 7
   power: 10
   cooldown: 0
   duration: 0

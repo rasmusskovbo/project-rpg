@@ -1,7 +1,4 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 /*
@@ -21,7 +18,7 @@ public class SkillExecutor : MonoBehaviour
     }
 
     // Take damage result on global hits. maybe always return a list.
-    public TakeDamageResult ExecuteMove(CombatMove move, CombatUnit target, List<GameObject> allEnemies = null)
+    public TakeDamageResult ExecuteMove(CombatMove move, CombatUnit user, CombatUnit target, List<GameObject> allEnemies = null)
     {
         Debug.Log("Trying to execute move: " + move.GetName() + ", " + move.GetType() + ", " + move.GetEffectType());
         
@@ -37,7 +34,7 @@ public class SkillExecutor : MonoBehaviour
                 ExecuteMoveOnMultipleTargets(target, allEnemies, move);
                 break;
             case CombatMoveTargets.Singular:
-                return ExecuteMoveOnTarget(target, move);
+                return ExecuteMoveOnTarget(user,target, move);
         }
 
         skillManager.PutCombatMoveOnCooldown(move);
@@ -47,12 +44,21 @@ public class SkillExecutor : MonoBehaviour
     
     public void ExecuteMoveOnSelf(CombatUnit player, CombatMove move)
     {
-        if (move.GetType().Equals(CombatMoveType.Heal))
+        switch (move.GetType())
         {
-            ExecuteHealTypeMove(player, move);
+            case CombatMoveType.Heal:
+                ExecuteHealTypeMove(player, move);
+                break;
+            case CombatMoveType.Block:
+                ExecuteDefendTypeMove(player, move);
+                break;
+            case CombatMoveType.Mitigate:
+                ExecuteDefendTypeMove(player, move);
+                break;
         }
     }
 
+    // Global or adjacent
     public void ExecuteMoveOnMultipleTargets(CombatUnit target, List<GameObject> allEnemies, CombatMove move)
     {
         Debug.Log("Executing move on multiple targets");
@@ -60,51 +66,20 @@ public class SkillExecutor : MonoBehaviour
         // if adjacent = some
     }
 
-    public TakeDamageResult ExecuteMoveOnTarget(CombatUnit target, CombatMove move)
+    public TakeDamageResult ExecuteMoveOnTarget(CombatUnit attacker, CombatUnit target, CombatMove move)
     {
         // Use on target
         Debug.Log("Executing move on singular target");
         if (move.GetType().Equals(CombatMoveType.Suffer))
         {
-            return ExecuteSufferTypeMove(target, move);
+            return ExecuteSufferTypeMove(attacker, target, move);
         }
         else
         {
-            return target.TakeDamage(move.GetPower(), move.GetType());
+            var takeDamageResult = target.TakeDamage(move.GetPower(), move.GetType());
+            combatLog.UsedOffensiveCombatMove(move, attacker, target, takeDamageResult.DamageTaken);
+            return takeDamageResult;
         }
-    }
-    
-    
-    /*
-     * Handles all active effects that requires action on a unit, each round.
-     * Called by the Unit or the system before it's turn.
-     * Refactor the effect handler
-     */
-    public void ProcessAllEffects(CombatUnit unit)
-    {
-        List<CombatEffect> expiredEffects = new List<CombatEffect>();
-        Debug.Log("Unit's active effect list: " + unit.UnitName + ", "+ unit.ActiveEffects.Count);
-        unit.ActiveEffects.ForEach(activeEffect =>
-        {
-            if (activeEffect.CombatEffectType.Equals(CombatEffectType.Renew))
-            {
-                Debug.Log("Applying renew's heal!");
-                unit.Heal(activeEffect.Power);
-                activeEffect.DurationTracker.DecreaseDuration();
-                if (!activeEffect.DurationTracker.isEffectActive()) expiredEffects.Add(activeEffect);
-                Debug.Log("Remaining duration: " + activeEffect.DurationTracker.GetRemainingDuration());
-            }
-            
-            if (activeEffect.CombatEffectType.Equals(CombatEffectType.Poison))
-            {
-                TakeDamageResult result = unit.TakeDamage(activeEffect.Power, CombatMoveType.Suffer);
-                combatSystem.CheckForDeath(unit, result);
-            }
-        });
-        
-        // done after-the-fact to avoid list manipulation.
-        Debug.Log("Expired effects size: " + expiredEffects.Count);
-        expiredEffects.ForEach(expiredEffect => unit.ActiveEffects.Remove(expiredEffect));
     }
 
     /*
@@ -117,7 +92,7 @@ public class SkillExecutor : MonoBehaviour
             Debug.Log("Added Renew effect");
             
             combatLog.PlayerAppliedBuff(move);
-            unit.AddCombatEffect(move, CombatEffectType.Renew);
+            unit.GetComponent<CombatEffectManager>().AddCombatEffect(move, CombatEffectType.Renew);
         }
         else
         {
@@ -126,20 +101,61 @@ public class SkillExecutor : MonoBehaviour
         }
     }
     
-    private TakeDamageResult ExecuteSufferTypeMove(CombatUnit target, CombatMove move)
+    private void ExecuteDefendTypeMove(CombatUnit unit, CombatMove move)
+    {
+        if (move.GetEffectType() == CombatEffectType.Block)
+        {
+            Debug.Log("Added Block");
+            
+            combatLog.PlayerAppliedBlock(move);
+
+            unit.CurrentPhysicalBlock = move.GetPower();
+            unit.GetComponent<CombatEffectManager>().AddCombatEffect(move, CombatEffectType.Block);
+        }
+        else
+        {
+            Debug.Log("Activating mitigation");
+            
+            combatLog.PlayerAppliedBuff(move);
+
+            switch (move.GetEffectType())
+            {
+                case CombatEffectType.PhysMitigation: 
+                    float physMitigation = move.GetPower();
+                    unit.CurrentPhysicalMitigation = physMitigation / 100;
+                    unit.GetComponent<CombatEffectManager>().AddCombatEffect(move, CombatEffectType.PhysMitigation);
+                    break;
+                case CombatEffectType.MagicMitigation: 
+                    float magicMitigation = move.GetPower();
+                    unit.CurrentMagicalMitigation = magicMitigation / 100;
+                    unit.GetComponent<CombatEffectManager>().AddCombatEffect(move, CombatEffectType.MagicMitigation);
+                    break;
+                case CombatEffectType.AllMitigation:
+                    float allPhysMitigation = move.GetPower();
+                    float allMagicMitigation = move.GetPower();
+                    unit.CurrentPhysicalMitigation = allPhysMitigation / 100;
+                    unit.CurrentMagicalMitigation = allMagicMitigation / 100;
+                    unit.GetComponent<CombatEffectManager>().AddCombatEffect(move, CombatEffectType.PhysMitigation);
+                    unit.GetComponent<CombatEffectManager>().AddCombatEffect(move, CombatEffectType.MagicMitigation);
+                    break;
+            }
+        }
+    }
+    
+    private TakeDamageResult ExecuteSufferTypeMove(CombatUnit attacker, CombatUnit target, CombatMove move)
     {
         
         if (move.GetEffectType().Equals(CombatEffectType.Poison))
         {
             Debug.Log("Added Poison effect");
-            target.AddCombatEffect(move, CombatEffectType.Poison);
+            target.GetComponent<CombatEffectManager>().AddCombatEffect(move, CombatEffectType.Poison);
             
             combatLog.PlayerAppliedDebuff(move, target);
             return new TakeDamageResult(false, 0);
         }
         else
         {
-            combatLog.PlayerUsedCombatMove(move, target, move.GetPower());
+            combatLog.UsedOffensiveCombatMove(move, attacker, target, move.GetPower());
             return target.TakeDamage(move.GetPower(), CombatMoveType.Suffer);
         }
     }

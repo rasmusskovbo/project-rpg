@@ -82,6 +82,12 @@ public class UICombatLog : MonoBehaviour
         PrintToLog(line);
     }
 
+    public void PlayerAppliedBlock(CombatMove move)
+    {
+        string line = "You gained " + move.GetPower() + " physical block!";
+        PrintToLog(line);
+    }
+
     public void PlayerAppliedBuff(CombatMove move)
     {
         string line = "You gained " + move.GetName() + "!";
@@ -94,9 +100,9 @@ public class UICombatLog : MonoBehaviour
         PrintToLog(line);
     }
 
-    public void PlayerUsedCombatMove(CombatMove move, CombatUnit target, float damage)
+    public void UsedOffensiveCombatMove(CombatMove move, CombatUnit attacker, CombatUnit target, float damage)
     {
-        string line = "You used " + move.GetName() +
+        string line = attacker.UnitName + " used " + move.GetName() +
                       " on " + target.UnitName +
                       ". It hit for " + damage + " " + move.GetType() + " damage.";
         PrintToLog(line);

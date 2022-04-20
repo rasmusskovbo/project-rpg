@@ -12,13 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf01d04594b1a204980701fef3bded61, type: 3}
   m_Name: Shadow Breath
   m_EditorClassIdentifier: 
-  name: 
+  name: Shadow Breath
   description: 
-  type: {fileID: 0}
+  type: {fileID: 11400000, guid: 467adbd576a634144b7737cce2e121ed, type: 2}
   actionType: 0
-  targets: 0
+  targets: 1
   effectType: 0
-  power: 0
+  power: 14
   cooldown: 0
   duration: 0
-  icon_image: {fileID: 0}
+  icon_image: {fileID: 21300000, guid: 6c8a967779d6cbb40830a1bc9f8ae464, type: 3}

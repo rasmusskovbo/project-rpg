@@ -5,6 +5,10 @@
     Poison,
     Silence,
     Strengthen,
-    Weaken
+    Weaken,
+    Block,
+    PhysMitigation,
+    MagicMitigation,
+    AllMitigation
     // Weakened, Strengthened, Burning, etc
 }
