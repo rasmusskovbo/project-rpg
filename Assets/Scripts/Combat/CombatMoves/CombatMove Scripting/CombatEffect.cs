@@ -4,11 +4,11 @@
     private DurationTracker durationTracker;
     private CombatEffectType combatEffectType;
 
-    public CombatEffect(CombatMove move, CombatEffectType effectType)
+    public CombatEffect(CombatMove move)
     {
         power = move.GetPower();
         durationTracker = new DurationTracker(move.GetDuration());
-        combatEffectType = effectType;
+        combatEffectType = move.GetEffectType();
     }
 
     public float Power

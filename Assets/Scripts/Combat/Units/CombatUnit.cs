@@ -40,6 +40,7 @@ public class CombatUnit : MonoBehaviour, IComparable
     [SerializeField] private float agilityPhysDefRatio = 2;
     [SerializeField] private float agilityDodgeRatio = 0.05f;
     [SerializeField] private float agilitySpeedRatio = 1;
+    [SerializeField] private float critMultiplier = 2;
     
     [Header("Growth Rates")]
     [SerializeField] private float maxHpGrowth = 2;
@@ -103,6 +104,37 @@ public class CombatUnit : MonoBehaviour, IComparable
         CurrentSpeed = Speed;
     }
 
+    public float DoDamage(CombatMove move)
+    {
+        if (!acceptedDamageTypes.Contains(move.GetType()))
+        {
+            Debug.Log("Attempted to damage with wrong type: " + move.GetType());
+            return 0;
+        }
+
+        float power = move.GetPower();
+        float finalDamage = power;
+        float critCounter = Random.Range(0, 100);
+
+        Debug.Log("Chance it's a crit: " + critCounter);
+        
+        switch (move.GetType())
+        {
+            case CombatMoveType.Physical:
+                float damageAfterAttackPower = power + CurrentAttackPower;
+                
+                finalDamage = critCounter < (CurrentPhysicalCritChance * 100) ? damageAfterAttackPower * critMultiplier : damageAfterAttackPower;
+                break;
+            case CombatMoveType.Magical:
+                float damageAfterAbilityPower = power + CurrentAbilityPower;
+                
+                finalDamage = critCounter < (CurrentMagicalCritChance * 100) ? damageAfterAbilityPower * critMultiplier : damageAfterAbilityPower;
+                break;
+        }
+
+        return finalDamage;
+    }
+
     public TakeDamageResult TakeDamage(float damage, CombatMoveType moveType)
     {
         if (!acceptedDamageTypes.Contains(moveType))
@@ -132,7 +164,7 @@ public class CombatUnit : MonoBehaviour, IComparable
                 if (hitChance < CurrentDodge * 100)
                 {
                     Debug.Log("Attack was dodged");
-                    return new TakeDamageResult(false, 0);
+                    return new TakeDamageResult(this, false, 0);
                 }
                 else
                 {
@@ -163,7 +195,7 @@ public class CombatUnit : MonoBehaviour, IComparable
                     Debug.Log("Damage taken: " + finalDamageAfterArmor);
                     CurrentHp -= finalDamageAfterArmor;
             
-                    return new TakeDamageResult(CurrentHp <= 0, finalDamageAfterArmor);;    
+                    return new TakeDamageResult(this, CurrentHp <= 0, finalDamageAfterArmor);;    
                 }
             }
             case CombatMoveType.Magical:
@@ -176,13 +208,13 @@ public class CombatUnit : MonoBehaviour, IComparable
 
                 CurrentHp -= finalDamageAfterArmor;
 
-                return new TakeDamageResult(CurrentHp <= 0, finalDamageAfterArmor);
+                return new TakeDamageResult(this, CurrentHp <= 0, finalDamageAfterArmor);
             }
             // Suffer Damage
             default:
                 CurrentHp -= Mathf.RoundToInt(damage);
 
-                return new TakeDamageResult(CurrentHp <= 0, Mathf.RoundToInt(damage));
+                return new TakeDamageResult(this, CurrentHp <= 0, Mathf.RoundToInt(damage));
         }
     }
     
@@ -245,9 +277,10 @@ public class CombatUnit : MonoBehaviour, IComparable
     // Combined stats
     public float AttackPower
     {
-        get => attackPower 
-               + (strength * strengthApRatio) 
-               + (agility * agilityApRatio);
+        get => attackPower
+                + (strength * strengthApRatio)
+                + (agility * agilityApRatio);
+        
         set => attackPower = value;
     }
 
@@ -479,7 +512,7 @@ public class CombatUnit : MonoBehaviour, IComparable
 
     public float CurrentAttackPower
     {
-        get => currentAttackPower;
+        get => currentAttackPower * combatEffectsManager.GetStrengthenMultiplier();// * combatEffectsManager.GetWeakenMultiplier();
         set => currentAttackPower = value;
     }
 

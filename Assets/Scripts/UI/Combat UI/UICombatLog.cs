@@ -88,13 +88,13 @@ public class UICombatLog : MonoBehaviour
         PrintToLog(line);
     }
 
-    public void PlayerAppliedBuff(CombatMove move)
+    public void UnitAppliedEffect(CombatUnit unit, CombatMove move)
     {
-        string line = "You gained " + move.GetName() + "!";
+        string line = unit.UnitName + " gained " + move.GetName() + ".";
         PrintToLog(line);
     }
 
-    public void PlayerAppliedDebuff(CombatMove move, CombatUnit target)
+    public void x(CombatMove move, CombatUnit target)
     {
         string line = "You applied " + move.GetName() + " to " + target.UnitName;
         PrintToLog(line);

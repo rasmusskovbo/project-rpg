@@ -15,7 +15,7 @@ MonoBehaviour:
   name: Poison
   description: "Permanently poison the enemy, making it lose health before each action
     it takes.\t"
-  type: {fileID: 11400000, guid: 9fa59ddfb28fb544b89b682f9e3cf757, type: 2}
+  type: {fileID: 11400000, guid: b2e71b6f84c1e6249a80e30eabb34c4d, type: 2}
   actionType: 0
   targets: 1
   effectType: 2

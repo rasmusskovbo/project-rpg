@@ -38,7 +38,7 @@ public class CombatEffectManager : MonoBehaviour
             {
                 TakeDamageResult result = unit.TakeDamage(activeEffect.Power, CombatMoveType.Suffer);
                 DecreaseDurationOrExpire(activeEffect, expiredEffects);
-                combatSystem.CheckForDeath(unit, result);
+                combatSystem.CheckForDeath(result);
             }
 
             if (activeEffect.CombatEffectType.Equals(CombatEffectType.Block))
@@ -66,10 +66,42 @@ public class CombatEffectManager : MonoBehaviour
     }
     
     // Active effects
-    public void AddCombatEffect(CombatMove move, CombatEffectType effectType)
+    public float GetStrengthenMultiplier()
     {
-        Debug.Log("Adding " + effectType + " to " + unit.UnitName);
-        activeEffects.Add(new CombatEffect(move, effectType));
+        List<CombatEffect> activeStrengthenEffects =
+            activeEffects.FindAll(effect => effect.CombatEffectType == CombatEffectType.Strengthen);
+
+        Debug.Log("STRENGTHEN SIZE: " + activeStrengthenEffects.Count);
+
+        float multiplier = 1;
+        
+        if (activeStrengthenEffects.Count == 0)
+        {
+            return multiplier;
+        }
+        
+        
+        activeEffects.ForEach(effect =>
+        {
+            if (effect.CombatEffectType == CombatEffectType.Strengthen)
+            {
+                activeStrengthenEffects.Add(effect);
+            }
+        });
+        
+        for (int i = 0; i < activeStrengthenEffects.Count; i++)
+        {
+            multiplier = multiplier * (activeStrengthenEffects[i].Power / 100) + 1;
+        }
+
+        Debug.Log("Multiplier: " + multiplier);
+        return multiplier;
+    }
+    
+    public void AddCombatEffect(CombatMove move)
+    {
+        Debug.Log("Adding " + move.GetEffectType() + " to " + unit.UnitName);
+        activeEffects.Add(new CombatEffect(move));
     }
     
     public List<CombatEffect> ActiveEffects

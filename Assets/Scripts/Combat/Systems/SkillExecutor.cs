@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 /*
@@ -16,83 +17,131 @@ public class SkillExecutor : MonoBehaviour
         skillManager = FindObjectOfType<SkillManager>();
         combatLog = FindObjectOfType<UICombatLog>();
     }
-
-    // Take damage result on global hits. maybe always return a list.
-    public TakeDamageResult ExecuteMove(CombatMove move, CombatUnit user, CombatUnit target, List<GameObject> allEnemies = null)
+    
+    // Filters move by target.
+    public List<TakeDamageResult> ExecuteMove(CombatMove move, CombatUnit user, CombatUnit target, List<GameObject> allEnemies = null)
     {
         Debug.Log("Trying to execute move: " + move.GetName() + ", " + move.GetType() + ", " + move.GetEffectType());
+        
+        skillManager.PutCombatMoveOnCooldown(move);
         
         switch (move.GetTargets())
         {
             case CombatMoveTargets.Self:
-                ExecuteMoveOnSelf(target, move);
+                ExecuteMoveOnSelf(move, user);
                 break;
             case CombatMoveTargets.Adjacent:
-                ExecuteMoveOnMultipleTargets(target, allEnemies, move);
-                break;
+                return ExecuteMoveOnMultipleTargets(move, user, target, allEnemies);
             case CombatMoveTargets.Global:
-                ExecuteMoveOnMultipleTargets(target, allEnemies, move);
-                break;
+                return ExecuteMoveOnMultipleTargets(move, user, target, allEnemies);
             case CombatMoveTargets.Singular:
-                return ExecuteMoveOnTarget(user,target, move);
+                return new List<TakeDamageResult> {ExecuteMoveOnTarget(move, user, target)};
         }
-
-        skillManager.PutCombatMoveOnCooldown(move);
         
         return null;
     }
     
-    public void ExecuteMoveOnSelf(CombatUnit player, CombatMove move)
+    /*
+     * Self target
+     */
+    public void ExecuteMoveOnSelf(CombatMove move, CombatUnit unit)
     {
         switch (move.GetType())
         {
             case CombatMoveType.Heal:
-                ExecuteHealTypeMove(player, move);
+                ExecuteHealTypeMove(move, unit);
                 break;
             case CombatMoveType.Block:
-                ExecuteDefendTypeMove(player, move);
+                ExecuteDefendTypeMove(move, unit);
                 break;
             case CombatMoveType.Mitigate:
-                ExecuteDefendTypeMove(player, move);
+                ExecuteDefendTypeMove(move, unit);
                 break;
-        }
-    }
-
-    // Global or adjacent
-    public void ExecuteMoveOnMultipleTargets(CombatUnit target, List<GameObject> allEnemies, CombatMove move)
-    {
-        Debug.Log("Executing move on multiple targets");
-        // if global = all
-        // if adjacent = some
-    }
-
-    public TakeDamageResult ExecuteMoveOnTarget(CombatUnit attacker, CombatUnit target, CombatMove move)
-    {
-        // Use on target
-        Debug.Log("Executing move on singular target");
-        if (move.GetType().Equals(CombatMoveType.Suffer))
-        {
-            return ExecuteSufferTypeMove(attacker, target, move);
-        }
-        else
-        {
-            var takeDamageResult = target.TakeDamage(move.GetPower(), move.GetType());
-            combatLog.UsedOffensiveCombatMove(move, attacker, target, takeDamageResult.DamageTaken);
-            return takeDamageResult;
+            case CombatMoveType.Buff:
+                AddBuffToUnit(move, unit);
+                break;
         }
     }
 
     /*
-     * Scripting
+     * Global or Adjacent targets
      */
-    private void ExecuteHealTypeMove(CombatUnit unit, CombatMove move)
+    public List<TakeDamageResult> ExecuteMoveOnMultipleTargets(CombatMove move, CombatUnit attacker, CombatUnit target, List<GameObject> allEnemies)
+    {
+        List<TakeDamageResult> results = new List<TakeDamageResult>();
+        
+        if (move.GetTargets() == CombatMoveTargets.Global)
+        {
+            allEnemies.ForEach(enemyGO =>
+            {
+                TakeDamageResult result = ExecuteMoveOnTarget(move, attacker, enemyGO.GetComponent<CombatUnit>());
+                results.Add(result);
+            });
+            
+            return results;
+        }
+        else // Adjacent
+        {
+            combatSystem.GetTargetAndActiveAdjacentPosition(target).ForEach(enemy =>
+            {
+                TakeDamageResult result =
+                    ExecuteMoveOnTarget(move, attacker, enemy);
+                results.Add(result);
+            });
+            
+            return results;
+        }
+    }
+
+    /*
+     * Singular Target
+     */
+    public TakeDamageResult ExecuteMoveOnTarget(CombatMove move, CombatUnit attacker, CombatUnit target)
+    {
+        if (move.GetType().Equals(CombatMoveType.Debuff))
+        {
+            return AddDebuffToUnit(move, target);
+        }
+        
+        if (move.GetType().Equals(CombatMoveType.Suffer))
+        {
+            return ExecuteSufferAttackMove(move, attacker, target);    
+        }
+
+        return ExecuteRegularAttackMove(attacker, target, move);
+        
+    }
+
+    /*
+     * Physical or Magical attack
+     */
+    private TakeDamageResult ExecuteRegularAttackMove(CombatUnit attacker, CombatUnit target, CombatMove move)
+    {
+        float damage = attacker.DoDamage(move);
+        var takeDamageResult = target.TakeDamage(damage, move.GetType());
+        combatLog.UsedOffensiveCombatMove(move, attacker, target, takeDamageResult.DamageTaken);
+        return takeDamageResult;
+    }
+    
+    /*
+     * Suffer attack
+     */
+    private TakeDamageResult ExecuteSufferAttackMove(CombatMove move, CombatUnit attacker, CombatUnit target)
+    {
+        // Suffer damage is true damage and does not get multiplied.
+        // Sometimes this is called due to a combat effect, log is not correct.
+        combatLog.UsedOffensiveCombatMove(move, attacker, target, move.GetPower());
+        return target.TakeDamage(move.GetPower(), CombatMoveType.Suffer);
+    }
+    
+    /*
+     * Healing
+     */
+    private void ExecuteHealTypeMove(CombatMove move, CombatUnit unit)
     {
         if (move.GetEffectType().Equals(CombatEffectType.Renew))
         {
-            Debug.Log("Added Renew effect");
-            
-            combatLog.PlayerAppliedBuff(move);
-            unit.GetComponent<CombatEffectManager>().AddCombatEffect(move, CombatEffectType.Renew);
+            AddBuffToUnit(move, unit);
         }
         else
         {
@@ -101,7 +150,10 @@ public class SkillExecutor : MonoBehaviour
         }
     }
     
-    private void ExecuteDefendTypeMove(CombatUnit unit, CombatMove move)
+    /*
+     * Block or Mitigate
+     */
+    private void ExecuteDefendTypeMove(CombatMove move, CombatUnit unit)
     {
         if (move.GetEffectType() == CombatEffectType.Block)
         {
@@ -110,53 +162,60 @@ public class SkillExecutor : MonoBehaviour
             combatLog.PlayerAppliedBlock(move);
 
             unit.CurrentPhysicalBlock = move.GetPower();
-            unit.GetComponent<CombatEffectManager>().AddCombatEffect(move, CombatEffectType.Block);
+            unit.GetComponent<CombatEffectManager>().AddCombatEffect(move);
         }
         else
         {
             Debug.Log("Activating mitigation");
             
-            combatLog.PlayerAppliedBuff(move);
+            combatLog.UnitAppliedEffect(unit, move);
 
             switch (move.GetEffectType())
             {
                 case CombatEffectType.PhysMitigation: 
                     float physMitigation = move.GetPower();
                     unit.CurrentPhysicalMitigation = physMitigation / 100;
-                    unit.GetComponent<CombatEffectManager>().AddCombatEffect(move, CombatEffectType.PhysMitigation);
+                    unit.GetComponent<CombatEffectManager>().AddCombatEffect(move);
                     break;
                 case CombatEffectType.MagicMitigation: 
                     float magicMitigation = move.GetPower();
                     unit.CurrentMagicalMitigation = magicMitigation / 100;
-                    unit.GetComponent<CombatEffectManager>().AddCombatEffect(move, CombatEffectType.MagicMitigation);
+                    unit.GetComponent<CombatEffectManager>().AddCombatEffect(move);
                     break;
                 case CombatEffectType.AllMitigation:
                     float allPhysMitigation = move.GetPower();
                     float allMagicMitigation = move.GetPower();
                     unit.CurrentPhysicalMitigation = allPhysMitigation / 100;
                     unit.CurrentMagicalMitigation = allMagicMitigation / 100;
-                    unit.GetComponent<CombatEffectManager>().AddCombatEffect(move, CombatEffectType.PhysMitigation);
-                    unit.GetComponent<CombatEffectManager>().AddCombatEffect(move, CombatEffectType.MagicMitigation);
+                    unit.GetComponent<CombatEffectManager>().AddCombatEffect(move);
                     break;
             }
         }
     }
-    
-    private TakeDamageResult ExecuteSufferTypeMove(CombatUnit attacker, CombatUnit target, CombatMove move)
+
+    /*
+     * Apply active beneficial effect to self
+     */
+    private void AddBuffToUnit(CombatMove buffMove, CombatUnit unit)
     {
+        Debug.Log("Buffed with "+ buffMove.GetEffectType() + " effect");
         
-        if (move.GetEffectType().Equals(CombatEffectType.Poison))
-        {
-            Debug.Log("Added Poison effect");
-            target.GetComponent<CombatEffectManager>().AddCombatEffect(move, CombatEffectType.Poison);
-            
-            combatLog.PlayerAppliedDebuff(move, target);
-            return new TakeDamageResult(false, 0);
-        }
-        else
-        {
-            combatLog.UsedOffensiveCombatMove(move, attacker, target, move.GetPower());
-            return target.TakeDamage(move.GetPower(), CombatMoveType.Suffer);
-        }
+        unit.GetComponent<CombatEffectManager>().AddCombatEffect(buffMove);
+        combatLog.UnitAppliedEffect(unit, buffMove);
     }
+
+    /*
+     * Apply active negative effect to target
+     */
+    private TakeDamageResult AddDebuffToUnit(CombatMove move, CombatUnit target)
+    {
+        Debug.Log("Debuffed with "+ move.GetEffectType() + " effect");
+        
+        target.GetComponent<CombatEffectManager>().AddCombatEffect(move);
+        combatLog.UnitAppliedEffect(target, move);
+
+        return new TakeDamageResult(target, false, 0);
+    }
+
+
 }

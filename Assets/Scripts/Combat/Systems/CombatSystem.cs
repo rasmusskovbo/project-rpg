@@ -266,6 +266,47 @@ public class CombatSystem : MonoBehaviour
         return activeEnemies;
     }
 
+    public List<CombatUnit> GetTargetAndActiveAdjacentPosition(CombatUnit target)
+    {
+        List<CombatUnit> allPositions = new List<CombatUnit>();
+        
+        allPositions.Add(topEnemy);
+        allPositions.Add(frontTopEnemy);
+        allPositions.Add(centerEnemy);
+        allPositions.Add(frontBottomEnemy);
+        allPositions.Add(bottomEnemy);
+
+        var indexOfTarget = allPositions.FindIndex(position => position.Equals(target));
+
+        List<CombatUnit> targetAndActiveAdjacentTargets = new List<CombatUnit> {target};
+        
+        if (indexOfTarget < 3)
+        {
+            Debug.Log("Should add south enemy to list: " + shouldAddToList(allPositions[indexOfTarget + 1]));
+            if (shouldAddToList(allPositions[indexOfTarget + 1]))
+            {
+                targetAndActiveAdjacentTargets.Add(allPositions[indexOfTarget + 1]);
+            } else if (shouldAddToList(allPositions[indexOfTarget + 2]))
+            {
+                targetAndActiveAdjacentTargets.Add(allPositions[indexOfTarget + 2]);
+            }
+            
+        }
+        else
+        {
+            if (shouldAddToList(allPositions[indexOfTarget - 1]))
+            {
+                targetAndActiveAdjacentTargets.Add(allPositions[indexOfTarget - 1]);
+            }
+            else if (shouldAddToList(allPositions[indexOfTarget - 2]))
+            {
+                targetAndActiveAdjacentTargets.Add(allPositions[indexOfTarget - 2]);
+            }  
+        }
+        
+        return targetAndActiveAdjacentTargets;
+    }
+
     private bool shouldAddToList(CombatUnit enemy)
     {
         return enemy && enemy.isActiveAndEnabled;
@@ -327,9 +368,8 @@ public class CombatSystem : MonoBehaviour
         }
         else
         {
-            skillExecutor.ExecuteMove(move, player, player, GetActiveEnemies());
             UpdateRemainingActions();
-            SetNextState();
+            StartCoroutine(UsePlayerSkillWithoutTargetSelection(move));
         }
 
         // Do something with coroutines here or in skillexec.
@@ -358,7 +398,7 @@ public class CombatSystem : MonoBehaviour
         UpdateRemainingActions();
         
         // See TO DO note below
-        StartCoroutine(UsePlayerSkill(chosenSkill, GetActiveEnemies()[targetIndex].GetComponent<CombatUnit>()));
+        StartCoroutine(UsePlayerSkillWithTarget(chosenSkill, GetActiveEnemies()[targetIndex].GetComponent<CombatUnit>()));
         
     }
     
@@ -371,34 +411,51 @@ public class CombatSystem : MonoBehaviour
         }
     }
     
-    public void CheckForDeath(CombatUnit target, TakeDamageResult result)
+    public void CheckForDeath(TakeDamageResult result)
     {
         if (result.IsUnitDead)
         {
-            Destroy(target.gameObject);
-            if (target.UnitType == UnitType.PLAYER) playerStation.gameObject.SetActive(false);
+            Destroy(result.Unit.gameObject);
+            if (result.Unit.UnitType == UnitType.PLAYER) playerStation.gameObject.SetActive(false);
             
-            combatLog.PrintToLog(target.UnitName + " died!");
+            combatLog.PrintToLog(result.Unit.UnitName + " died!");
             
             uiInputController.UpdateTargetablePositions();
-            turnManager.RemoveFromActiveUnits(target);
+            turnManager.RemoveFromActiveUnits(result.Unit);
         }
     }
-
-    // TODO Refactor to SkillExecutor ************************** 16-04-22 
-    IEnumerator UsePlayerSkill(CombatMove move, CombatUnit target)
+    
+    IEnumerator UsePlayerSkillWithoutTargetSelection(CombatMove move)
     {
         /* Apply Skill ->
             Animation through facade (abstraction layer)
             VFX (particle effects etc) - Maybe this is animation layer as well
             Combat calculations
         */
-        TakeDamageResult result = skillExecutor.ExecuteMove(move, player, target, GetActiveEnemies());
+        List<TakeDamageResult> results = skillExecutor.ExecuteMove(move, player, player, GetActiveEnemies());
+        
+        yield return new WaitForSeconds(2); // TODO Decide how long moves should take - dynamic, static or variable. Dont hardcode '2'
+
+        results?.ForEach(CheckForDeath);
+        
+        // Check for death of targets if global targets
+        //CheckForDeath(player, result);
+        
+        SetNextState();
+    }
+    
+    IEnumerator UsePlayerSkillWithTarget(CombatMove move, CombatUnit target)
+    {
+        /* Apply Skill ->
+            Animation through facade (abstraction layer)
+            VFX (particle effects etc) - Maybe this is animation layer as well
+            Combat calculations
+        */
+        List<TakeDamageResult> results = skillExecutor.ExecuteMove(move, player, target, GetActiveEnemies());
 
         yield return new WaitForSeconds(2); // TODO Decide how long moves should take - dynamic, static or variable. Dont hardcode '2'
         
-        // Check for death of target.
-        CheckForDeath(target, result);
+        results?.ForEach(CheckForDeath);
         
         SetNextState();
     }
@@ -410,13 +467,13 @@ public class CombatSystem : MonoBehaviour
      */
     private IEnumerator ProcessEnemyTurn(CombatUnit enemy)
     {
-        TakeDamageResult result = skillExecutor.ExecuteMoveOnTarget(enemy, player, skillManager.GetTestMove());
+        TakeDamageResult result = skillExecutor.ExecuteMoveOnTarget(skillManager.GetTestMove(),enemy, player);
         //combatLog.DamagePlayer(enemy, skillManager.GetTestMove(), result.DamageTaken);
         combatLog.PrintToLog("New player HP: " + player.CurrentHp);
         
         yield return new WaitForSeconds(1f);
         
-        CheckForDeath(player, result);
+        CheckForDeath(result);
         SetNextState();
     }
     
