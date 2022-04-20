@@ -54,6 +54,11 @@ public class UISkillLoader : MonoBehaviour
         item.GetComponentsInChildren<TextMeshProUGUI>()[0].SetText(combatMove.GetName());
         item.GetComponentsInChildren<TextMeshProUGUI>()[1].SetText(combatMove.GetPower().ToString());
         item.GetComponentsInChildren<TextMeshProUGUI>()[2].SetText(combatMove.GetCooldown().ToString());
+
+        var formattedDuration = combatMove.GetDuration() > 0 ? combatMove.GetDuration().ToString() : "-";
+        item.GetComponentsInChildren<TextMeshProUGUI>()[3].SetText(formattedDuration);
+        
+        
         
         item.transform.localScale = Vector2.one;
 

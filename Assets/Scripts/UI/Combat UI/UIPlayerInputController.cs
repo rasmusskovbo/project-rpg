@@ -319,7 +319,7 @@ public class UIPlayerInputController : MonoBehaviour
                 }
                 else if (selectorPosition == 0)
                 {
-                    this.contentRectTransform.offsetMax -= new Vector2(0, +scrollOffset);
+                    this.contentRectTransform.offsetMax -= new Vector2(0, scrollOffset);
                 }
                 
                 skillIndex--;
@@ -337,7 +337,7 @@ public class UIPlayerInputController : MonoBehaviour
                 }
                 else if (selectorPosition == selectorScrollCap)
                 {
-                    this.contentRectTransform.offsetMax -= new Vector2(0, -scrollOffset);
+                    this.contentRectTransform.offsetMax += new Vector2(0, scrollOffset);
                 }
                 
                 skillIndex++;
