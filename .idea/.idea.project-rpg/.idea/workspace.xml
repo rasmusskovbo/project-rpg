@@ -3,9 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="fa8ce64e-188e-4703-b5a4-6b2e025cebde" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.project-rpg/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.project-rpg/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Game/Resources/Prefabs/UI/Skill Item.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Resources/Prefabs/UI/Skill Item.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/Combat UI/UIPlayerInputController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/Combat UI/UIPlayerInputController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/Combat UI/UISkillLoader.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/Combat UI/UISkillLoader.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Combat/Systems/CombatSystem.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Combat/Systems/CombatSystem.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -121,7 +119,7 @@
       <workItem from="1650096595288" duration="5539000" />
       <workItem from="1650308970080" duration="7974000" />
       <workItem from="1650389132417" duration="11132000" />
-      <workItem from="1650438398765" duration="27368000" />
+      <workItem from="1650438398765" duration="28977000" />
     </task>
     <servers />
   </component>

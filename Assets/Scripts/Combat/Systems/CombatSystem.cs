@@ -216,65 +216,40 @@ public class CombatSystem : MonoBehaviour
      */
     public List<GameObject> GetActiveEnemies()
     {
+        List<CombatUnit> enemyReferences = GetAllEnemyReferences();
+        List<Transform> enemyStations = GetAllEnemyStations();
         List<GameObject> activeEnemies = new List<GameObject>();
 
-        if (shouldAddToList(topEnemy))
+        for (int i = 0; i < enemyReferences.Count; i++)
         {
-            activeEnemies.Add(topEnemy.gameObject);
-        }
-        else
-        {
-            topEnemyStation.gameObject.SetActive(false);
-        }
-        
-        if (shouldAddToList(frontTopEnemy))
-        {
-            activeEnemies.Add(frontTopEnemy.gameObject);
-        }
-        else
-        {
-            frontTopEnemyStation.gameObject.SetActive(false);
+            if (shouldAddToList(enemyReferences[i]))
+            {
+                activeEnemies.Add(enemyReferences[i].gameObject);
+            }
+            else
+            {
+                enemyStations[i].gameObject.SetActive(false);
+            }
         }
 
-        if (shouldAddToList(centerEnemy))
-        {
-            activeEnemies.Add(centerEnemy.gameObject);
-        }
-        else
-        {
-            centerEnemyStation.gameObject.SetActive(false);
-        }
-        
-        if (shouldAddToList(frontBottomEnemy))
-        {
-            activeEnemies.Add(frontBottomEnemy.gameObject);
-        }
-        else
-        {
-            frontBottomEnemyStation.gameObject.SetActive(false);
-        }
-
-        if (shouldAddToList(bottomEnemy))
-        {
-            activeEnemies.Add(bottomEnemy.gameObject);
-        }
-        else
-        {
-            bottomEnemyStation.gameObject.SetActive(false);
-        }
-        
         return activeEnemies;
+    }
+
+    private List<Transform> GetAllEnemyStations()
+    {
+        return new List<Transform>
+        {
+            topEnemyStation,
+            frontTopEnemyStation,
+            centerEnemyStation,
+            frontBottomEnemyStation,
+            bottomEnemyStation
+        };
     }
 
     public List<CombatUnit> GetTargetAndActiveAdjacentPosition(CombatUnit target)
     {
-        List<CombatUnit> allPositions = new List<CombatUnit>();
-        
-        allPositions.Add(topEnemy);
-        allPositions.Add(frontTopEnemy);
-        allPositions.Add(centerEnemy);
-        allPositions.Add(frontBottomEnemy);
-        allPositions.Add(bottomEnemy);
+        List<CombatUnit> allPositions = GetAllEnemyReferences();
 
         var indexOfTarget = allPositions.FindIndex(position => position.Equals(target));
 
@@ -305,6 +280,18 @@ public class CombatSystem : MonoBehaviour
         }
         
         return targetAndActiveAdjacentTargets;
+    }
+
+    private List<CombatUnit> GetAllEnemyReferences()
+    {
+        List<CombatUnit> allPositions = new List<CombatUnit>();
+
+        allPositions.Add(topEnemy);
+        allPositions.Add(frontTopEnemy);
+        allPositions.Add(centerEnemy);
+        allPositions.Add(frontBottomEnemy);
+        allPositions.Add(bottomEnemy);
+        return allPositions;
     }
 
     private bool shouldAddToList(CombatUnit enemy)
