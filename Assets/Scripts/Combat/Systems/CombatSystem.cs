@@ -20,6 +20,7 @@ public class CombatSystem : MonoBehaviour
     // Player
     [SerializeField] private Transform playerStation;
     [SerializeField] private int maxPlayerActions = 2;
+    [SerializeField] private float playerCombatAnimationSpeed = 1.5f;
     private CombatUnit player;
     private GameObject playerGO;
     private int remainingPlayerActions = 0;
@@ -139,9 +140,9 @@ public class CombatSystem : MonoBehaviour
                 break;
             case 4:
                 topEnemyGO = combatLoader.SpawnEnemy(topEnemyStation, levelOfEnemies);
-                bottomEnemyGO = combatLoader.SpawnEnemy(bottomEnemyStation, levelOfEnemies);
                 frontTopEnemyGO = combatLoader.SpawnEnemy(frontTopEnemyStation, levelOfEnemies);
                 frontBottomEnemyGO = combatLoader.SpawnEnemy(frontBottomEnemyStation, levelOfEnemies);
+                bottomEnemyGO = combatLoader.SpawnEnemy(bottomEnemyStation, levelOfEnemies);
                 
                 topEnemy = topEnemyGO.GetComponent<CombatUnit>();
                 centerEnemyStation.gameObject.SetActive(false);
@@ -152,10 +153,11 @@ public class CombatSystem : MonoBehaviour
                 break;
             case 5:
                 topEnemyGO = combatLoader.SpawnEnemy(topEnemyStation, levelOfEnemies);
-                centerEnemyGO = combatLoader.SpawnEnemy(centerEnemyStation, levelOfEnemies);
-                bottomEnemyGO = combatLoader.SpawnEnemy(bottomEnemyStation, levelOfEnemies);
                 frontTopEnemyGO = combatLoader.SpawnEnemy(frontTopEnemyStation, levelOfEnemies);
+                centerEnemyGO = combatLoader.SpawnEnemy(centerEnemyStation, levelOfEnemies);
                 frontBottomEnemyGO = combatLoader.SpawnEnemy(frontBottomEnemyStation, levelOfEnemies);
+                bottomEnemyGO = combatLoader.SpawnEnemy(bottomEnemyStation, levelOfEnemies);
+                
                 
                 topEnemy = topEnemyGO.GetComponent<CombatUnit>();
                 centerEnemy = centerEnemyGO.GetComponent<CombatUnit>();
@@ -297,7 +299,7 @@ public class CombatSystem : MonoBehaviour
      */
     void NewPlayerTurn()
     {
-        player.GetComponent<CombatEffectManager>().ProcessActiveEffects();
+        player.GetComponent<CombatEffectManager>().ProcessActiveEffects(true);
         remainingPlayerActions = maxPlayerActions;
         skillManager.DecreaseCooldowns();
         combatLog.PlayerTurn();
@@ -312,7 +314,7 @@ public class CombatSystem : MonoBehaviour
      */
     void NewEnemyTurn(CombatUnit enemy)
     {
-        enemy.GetComponent<CombatEffectManager>().ProcessActiveEffects();
+        enemy.GetComponent<CombatEffectManager>().ProcessActiveEffects(true);
         state = CombatState.ENEMY_TURN;
         StartCoroutine(ProcessEnemyTurn(enemy));
     }
@@ -420,13 +422,11 @@ public class CombatSystem : MonoBehaviour
         */
         List<TakeDamageResult> results = skillExecutor.ExecuteMove(move, player, player, GetActiveEnemies());
         
-        yield return new WaitForSeconds(2); // TODO Decide how long moves should take - dynamic, static or variable. Dont hardcode '2'
+        yield return new WaitForSeconds(playerCombatAnimationSpeed); // TODO Decide how long moves should take - dynamic, static or variable. Dont hardcode '2'
 
         results?.ForEach(CheckForDeath);
         
-        // Check for death of targets if global targets
-        //CheckForDeath(player, result);
-        
+        player.CombatEffectsManager.ProcessActiveEffects(false);
         SetNextState();
     }
     
@@ -439,10 +439,11 @@ public class CombatSystem : MonoBehaviour
         */
         List<TakeDamageResult> results = skillExecutor.ExecuteMove(move, player, target, GetActiveEnemies());
 
-        yield return new WaitForSeconds(2); // TODO Decide how long moves should take - dynamic, static or variable. Dont hardcode '2'
+        yield return new WaitForSeconds(playerCombatAnimationSpeed); // TODO Decide how long moves should take - dynamic, static or variable. Dont hardcode '2'
         
         results?.ForEach(CheckForDeath);
         
+        player.CombatEffectsManager.ProcessActiveEffects(false);
         SetNextState();
     }
     
@@ -459,6 +460,7 @@ public class CombatSystem : MonoBehaviour
         
         yield return new WaitForSeconds(1f);
         
+        enemy.CombatEffectsManager.ProcessActiveEffects(false);
         CheckForDeath(result);
         SetNextState();
     }

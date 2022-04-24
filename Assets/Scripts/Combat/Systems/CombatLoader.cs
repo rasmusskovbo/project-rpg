@@ -16,39 +16,44 @@ public class CombatLoader : MonoBehaviour
     [SerializeField] private List<Sprite> backgroundSprites;
 
     [Header("UI Elements")] 
-    [SerializeField] private GameObject HpBars;
-    [SerializeField] private GameObject hpBarprefab;
-    [SerializeField] private float hpBarXOffset;
-    [SerializeField] private float hpBarYOffset;
+    [SerializeField] private GameObject statDisplayPrefab;
+    [SerializeField] private GameObject statDisplayContainer;
+    [SerializeField] private float basicOffset = 60;
+    [SerializeField] private float widthPrStatDisplay = 110;
+    [SerializeField] private int tempamount = 1;
     
-
     private void Awake()
     {
         SetupBackground();
     }
 
-    /*
-    public void AddHpBar(Transform station)
+    public void ResizeStatDisplayContainer(int amountOfDisplays)
     {
-        Vector3 newPosition = station.transform.position;
-        newPosition.x += hpBarXOffset;
-        newPosition.y += hpBarYOffset;
-        
-        Instantiate(hpBarprefab, newPosition, Quaternion.identity, HpBars.transform);
+        float width = 500 - basicOffset - (widthPrStatDisplay * (amountOfDisplays - 1)); 
+        statDisplayContainer.GetComponent<RectTransform>().offsetMax = new Vector2(-width , 0);
     }
-    */
+    
+    public void AddStatDisplayToUnit(CombatUnit unit)
+    {
+        Instantiate(statDisplayPrefab, statDisplayContainer.transform)
+            .GetComponent<UIStatDisplay>().ConnectedUnit = unit;
+        ResizeStatDisplayContainer(tempamount);
+    }
+    
 
     public GameObject SpawnPlayer(Transform playerStation)
     {
-        //AddHpBar(playerStation);
-        return SpawnCombatUnit(playerPrefab, playerStation, 1);;
+        var spawnCombatUnit = SpawnCombatUnit(playerPrefab, playerStation, 1);
+        //AddHpBarToUnit(spawnCombatUnit.GetComponent<CombatUnit>());
+        return spawnCombatUnit;;
     }
     
     // Get level and enemybases pool from gamemanager
     public GameObject SpawnEnemy(Transform station, int level)
     {
-        //AddHpBar(station);
-        return SpawnCombatUnit(GetRandomEnemyPrefab(), station, level);;
+        var spawnCombatUnit = SpawnCombatUnit(GetRandomEnemyPrefab(), station, level);
+        AddStatDisplayToUnit(spawnCombatUnit.GetComponent<CombatUnit>());
+        return spawnCombatUnit;;
     }
 
     public GameObject SpawnCombatUnit(GameObject unitPrefab, Transform station, int level)

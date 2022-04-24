@@ -66,4 +66,9 @@ public class CombatMove
     {
         return _base.EffectType;
     }
+
+    public bool GetExpiresAtStartOfTurn()
+    {
+        return _base.ExpiresAtStartOfTurn;
+    }
 }

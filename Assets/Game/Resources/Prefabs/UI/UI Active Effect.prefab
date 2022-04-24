@@ -219,6 +219,7 @@ GameObject:
   m_Component:
   - component: {fileID: 907784345253393846}
   - component: {fileID: 907784345253393849}
+  - component: {fileID: 4096156682174171672}
   m_Layer: 5
   m_Name: UI Active Effect
   m_TagString: Untagged
@@ -255,3 +256,15 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 907784345253393847}
   m_CullTransparentMesh: 1
+--- !u!114 &4096156682174171672
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 907784345253393847}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f75b45a4e3aea5448e3a30709c576bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

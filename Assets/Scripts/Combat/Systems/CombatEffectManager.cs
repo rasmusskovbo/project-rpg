@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 /*
@@ -19,33 +20,49 @@ public class CombatEffectManager : MonoBehaviour
         activeEffects = new List<CombatEffect>();
     }
 
-    public void ProcessActiveEffects()
+    public void ProcessActiveEffects(bool isStartOfTurn)
     {
         List<CombatEffect> expiredEffects = new List<CombatEffect>();
         Debug.Log("Unit's active effect list: " + unit.UnitName + ", "+ ActiveEffects.Count);
         
         ActiveEffects.ForEach(activeEffect =>
         {
-            if (activeEffect.CombatEffectType.Equals(CombatEffectType.Renew))
+            if (isStartOfTurn == activeEffect.ExpiresAtStartOfTurn)
             {
-                Debug.Log("Applying renew's heal!");
-                unit.Heal(activeEffect.Power);
-                DecreaseDurationOrExpire(activeEffect, expiredEffects);
-                Debug.Log("Remaining duration: " + activeEffect.DurationTracker.GetRemainingDuration());
+                if (activeEffect.CombatEffectType.Equals(CombatEffectType.Renew))
+                {
+                    Debug.Log("Applying renew's heal!");
+                    unit.Heal(activeEffect.Power);
+                    DecreaseDurationOrExpire(activeEffect, expiredEffects);
+                    Debug.Log("Remaining duration: " + activeEffect.DurationTracker.GetRemainingDuration());
+                }
+            
+                if (activeEffect.CombatEffectType.Equals(CombatEffectType.Poison))
+                {
+                    TakeDamageResult result = unit.TakeDamage(activeEffect.Power, CombatMoveType.Suffer);
+                    DecreaseDurationOrExpire(activeEffect, expiredEffects);
+                    combatSystem.CheckForDeath(result);
+                }
+
+                // Standard active effects that are being handled elsewhere.
+                if (activeEffect.CombatEffectType.Equals(CombatEffectType.Block) ||
+                    activeEffect.CombatEffectType.Equals(CombatEffectType.Weaken) ||
+                    activeEffect.CombatEffectType.Equals(CombatEffectType.Strengthen) ||
+                    activeEffect.CombatEffectType.Equals(CombatEffectType.PhysMitigation) ||
+                    activeEffect.CombatEffectType.Equals(CombatEffectType.MagicMitigation) ||
+                    activeEffect.CombatEffectType.Equals(CombatEffectType.AllMitigation) ||
+                    activeEffect.CombatEffectType.Equals(CombatEffectType.Silence)
+                   )
+                {
+                    DecreaseDurationOrExpire(activeEffect, expiredEffects);
+                }    
+            }
+            else
+            {
+                
             }
             
-            if (activeEffect.CombatEffectType.Equals(CombatEffectType.Poison))
-            {
-                TakeDamageResult result = unit.TakeDamage(activeEffect.Power, CombatMoveType.Suffer);
-                DecreaseDurationOrExpire(activeEffect, expiredEffects);
-                combatSystem.CheckForDeath(result);
-            }
-
-            if (activeEffect.CombatEffectType.Equals(CombatEffectType.Block))
-            {
-                DebugPrintEffects();
-                DecreaseDurationOrExpire(activeEffect, expiredEffects);
-            }
+            
         });
         
         // done after-the-fact to avoid list manipulation.
@@ -90,7 +107,14 @@ public class CombatEffectManager : MonoBehaviour
     public void AddCombatEffect(CombatMove move)
     {
         Debug.Log("Adding " + move.GetEffectType() + " to " + unit.UnitName);
-        activeEffects.Add(new CombatEffect(move));
+        CombatEffect combatEffect = new CombatEffect(move);
+        activeEffects.Add(combatEffect);
+
+        if (!unit.IsPlayerUnit)
+        {
+            UIStatDisplay uiStatDisplay = FindObjectsOfType<UIStatDisplay>().ToList().Find(statDisplay => statDisplay.ConnectedUnit == unit);
+            uiStatDisplay.AddActiveEffect(combatEffect);    
+        }
     }
     
     public List<CombatEffect> ActiveEffects

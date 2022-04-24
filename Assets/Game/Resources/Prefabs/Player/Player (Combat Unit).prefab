@@ -64,7 +64,7 @@ MonoBehaviour:
   magicalDefense: 5
   physicalBlockPower: 0
   dodgeChance: 0.05
-  speed: 5
+  speed: 3
   strengthApRatio: 2
   agilityApRatio: 1
   intellectAbpRatio: 2
@@ -74,6 +74,7 @@ MonoBehaviour:
   agilityPhysDefRatio: 2
   agilityDodgeRatio: 0.05
   agilitySpeedRatio: 1
+  critMultiplier: 2
   maxHpGrowth: 2
   strengthGrowth: 1
   agilityGrowth: 1

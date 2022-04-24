@@ -12,6 +12,7 @@ public class CombatMoveBase : ScriptableObject
     [SerializeField] private CombatAction actionType;
     [SerializeField] private CombatMoveTargets targets;
     [SerializeField] private CombatEffectType effectType;
+    [SerializeField] private bool expiresAtStartOfTurn;
     [SerializeField] private int power;
     [SerializeField] private int cooldown = 0;
     [SerializeField] private int duration = 0;
@@ -72,6 +73,12 @@ public class CombatMoveBase : ScriptableObject
     {
         get => effectType;
         set => effectType = value;
+    }
+
+    public bool ExpiresAtStartOfTurn
+    {
+        get => expiresAtStartOfTurn;
+        set => expiresAtStartOfTurn = value;
     }
 
     public int Duration

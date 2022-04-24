@@ -18,6 +18,7 @@ MonoBehaviour:
   actionType: 2
   targets: 0
   effectType: 1
+  expiresAtStartOfTurn: 1
   power: 3
   cooldown: 3
   duration: 2

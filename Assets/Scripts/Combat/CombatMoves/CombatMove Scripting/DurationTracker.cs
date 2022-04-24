@@ -14,7 +14,7 @@
 
     public void SetDuration(int amountOfTurns)
     {
-        remainingDuration = amountOfTurns + 1;
+        remainingDuration = amountOfTurns;
     }
 
     public bool isEffectActive()
