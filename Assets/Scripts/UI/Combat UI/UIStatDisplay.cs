@@ -14,6 +14,7 @@ public class UIStatDisplay : MonoBehaviour
     private TextMeshProUGUI[] infoText;
     private Image unitPortrait;
     private List<CombatEffect> activeEffectsReferences;
+    private bool isConnectedUnitActive;
     
     private void Start()
     {

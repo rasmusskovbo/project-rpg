@@ -76,6 +76,12 @@ public class UICombatLog : MonoBehaviour
         PrintToLog(line);
     }
 
+    public void PlayerWon()
+    {
+        string line = "All enemies defeated. You won!";
+        PrintToLog(line);
+    }
+
     public void PlayerHealed(CombatMove move)
     {
         string line = "Your " + move.GetName() + " healed for " + move.GetPower();

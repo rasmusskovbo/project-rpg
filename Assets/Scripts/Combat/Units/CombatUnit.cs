@@ -72,6 +72,7 @@ public class CombatUnit : MonoBehaviour, IComparable
     [SerializeField] private float currentMagicalMitigation;
     [SerializeField] private float currentDodge;
     [SerializeField] private float currentSpeed;
+    [SerializeField] private bool isAlive;
     
     private List<CombatMoveType> acceptedDamageTypes = new List<CombatMoveType>
         {CombatMoveType.Physical, CombatMoveType.Magical, CombatMoveType.Suffer};
@@ -576,6 +577,12 @@ public class CombatUnit : MonoBehaviour, IComparable
     {
         get => currentSpeed;
         set => currentSpeed = value;
+    }
+
+    public bool IsAlive
+    {
+        get => CurrentHp > 0;
+        set => isAlive = value;
     }
 
     public CombatEffectManager CombatEffectsManager

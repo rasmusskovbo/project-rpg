@@ -264,6 +264,7 @@ public class UIPlayerInputController : MonoBehaviour
         if (combatSystem.State == CombatState.PLAYER_TARGET_SELECT)
         {
             if (playerHasChosenATarget) return;
+            FindObjectOfType<UIStatDisplayHighlighter>().ResetHighlights();
             combatSystem.State = CombatState.PLAYER_SKILL_SELECT;
             selector.position = lastSkillSelectorPosition;
         }
@@ -496,5 +497,17 @@ public class UIPlayerInputController : MonoBehaviour
     {
         get => playerHasChosenATarget;
         set => playerHasChosenATarget = value;
+    }
+
+    public int TargetIndex
+    {
+        get => targetIndex;
+        set => targetIndex = value;
+    }
+
+    public int MaxTargetIndex
+    {
+        get => maxTargetIndex;
+        set => maxTargetIndex = value;
     }
 }

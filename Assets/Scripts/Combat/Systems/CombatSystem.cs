@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CombatSystem : MonoBehaviour
 {
@@ -204,6 +205,7 @@ public class CombatSystem : MonoBehaviour
             else
             {
                 state = CombatState.VICTORY;
+                StartCoroutine(VictorySequence());
             }  
         }
         else
@@ -465,6 +467,15 @@ public class CombatSystem : MonoBehaviour
         enemy.CombatEffectsManager.ProcessActiveEffects(false);
         CheckForDeath(result);
         SetNextState();
+    }
+
+    private IEnumerator VictorySequence()
+    {
+        combatLog.PlayerWon();
+
+        yield return new WaitForSeconds(3f);
+
+        SceneManager.LoadScene(0);
     }
     
     // Properties
