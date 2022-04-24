@@ -173,21 +173,20 @@ public class SkillExecutor : MonoBehaviour
                 case CombatEffectType.PhysMitigation: 
                     float physMitigation = move.GetPower();
                     unit.CurrentPhysicalMitigation = physMitigation / 100;
-                    unit.GetComponent<CombatEffectManager>().AddCombatEffect(move);
                     break;
                 case CombatEffectType.MagicMitigation: 
                     float magicMitigation = move.GetPower();
                     unit.CurrentMagicalMitigation = magicMitigation / 100;
-                    unit.GetComponent<CombatEffectManager>().AddCombatEffect(move);
                     break;
                 case CombatEffectType.AllMitigation:
                     float allPhysMitigation = move.GetPower();
                     float allMagicMitigation = move.GetPower();
                     unit.CurrentPhysicalMitigation = allPhysMitigation / 100;
                     unit.CurrentMagicalMitigation = allMagicMitigation / 100;
-                    unit.GetComponent<CombatEffectManager>().AddCombatEffect(move);
                     break;
             }
+            
+            unit.GetComponent<CombatEffectManager>().AddCombatEffect(move);
         }
     }
 

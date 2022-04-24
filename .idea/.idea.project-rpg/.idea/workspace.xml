@@ -2,76 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fa8ce64e-188e-4703-b5a4-6b2e025cebde" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Game/Resources/Combat Moves/Types/Archetypes.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Game/Resources/Combat Moves/Types/Archetypes/Block.asset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Game/Resources/Combat Moves/Types/Archetypes/Block.asset.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Game/Resources/Combat Moves/Types/Archetypes/Buff.asset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Game/Resources/Combat Moves/Types/Archetypes/Buff.asset.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Game/Resources/Combat Moves/Types/Archetypes/Debuff.asset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Game/Resources/Combat Moves/Types/Archetypes/Debuff.asset.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Game/Resources/Combat Moves/Types/Archetypes/Heal.asset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Game/Resources/Combat Moves/Types/Archetypes/Heal.asset.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Game/Resources/Combat Moves/Types/Archetypes/Magical.asset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Game/Resources/Combat Moves/Types/Archetypes/Magical.asset.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Game/Resources/Combat Moves/Types/Archetypes/Mitigate.asset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Game/Resources/Combat Moves/Types/Archetypes/Mitigate.asset.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Game/Resources/Combat Moves/Types/Archetypes/Physical.asset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Game/Resources/Combat Moves/Types/Archetypes/Physical.asset.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Game/Resources/Combat Moves/Types/Archetypes/Suffer.asset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Game/Resources/Combat Moves/Types/Archetypes/Suffer.asset.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Game/Resources/Combat Moves/Types/CombatEffectTypeSO.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Game/Resources/Combat Moves/Types/CombatEffectTypeSO/Strengthen Effect.asset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Game/Resources/Combat Moves/Types/CombatEffectTypeSO/Strengthen Effect.asset.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Game/Resources/Prefabs/UI/Player Stats.prefab" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Game/Resources/Prefabs/UI/Player Stats.prefab.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Game/Resources/Prefabs/UI/Stat Container.prefab" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Game/Resources/Prefabs/UI/Stat Container.prefab.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/UI/Combat UI/ActiveEffectRef.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/UI/Combat UI/ActiveEffectRef.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/UI/Combat UI/ActiveEffectSO.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/UI/Combat UI/ActiveEffectSO.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/UI/Combat UI/UIStatDisplay.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/UI/Combat UI/UIStatDisplay.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.project-rpg/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.project-rpg/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Assets/UI/unit_border.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Assets/UI/unit_border.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Game/Resources/Combat Moves/Block.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Resources/Combat Moves/Block.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Game/Resources/Combat Moves/Defensive Stance.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Resources/Combat Moves/Defensive Stance.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Game/Resources/Combat Moves/Poison.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Resources/Combat Moves/Poison.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Game/Resources/Combat Moves/Types/Block.asset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Game/Resources/Combat Moves/Types/Block.asset.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Game/Resources/Combat Moves/Types/Buff.asset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Game/Resources/Combat Moves/Types/Buff.asset.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Game/Resources/Combat Moves/Types/Debuff.asset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Game/Resources/Combat Moves/Types/Debuff.asset.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Game/Resources/Combat Moves/Types/Heal.asset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Game/Resources/Combat Moves/Types/Heal.asset.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Game/Resources/Combat Moves/Types/Magical.asset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Game/Resources/Combat Moves/Types/Magical.asset.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Game/Resources/Combat Moves/Types/Mitigate.asset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Game/Resources/Combat Moves/Types/Mitigate.asset.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Game/Resources/Combat Moves/Types/Physical.asset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Game/Resources/Combat Moves/Types/Physical.asset.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Game/Resources/Combat Moves/Types/Suffer.asset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Game/Resources/Combat Moves/Types/Suffer.asset.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Game/Resources/Combat Moves/Weaken.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Resources/Combat Moves/Weaken.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Game/Resources/Prefabs/Player/Player (Combat Unit).prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Resources/Prefabs/Player/Player (Combat Unit).prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Game/Resources/Prefabs/UI/HUD Element.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Game/Resources/Prefabs/UI/HUD Element.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Game/Resources/Prefabs/UI/Player HUD.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Game/Resources/Prefabs/UI/Player HUD.prefab.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Game/Resources/Prefabs/UI/UI Active Effect.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Resources/Prefabs/UI/UI Active Effect.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Game/Resources/Prefabs/UI/Unit HUD.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Game/Resources/Prefabs/UI/Unit HUD.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Combat.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Combat.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Exploration.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Exploration.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Combat/CombatMoves/CombatMove Scripting/CombatEffect.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Combat/CombatMoves/CombatMove Scripting/CombatEffect.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Combat/CombatMoves/CombatMove Scripting/DurationTracker.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Combat/CombatMoves/CombatMove Scripting/DurationTracker.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Combat/CombatMoves/CombatMove.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Combat/CombatMoves/CombatMove.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Combat/CombatMoves/CombatMoveBase.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Combat/CombatMoves/CombatMoveBase.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Combat/Systems/CombatEffectManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Combat/Systems/CombatEffectManager.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Combat/Systems/CombatLoader.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Combat/Systems/CombatLoader.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Combat/Systems/CombatSystem.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Combat/Systems/CombatSystem.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/LiberationSans SDF - Fallback.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/LiberationSans SDF - Fallback.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Combat/Systems/SkillExecutor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Combat/Systems/SkillExecutor.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/Combat UI/UIStatDisplay.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/Combat UI/UIStatDisplay.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -150,10 +88,10 @@
       </option>
       <method v="2" />
     </configuration>
-    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="17976">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
-      <option name="pid" />
+      <option name="pid" value="17976" />
       <option name="projectPathOnTarget" />
       <option name="selectedOptions">
         <list />
@@ -190,7 +128,7 @@
       <workItem from="1650438398765" duration="39394000" />
       <workItem from="1650549022347" duration="16817000" />
       <workItem from="1650732112681" duration="1282000" />
-      <workItem from="1650784892371" duration="1604000" />
+      <workItem from="1650784892371" duration="7211000" />
     </task>
     <servers />
   </component>

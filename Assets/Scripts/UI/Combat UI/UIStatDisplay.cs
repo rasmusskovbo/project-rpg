@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,17 +7,14 @@ public class UIStatDisplay : MonoBehaviour
 {
     [SerializeField] private GameObject activeEffectPrefab;
     [SerializeField] private GameObject activeEffectsContainer;
+    [SerializeField] private List<ActiveEffectSO> activeEffectTypes;
     
     private CombatUnit connectedUnit;
     private Slider hpSlider;
     private TextMeshProUGUI[] infoText;
     private Image unitPortrait;
-
     private List<CombatEffect> activeEffectsReferences;
     
-    // SOs
-    [SerializeField] private List<ActiveEffectSO> activeEffectTypes;
-
     private void Start()
     {
         infoText = GetComponentsInChildren<TextMeshProUGUI>();
@@ -49,6 +45,7 @@ public class UIStatDisplay : MonoBehaviour
     public void UpdateActiveEffects()
     {
         List<GameObject> expiredObjects = new List<GameObject>();
+        List<CombatEffect> expiredReferences = new List<CombatEffect>();
         
         List<Transform> activeEffectTransforms = new List<Transform>();
         foreach (Transform child in activeEffectsContainer.transform)
@@ -67,27 +64,114 @@ public class UIStatDisplay : MonoBehaviour
                 // if the effect displayed in the ui matches any of the active effects on the unit then update it.
                 if (effectReferenceFromUnit == activeEffectInUI)
                 {
-                    if (effectReferenceFromUnit.DurationTracker.isEffectActive())
+                    if (effectReferenceFromUnit.HasTurnDuration)
                     {
-                        Debug.Log("EFFECT REF TYPE: " + effectReferenceFromUnit.CombatEffectType + ", DUR: " +effectReferenceFromUnit.DurationTracker.GetRemainingDuration());
-                        effectTransform.gameObject.GetComponentInChildren<TextMeshProUGUI>().text
-                            = (effectReferenceFromUnit.DurationTracker.GetRemainingDuration()).ToString();
+                        if (effectReferenceFromUnit.DurationTracker.isEffectActive())
+                        {
+                            effectTransform.gameObject.GetComponentInChildren<TextMeshProUGUI>().text
+                                = (effectReferenceFromUnit.DurationTracker.GetRemainingDuration()).ToString();
+                        }
+                        else
+                        {
+                            expiredObjects.Add(effectTransform.gameObject);
+                            expiredReferences.Add(effectReferenceFromUnit);
+                        }    
                     }
-                    else
+                    // Separate update logic for effects without duration - Display current power instead.
+                    else 
                     {
-                        expiredObjects.Add(effectTransform.gameObject);
+                        if (effectReferenceFromUnit.CombatEffectType == CombatEffectType.Block)
+                        {
+                            if (connectedUnit.CurrentPhysicalBlock > 0)
+                            {
+                                effectTransform.gameObject.GetComponentInChildren<TextMeshProUGUI>().color = Color.yellow;
+                                effectTransform.gameObject.GetComponentInChildren<TextMeshProUGUI>().text
+                                    = connectedUnit.CurrentPhysicalBlock.ToString();
+                            }
+                            else
+                            {
+                                expiredObjects.Add(effectTransform.gameObject);
+                                expiredReferences.Add(effectReferenceFromUnit);    
+                            }
+                        }
+                        // Current cant display current mitigation here. Maybe non duration type effects should be displayed
+                        // in another way
+                        if (effectReferenceFromUnit.CombatEffectType == CombatEffectType.PhysMitigation)
+                        {
+                            if (connectedUnit.CurrentPhysicalMitigation <= 0)
+                            {
+                                expiredObjects.Add(effectTransform.gameObject);
+                                expiredReferences.Add(effectReferenceFromUnit);
+                            }
+                        }
+                        if (effectReferenceFromUnit.CombatEffectType == CombatEffectType.MagicMitigation)
+                        {
+                            if (connectedUnit.CurrentMagicalMitigation <= 0)
+                            {
+                                expiredObjects.Add(effectTransform.gameObject);
+                                expiredReferences.Add(effectReferenceFromUnit);
+                            }
+                        } 
                     }
                 }
             });
-   
         });
 
-        Debug.Log("EFFECT REF: Expired Obj size: " + expiredObjects.Count);
+        // Remove the expired combat effect from the reference list & the UI.
         for (int i = expiredObjects.Count; i > 0; i--)
         {
+            expiredReferences.RemoveAt(i-1);
             Destroy(expiredObjects[i - 1]);
         }
         
+    }
+
+    private void UpdateDisplayForEffectsWithoutDuration(CombatEffect effectReferenceFromUnit, Transform effectTransform)
+    {
+        if (effectReferenceFromUnit.CombatEffectType == CombatEffectType.Block)
+        {
+            if (connectedUnit.CurrentPhysicalBlock > 0)
+            {
+                effectTransform.gameObject.GetComponentInChildren<TextMeshProUGUI>().color = Color.yellow;
+                effectTransform.gameObject.GetComponentInChildren<TextMeshProUGUI>().text
+                    = connectedUnit.CurrentPhysicalBlock.ToString();
+            }
+            else
+            {
+                
+            }
+        }
+        if (effectReferenceFromUnit.CombatEffectType == CombatEffectType.PhysMitigation)
+        {
+            if (connectedUnit.CurrentPhysicalMitigation > 0)
+            {
+                effectTransform.gameObject.GetComponentInChildren<TextMeshProUGUI>().color = Color.yellow;
+                effectTransform.gameObject.GetComponentInChildren<TextMeshProUGUI>().text
+                    = connectedUnit.CurrentPhysicalMitigation.ToString() + "%";
+            }
+        }
+        
+        if (effectReferenceFromUnit.CombatEffectType == CombatEffectType.MagicMitigation)
+        {
+            if (connectedUnit.CurrentMagicalMitigation > 0)
+            {
+                effectTransform.gameObject.GetComponentInChildren<TextMeshProUGUI>().color = Color.yellow;
+                effectTransform.gameObject.GetComponentInChildren<TextMeshProUGUI>().text
+                    = connectedUnit.CurrentMagicalMitigation.ToString() + "%";
+            }
+        }
+        
+        /* Not yet implemented
+        if (effectReferenceFromUnit.CombatEffectType == CombatEffectType.AllMitigation)
+        {
+            if (connectedUnit.CurrentPhysicalMitigation > 0 && connectedUnit.CurrentMagicalMitigation > 0)
+            {
+                effectTransform.gameObject.GetComponentInChildren<TextMeshProUGUI>().color = Color.yellow;
+                effectTransform.gameObject.GetComponentInChildren<TextMeshProUGUI>().text
+                    = connectedUnit.CurrentPhysicalMitigation.ToString() + "%";
+            }
+        }
+        */
     }
 
     public void AddActiveEffect(CombatEffect effect)
@@ -100,6 +184,7 @@ public class UIStatDisplay : MonoBehaviour
 
     public Sprite GetMatchingTypeSprite(CombatEffect effect)
     {
-        return activeEffectTypes.Find(effectType => effectType.Type == effect.CombatEffectType).Icon;
+        var matchingTypeSprite = activeEffectTypes.Find(effectType => effectType.Type == effect.CombatEffectType).Icon;
+        return matchingTypeSprite;
     }
 }

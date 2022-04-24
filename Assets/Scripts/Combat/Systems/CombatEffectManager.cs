@@ -109,12 +109,10 @@ public class CombatEffectManager : MonoBehaviour
         Debug.Log("Adding " + move.GetEffectType() + " to " + unit.UnitName);
         CombatEffect combatEffect = new CombatEffect(move);
         activeEffects.Add(combatEffect);
-
-        if (!unit.IsPlayerUnit)
-        {
-            UIStatDisplay uiStatDisplay = FindObjectsOfType<UIStatDisplay>().ToList().Find(statDisplay => statDisplay.ConnectedUnit == unit);
-            uiStatDisplay.AddActiveEffect(combatEffect);    
-        }
+        
+        UIStatDisplay uiStatDisplay = FindObjectsOfType<UIStatDisplay>().ToList().Find(statDisplay => statDisplay.ConnectedUnit == unit);
+        uiStatDisplay.AddActiveEffect(combatEffect);    
+        
     }
     
     public List<CombatEffect> ActiveEffects

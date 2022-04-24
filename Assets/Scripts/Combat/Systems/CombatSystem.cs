@@ -18,6 +18,7 @@ public class CombatSystem : MonoBehaviour
     private SkillExecutor skillExecutor;
     
     // Player
+    [Header("Player")]
     [SerializeField] private Transform playerStation;
     [SerializeField] private int maxPlayerActions = 2;
     [SerializeField] private float playerCombatAnimationSpeed = 1.5f;
@@ -26,6 +27,7 @@ public class CombatSystem : MonoBehaviour
     private int remainingPlayerActions = 0;
 
     // Enemies
+    [Header("Enemies")]
     [SerializeField] private Transform topEnemyStation;
     [SerializeField] private Transform centerEnemyStation;
     [SerializeField] private Transform bottomEnemyStation;
@@ -481,5 +483,11 @@ public class CombatSystem : MonoBehaviour
     public CombatUnit Player
     {
         get => player;
+    }
+
+    public int AmountToSpawn
+    {
+        get => amountToSpawn;
+        set => amountToSpawn = value;
     }
 }

@@ -2,6 +2,7 @@
 {
     private float power;
     private bool expiresAtStartOfTurn;
+    private bool hasTurnDuration;
     private DurationTracker durationTracker;
     private CombatEffectType combatEffectType;
 
@@ -10,6 +11,7 @@
         power = move.GetPower();
         expiresAtStartOfTurn = move.GetExpiresAtStartOfTurn();
         durationTracker = new DurationTracker(move.GetDuration());
+        hasTurnDuration = durationTracker.GetRemainingDuration() > 0;
         combatEffectType = move.GetEffectType();
     }
     
@@ -35,5 +37,11 @@
     {
         get => expiresAtStartOfTurn;
         set => expiresAtStartOfTurn = value;
+    }
+
+    public bool HasTurnDuration
+    {
+        get => hasTurnDuration;
+        set => hasTurnDuration = value;
     }
 }

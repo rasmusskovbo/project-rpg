@@ -17,34 +17,43 @@ public class CombatLoader : MonoBehaviour
 
     [Header("UI Elements")] 
     [SerializeField] private GameObject statDisplayPrefab;
+    [SerializeField] private GameObject playerStatDisplayContainer;
     [SerializeField] private GameObject statDisplayContainer;
     [SerializeField] private float basicOffset = 60;
     [SerializeField] private float widthPrStatDisplay = 110;
-    [SerializeField] private int tempamount = 1;
     
     private void Awake()
     {
         SetupBackground();
     }
 
-    public void ResizeStatDisplayContainer(int amountOfDisplays)
+    // Amount should come from battlestarter script.
+    public void ResizeStatDisplayContainer()
     {
+        int amountOfDisplays = FindObjectOfType<CombatSystem>().AmountToSpawn;
         float width = 500 - basicOffset - (widthPrStatDisplay * (amountOfDisplays - 1)); 
         statDisplayContainer.GetComponent<RectTransform>().offsetMax = new Vector2(-width , 0);
     }
     
-    public void AddStatDisplayToUnit(CombatUnit unit)
+    public void AddStatDisplayForPlayer(CombatUnit unit)
+    {
+        Instantiate(statDisplayPrefab, playerStatDisplayContainer.transform)
+            .GetComponent<UIStatDisplay>().ConnectedUnit = unit;
+        ResizeStatDisplayContainer();
+    }
+    
+    public void AddStatDisplayForEnemyUnit(CombatUnit unit)
     {
         Instantiate(statDisplayPrefab, statDisplayContainer.transform)
             .GetComponent<UIStatDisplay>().ConnectedUnit = unit;
-        ResizeStatDisplayContainer(tempamount);
+        ResizeStatDisplayContainer();
     }
     
-
+    // Currently player is hardcoded to prefab and lvl 1. CombatUnit returned to system should be with active stats.
     public GameObject SpawnPlayer(Transform playerStation)
     {
         var spawnCombatUnit = SpawnCombatUnit(playerPrefab, playerStation, 1);
-        //AddHpBarToUnit(spawnCombatUnit.GetComponent<CombatUnit>());
+        AddStatDisplayForPlayer(spawnCombatUnit.GetComponent<CombatUnit>());
         return spawnCombatUnit;;
     }
     
@@ -52,7 +61,7 @@ public class CombatLoader : MonoBehaviour
     public GameObject SpawnEnemy(Transform station, int level)
     {
         var spawnCombatUnit = SpawnCombatUnit(GetRandomEnemyPrefab(), station, level);
-        AddStatDisplayToUnit(spawnCombatUnit.GetComponent<CombatUnit>());
+        AddStatDisplayForEnemyUnit(spawnCombatUnit.GetComponent<CombatUnit>());
         return spawnCombatUnit;;
     }
 
