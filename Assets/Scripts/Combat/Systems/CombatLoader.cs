@@ -5,11 +5,13 @@ using Random = UnityEngine.Random;
 public class CombatLoader : MonoBehaviour
 {
     // Positions for spawning
-    [Header("Player")]
-    [SerializeField] GameObject playerPrefab;
+    [Header("Player")] 
+    [SerializeField] private UnitBase player;
+    [SerializeField] private GameObject playerPrefab;
 
     [Header("Enemies")] 
-    [SerializeField] private List<GameObject> enemies;
+    [SerializeField] private List<UnitBase> enemies;
+    [SerializeField] private GameObject enemyPrefab;
 
     [Header("Background")] 
     [SerializeField] private GameObject backgroundGO;
@@ -21,10 +23,13 @@ public class CombatLoader : MonoBehaviour
     [SerializeField] private GameObject statDisplayContainer;
     [SerializeField] private float basicOffset = 60;
     [SerializeField] private float widthPrStatDisplay = 110;
+
+    private GameManager gameManager;
     
     private void Awake()
     {
         SetupBackground();
+        gameManager = FindObjectOfType<GameManager>();
     }
 
     // Amount should come from battlestarter script.
@@ -52,29 +57,31 @@ public class CombatLoader : MonoBehaviour
     // Currently player is hardcoded to prefab and lvl 1. CombatUnit returned to system should be with active stats.
     public GameObject SpawnPlayer(Transform playerStation)
     {
-        var spawnCombatUnit = SpawnCombatUnit(playerPrefab, playerStation, 1);
+        UnitBase playerBase = gameManager.PlayerCombatBase;
+        var spawnCombatUnit = SpawnCombatUnit(playerBase, playerPrefab, playerStation, 1);
         AddStatDisplayForPlayer(spawnCombatUnit.GetComponent<CombatUnit>());
+        spawnCombatUnit.GetComponent<CombatUnit>().CurrentHp = gameManager.PlayerData.CurrentHp;
         return spawnCombatUnit;;
     }
     
     // Get level and enemybases pool from gamemanager
     public GameObject SpawnEnemy(Transform station, int level)
     {
-        var spawnCombatUnit = SpawnCombatUnit(GetRandomEnemyPrefab(), station, level);
+        var spawnCombatUnit = SpawnCombatUnit(GetRandomEnemyBase(), enemyPrefab, station, level);
         AddStatDisplayForEnemyUnit(spawnCombatUnit.GetComponent<CombatUnit>());
         return spawnCombatUnit;;
     }
 
-    public GameObject SpawnCombatUnit(GameObject unitPrefab, Transform station, int level)
+    public GameObject SpawnCombatUnit(UnitBase unitBase, GameObject unitPrefab, Transform station, int level)
     {
         GameObject spawnedUnit = Instantiate(unitPrefab, station);
-        spawnedUnit.GetComponentInChildren<SpriteRenderer>().sprite = unitPrefab.GetComponent<CombatUnit>().IdleSprite;
-        spawnedUnit.GetComponent<CombatUnit>().InitiateCurrentStatsForCombat(level);
+        spawnedUnit.GetComponentInChildren<SpriteRenderer>().sprite = unitBase.IdleSprite;
+        spawnedUnit.GetComponent<CombatUnit>().InitiateUnit(unitBase, level);
         return spawnedUnit;
     }
 
     // This shouldnt be random, but should be selected from a pool depending on gamemanager
-    private GameObject GetRandomEnemyPrefab()
+    private UnitBase GetRandomEnemyBase()
     {
         int randomEnemyIndex = Random.Range(0, enemies.Count);
         return enemies[randomEnemyIndex];

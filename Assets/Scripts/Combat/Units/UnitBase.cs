@@ -2,13 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Enemy", menuName = "Combat/Create new Enemy SO")]
-public class EnemySO : ScriptableObject
+[CreateAssetMenu(fileName = "Enemy", menuName = "Combat/Create new Unit SO")]
+public class UnitBase : ScriptableObject
 {
     [Header("Description")]
     [SerializeField] private string unitName;
     [TextArea] [SerializeField] private string description;
     [SerializeField] private UnitType unitType;
+    [SerializeField] private bool isPlayerUnit;
     
     [Header("VFX")] 
     [SerializeField] private Sprite idleSprite;
@@ -258,5 +259,11 @@ public class EnemySO : ScriptableObject
     {
         get => speedGrowth;
         set => speedGrowth = value;
+    }
+
+    public bool IsPlayerUnit
+    {
+        get => isPlayerUnit;
+        set => isPlayerUnit = value;
     }
 }

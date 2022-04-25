@@ -10,11 +10,12 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private bool isMoving;
     [SerializeField] private LayerMask blockingLayer;
     [SerializeField] private LayerMask waterLayer;
+    [SerializeField] private LayerMask combatLayer;
     [SerializeField] private int temporaryEncounterChance = 20;
 
     private Animator animator;
     private Vector2 inputDirection;
-    private LayerMask combatAreaLayer;
+    private PlayerFacing playerFacingDirection;
     
     // Cached animator references
     private static readonly int MoveX = Animator.StringToHash("moveX");
@@ -24,7 +25,6 @@ public class PlayerMovement : MonoBehaviour
     private void Awake()
     {
         animator = GetComponent<Animator>();
-        combatAreaLayer = LayerMask.GetMask("Combat Area");
     }
 
     void Update()
@@ -41,15 +41,54 @@ public class PlayerMovement : MonoBehaviour
         if (inputDirection.Equals(Vector2.left) || inputDirection.Equals(Vector2.right))
         {
             targetPosition.x += inputDirection.x;
+            UpdatePlayerFacing();
         }
             
         if (inputDirection.Equals(Vector2.up) || inputDirection.Equals(Vector2.down))
         {
             targetPosition.y += inputDirection.y;
+            UpdatePlayerFacing();
         }
 
         if (IsTargetPositionWalkable(targetPosition)) StartCoroutine(MovePlayer(targetPosition));
         
+    }
+
+    public void UpdatePlayerFacing()
+    {
+        if (inputDirection.x != 0)
+        {
+            playerFacingDirection = inputDirection.x > 0 ? PlayerFacing.East : PlayerFacing.West;    
+        }
+        else if (inputDirection.y != 0)
+        {
+            playerFacingDirection = inputDirection.y > 0 ? PlayerFacing.North : PlayerFacing.South;    
+        }
+        
+        Debug.Log(playerFacingDirection);
+    }
+
+    public void SetPlayerFacing(PlayerFacing direction)
+    {
+        switch (direction)
+        {
+            case PlayerFacing.North:
+                animator.SetFloat(MoveX, 0);
+                animator.SetFloat(MoveY, 1);
+                break;
+            case PlayerFacing.South:
+                animator.SetFloat(MoveX, 0);
+                animator.SetFloat(MoveY, -1);
+                break;
+            case PlayerFacing.East:
+                animator.SetFloat(MoveX, 1);
+                animator.SetFloat(MoveY, 0);
+                break;
+            case PlayerFacing.West:
+                animator.SetFloat(MoveX, -1);
+                animator.SetFloat(MoveY, 0);
+                break;
+        }
     }
 
     // Input system reference.
@@ -70,6 +109,8 @@ public class PlayerMovement : MonoBehaviour
 
         transform.position = targetPosition;
         isMoving = false;
+        
+        FindObjectOfType<GameManager>().SavePositionBeforeCombat();
         CheckForCombat();
     }
 
@@ -81,14 +122,20 @@ public class PlayerMovement : MonoBehaviour
 
     private void CheckForCombat()
     {
-        if (Physics2D.OverlapCircle(transform.position, 0.2f, combatAreaLayer) != null)
+        if (Physics2D.OverlapCircle(transform.position, 0.2f, combatLayer) != null)
         {
-            
             if ((Random.Range(1, 101) <= temporaryEncounterChance))
             {
                 Debug.Log("Encountered combat!");
+                FindObjectOfType<GameManager>().SavePositionBeforeCombat();
                 SceneManager.LoadScene(1);
             }
         }
+    }
+
+    public PlayerFacing PlayerFacingDirection
+    {
+        get => playerFacingDirection;
+        set => playerFacingDirection = value;
     }
 }

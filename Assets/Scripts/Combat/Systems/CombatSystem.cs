@@ -473,6 +473,8 @@ public class CombatSystem : MonoBehaviour
     {
         combatLog.PlayerWon();
 
+        FindObjectOfType<GameManager>().UpdatePlayerDataAfterCombat(new CombatResult(5, player.CurrentHp));
+        
         yield return new WaitForSeconds(3f);
 
         SceneManager.LoadScene(0);

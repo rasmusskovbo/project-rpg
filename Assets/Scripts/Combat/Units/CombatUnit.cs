@@ -1,58 +1,14 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
 public class CombatUnit : MonoBehaviour, IComparable
 {
-    [Header("Description")]
-    [SerializeField] private string unitName;
-    [TextArea] [SerializeField] private string description;
-    [SerializeField] private UnitType unitType;
-    [SerializeField] private bool isPlayerUnit;
-
-    [Header("VFX")] 
-    [SerializeField] private Sprite idleSprite;
-    private Slider hpBar;
-
     [Header("Base Stats")]
+    private UnitBase unitBase;
+    private Sprite idleSprite;
     [SerializeField] private int level;
-    [SerializeField] private int maxHp;
-    [SerializeField] private float strength;
-    [SerializeField] private float agility;
-    [SerializeField] private float intellect;
-    [SerializeField] private float attackPower;
-    [SerializeField] private float abilityPower;
-    [SerializeField] private float physicalCritChance;
-    [SerializeField] private float magicalCritChance;
-    [SerializeField] private float physicalDefense;
-    [SerializeField] private float magicalDefense;
-    [SerializeField] private float physicalBlockPower;
-    [SerializeField] private float dodgeChance;
-    [SerializeField] private float speed;
-
-    [Header("Stat Ratios")] 
-    [SerializeField] private float strengthApRatio = 2;
-    [SerializeField] private float agilityApRatio = 1;
-    [SerializeField] private float intellectAbpRatio = 2;
-    [SerializeField] private float agilityCritRatio = 0.05f;
-    [SerializeField] private float intellectCritRatio = 0.05f;
-    [SerializeField] private float strengthPhysDefRatio = 1;
-    [SerializeField] private float agilityPhysDefRatio = 2;
-    [SerializeField] private float agilityDodgeRatio = 0.05f;
-    [SerializeField] private float agilitySpeedRatio = 1;
-    [SerializeField] private float critMultiplier = 2;
-    
-    [Header("Growth Rates")]
-    [SerializeField] private float maxHpGrowth = 2;
-    [SerializeField] private float strengthGrowth = 1;
-    [SerializeField] private float agilityGrowth = 1;
-    [SerializeField] private float intellectGrowth = 1;
-    [SerializeField] private float physicalDefenseGrowth = 1;
-    [SerializeField] private float magicalDefenseGrowth = 2;
-    [SerializeField] private float physicalBlockPowerGrowth = 1;
-    [SerializeField] private float speedGrowth = 2;
     
     // Combat tracking stats:
     [Header("Stat Inspection")]
@@ -86,9 +42,11 @@ public class CombatUnit : MonoBehaviour, IComparable
         combatEffectsManager = GetComponent<CombatEffectManager>();
     }
 
-    public void InitiateCurrentStatsForCombat(int spawnLevel)
+    public void InitiateUnit(UnitBase unitbase, int spawnLevel)
     {
         Level = spawnLevel;
+        this.unitBase = unitbase;
+        
         CurrentHp = MaxHp;
         CurrentMaxHp = MaxHp;
         CurrentStrength = Strength;
@@ -126,12 +84,12 @@ public class CombatUnit : MonoBehaviour, IComparable
             case CombatMoveType.Physical:
                 float damageAfterAttackPower = power + CurrentAttackPower;
                 
-                finalDamage = critCounter < (CurrentPhysicalCritChance * 100) ? damageAfterAttackPower * critMultiplier : damageAfterAttackPower;
+                finalDamage = critCounter < (CurrentPhysicalCritChance * 100) ? damageAfterAttackPower * unitBase.CritMultiplier : damageAfterAttackPower;
                 break;
             case CombatMoveType.Magical:
                 float damageAfterAbilityPower = power + CurrentAbilityPower;
                 
-                finalDamage = critCounter < (CurrentMagicalCritChance * 100) ? damageAfterAbilityPower * critMultiplier : damageAfterAbilityPower;
+                finalDamage = critCounter < (CurrentMagicalCritChance * 100) ? damageAfterAbilityPower * unitBase.CritMultiplier : damageAfterAbilityPower;
                 break;
         }
 
@@ -224,16 +182,14 @@ public class CombatUnit : MonoBehaviour, IComparable
     public void Heal(float amount)
     {
         
-        if ((currentHp + amount) > maxHp)
+        if ((CurrentHp + amount) > CurrentMaxHp)
         {
-            Debug.Log("Healed "+ UnitName +" to maxHP ("+maxHp+")");
-            currentHp = maxHp;
+            CurrentHp = CurrentMaxHp;
         }
         else
         {
-            Debug.Log("Healed "+ UnitName +" for " + amount);
-            currentHp += amount;
-            currentHp = Mathf.Round(currentHp);
+            CurrentHp += amount;
+            CurrentHp = Mathf.Round(CurrentHp);
         }
         
     }
@@ -255,234 +211,224 @@ public class CombatUnit : MonoBehaviour, IComparable
 
     public int MaxHp
     {
-        get => Mathf.RoundToInt(maxHp + (maxHpGrowth * (level - 1)));
-        set => maxHp = value;
+        get => Mathf.RoundToInt(unitBase.MaxHp + (unitBase.MaxHpGrowth * (level - 1)));
     }
 
     public float Strength
     {
-        get => strength + (strengthGrowth * (level - 1));
-        set => strength = value;
+        get => unitBase.Strength + (unitBase.StrengthGrowth * (level - 1));
     }
 
     public float Agility
     {
-        get => agility + (agilityGrowth * (level - 1));
-        set => agility = value;
+        get => unitBase.Agility + (unitBase.AgilityGrowth * (level - 1));
     }
 
     public float Intellect
     {
-        get => intellect + (intellectGrowth * (level - 1));
-        set => intellect = value;
+        get => unitBase.Intellect + (unitBase.IntellectGrowth * (level - 1));
     }
 
     // Combined stats
     public float AttackPower
     {
-        get => attackPower
-                + (strength * strengthApRatio)
-                + (agility * agilityApRatio);
-        
-        set => attackPower = value;
+        get => unitBase.AttackPower
+               + (unitBase.Strength * unitBase.StrengthApRatio)
+               + (unitBase.Agility * unitBase.AgilityApRatio);
+
     }
 
     public float AbilityPower
     {
-        get => abilityPower 
-               + (intellect * intellectAbpRatio);
-        set => abilityPower = value;
+        get => unitBase.AbilityPower 
+               + (unitBase.Intellect * unitBase.IntellectAbpRatio);
     }
 
     public float PhysicalCritChance
     {
-        get => physicalCritChance 
-               + (agility * agilityCritRatio) / 100;
-        set => physicalCritChance = value;
+        get => unitBase.PhysicalCritChance 
+               + (unitBase.Agility * unitBase.AgilityCritRatio) / 100;
     }
 
     public float MagicalCritChance
     {
-        get => magicalCritChance 
-               + (intellect * intellectCritRatio) / 100;
-        set => magicalCritChance = value;
+        get => unitBase.MagicalCritChance 
+               + (unitBase.Intellect * unitBase.IntellectCritRatio) / 100;
     }
 
     public float PhysicalDefense
     {
         get => 
-            physicalDefense 
-               + (physicalDefenseGrowth * (level - 1))
-               + (strength * strengthPhysDefRatio)
-               + (agility * agilityPhysDefRatio);
-        set => physicalDefense = value;
+            unitBase.PhysicalDefense 
+               + (unitBase.PhysicalDefenseGrowth * (level - 1))
+               + (unitBase.Strength * unitBase.StrengthPhysDefRatio)
+               + (unitBase.Agility * unitBase.AgilityPhysDefRatio);
     }
 
     public float MagicalDefense
     {
-        get => magicalDefense 
-               + (magicalDefenseGrowth * (level - 1));
-        set => magicalDefense = value;
+        get => unitBase.MagicalDefense 
+               + (unitBase.MagicalDefenseGrowth * (level - 1));
     }
 
     public float PhysicalBlockPower
     {
-        get => physicalBlockPower 
-               + (physicalBlockPowerGrowth * (level - 1));
-        set => physicalBlockPower = value;
+        get => unitBase.PhysicalBlockPower 
+               + (unitBase.PhysicalBlockPowerGrowth * (level - 1));
     }
 
     public float DodgeChance
     {
-        get => dodgeChance 
-               + (agility * agilityDodgeRatio) / 100;
-        set => dodgeChance = value;
+        get => unitBase.DodgeChance 
+               + (unitBase.Agility * unitBase.AgilityDodgeRatio) / 100;
     }
 
     public float Speed
     {
-        get => speed 
-               + (speedGrowth * (level - 1))
-               + (agility * agilitySpeedRatio);
-        set => speed = value;
+        get => unitBase.Speed 
+               + (unitBase.SpeedGrowth * (level - 1))
+               + (unitBase.Agility * unitBase.AgilitySpeedRatio);
     }
     
     /// Description
     public string UnitName
     {
-        get => unitName;
-        set => unitName = value;
+        get => unitBase.UnitName;
+        set => unitBase.UnitName = value;
     }
 
     public string Description
     {
-        get => description;
-        set => description = value;
+        get => unitBase.Description;
+        set => unitBase.Description = value;
     }
 
     public UnitType UnitType
     {
-        get => unitType;
-        set => unitType = value;
+        get => unitBase.UnitType;
+        set => unitBase.UnitType = value;
     }
 
     public bool IsPlayerUnit
     {
-        get => isPlayerUnit;
-        set => isPlayerUnit = value;
+        get => unitBase.IsPlayerUnit;
+        set => unitBase.IsPlayerUnit = value;
     }
 
     public Sprite IdleSprite
     {
-        get => idleSprite;
-        set => idleSprite = value;
+        get => unitBase.IdleSprite;
+        set => unitBase.IdleSprite = value;
     }
 
     
     // Ratios
     public float StrengthApRatio
     {
-        get => strengthApRatio;
-        set => strengthApRatio = value;
+        get => unitBase.StrengthApRatio;
+        set => unitBase.StrengthApRatio = value;
     }
 
     public float AgilityApRatio
     {
-        get => agilityApRatio;
-        set => agilityApRatio = value;
+        get => unitBase.AgilityApRatio;
+        set => unitBase.AgilityApRatio = value;
     }
 
     public float IntellectAbpRatio
     {
-        get => intellectAbpRatio;
-        set => intellectAbpRatio = value;
+        get => unitBase.IntellectAbpRatio;
+        set => unitBase.IntellectAbpRatio = value;
     }
 
     public float AgilityCritRatio
     {
-        get => agilityCritRatio;
-        set => agilityCritRatio = value;
+        get => unitBase.AgilityCritRatio;
+        set => unitBase.AgilityCritRatio = value;
     }
 
     public float IntellectCritRatio
     {
-        get => intellectCritRatio;
-        set => intellectCritRatio = value;
+        get => unitBase.IntellectCritRatio;
+        set => unitBase.IntellectCritRatio = value;
     }
 
     public float StrengthPhysDefRatio
     {
-        get => strengthPhysDefRatio;
-        set => strengthPhysDefRatio = value;
+        get => unitBase.StrengthPhysDefRatio;
+        set => unitBase.StrengthPhysDefRatio = value;
     }
 
     public float AgilityPhysDefRatio
     {
-        get => agilityPhysDefRatio;
-        set => agilityPhysDefRatio = value;
+        get => unitBase.AgilityPhysDefRatio;
+        set => unitBase.AgilityPhysDefRatio = value;
     }
 
     public float AgilityDodgeRatio
     {
-        get => agilityDodgeRatio;
-        set => agilityDodgeRatio = value;
+        get => unitBase.AgilityDodgeRatio;
+        set => unitBase.AgilityDodgeRatio = value;
     }
 
     public float AgilitySpeedRatio
     {
-        get => agilitySpeedRatio;
-        set => agilitySpeedRatio = value;
+        get => unitBase.AgilitySpeedRatio;
+        set => unitBase.AgilitySpeedRatio = value;
     }
 
     // Growth
     public float MaxHpGrowth
     {
-        get => maxHpGrowth;
-        set => maxHpGrowth = value;
+        get => unitBase.MaxHpGrowth;
+        set => unitBase.MaxHpGrowth = value;
     }
 
     public float StrengthGrowth
     {
-        get => strengthGrowth;
-        set => strengthGrowth = value;
+        get => unitBase.StrengthGrowth;
+        set => unitBase.StrengthGrowth = value;
     }
 
     public float AgilityGrowth
     {
-        get => agilityGrowth;
-        set => agilityGrowth = value;
+        get => unitBase.AgilityGrowth;
+        set => unitBase.AgilityGrowth = value;
     }
 
     public float IntellectGrowth
     {
-        get => intellectGrowth;
-        set => intellectGrowth = value;
+        get => unitBase.IntellectGrowth;
+        set => unitBase.IntellectGrowth = value;
     }
 
     public float PhysicalDefenseGrowth
     {
-        get => physicalDefenseGrowth;
-        set => physicalDefenseGrowth = value;
+        get => unitBase.PhysicalDefenseGrowth;
+        set => unitBase.PhysicalDefenseGrowth = value;
     }
 
     public float MagicalDefenseGrowth
     {
-        get => magicalDefenseGrowth;
-        set => magicalDefenseGrowth = value;
+        get => unitBase.MagicalDefenseGrowth;
+        set => unitBase.MagicalDefenseGrowth = value;
     }
 
     public float PhysicalBlockPowerGrowth
     {
-        get => physicalBlockPowerGrowth;
-        set => physicalBlockPowerGrowth = value;
+        get => unitBase.PhysicalBlockPowerGrowth;
+        set => unitBase.PhysicalBlockPowerGrowth = value;
     }
 
     public float SpeedGrowth
     {
-        get => speedGrowth;
-        set => speedGrowth = value;
+        get => unitBase.SpeedGrowth;
+        set => unitBase.SpeedGrowth = value;
     }
 
+    /*
+     * Current stats (combat tracking)
+     */
     public float CurrentHp
     {
         get => currentHp;

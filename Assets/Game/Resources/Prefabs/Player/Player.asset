@@ -1,0 +1,50 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79e9354112a0b7442b3de1f4c13584ee, type: 3}
+  m_Name: Player
+  m_EditorClassIdentifier: 
+  unitName: Player
+  description: Player Unit
+  unitType: 1
+  isPlayerUnit: 1
+  idleSprite: {fileID: 4185320103643025961, guid: 5e42d906f00b092489cc6efa44be8318, type: 3}
+  maxHp: 20
+  strength: 3
+  agility: 2
+  intellect: 1
+  attackPower: 2
+  abilityPower: 2
+  physicalCritChance: 0.1
+  magicalCritChance: 0.1
+  physicalDefense: 1
+  magicalDefense: 5
+  physicalBlockPower: 0
+  dodgeChance: 0.1
+  speed: 5
+  strengthApRatio: 2
+  agilityApRatio: 1
+  intellectAbpRatio: 2
+  agilityCritRatio: 0.05
+  intellectCritRatio: 0.05
+  strengthPhysDefRatio: 1
+  agilityPhysDefRatio: 2
+  agilityDodgeRatio: 0.05
+  agilitySpeedRatio: 1
+  critMultiplier: 2
+  maxHpGrowth: 2
+  strengthGrowth: 1
+  agilityGrowth: 1
+  intellectGrowth: 1
+  physicalDefenseGrowth: 1
+  magicalDefenseGrowth: 2
+  physicalBlockPowerGrowth: 1
+  speedGrowth: 2

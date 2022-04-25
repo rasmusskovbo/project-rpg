@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class TalentManager : MonoBehaviour
@@ -9,7 +6,6 @@ public class TalentManager : MonoBehaviour
     [SerializeField] private bool consumeBlock;
     [SerializeField] private bool expireBlock;
     [SerializeField] private bool blockingCanBeSplit;
-    private BlockTalents blockTalents;
 
     [Header("Mitigation")] 
     [SerializeField] private bool consumeMitigation;
