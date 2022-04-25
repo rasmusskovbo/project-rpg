@@ -2,28 +2,22 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fa8ce64e-188e-4703-b5a4-6b2e025cebde" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/UI/Combat UI/UIStatDisplayHighlighter.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/UI/Combat UI/UIStatDisplayHighlighter.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ProjectSettings/SceneTemplateSettings.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Game/Resources/Enemies.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Combat/Units/EnemySO.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Combat/Units/EnemySO.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Player/PlayerDataManager.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Player/PlayerDataManager.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Systems.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Systems/PlayerData.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Systems/PlayerData.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Systems/SettingsData.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Systems/SettingsData.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Utility.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Utility/Singleton.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Utility/Singleton.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.project-rpg/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.project-rpg/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Game/Resources/Combat Moves/Ring of Fire.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Resources/Combat Moves/Ring of Fire.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Game/Resources/Combat Moves/Smash.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Resources/Combat Moves/Smash.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Game/Resources/Combat Moves/Thunder.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Resources/Combat Moves/Thunder.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Combat.unity" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Combat.unity.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Exploration.unity" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Exploration.unity.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Combat/Systems/CombatSystem.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Combat/Systems/CombatSystem.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Combat/Units/CombatUnit.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Combat/Units/CombatUnit.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/PlayerMovement.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player/PlayerMovement.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/Combat UI/UICombatLog.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/Combat UI/UICombatLog.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/Combat UI/UIPlayerInputController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/Combat UI/UIPlayerInputController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/Combat UI/UIStatDisplay.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/Combat UI/UIStatDisplay.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/LiberationSans SDF - Fallback.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/LiberationSans SDF - Fallback.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scenes/Exploration.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scenes/Exploration.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/SkillManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player/SkillManager.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -105,10 +99,10 @@
       </option>
       <method v="2" />
     </configuration>
-    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="17976">
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
-      <option name="pid" value="17976" />
+      <option name="pid" />
       <option name="projectPathOnTarget" />
       <option name="selectedOptions">
         <list />
@@ -145,7 +139,8 @@
       <workItem from="1650438398765" duration="39394000" />
       <workItem from="1650549022347" duration="16817000" />
       <workItem from="1650732112681" duration="1282000" />
-      <workItem from="1650784892371" duration="14199000" />
+      <workItem from="1650784892371" duration="14825000" />
+      <workItem from="1650871928716" duration="4325000" />
     </task>
     <servers />
   </component>
