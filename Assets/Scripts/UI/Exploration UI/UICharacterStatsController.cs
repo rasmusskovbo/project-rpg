@@ -85,7 +85,7 @@ public class UICharacterStatsController : MonoBehaviour
         hpSlider.value = playerData.currentHp;
         
         // Stat panel
-        statPoints.text = ""; // TODO
+        statPoints.text = playerData.remainingStatPoints.ToString();
         
         strength.text = unit.Strength.ToString();
         agility.text = unit.Agility.ToString();
@@ -105,8 +105,14 @@ public class UICharacterStatsController : MonoBehaviour
     private void ToggleLevelUpButtons(bool isActive)
     {
         levelUpText.SetActive(isActive);
+        statPoints.gameObject.SetActive(isActive);
         strengthUp.SetActive(isActive);
         agilityUp.SetActive(isActive);
         intellectUp.SetActive(isActive);
+    }
+
+    public void AddStatPoint(int typeIndex)
+    {
+        gameManager.AddStatPoint((StatType) typeIndex);
     }
 }

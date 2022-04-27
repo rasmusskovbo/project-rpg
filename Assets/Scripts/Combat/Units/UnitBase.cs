@@ -266,4 +266,5 @@ public class UnitBase : ScriptableObject
         get => isPlayerUnit;
         set => isPlayerUnit = value;
     }
+    
 }

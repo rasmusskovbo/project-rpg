@@ -12,10 +12,7 @@ public class GameManager : PersistentSingleton<GameManager>, IDataPersistence
     //private TalentData talentData;        // Tracks and handles player talents.
 
     // References
-    private PlayerMovement playerMovementUnit;  
-    
-    // Temporary
-    [SerializeField] private UnitBase tempFreshPlayerBase;
+    private PlayerMovement playerMovementUnit;
 
     private void Start()
     {
@@ -44,13 +41,31 @@ public class GameManager : PersistentSingleton<GameManager>, IDataPersistence
     
     public UnitBase PlayerCombatBase
     {
-        get => tempFreshPlayerBase;
-        set => tempFreshPlayerBase = value;
+        get => playerData.unitBase;
+        set => playerData.unitBase = value;
     }
 
     public PlayerData PlayerData
     {
         get => playerData;
+    }
+
+    public void AddStatPoint(StatType type)
+    {
+        switch (type)
+        {
+            case StatType.Strength:
+                PlayerData.unitBase.Strength++;
+                break;
+            case StatType.Agility:
+                PlayerData.unitBase.Agility++;
+                break;
+            case StatType.Intellect:
+                PlayerData.unitBase.Intellect++;
+                break;
+        }
+
+        playerData.remainingStatPoints--;
     }
     
     public void LoadData(GameData data)

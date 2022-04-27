@@ -216,17 +216,17 @@ public class CombatUnit : MonoBehaviour, IComparable
 
     public float Strength
     {
-        get => unitBase.Strength + (unitBase.StrengthGrowth * (level - 1));
+        get => unitBase.IsPlayerUnit ? unitBase.Strength : unitBase.Strength + (unitBase.StrengthGrowth * (level - 1));
     }
 
     public float Agility
     {
-        get => unitBase.Agility + (unitBase.AgilityGrowth * (level - 1));
+        get => unitBase.IsPlayerUnit ? unitBase.Agility : unitBase.Agility + (unitBase.AgilityGrowth * (level - 1));
     }
 
     public float Intellect
     {
-        get => unitBase.Intellect + (unitBase.IntellectGrowth * (level - 1));
+        get => unitBase.IsPlayerUnit ? unitBase.Intellect : unitBase.Intellect + (unitBase.Intellect * (level - 1));
     }
 
     // Combined stats
