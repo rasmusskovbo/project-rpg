@@ -21,7 +21,7 @@ public class PlayerData
     [SerializeField] public float currentHp;
     //private CombatEffectManager effectManager;
 
-    public PlayerData(int level, int exp, int nextLvLExp, int remainingStatPoints, int sceneIndex, Vector3 position, PlayerFacing playerFacingDirection, SerializableDictionary<string, bool> chestsCollected, UnitBase unitBase, float currentHp)
+    public PlayerData(int level, int exp, int nextLvLExp, int remainingStatPoints, int sceneIndex, Vector3 position, PlayerFacing playerFacingDirection, SerializableDictionary<string, bool> chestsCollected, UnitBase unitBase)
     {
         this.level = level;
         this.exp = exp;
@@ -32,6 +32,6 @@ public class PlayerData
         this.playerFacingDirection = playerFacingDirection;
         this.chestsCollected = chestsCollected;
         this.unitBase = unitBase;
-        this.currentHp = currentHp;
+        this.currentHp = unitBase.MaxHp;
     }
 }

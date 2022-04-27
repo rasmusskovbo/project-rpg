@@ -1,4 +1,7 @@
-﻿public enum UnitType
+﻿using System;
+
+[Serializable]
+public enum UnitType
 {
     ENEMY,
     PLAYER,

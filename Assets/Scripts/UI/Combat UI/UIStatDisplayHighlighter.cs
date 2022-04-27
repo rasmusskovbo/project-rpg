@@ -10,7 +10,7 @@ public class UIStatDisplayHighlighter : MonoBehaviour
     
     private CombatSystem combatSystem;
     private UIPlayerInputController inputController;
-    private int referencedCount;
+    private int referencedCount = -1;
     private List<UIStatDisplay> allEnemyStatDisplays;
     private List<UIStatDisplay> activeStatDisplays;
 
@@ -23,8 +23,7 @@ public class UIStatDisplayHighlighter : MonoBehaviour
         var playerStatDisplay = allEnemyStatDisplays.Find(statDisplay => statDisplay.ConnectedUnit.IsPlayerUnit);
         allEnemyStatDisplays.Remove(playerStatDisplay);
     }
-
-    // Update is called once per frame
+    
     void Update()
     {
         if (combatSystem.State != CombatState.PLAYER_TARGET_SELECT) return;
@@ -63,6 +62,7 @@ public class UIStatDisplayHighlighter : MonoBehaviour
     private int FindActiveStatDisplays()
     {
         activeStatDisplays = FindObjectsOfType<UIStatDisplay>().ToList().FindAll(statDisplay => statDisplay.ConnectedUnit.IsAlive);
+        Debug.Log("Active stat displays: " + FindObjectsOfType<UIStatDisplay>());
         
         var playerStatDisplay = activeStatDisplays.Find(statDisplay => statDisplay.ConnectedUnit.IsPlayerUnit);
         activeStatDisplays.Remove(playerStatDisplay);
@@ -73,6 +73,7 @@ public class UIStatDisplayHighlighter : MonoBehaviour
 
     private void HighlightTargetedEnemy(int indexOfEnemyToHighlight)
     {
+        Debug.Log("Active statdispl: " + activeStatDisplays.Count);
         for (int i = 0; i < activeStatDisplays.Count; i++)
         {
             if (i == indexOfEnemyToHighlight)

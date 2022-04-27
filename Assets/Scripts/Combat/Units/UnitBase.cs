@@ -1,7 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[Serializable]
 [CreateAssetMenu(fileName = "Enemy", menuName = "Combat/Create new Unit SO")]
 public class UnitBase : ScriptableObject
 {

@@ -57,7 +57,7 @@ public class CombatLoader : MonoBehaviour
     // Currently player is hardcoded to prefab and lvl 1. CombatUnit returned to system should be with active stats.
     public GameObject SpawnPlayer(Transform playerStation)
     {
-        UnitBase playerBase = gameManager.PlayerCombatBase;
+        UnitBase playerBase = gameManager.PlayerData.unitBase;
         var spawnCombatUnit = SpawnCombatUnit(playerBase, playerPrefab, playerStation, 1);
         AddStatDisplayForPlayer(spawnCombatUnit.GetComponent<CombatUnit>());
         spawnCombatUnit.GetComponent<CombatUnit>().CurrentHp = gameManager.PlayerData.currentHp;

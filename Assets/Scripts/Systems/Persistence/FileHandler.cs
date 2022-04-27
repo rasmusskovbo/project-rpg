@@ -34,7 +34,7 @@ public class FileHandler
                     }
                 }
 
-                dataToLoad = EncryptDecrypt(dataToLoad);
+                //dataToLoad = EncryptDecrypt(dataToLoad);
                 
                 loadedData = JsonUtility.FromJson<GameData>(dataToLoad);
             }
@@ -56,7 +56,7 @@ public class FileHandler
             Directory.CreateDirectory(Path.GetDirectoryName(fullPath));
             
             string dataToStore = JsonUtility.ToJson(data, true);
-            dataToStore = EncryptDecrypt(dataToStore);
+            //dataToStore = EncryptDecrypt(dataToStore);
 
             using (FileStream stream = new FileStream(fullPath, FileMode.Create))
             {

@@ -1006,6 +1006,49 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 152029065}
   m_CullTransparentMesh: 1
+--- !u!1 &160986702
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 160986703}
+  - component: {fileID: 160986704}
+  m_Layer: 0
+  m_Name: Combat Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &160986703
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 160986702}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1365667836}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &160986704
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 160986702}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 869d86de8cce17645a764c57abcbe5b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &175158719
 GameObject:
   m_ObjectHideFlags: 0
@@ -3035,7 +3078,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -8.465156, y: 1.304227, z: -19.91967}
+  m_LocalPosition: {x: -8.461477, y: 1.304217, z: -19.91967}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1796435091}
@@ -11193,7 +11236,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.3328075, y: 1}
+    m_SensorSize: {x: 1.3333334, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -12200,6 +12243,8 @@ Transform:
   - {fileID: 36631227}
   - {fileID: 1913038273}
   - {fileID: 1290485169}
+  - {fileID: 2125211618}
+  - {fileID: 160986703}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -24757,7 +24802,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4581396886456227251, guid: 407da75e5c92bc345a92297e0378dab8, type: 3}
       propertyPath: m_Name
-      value: SkillManager
+      value: Skill Manager
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 407da75e5c92bc345a92297e0378dab8, type: 3}
@@ -26369,6 +26414,53 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!1 &2125211617
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2125211618}
+  - component: {fileID: 2125211619}
+  m_Layer: 0
+  m_Name: LevelUp Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2125211618
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2125211617}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1365667836}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2125211619
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2125211617}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b8d678f966f8a04d9dc1d9d281a858f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  statPointsPrLevel: 3
+  capBaseGrowth: 15
+  capGrowthRate: 10
+  capMultiplier: 1.1
 --- !u!1 &2125990413
 GameObject:
   m_ObjectHideFlags: 0
@@ -26559,8 +26651,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7139625418687785377, guid: 914f330e9a67bc343af855fbddbcfe49, type: 3}
       propertyPath: m_Name
-      value: DataPersistenceManager
+      value: DataPersistence Manager
       objectReference: {fileID: 0}
+    - target: {fileID: 7139625418687785379, guid: 914f330e9a67bc343af855fbddbcfe49, type: 3}
+      propertyPath: playerUnitBase
+      value: 
+      objectReference: {fileID: 11400000, guid: 5fa57db649efb1b44ae6d92084290345, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 914f330e9a67bc343af855fbddbcfe49, type: 3}
 --- !u!1001 &8773906511335948775
@@ -26620,7 +26716,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8773906511367009117, guid: 85f3526f222268a4dbe73f5d6e0c2160, type: 3}
       propertyPath: m_Name
-      value: GameManager
+      value: Game Manager
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 85f3526f222268a4dbe73f5d6e0c2160, type: 3}

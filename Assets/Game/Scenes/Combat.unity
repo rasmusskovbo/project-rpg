@@ -3959,7 +3959,7 @@ GameObject:
   - component: {fileID: 1137026391}
   - component: {fileID: 1137026392}
   m_Layer: 0
-  m_Name: Combat Manager
+  m_Name: Combat System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3999,7 +3999,7 @@ MonoBehaviour:
   bottomEnemyStation: {fileID: 564620973}
   frontTopEnemyStation: {fileID: 1535339211}
   frontBottomEnemyStation: {fileID: 1139207582}
-  amountToSpawn: 3
+  amountToSpawn: 1
   levelOfEnemies: 1
 --- !u!4 &1139207582 stripped
 Transform:

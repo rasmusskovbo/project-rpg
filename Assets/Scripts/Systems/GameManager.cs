@@ -13,17 +13,19 @@ public class GameManager : PersistentSingleton<GameManager>, IDataPersistence
 
     // References
     private PlayerMovement playerMovementUnit;
+    private LevelUpManager levelUpManager;
 
     private void Start()
     {
-        // Update reference
         playerMovementUnit = FindObjectOfType<PlayerMovement>();
+        levelUpManager = FindObjectOfType<LevelUpManager>();
     }
     
     public void UpdatePlayerDataAfterCombat(CombatResult result)
     {
         playerData.currentHp = result.PlayerCurrentHp;
         playerData.exp += result.XpGained;
+        if (levelUpManager.PlayerShouldLevelUp(playerData.exp, playerData.nextLvLExp)) levelUpManager.LevelUp();
     }
 
     public void SavePositionBeforeCombat()
@@ -33,23 +35,7 @@ public class GameManager : PersistentSingleton<GameManager>, IDataPersistence
         playerData.position = playerMovementUnit.transform.position;
         playerData.playerFacingDirection = playerMovementUnit.PlayerFacingDirection;
     }
-
-    public Vector3 GetPlayerPosition()
-    {
-        return playerData.position;
-    }
     
-    public UnitBase PlayerCombatBase
-    {
-        get => playerData.unitBase;
-        set => playerData.unitBase = value;
-    }
-
-    public PlayerData PlayerData
-    {
-        get => playerData;
-    }
-
     public void AddStatPoint(StatType type)
     {
         switch (type)
@@ -66,6 +52,11 @@ public class GameManager : PersistentSingleton<GameManager>, IDataPersistence
         }
 
         playerData.remainingStatPoints--;
+    }
+    
+    public PlayerData PlayerData
+    {
+        get => playerData;
     }
     
     public void LoadData(GameData data)

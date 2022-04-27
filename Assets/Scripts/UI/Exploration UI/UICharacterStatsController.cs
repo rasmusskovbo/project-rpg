@@ -37,6 +37,8 @@ public class UICharacterStatsController : MonoBehaviour
     [SerializeField] private GameObject strengthUp;
     [SerializeField] private GameObject agilityUp;
     [SerializeField] private GameObject intellectUp;
+
+    private CombatUnit unit;
     
     void Start()
     {
@@ -44,12 +46,7 @@ public class UICharacterStatsController : MonoBehaviour
         UpdateStats();
         ToggleLevelUpButtons(false);
     }
-
-    private void OnEnable()
-    {
-        UpdateStats();
-    }
-
+    
     private void Update()
     {
         UpdateStats();
@@ -68,9 +65,16 @@ public class UICharacterStatsController : MonoBehaviour
     {
         if (!this.isActiveAndEnabled) return;
         
-        UnitBase unitBase = gameManager.PlayerCombatBase;
+        UnitBase unitBase = gameManager.PlayerData.unitBase;
         PlayerData playerData = gameManager.PlayerData;
-        CombatUnit unit = this.AddComponent<CombatUnit>(); // todo Get this from gamemanager.
+        
+        if (unit == null)
+        {
+            unit = this.AddComponent<CombatUnit>();          // todo Get this from gamemanager.
+        }
+
+        Debug.Log("UnitBase: " + unitBase.UnitName);
+
         unit.InitiateUnit(unitBase, playerData.level);
         
         // Header

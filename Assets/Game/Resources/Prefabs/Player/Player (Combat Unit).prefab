@@ -46,43 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 161a29574135eee4f8c155ce176117cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unitName: Player
-  description: Player character
-  unitType: 1
-  isPlayerUnit: 1
-  idleSprite: {fileID: 4185320103643025961, guid: 5e42d906f00b092489cc6efa44be8318, type: 3}
   level: 1
-  maxHp: 20
-  strength: 1
-  agility: 1
-  intellect: 1
-  attackPower: 5
-  abilityPower: 5
-  physicalCritChance: 0.1
-  magicalCritChance: 0.1
-  physicalDefense: 5
-  magicalDefense: 5
-  physicalBlockPower: 0
-  dodgeChance: 0.05
-  speed: 3
-  strengthApRatio: 2
-  agilityApRatio: 1
-  intellectAbpRatio: 2
-  agilityCritRatio: 0.05
-  intellectCritRatio: 0.05
-  strengthPhysDefRatio: 1
-  agilityPhysDefRatio: 2
-  agilityDodgeRatio: 0.05
-  agilitySpeedRatio: 1
-  critMultiplier: 2
-  maxHpGrowth: 2
-  strengthGrowth: 1
-  agilityGrowth: 1
-  intellectGrowth: 1
-  physicalDefenseGrowth: 1
-  magicalDefenseGrowth: 2
-  physicalBlockPowerGrowth: 1
-  speedGrowth: 2
   currentHp: 0
   currentMaxHp: 0
   currentStrength: 0
@@ -99,6 +63,7 @@ MonoBehaviour:
   currentMagicalMitigation: 0
   currentDodge: 0
   currentSpeed: 0
+  isAlive: 0
 --- !u!114 &5537034655601487244
 MonoBehaviour:
   m_ObjectHideFlags: 0

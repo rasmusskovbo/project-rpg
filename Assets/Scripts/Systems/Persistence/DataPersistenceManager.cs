@@ -26,13 +26,12 @@ public class DataPersistenceManager : PersistentSingleton<DataPersistenceManager
                 1,
                 0,
                 10,
-                5,
+                0,
                 0,
                 new Vector3(-12.5f, 3.75f),
                 PlayerFacing.South,
                 new SerializableDictionary<string, bool>(),
-                playerUnitBase,
-                playerUnitBase.MaxHp
+                playerUnitBase
             ),
             new SettingsData(),
             new SkillData()
