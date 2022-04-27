@@ -10,7 +10,7 @@ public class ExplorationLoader : MonoBehaviour
         GameManager dataManager = FindObjectOfType<GameManager>();
         
         player.transform.position = dataManager.GetPlayerPosition();
-        player.SetPlayerFacing(dataManager.PlayerData.PlayerFacingDirection);
+        player.SetPlayerFacing(dataManager.PlayerData.playerFacingDirection);
     }
     
 }

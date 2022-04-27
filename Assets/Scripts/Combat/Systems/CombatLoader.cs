@@ -60,7 +60,7 @@ public class CombatLoader : MonoBehaviour
         UnitBase playerBase = gameManager.PlayerCombatBase;
         var spawnCombatUnit = SpawnCombatUnit(playerBase, playerPrefab, playerStation, 1);
         AddStatDisplayForPlayer(spawnCombatUnit.GetComponent<CombatUnit>());
-        spawnCombatUnit.GetComponent<CombatUnit>().CurrentHp = gameManager.PlayerData.CurrentHp;
+        spawnCombatUnit.GetComponent<CombatUnit>().CurrentHp = gameManager.PlayerData.currentHp;
         return spawnCombatUnit;;
     }
     

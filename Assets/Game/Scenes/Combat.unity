@@ -3723,7 +3723,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1047782243}
   m_Layer: 0
-  m_Name: Combat Systems
+  m_Name: Scene Systems
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

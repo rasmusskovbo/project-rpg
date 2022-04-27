@@ -1,13 +1,13 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using System;
 using System.IO;
+using Newtonsoft.Json;
 
 public class FileHandler
 {
     private string path = "";
     private string filename = "";
+    private string encryptionSeed = "waldheim";
 
     public FileHandler(string path, string filename)
     {
@@ -34,6 +34,8 @@ public class FileHandler
                     }
                 }
 
+                dataToLoad = EncryptDecrypt(dataToLoad);
+                
                 loadedData = JsonUtility.FromJson<GameData>(dataToLoad);
             }
             catch (Exception e)
@@ -52,10 +54,9 @@ public class FileHandler
         try
         {
             Directory.CreateDirectory(Path.GetDirectoryName(fullPath));
-
-            string dataToStore = JsonUtility.ToJson(data, true);
             
-            Debug.Log("TEST STRING OUT: " + dataToStore);
+            string dataToStore = JsonUtility.ToJson(data, true);
+            dataToStore = EncryptDecrypt(dataToStore);
 
             using (FileStream stream = new FileStream(fullPath, FileMode.Create))
             {
@@ -69,5 +70,17 @@ public class FileHandler
         {
             Debug.Log("Error when trying to save data to file: " + fullPath + "\n " + e);
         }
+    }
+
+    private String EncryptDecrypt(string data)
+    {
+        string modifiedData = "";
+        
+        for (int i = 0; i < data.Length; i++)
+        {
+            modifiedData += (char) (data[i] ^ encryptionSeed[i % encryptionSeed.Length]);
+        }
+
+        return modifiedData;
     }
 }

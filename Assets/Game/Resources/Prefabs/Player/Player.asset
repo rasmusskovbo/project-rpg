@@ -28,7 +28,7 @@ MonoBehaviour:
   physicalDefense: 1
   magicalDefense: 5
   physicalBlockPower: 0
-  dodgeChance: 0.1
+  dodgeChance: 0.05
   speed: 5
   strengthApRatio: 2
   agilityApRatio: 1

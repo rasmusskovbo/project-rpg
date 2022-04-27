@@ -27,13 +27,17 @@ public class DataPersistenceManager : PersistentSingleton<DataPersistenceManager
                 0,
                 10,
                 0,
+                0,
                 new Vector3(-12.5f, 3.75f),
                 PlayerFacing.South,
+                new SerializableDictionary<string, bool>(),
                 playerUnitBase.MaxHp
             ),
             new SettingsData(),
             new SkillData()
         );
+        
+        gameData.playerData.chestsCollected.Add("chest1", true);
         
         gameManager.LoadData(gameData);
     }

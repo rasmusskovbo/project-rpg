@@ -12,8 +12,10 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private LayerMask waterLayer;
     [SerializeField] private LayerMask combatLayer;
     [SerializeField] private int temporaryEncounterChance = 20;
-
+    
     private Animator animator;
+    private UIExplController uiController;
+    
     private Vector2 inputDirection;
     private PlayerFacing playerFacingDirection;
     
@@ -25,6 +27,7 @@ public class PlayerMovement : MonoBehaviour
     private void Awake()
     {
         animator = GetComponent<Animator>();
+        uiController = FindObjectOfType<UIExplController>();
     }
 
     void Update()
@@ -95,6 +98,11 @@ public class PlayerMovement : MonoBehaviour
     void OnMove(InputValue input)
     {
         inputDirection = input.Get<Vector2>();
+    }
+
+    void OnOpenCharacterStats()
+    {
+        uiController.ToggleCharacterStats();
     }
 
     IEnumerator MovePlayer(Vector3 targetPosition)

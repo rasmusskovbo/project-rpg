@@ -25,21 +25,21 @@ public class GameManager : PersistentSingleton<GameManager>, IDataPersistence
     
     public void UpdatePlayerDataAfterCombat(CombatResult result)
     {
-        playerData.CurrentHp = result.PlayerCurrentHp;
-        playerData.Exp += result.XpGained;
+        playerData.currentHp = result.PlayerCurrentHp;
+        playerData.exp += result.XpGained;
     }
 
     public void SavePositionBeforeCombat()
     {
         playerMovementUnit = FindObjectOfType<PlayerMovement>();
         
-        playerData.Position = playerMovementUnit.transform.position;
-        playerData.PlayerFacingDirection = playerMovementUnit.PlayerFacingDirection;
+        playerData.position = playerMovementUnit.transform.position;
+        playerData.playerFacingDirection = playerMovementUnit.PlayerFacingDirection;
     }
 
     public Vector3 GetPlayerPosition()
     {
-        return playerData.Position;
+        return playerData.position;
     }
     
     public UnitBase PlayerCombatBase
