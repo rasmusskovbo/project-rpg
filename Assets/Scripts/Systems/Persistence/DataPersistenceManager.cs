@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
+using System.Linq;
 
 public class DataPersistenceManager : PersistentSingleton<DataPersistenceManager>
 {
@@ -7,13 +9,17 @@ public class DataPersistenceManager : PersistentSingleton<DataPersistenceManager
 
     [Header("Persistence configuration")] 
     [SerializeField] private string fileName;
+
+    private List<IDataPersistence> persistenceObjects;
     
     private GameData gameData;
     private GameManager gameManager;
     private FileHandler fileHandler;
+    
 
     private void Start()
     {
+        this.persistenceObjects = FindAllDataPersistenceObjects();
         fileHandler = new FileHandler(Application.persistentDataPath, fileName);
         gameManager = FindObjectOfType<GameManager>();
         LoadGame();
@@ -34,7 +40,9 @@ public class DataPersistenceManager : PersistentSingleton<DataPersistenceManager
                 playerUnitBase
             ),
             new SettingsData(),
-            new SkillData()
+            new SkillData(),
+            new LevelUpData(),
+            new CombatEncounterData()
         );
         
         // Test save
@@ -54,7 +62,7 @@ public class DataPersistenceManager : PersistentSingleton<DataPersistenceManager
         }
         else
         {
-            gameManager.LoadData(gameData);
+            persistenceObjects.ForEach(obj => obj.LoadData(gameData));
             Debug.Log("Loaded data successfully.");
         }
         
@@ -62,7 +70,7 @@ public class DataPersistenceManager : PersistentSingleton<DataPersistenceManager
 
     public void SaveGame()
     {
-        gameManager.SaveData(gameData);
+        persistenceObjects.ForEach(obj => obj.SaveData(gameData));
         fileHandler.Save(gameData);
     }
 
@@ -71,4 +79,13 @@ public class DataPersistenceManager : PersistentSingleton<DataPersistenceManager
     {
         SaveGame();
     }
+
+    private List<IDataPersistence> FindAllDataPersistenceObjects()
+    {
+        IEnumerable<IDataPersistence> dataPersistenceObjects =
+            FindObjectsOfType<MonoBehaviour>().OfType<IDataPersistence>();
+        
+        return new List<IDataPersistence>(dataPersistenceObjects);
+    }
+    
 }

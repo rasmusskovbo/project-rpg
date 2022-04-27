@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class LevelUpManager : MonoBehaviour
+public class LevelUpManager : MonoBehaviour, IDataPersistence
 {
     private GameManager gameManager;
 
@@ -26,5 +26,21 @@ public class LevelUpManager : MonoBehaviour
 
         capGrowthRate = Mathf.RoundToInt(capGrowthRate * capMultiplier);
         capBaseGrowth += capGrowthRate;
+    }
+
+    public void LoadData(GameData data)
+    {
+        statPointsPrLevel = data.LevelUpData.StatPointsPrLevel;
+        capBaseGrowth = data.LevelUpData.CapBaseGrowth;
+        capGrowthRate = data.LevelUpData.CapGrowthRate;
+        capMultiplier = data.LevelUpData.CapMultiplier;
+    }
+
+    public void SaveData(GameData data)
+    {
+        data.LevelUpData.StatPointsPrLevel = statPointsPrLevel;
+        data.LevelUpData.CapBaseGrowth = capBaseGrowth;
+        data.LevelUpData.CapGrowthRate = capGrowthRate;
+        data.LevelUpData.CapMultiplier = capMultiplier;
     }
 }

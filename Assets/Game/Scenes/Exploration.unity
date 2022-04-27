@@ -1049,6 +1049,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 869d86de8cce17645a764c57abcbe5b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  areaEncounterRate: 15
+  amountOfEnemiesToSpawn: 2
+  enemyLvl: 1
 --- !u!1 &175158719
 GameObject:
   m_ObjectHideFlags: 0

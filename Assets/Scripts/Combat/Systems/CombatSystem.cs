@@ -41,10 +41,6 @@ public class CombatSystem : MonoBehaviour
     private CombatUnit frontBottomEnemy;
     private List<GameObject> enemyGameObjects;
     
-    // Temporary references
-    [SerializeField] private int amountToSpawn;
-    [SerializeField] private int levelOfEnemies;
-    
     void Awake()
     {
         combatLog = FindObjectOfType<UICombatLog>();
@@ -105,6 +101,10 @@ public class CombatSystem : MonoBehaviour
         GameObject bottomEnemyGO;
         GameObject frontTopEnemyGO;
         GameObject frontBottomEnemyGO;
+
+        CombatEncounterManager combatEncounterManager = FindObjectOfType<CombatEncounterManager>();
+        int amountToSpawn = combatEncounterManager.AmountOfEnemiesToSpawn;
+        int levelOfEnemies = combatEncounterManager.EnemyLvl;
         
         switch (amountToSpawn)
         {
@@ -497,10 +497,5 @@ public class CombatSystem : MonoBehaviour
     {
         get => player;
     }
-
-    public int AmountToSpawn
-    {
-        get => amountToSpawn;
-        set => amountToSpawn = value;
-    }
+    
 }

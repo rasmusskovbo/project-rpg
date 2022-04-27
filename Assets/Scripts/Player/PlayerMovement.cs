@@ -11,10 +11,10 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private LayerMask blockingLayer;
     [SerializeField] private LayerMask waterLayer;
     [SerializeField] private LayerMask combatLayer;
-    [SerializeField] private int temporaryEncounterChance = 20;
     
     private Animator animator;
     private UIExplController uiController;
+    private CombatEncounterManager _combatEncounterManager;
     
     private Vector2 inputDirection;
     private PlayerFacing playerFacingDirection;
@@ -28,6 +28,7 @@ public class PlayerMovement : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         uiController = FindObjectOfType<UIExplController>();
+        _combatEncounterManager = FindObjectOfType<CombatEncounterManager>();
     }
 
     void Update()
@@ -132,7 +133,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (Physics2D.OverlapCircle(transform.position, 0.2f, combatLayer) != null)
         {
-            if ((Random.Range(1, 101) <= temporaryEncounterChance))
+            if ((Random.Range(1, 101) <= _combatEncounterManager.AreaEncounterRate))
             {
                 Debug.Log("Encountered combat!");
                 FindObjectOfType<GameManager>().SavePositionBeforeCombat();

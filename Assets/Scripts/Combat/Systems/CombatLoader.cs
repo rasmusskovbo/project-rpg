@@ -35,7 +35,7 @@ public class CombatLoader : MonoBehaviour
     // Amount should come from battlestarter script.
     public void ResizeStatDisplayContainer()
     {
-        int amountOfDisplays = FindObjectOfType<CombatSystem>().AmountToSpawn;
+        int amountOfDisplays = FindObjectOfType<CombatEncounterManager>().AmountOfEnemiesToSpawn;
         float width = 500 - basicOffset - (widthPrStatDisplay * (amountOfDisplays - 1)); 
         statDisplayContainer.GetComponent<RectTransform>().offsetMax = new Vector2(-width , 0);
     }
