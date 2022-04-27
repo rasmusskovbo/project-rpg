@@ -16,11 +16,13 @@ public class LevelUpManager : MonoBehaviour, IDataPersistence
 
     public bool PlayerShouldLevelUp(int currentExp, int nextLvlExp)
     {
+        Debug.Log("XP: " + currentExp + ", " + nextLvlExp);
         return currentExp >= nextLvlExp;
     }
 
     public void LevelUp()
     {
+        Debug.Log("levelling up");
         gameManager.PlayerData.remainingStatPoints += statPointsPrLevel;
         gameManager.PlayerData.nextLvLExp += capBaseGrowth;
 
