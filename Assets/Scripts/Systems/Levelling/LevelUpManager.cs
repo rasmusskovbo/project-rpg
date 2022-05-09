@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class LevelUpManager : MonoBehaviour, IDataPersistence
+public class LevelUpManager : PersistentSingleton<LevelUpManager>, IDataPersistence
 {
     private GameManager gameManager;
 

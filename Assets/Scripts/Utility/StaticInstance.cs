@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public abstract class StaticInstance<T> : MonoBehaviour where T : MonoBehaviour
 {
@@ -29,6 +30,13 @@ public abstract class PersistentSingleton<T> : Singleton<T> where T : MonoBehavi
     {
         if (Instance != null) Destroy(gameObject);
         DontDestroyOnLoad(gameObject);
+        
+        T[] allObjectsOfType = FindObjectsOfType<T>();
+        if (allObjectsOfType.Length > 1)
+        {
+            Destroy(allObjectsOfType[1].gameObject);
+        }
+        
         base.Awake();
     }
 }

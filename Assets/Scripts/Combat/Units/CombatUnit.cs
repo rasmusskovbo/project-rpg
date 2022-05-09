@@ -83,7 +83,7 @@ public class CombatUnit : MonoBehaviour, IComparable
         {
             case CombatMoveType.Physical:
                 float damageAfterAttackPower = power + CurrentAttackPower;
-                
+
                 finalDamage = critCounter < (CurrentPhysicalCritChance * 100) ? damageAfterAttackPower * unitBase.CritMultiplier : damageAfterAttackPower;
                 break;
             case CombatMoveType.Magical:

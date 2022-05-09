@@ -18,7 +18,8 @@ MonoBehaviour:
   actionType: 0
   targets: 2
   effectType: 0
-  power: 10
+  expiresAtStartOfTurn: 0
+  power: 20
   cooldown: 3
   duration: 0
   icon_image: {fileID: -835306525517685141, guid: ad4da72aba31b684490b8b8a3d8c6727, type: 3}

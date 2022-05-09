@@ -8,7 +8,7 @@ public class ExplorationLoader : MonoBehaviour
     {
         PlayerMovement player = FindObjectOfType<PlayerMovement>();
         GameManager gameManager = FindObjectOfType<GameManager>();
-        
+
         player.transform.position = gameManager.PlayerData.position;
         player.SetPlayerFacing(gameManager.PlayerData.playerFacingDirection);
     }

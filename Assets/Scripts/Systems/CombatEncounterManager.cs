@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class CombatEncounterManager : MonoBehaviour, IDataPersistence
+public class CombatEncounterManager : PersistentSingleton<CombatEncounterManager>, IDataPersistence
 {
     [SerializeField] int areaEncounterRate = 20;
     [SerializeField] private int amountOfEnemiesToSpawn = 1;
