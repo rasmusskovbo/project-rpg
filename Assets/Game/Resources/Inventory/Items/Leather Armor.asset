@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 02a97b2a5a6847d4bb7e140691d92834, type: 3}
-  m_Name: Mana Potion
+  m_Script: {fileID: 11500000, guid: 1ff4c2730e9547809bbbd89934d8737e, type: 3}
+  m_Name: Leather Armor
   m_EditorClassIdentifier: 
-  inventoryItemPrefab: {fileID: 0}
-  itemSprite: {fileID: 7774135275058328769, guid: ad4da72aba31b684490b8b8a3d8c6727, type: 3}
-  itemName: Mana Potion
+  itemSprite: {fileID: 8169254880650711489, guid: ad4da72aba31b684490b8b8a3d8c6727, type: 3}
+  itemName: Leather Armor
+  equipmentType: 1
