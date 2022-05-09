@@ -461,7 +461,7 @@ public class CombatUnit : MonoBehaviour, IComparable
 
     public float CurrentAttackPower
     {
-        get => currentAttackPower * combatEffectsManager.GetEffectMultiplier(CombatEffectType.Strengthen) * (1 - combatEffectsManager.GetEffectMultiplier(CombatEffectType.Weaken));
+        get => currentAttackPower * combatEffectsManager.GetEffectMultiplier(CombatEffectType.Strengthen) * (combatEffectsManager.GetEffectMultiplier(CombatEffectType.Weaken));
         set => currentAttackPower = value;
     }
 
