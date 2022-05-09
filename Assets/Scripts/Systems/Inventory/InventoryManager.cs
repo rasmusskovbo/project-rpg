@@ -1,11 +1,18 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Inventory System/Inventory")]
-public class Inventory : ScriptableObject
+public class InventoryManager : PersistentSingleton<InventoryManager>
 {
     [SerializeField] private List<InventoryItemWrapper> items = new List<InventoryItemWrapper>();
-    [SerializeField] private UIInventoryController inventoryUI;
+    private UIInventoryController inventoryUI;
+
+    // Should refetch reference when called as scene changes will not keep it intact (maybe)
+    private void Start()
+    {
+        inventoryUI = FindObjectOfType<UIInventoryController>();
+        InitInventory();
+    }
 
     private Dictionary<InventoryItem, int> itemCountMap = new Dictionary<InventoryItem, int>();
 
@@ -17,10 +24,11 @@ public class Inventory : ScriptableObject
         }
     }
 
+    // TODO REVISE
     public void OpenInventoryUI()
     {
         inventoryUI.gameObject.SetActive(true);
-        inventoryUI.InitInventoryUI(this);
+        inventoryUI.InitInventoryUI();
     }
 
     public void UseItem(InventoryItem item)
@@ -43,7 +51,7 @@ public class Inventory : ScriptableObject
             itemCountMap.Add(item, amountToAdd);
         }
 
-        inventoryUI.CreateOrUpdateSlot(this, item, amountToAdd);
+        inventoryUI.CreateOrUpdateSlot(item, amountToAdd);
     }
     
     public void RemoveItem(InventoryItem item, int amountToRemove)

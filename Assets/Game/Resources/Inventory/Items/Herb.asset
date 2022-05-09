@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inventoryItemPrefab: {fileID: 0}
   itemSprite: {fileID: -6038832560972137479, guid: ad4da72aba31b684490b8b8a3d8c6727, type: 3}
-  itemName: Mana Potion
+  itemName: Herb

@@ -105,6 +105,11 @@ public class PlayerMovement : MonoBehaviour
     {
         uiController.ToggleCharacterStats();
     }
+    
+    void OnOpenInventory()
+    {
+        uiController.ToggleInventory();
+    }
 
     IEnumerator MovePlayer(Vector3 targetPosition)
     {

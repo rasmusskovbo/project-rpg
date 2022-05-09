@@ -5,29 +5,29 @@ public class UIInventoryController : MonoBehaviour
 {
     [SerializeField] private Transform itemsContainer;
     [SerializeField] private UIInventorySlot itemSlotPrefab;
-    [SerializeField] private Inventory inventory;
+    private InventoryManager inventoryManager;
     private Dictionary<InventoryItem, UIInventorySlot> itemSlotMap = new Dictionary<InventoryItem, UIInventorySlot>();
 
     private void Start()
     {
-        // Get all items from inventory.
-        InitInventoryUI(inventory);
+        inventoryManager = FindObjectOfType<InventoryManager>();
+        InitInventoryUI();
     }
 
-    public void InitInventoryUI(Inventory inventory)
+    public void InitInventoryUI()
     {
-        var itemsMap = inventory.ItemCountMap;
+        var itemsMap = inventoryManager.ItemCountMap;
         foreach (var kvp in itemsMap)
         {
-            CreateOrUpdateSlot(inventory, kvp.Key, kvp.Value);
+            CreateOrUpdateSlot(kvp.Key, kvp.Value);
         }
     }
     
-    public void CreateOrUpdateSlot(Inventory inventory, InventoryItem item, int amount)
+    public void CreateOrUpdateSlot(InventoryItem item, int amount)
     {
         if (!itemSlotMap.ContainsKey(item))
         {
-            var slot = CreateSlot(inventory, item, amount);
+            var slot = CreateSlot(item, amount);
             itemSlotMap.Add(item, slot);
         }
         else
@@ -36,11 +36,11 @@ public class UIInventoryController : MonoBehaviour
         }
     }
 
-    private UIInventorySlot CreateSlot(Inventory inventory, InventoryItem item, int amount)
+    private UIInventorySlot CreateSlot(InventoryItem item, int amount)
     {
         var slot = Instantiate(itemSlotPrefab, itemsContainer);
         slot.InitSlotVisuals(item.ItemSprite, amount);
-        slot.AssignSlotButtonCallback(() => inventory.UseItem(item));
+        slot.AssignSlotButtonCallback(() => inventoryManager.UseItem(item));
         return slot;
     }
 

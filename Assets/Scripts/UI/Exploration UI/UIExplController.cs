@@ -15,6 +15,10 @@ public class UIExplController : MonoBehaviour
     [Header("Character Stat Screen")]
     [SerializeField] private GameObject characterStats;
     [SerializeField] private Image characterStatsButtonImage;
+    
+    [Header("Inventory Screen")]
+    [SerializeField] private GameObject inventory;
+    [SerializeField] private Image inventoryStatsButtonImage;
 
     private EventSystem eventSystem;
 
@@ -29,6 +33,14 @@ public class UIExplController : MonoBehaviour
         characterStats.SetActive(!characterStats.activeSelf);
         characterStatsButtonImage.sprite =
             characterStats.activeSelf ? activeUIButton : inactiveUIButton;
+        eventSystem.SetSelectedGameObject(null);
+    }
+
+    public void ToggleInventory()
+    {
+        inventory.SetActive(!inventory.activeSelf);
+        inventoryStatsButtonImage.sprite =
+            inventory.activeSelf ? activeUIButton : inactiveUIButton;
         eventSystem.SetSelectedGameObject(null);
     }
 }
