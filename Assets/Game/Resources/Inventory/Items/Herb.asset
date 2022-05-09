@@ -9,9 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 02a97b2a5a6847d4bb7e140691d92834, type: 3}
+  m_Script: {fileID: 11500000, guid: a02516653d5fe6146900dcca016d33a8, type: 3}
   m_Name: Herb
   m_EditorClassIdentifier: 
-  inventoryItemPrefab: {fileID: 0}
   itemSprite: {fileID: -6038832560972137479, guid: ad4da72aba31b684490b8b8a3d8c6727, type: 3}
   itemName: Herb

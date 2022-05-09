@@ -5,11 +5,13 @@ using UnityEngine;
 public class InventoryManager : PersistentSingleton<InventoryManager>
 {
     [SerializeField] private List<InventoryItemWrapper> items = new List<InventoryItemWrapper>();
+    private EquipmentController equipmentController;
     private UIInventoryController inventoryUI;
 
     // Should refetch reference when called as scene changes will not keep it intact (maybe)
     private void Start()
     {
+        equipmentController = FindObjectOfType<EquipmentController>();
         inventoryUI = FindObjectOfType<UIInventoryController>();
         InitInventory();
     }
@@ -36,6 +38,7 @@ public class InventoryManager : PersistentSingleton<InventoryManager>
         // If equippable switch with equipped item in slot
         // If consumable, remove item from inventory, destroy it and apply effects
         Debug.Log(string.Format("Used item: {0}", item.ItemName));
+        item.UseItem(equipmentController);
     }
 
     public void AddItem(InventoryItem item, int amountToAdd)
