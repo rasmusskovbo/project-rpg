@@ -97,10 +97,15 @@ public class CombatEffectManager : MonoBehaviour
         
         for (int i = 0; i < activeEffectsOfType.Count; i++)
         {
-            multiplier = multiplier * (activeEffectsOfType[i].Power / 100) + 1;
+            if (type == CombatEffectType.Strengthen)
+            {
+                multiplier = multiplier * (activeEffectsOfType[i].Power / 100) + 1;    
+            }
+
+            if (type == CombatEffectType.Weaken)
+                multiplier -= (activeEffectsOfType[i].Power / 100);
         }
 
-        Debug.Log("Multiplier: " + multiplier);
         return multiplier;
     }
     

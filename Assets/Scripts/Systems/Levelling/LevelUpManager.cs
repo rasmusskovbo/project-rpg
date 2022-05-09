@@ -25,6 +25,7 @@ public class LevelUpManager : PersistentSingleton<LevelUpManager>, IDataPersiste
         Debug.Log("levelling up");
         gameManager.PlayerData.remainingStatPoints += statPointsPrLevel;
         gameManager.PlayerData.nextLvLExp += capBaseGrowth;
+        gameManager.PlayerData.level++;
 
         capGrowthRate = Mathf.RoundToInt(capGrowthRate * capMultiplier);
         capBaseGrowth += capGrowthRate;

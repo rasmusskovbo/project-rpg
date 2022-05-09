@@ -2,20 +2,22 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fa8ce64e-188e-4703-b5a4-6b2e025cebde" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Utility/PersistentSystems.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Utility/PersistentSystems.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Game/Resources/Prefabs/UI/Item Slot.prefab" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Game/Resources/Prefabs/UI/Item Slot.prefab.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Systems/Equipment.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Systems/Equipment/EquipmentController.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Systems/Equipment/EquipmentController.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.project-rpg/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.project-rpg/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Game/Resources/Combat Moves/Slam.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Resources/Combat Moves/Slam.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Game/Scenes/Combat.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scenes/Combat.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Resources/Inventory/Items/Herb.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Resources/Inventory/Items/Herb.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Resources/Prefabs/UI/UI Inventory Screen.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Resources/Prefabs/UI/UI Inventory Screen.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Game/Scenes/Exploration.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scenes/Exploration.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Combat/Units/CombatUnit.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Combat/Units/CombatUnit.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Systems/CombatEncounterManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Systems/CombatEncounterManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Systems/ExplorationLoader.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Systems/ExplorationLoader.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Systems/Levelling/LevelUpManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Systems/Levelling/LevelUpManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Systems/SkillManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Systems/SkillManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Utility/StaticInstance.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Utility/StaticInstance.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Utility/Systems.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Utility/Systems.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Input/PlayerInput.inputactions" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Input/PlayerInput.inputactions" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/PlayerMovement.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player/PlayerMovement.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Systems/Inventory/Inventory.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Systems/Inventory/InventoryManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Systems/Inventory/Inventory.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Systems/Inventory/InventoryManager.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/Exploration UI/UIExplController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/Exploration UI/UIExplController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/Exploration UI/UIInventoryController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/Exploration UI/UIInventoryController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/Exploration UI/UIInventorySlot.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/Exploration UI/UIInventorySlot.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -100,10 +102,10 @@
       </option>
       <method v="2" />
     </configuration>
-    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="9300">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
-      <option name="pid" />
+      <option name="pid" value="9300" />
       <option name="projectPathOnTarget" />
       <option name="selectedOptions">
         <list />
@@ -145,7 +147,7 @@
       <workItem from="1650999250856" duration="1349000" />
       <workItem from="1651045390563" duration="23976000" />
       <workItem from="1652076161411" duration="2463000" />
-      <workItem from="1652078738072" duration="3077000" />
+      <workItem from="1652078738072" duration="13568000" />
     </task>
     <servers />
   </component>
@@ -201,5 +203,76 @@
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Scripts/Combat/Units/CombatUnit.cs</url>
+          <line>86</line>
+          <properties documentPath="C:\Users\rasmu\Unity Game Development\project-rpg\Assets\Scripts\Combat\Units\CombatUnit.cs" initialLine="86" containingFunctionPresentation="method 'DoDamage'">
+            <startOffsets>
+              <option value="3061" />
+            </startOffsets>
+            <endOffsets>
+              <option value="3199" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Scripts/Combat/Units/CombatUnit.cs</url>
+          <line>91</line>
+          <properties documentPath="C:\Users\rasmu\Unity Game Development\project-rpg\Assets\Scripts\Combat\Units\CombatUnit.cs" initialLine="91" containingFunctionPresentation="method 'DoDamage'">
+            <startOffsets>
+              <option value="3374" />
+            </startOffsets>
+            <endOffsets>
+              <option value="3513" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Scripts/Combat/Units/CombatUnit.cs</url>
+          <line>81</line>
+          <properties documentPath="C:\Users\rasmu\Unity Game Development\project-rpg\Assets\Scripts\Combat\Units\CombatUnit.cs" initialLine="81" containingFunctionPresentation="method 'DoDamage'">
+            <startOffsets>
+              <option value="2893" />
+            </startOffsets>
+            <endOffsets>
+              <option value="2916" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Scripts/Combat/Systems/CombatEffectManager.cs</url>
+          <line>97</line>
+          <properties documentPath="C:\Users\rasmu\Unity Game Development\project-rpg\Assets\Scripts\Combat\Systems\CombatEffectManager.cs" initialLine="97" containingFunctionPresentation="method 'GetEffectMultiplier'">
+            <startOffsets>
+              <option value="3759" />
+            </startOffsets>
+            <endOffsets>
+              <option value="3810" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Scripts/Combat/Units/CombatUnit.cs</url>
+          <line>463</line>
+          <properties documentPath="C:\Users\rasmu\Unity Game Development\project-rpg\Assets\Scripts\Combat\Units\CombatUnit.cs" initialLine="463" containingFunctionPresentation="property 'CurrentAttackPower'">
+            <startOffsets>
+              <option value="13836" />
+            </startOffsets>
+            <endOffsets>
+              <option value="14004" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="8" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
