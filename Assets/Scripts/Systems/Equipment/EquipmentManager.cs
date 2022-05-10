@@ -107,7 +107,6 @@ public class EquipmentManager : MonoBehaviour
     private void UnequipItem(ref EquipmentItem position)
     {
         UpdateStatBonuses(position, null);
-        equipmentUi.UpdateSelectedSlotOnUnequip(position);
         position = null;
     }
 

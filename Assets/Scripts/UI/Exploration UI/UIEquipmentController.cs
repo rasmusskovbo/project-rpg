@@ -37,18 +37,21 @@ public class UIEquipmentController : MonoBehaviour
             
             ToggleUISlot(uiSlot, true);
             uiSlot.EquipmentIcon.sprite = item.ItemSprite;
-            uiSlot.EquipmentIcon.gameObject.AddComponent<Button>().onClick.AddListener(() => UnequipItemAction(uiSlot, item));
-        });
-    }
 
-    public void UpdateSelectedSlotOnUnequip(EquipmentItem item)
-    {
-        allSlots.ForEach(uiSlot =>
-        {
-            if (uiSlot.EquipmentType != item.EquipmentType) return;
+            GameObject iconGO = uiSlot.EquipmentIcon.gameObject;
 
-            UnequipItemAction(uiSlot, item);
-
+            if (iconGO.GetComponent<Button>() != null)
+            {
+                Button button = iconGO.GetComponent<Button>();
+                
+                button.onClick.RemoveAllListeners();
+                button.onClick.AddListener(() => UnequipItemAction(uiSlot, item));
+            }
+            else
+            {
+                uiSlot.EquipmentIcon.gameObject.AddComponent<Button>().onClick.AddListener(() => UnequipItemAction(uiSlot, item));    
+            }
+            
         });
     }
 
