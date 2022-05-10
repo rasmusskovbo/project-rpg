@@ -38,7 +38,14 @@ public class InventoryManager : PersistentSingleton<InventoryManager>
         // If equippable switch with equipped item in slot
         // If consumable, remove item from inventory, destroy it and apply effects
         Debug.Log(string.Format("Used item: {0}", item.ItemName));
-        item.UseItem(equipmentController);
+        if (item.ItemType == ItemType.Equipment)
+        {
+            RemoveItem(item, 1);
+            EquipmentItem unequippedItem = (EquipmentItem) item.UseItem(equipmentController);
+            if (unequippedItem != null) AddItem(unequippedItem, 1);
+            
+        }
+
     }
 
     public void AddItem(InventoryItem item, int amountToAdd)
@@ -59,6 +66,8 @@ public class InventoryManager : PersistentSingleton<InventoryManager>
     
     public void RemoveItem(InventoryItem item, int amountToRemove)
     {
+        inventoryUI = FindObjectOfType<UIInventoryController>();
+        
         int currentItemCount;
 
         if (itemCountMap.TryGetValue(item, out currentItemCount))

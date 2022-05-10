@@ -1,6 +1,3 @@
-using System.Collections.Generic;
-using UnityEngine;
-
 /*
  * This object tracks all live stats.
  */

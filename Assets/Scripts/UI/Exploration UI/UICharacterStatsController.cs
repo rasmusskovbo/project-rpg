@@ -61,6 +61,7 @@ public class UICharacterStatsController : MonoBehaviour
        
     }
 
+    // For optimization, can be called on demand instead.
     public void UpdateStats()
     {
         if (!this.isActiveAndEnabled) return;
@@ -72,9 +73,7 @@ public class UICharacterStatsController : MonoBehaviour
         {
             unit = this.AddComponent<CombatUnit>();          // todo Get this from gamemanager.
         }
-
-        Debug.Log("UnitBase: " + unitBase.UnitName);
-
+        
         unit.InitiateUnit(unitBase, playerData.level);
         
         // Header

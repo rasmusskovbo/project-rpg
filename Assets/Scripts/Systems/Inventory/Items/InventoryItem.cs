@@ -6,7 +6,7 @@ public abstract class InventoryItem : ScriptableObject
     [SerializeField] protected string itemName;
     protected ItemType itemType;
 
-    public abstract void UseItem(EquipmentController equipmentController);
+    public abstract InventoryItem UseItem(EquipmentController equipmentController);
     
     public Sprite ItemSprite
     {
