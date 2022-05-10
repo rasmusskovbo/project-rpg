@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class UIInventoryController : MonoBehaviour
@@ -11,12 +12,10 @@ public class UIInventoryController : MonoBehaviour
     private void Start()
     {
         inventoryManager = FindObjectOfType<InventoryManager>();
-        InitInventoryUI();
     }
 
-    public void InitInventoryUI()
+    public void InitInventoryUI(Dictionary<InventoryItem, int> itemsMap)
     {
-        var itemsMap = inventoryManager.ItemCountMap;
         foreach (var kvp in itemsMap)
         {
             CreateOrUpdateSlot(kvp.Key, kvp.Value);

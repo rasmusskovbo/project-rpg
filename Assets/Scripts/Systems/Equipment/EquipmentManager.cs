@@ -1,9 +1,10 @@
 ﻿using UnityEngine;
 
-public class EquipmentController : MonoBehaviour
+public class EquipmentManager : MonoBehaviour
 {
     private InventoryManager inventoryManager;
     private UIInventoryController inventoryUI;
+    private UIEquipmentController equipmentUi;
     private GameManager gameManager;
     private UnitBase playerStats;
 
@@ -17,8 +18,8 @@ public class EquipmentController : MonoBehaviour
     
     private void Start()
     {
-        inventoryManager = FindObjectOfType<InventoryManager>();
         gameManager = FindObjectOfType<GameManager>();
+        equipmentUi = FindObjectOfType<UIEquipmentController>();
     }
 
     public EquipmentItem AssignEquipmentItem(EquipmentItem item)
@@ -51,6 +52,34 @@ public class EquipmentController : MonoBehaviour
         Debug.Log("Equipment Type was not found: " + item.EquipmentType);
         return null;
     }
+    
+    public void UnassignEquipmentItem(EquipmentType position)
+    {
+        switch (position)
+        {
+            case EquipmentType.Head:
+                UnequipItem(ref currentHeadItem);
+                break;
+            case EquipmentType.Chest:
+                UnequipItem(ref currentChestItem);
+                break;
+            case EquipmentType.Waist:
+                UnequipItem(ref currentWaistItem);
+                break;
+            case EquipmentType.Feet:
+                UnequipItem(ref currentFeetItem);
+                break;
+            case EquipmentType.Neck:
+                UnequipItem(ref currentNeckItem);
+                break;
+            case EquipmentType.Weapon:
+                UnequipItem(ref currentWeaponItem);
+                break;
+            case EquipmentType.Shield:
+                UnequipItem(ref currentShieldItem);
+                break;
+        }
+    }
 
     /*
      * Equips item in slot and returns the unequipped item
@@ -63,16 +92,26 @@ public class EquipmentController : MonoBehaviour
             EquipmentItem unequippedItem = position;
             position = itemToEquip;
             UpdateStatBonuses(unequippedItem, position);
+            equipmentUi.UpdateSelectedSlotOnEquip(itemToEquip); 
             return unequippedItem;
         }
         else
         {
             position = itemToEquip;
             UpdateStatBonuses(null, position);
+            equipmentUi.UpdateSelectedSlotOnEquip(itemToEquip); 
             return null;
         }
     }
 
+    private void UnequipItem(ref EquipmentItem position)
+    {
+        UpdateStatBonuses(position, null);
+        equipmentUi.UpdateSelectedSlotOnUnequip(position);
+        position = null;
+    }
+
+    
     /*
      * Update reference to player's statbase
      * Subtract all stats from unequipped item
@@ -90,11 +129,15 @@ public class EquipmentController : MonoBehaviour
                 UpdateStat(statBonus, true);
             });
         }
-        
-        equippedItem.GetAllStatBonuses().ForEach(statBonus =>
+
+        if (equippedItem != null)
         {
-            UpdateStat(statBonus, false);
-        });
+            equippedItem.GetAllStatBonuses().ForEach(statBonus =>
+            {
+                UpdateStat(statBonus, false);
+            });  
+        }
+
     }
 
     /*

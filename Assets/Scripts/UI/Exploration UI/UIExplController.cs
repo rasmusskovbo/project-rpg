@@ -25,6 +25,7 @@ public class UIExplController : MonoBehaviour
     private void Start()
     {
         characterStats.SetActive(false);
+        inventory.SetActive(false);
         eventSystem = FindObjectOfType<EventSystem>();
     }
 

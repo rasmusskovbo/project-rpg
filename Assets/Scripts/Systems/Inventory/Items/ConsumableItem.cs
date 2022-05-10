@@ -8,7 +8,7 @@ public class ConsumableItem : InventoryItem
         itemType = ItemType.Consumable;
     }
 
-    public override InventoryItem UseItem(EquipmentController equipmentController)
+    public override InventoryItem UseItem(EquipmentManager equipmentManager)
     {
         // Use item funct here.
         throw new System.NotImplementedException();

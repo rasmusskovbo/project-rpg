@@ -5,13 +5,13 @@ using UnityEngine;
 public class InventoryManager : PersistentSingleton<InventoryManager>
 {
     [SerializeField] private List<InventoryItemWrapper> items = new List<InventoryItemWrapper>();
-    private EquipmentController equipmentController;
+    private EquipmentManager equipmentManager;
     private UIInventoryController inventoryUI;
 
     // Should refetch reference when called as scene changes will not keep it intact (maybe)
     private void Start()
     {
-        equipmentController = FindObjectOfType<EquipmentController>();
+        equipmentManager = FindObjectOfType<EquipmentManager>();
         inventoryUI = FindObjectOfType<UIInventoryController>();
         InitInventory();
     }
@@ -24,15 +24,10 @@ public class InventoryManager : PersistentSingleton<InventoryManager>
         {
             itemCountMap.Add(items[i].Item, items[i].Count);
         }
+        
+        inventoryUI.InitInventoryUI(ItemCountMap);
     }
-
-    // TODO REVISE
-    public void OpenInventoryUI()
-    {
-        inventoryUI.gameObject.SetActive(true);
-        inventoryUI.InitInventoryUI();
-    }
-
+    
     public void UseItem(InventoryItem item)
     {
         // If equippable switch with equipped item in slot
@@ -41,7 +36,7 @@ public class InventoryManager : PersistentSingleton<InventoryManager>
         if (item.ItemType == ItemType.Equipment)
         {
             RemoveItem(item, 1);
-            EquipmentItem unequippedItem = (EquipmentItem) item.UseItem(equipmentController);
+            EquipmentItem unequippedItem = (EquipmentItem) item.UseItem(equipmentManager);
             if (unequippedItem != null) AddItem(unequippedItem, 1);
             
         }
