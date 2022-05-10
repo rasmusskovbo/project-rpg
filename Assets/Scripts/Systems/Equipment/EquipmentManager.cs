@@ -1,6 +1,7 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
-public class EquipmentManager : MonoBehaviour
+public class EquipmentManager : MonoBehaviour, IDataPersistence
 {
     private InventoryManager inventoryManager;
     private UIInventoryController inventoryUI;
@@ -15,6 +16,7 @@ public class EquipmentManager : MonoBehaviour
     private EquipmentItem currentNeckItem;
     private EquipmentItem currentWeaponItem;
     private EquipmentItem currentShieldItem;
+    
     
     private void Start()
     {
@@ -48,7 +50,7 @@ public class EquipmentManager : MonoBehaviour
                 Debug.Log(string.Format("Equipped {0} to :{1}", item.ItemName, EquipmentType.Shield ));
                 return EquipItem(ref currentShieldItem, item);
         }
-
+        
         Debug.Log("Equipment Type was not found: " + item.EquipmentType);
         return null;
     }
@@ -190,5 +192,29 @@ public class EquipmentManager : MonoBehaviour
         }
         
         if (isUnequipped) statBonus.Value *= -1;
+    }
+
+    public List<EquipmentItem> GetAllEquippedItems()
+    {
+        return new List<EquipmentItem>
+        {
+            currentHeadItem,
+            currentChestItem,
+            currentWaistItem,
+            currentFeetItem,
+            currentNeckItem,
+            currentWeaponItem,
+            currentShieldItem
+        };
+    }
+
+    public void LoadData(GameData data)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public void SaveData(GameData data)
+    {
+        throw new System.NotImplementedException();
     }
 }

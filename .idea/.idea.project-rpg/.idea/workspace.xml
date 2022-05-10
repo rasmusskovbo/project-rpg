@@ -3,10 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="fa8ce64e-188e-4703-b5a4-6b2e025cebde" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.project-rpg/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.project-rpg/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Game/Resources/Prefabs/Player/Player.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Resources/Prefabs/Player/Player.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Game/Scenes/Exploration.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scenes/Exploration.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Systems/Equipment/EquipmentManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Systems/Equipment/EquipmentManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Systems/Inventory/InventoryManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Systems/Inventory/InventoryManager.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/Exploration UI/UIEquipmentController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/Exploration UI/UIEquipmentController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/Exploration UI/UIInventoryController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/Exploration UI/UIInventoryController.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -100,10 +100,10 @@
       </option>
       <method v="2" />
     </configuration>
-    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="7784">
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="20424">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
-      <option name="pid" value="7784" />
+      <option name="pid" value="20424" />
       <option name="projectPathOnTarget" />
       <option name="selectedOptions">
         <list />
@@ -206,24 +206,6 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Scripts/Combat/Units/CombatUnit.cs</url>
-          <line>86</line>
-          <properties documentPath="C:\Users\rasmu\Unity Game Development\project-rpg\Assets\Scripts\Combat\Units\CombatUnit.cs" initialLine="86" containingFunctionPresentation="method 'DoDamage'" />
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Scripts/Combat/Units/CombatUnit.cs</url>
-          <line>91</line>
-          <properties documentPath="C:\Users\rasmu\Unity Game Development\project-rpg\Assets\Scripts\Combat\Units\CombatUnit.cs" initialLine="91" containingFunctionPresentation="method 'DoDamage'" />
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Scripts/Combat/Units/CombatUnit.cs</url>
-          <line>81</line>
-          <properties documentPath="C:\Users\rasmu\Unity Game Development\project-rpg\Assets\Scripts\Combat\Units\CombatUnit.cs" initialLine="81" containingFunctionPresentation="method 'DoDamage'" />
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/Scripts/Combat/Systems/CombatEffectManager.cs</url>
           <line>97</line>
           <properties documentPath="C:\Users\rasmu\Unity Game Development\project-rpg\Assets\Scripts\Combat\Systems\CombatEffectManager.cs" initialLine="97" containingFunctionPresentation="method 'GetEffectMultiplier'" />
@@ -234,6 +216,19 @@
           <line>463</line>
           <properties documentPath="C:\Users\rasmu\Unity Game Development\project-rpg\Assets\Scripts\Combat\Units\CombatUnit.cs" initialLine="463" containingFunctionPresentation="property 'CurrentAttackPower'" />
           <option name="timeStamp" value="8" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Scripts/Systems/Equipment/EquipmentManager.cs</url>
+          <line>91</line>
+          <properties documentPath="C:\Users\rasmu\Unity Game Development\project-rpg\Assets\Scripts\Systems\Equipment\EquipmentManager.cs" initialLine="91" containingFunctionPresentation="method 'EquipItem'">
+            <startOffsets>
+              <option value="3597" />
+            </startOffsets>
+            <endOffsets>
+              <option value="3618" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="30" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

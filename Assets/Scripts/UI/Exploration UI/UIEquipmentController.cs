@@ -2,6 +2,8 @@
 using UnityEngine;
 using UnityEngine.UI;
 
+// TODO MissingReferenceException: Problemer med at equippe items efter scene skift.
+// Tjek referencer til equipment manager eller evt lav denne klasse om til persistent.
 public class UIEquipmentController : MonoBehaviour
 {
     [SerializeField] private UIEquipmentSlot headSlot;
@@ -11,10 +13,14 @@ public class UIEquipmentController : MonoBehaviour
     [SerializeField] private UIEquipmentSlot neckSlot;
     [SerializeField] private UIEquipmentSlot weaponSlot;
     [SerializeField] private UIEquipmentSlot shieldSlot;
+
+    private EquipmentManager equipmentManager;
     private List<UIEquipmentSlot> allSlots;
 
     private void Start()
     {
+        equipmentManager = FindObjectOfType<EquipmentManager>();
+        
         allSlots = new List<UIEquipmentSlot>
         {
             headSlot,
@@ -25,8 +31,15 @@ public class UIEquipmentController : MonoBehaviour
             weaponSlot,
             shieldSlot
         };
-        
+
         allSlots.ForEach(uiSlot => uiSlot.EquipmentIcon.gameObject.SetActive(false));
+        equipmentManager.GetAllEquippedItems().ForEach(equippedItem =>
+        {
+            if (equippedItem != null)
+            {
+                UpdateSelectedSlotOnEquip(equippedItem);
+            }
+        });
     }
 
     public void UpdateSelectedSlotOnEquip(EquipmentItem item)

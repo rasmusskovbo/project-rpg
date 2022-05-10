@@ -12,10 +12,12 @@ public class UIInventoryController : MonoBehaviour
     private void Start()
     {
         inventoryManager = FindObjectOfType<InventoryManager>();
+        InitInventoryUI();
     }
 
-    public void InitInventoryUI(Dictionary<InventoryItem, int> itemsMap)
+    public void InitInventoryUI()
     {
+        var itemsMap = inventoryManager.ItemCountMap;
         foreach (var kvp in itemsMap)
         {
             CreateOrUpdateSlot(kvp.Key, kvp.Value);
@@ -24,6 +26,8 @@ public class UIInventoryController : MonoBehaviour
     
     public void CreateOrUpdateSlot(InventoryItem item, int amount)
     {
+        if (amount <= 0) return;
+        
         if (!itemSlotMap.ContainsKey(item))
         {
             var slot = CreateSlot(item, amount);
