@@ -1,10 +1,13 @@
-﻿public enum EquipmentType
+﻿using System;
+
+[Serializable]
+public enum EquipmentType
 {
     Head,
     Chest,
     Waist,
     Feet,
-    Necklace,
+    Neck,
     Weapon,
     Shield
 }

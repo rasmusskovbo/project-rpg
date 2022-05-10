@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1ff4c2730e9547809bbbd89934d8737e, type: 3}
-  m_Name: Leather Armor
+  m_Name: Plate Armor
   m_EditorClassIdentifier: 
-  itemSprite: {fileID: 8169254880650711489, guid: ad4da72aba31b684490b8b8a3d8c6727, type: 3}
-  itemName: Leather Armor
+  itemSprite: {fileID: 7608906311539879476, guid: ad4da72aba31b684490b8b8a3d8c6727, type: 3}
+  itemName: Plate Armor
   equipmentType: 1
   statBonuses:
-  - statBonusType: 2
-    value: 2
-  - statBonusType: 12
-    value: 1
+  - statBonusType: 0
+    value: 5
+  - statBonusType: 8
+    value: 5
