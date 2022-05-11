@@ -51,9 +51,9 @@ public class UIEquipmentController : MonoBehaviour
             if (uiSlot.EquipmentType != item.EquipmentType) return;
             
             ToggleUISlot(uiSlot, true);
-            uiSlot.EquipmentIcon.sprite = item.ItemSprite;
+            uiSlot.EquipmentIcon.GetComponent<Image>().sprite = item.ItemSprite;
 
-            GameObject iconGO = uiSlot.EquipmentIcon.gameObject;
+            GameObject iconGO = uiSlot.EquipmentIcon;
 
             if (iconGO.GetComponent<Button>() != null)
             {
@@ -64,7 +64,7 @@ public class UIEquipmentController : MonoBehaviour
             }
             else
             {
-                uiSlot.EquipmentIcon.gameObject.AddComponent<Button>().onClick.AddListener(() => UnequipItemAction(uiSlot, item));    
+                uiSlot.EquipmentIcon.AddComponent<Button>().onClick.AddListener(() => UnequipItemAction(uiSlot, item));    
             }
             
         });
@@ -72,7 +72,7 @@ public class UIEquipmentController : MonoBehaviour
 
     private void UnequipItemAction(UIEquipmentSlot uiSlot, EquipmentItem item)
     {
-        Destroy(uiSlot.EquipmentIcon.gameObject.GetComponent<Button>());
+        Destroy(uiSlot.EquipmentIcon.GetComponent<Button>());
         ToggleUISlot(uiSlot, false);
         FindObjectOfType<InventoryManager>().AddItem(item, 1);
         FindObjectOfType<EquipmentManager>().UnassignEquipmentItem(uiSlot.EquipmentType);
@@ -80,15 +80,15 @@ public class UIEquipmentController : MonoBehaviour
 
     private void ToggleUISlot(UIEquipmentSlot uiSlot, bool hasEquipmentInSlot)
     {
-        uiSlot.UnequippedIcon.gameObject.SetActive(!hasEquipmentInSlot);
-        uiSlot.EquipmentIcon.gameObject.SetActive(hasEquipmentInSlot);
+        uiSlot.UnequippedIcon.SetActive(!hasEquipmentInSlot);
+        uiSlot.EquipmentIcon.SetActive(hasEquipmentInSlot);
     }
 
     private void OnDestroy()
     {
         allSlots.ForEach(uiSlot =>
         {
-            uiSlot.EquipmentIcon.gameObject.GetComponent<Button>()?.onClick.RemoveAllListeners();
+            uiSlot.EquipmentIcon.GetComponentInChildren<Button>()?.onClick.RemoveAllListeners();
         });
     }
 }
