@@ -9,8 +9,6 @@ public class UIInventorySlot : MonoBehaviour
     [SerializeField] private TextMeshProUGUI countText;
     [SerializeField] private Button slotButton;
     
-    // here ondestroy
-    
     public void InitSlotVisuals(Sprite itemSprite, int count)
     {
         itemImage.sprite = itemSprite;

@@ -16,7 +16,6 @@ public class EquipmentManager : MonoBehaviour, IDataPersistence
     private EquipmentItem currentWeaponItem;
     private EquipmentItem currentShieldItem;
     
-    
     private void Start()
     {
         gameManager = FindObjectOfType<GameManager>();
@@ -115,7 +114,6 @@ public class EquipmentManager : MonoBehaviour, IDataPersistence
         UpdateStatBonuses(position, null);
         position = null;
     }
-
     
     /*
      * Update reference to player's statbase
@@ -214,11 +212,23 @@ public class EquipmentManager : MonoBehaviour, IDataPersistence
 
     public void LoadData(GameData data)
     {
-        throw new System.NotImplementedException();
+        currentHeadItem = data.EquipmentData.CurrentHeadItem;
+        currentChestItem = data.EquipmentData.CurrentChestItem;
+        currentWaistItem = data.EquipmentData.CurrentWaistItem;
+        currentFeetItem = data.EquipmentData.CurrentFeetItem;
+        currentNeckItem = data.EquipmentData.CurrentNeckItem;
+        currentWeaponItem = data.EquipmentData.CurrentWeaponItem;
+        currentShieldItem = data.EquipmentData.CurrentShieldItem;
     }
 
     public void SaveData(GameData data)
     {
-        throw new System.NotImplementedException();
+        data.EquipmentData.CurrentHeadItem = currentHeadItem;
+        data.EquipmentData.CurrentChestItem = currentChestItem;
+        data.EquipmentData.CurrentWaistItem = currentWaistItem;
+        data.EquipmentData.CurrentFeetItem = currentFeetItem;
+        data.EquipmentData.CurrentNeckItem = currentNeckItem;
+        data.EquipmentData.CurrentWeaponItem = currentWeaponItem;
+        data.EquipmentData.CurrentShieldItem = currentShieldItem;
     }
 }

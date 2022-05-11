@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-// TODO MissingReferenceException: Problemer med at equippe items efter scene skift.
-// Tjek referencer til equipment manager eller evt lav denne klasse om til persistent.
 public class UIEquipmentController : MonoBehaviour
 {
     [SerializeField] private UIEquipmentSlot headSlot;
@@ -34,7 +32,11 @@ public class UIEquipmentController : MonoBehaviour
         };
 
         allSlots.ForEach(uiSlot => uiSlot.EquipmentIcon.gameObject.SetActive(false));
-        
+        LoadEquipment();
+    }
+
+    private void LoadEquipment()
+    {
         equipmentManager.GetAllEquippedItems().ForEach(equippedItem =>
         {
             if (equippedItem != null)
@@ -42,7 +44,6 @@ public class UIEquipmentController : MonoBehaviour
                 UpdateSelectedSlotOnEquip(equippedItem);
             }
         });
-        
     }
 
     public void UpdateSelectedSlotOnEquip(EquipmentItem item)
@@ -86,7 +87,6 @@ public class UIEquipmentController : MonoBehaviour
         uiSlot.EquipmentIcon.SetActive(hasEquipmentInSlot);
     }
 
-    // here ondestroy
 }
 
 // LIstener på equipped item referer til det et item der er blevet destroyed. Listener skal genskabes ved start.

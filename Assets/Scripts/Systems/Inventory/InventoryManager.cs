@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InventoryManager : PersistentSingleton<InventoryManager>
+public class InventoryManager : PersistentSingleton<InventoryManager>, IDataPersistence
 {
     [SerializeField] private List<InventoryItemWrapper> items = new List<InventoryItemWrapper>();
     private EquipmentManager equipmentManager;
@@ -20,14 +20,18 @@ public class InventoryManager : PersistentSingleton<InventoryManager>
 
     public void InitInventory()
     {
+        SpawnItems();
+        inventoryUI.InitInventoryUI();
+    }
+
+    private void SpawnItems()
+    {
         for (int i = 0; i < items.Count; i++)
         {
             itemCountMap.Add(items[i].Item, items[i].Count);
         }
-        
-        inventoryUI.InitInventoryUI();
     }
-    
+
     public void UseItem(InventoryItem item)
     {
         // If equippable switch with equipped item in slot
@@ -91,5 +95,27 @@ public class InventoryManager : PersistentSingleton<InventoryManager>
     {
         get => itemCountMap;
         set => itemCountMap = value;
+    }
+
+    public void LoadData(GameData data)
+    {
+        var inventoryMap = new Dictionary<InventoryItem, int>();
+        
+        foreach (var keyValuePair in data.InventoryData.inventoryMap)
+        {
+            inventoryMap.Add(keyValuePair.Key, keyValuePair.Value);    
+        }
+
+        ItemCountMap = inventoryMap;
+    }
+
+    public void SaveData(GameData data)
+    {
+        SerializableDictionary<InventoryItem, int> dict = new SerializableDictionary<InventoryItem, int>();
+        foreach (var keyValuePair in ItemCountMap)
+        {
+            dict.Add(keyValuePair.Key, keyValuePair.Value);
+        }
+        data.InventoryData.inventoryMap = dict;
     }
 }

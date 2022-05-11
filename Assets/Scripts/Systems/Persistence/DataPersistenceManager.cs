@@ -42,6 +42,8 @@ public class DataPersistenceManager : PersistentSingleton<DataPersistenceManager
             new SettingsData(),
             new SkillData(),
             new LevelUpData(),
+            new InventoryData(null),
+            new EquipmentData(null, null, null, null, null, null, null),
             new CombatEncounterData()
         );
         
