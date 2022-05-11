@@ -86,13 +86,7 @@ public class UIEquipmentController : MonoBehaviour
         uiSlot.EquipmentIcon.SetActive(hasEquipmentInSlot);
     }
 
-    private void OnDestroy()
-    {
-        allSlots.ForEach(uiSlot =>
-        {
-            uiSlot.EquipmentIcon.GetComponentInChildren<Button>()?.onClick.RemoveAllListeners();
-        });
-    }
+    // here ondestroy
 }
 
 // LIstener på equipped item referer til det et item der er blevet destroyed. Listener skal genskabes ved start.

@@ -36,10 +36,7 @@ public class InventoryManager : PersistentSingleton<InventoryManager>
         if (item.ItemType == ItemType.Equipment)
         {
             RemoveItem(item, 1);
-            // Todo maybe do not add unequipped item here
-            EquipmentItem unequippedItem = (EquipmentItem) item.UseItem(equipmentManager);
-            if (unequippedItem != null) AddItem(unequippedItem, 1);
-            
+            item.UseItem(equipmentManager);
         }
 
     }

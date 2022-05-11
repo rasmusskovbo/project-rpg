@@ -14,9 +14,9 @@ public class EquipmentItem : InventoryItem
         itemType = ItemType.Equipment;
     }
 
-    public override InventoryItem UseItem(EquipmentManager equipmentManager)
+    public override void UseItem(EquipmentManager equipmentManager)
     {
-        return equipmentManager.AssignEquipmentItem(this);
+        equipmentManager.AssignEquipmentItem(this);
     }
 
     public EquipmentType EquipmentType

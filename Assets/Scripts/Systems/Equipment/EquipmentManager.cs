@@ -4,7 +4,6 @@ using UnityEngine;
 public class EquipmentManager : MonoBehaviour, IDataPersistence
 {
     private InventoryManager inventoryManager;
-    private UIInventoryController inventoryUI;
     private UIEquipmentController equipmentUi;
     private GameManager gameManager;
     private UnitBase playerStats;
@@ -22,39 +21,39 @@ public class EquipmentManager : MonoBehaviour, IDataPersistence
     {
         gameManager = FindObjectOfType<GameManager>();
         equipmentUi = FindObjectOfType<UIEquipmentController>();
+        inventoryManager = FindObjectOfType<InventoryManager>();
     }
 
-    public EquipmentItem AssignEquipmentItem(EquipmentItem item)
+    public void AssignEquipmentItem(EquipmentItem item)
     {
         equipmentUi = FindObjectOfType<UIEquipmentController>();
         
         switch (item.EquipmentType)
         {
             case EquipmentType.Head:
-                Debug.Log(string.Format("Equipped {0} to :{1}", item.ItemName, EquipmentType.Head ));
-                return EquipItem(ref currentHeadItem, item);
+                EquipItem(ref currentHeadItem, item);
+                break;
             case EquipmentType.Chest:
-                Debug.Log(string.Format("Equipped {0} to :{1}", item.ItemName, EquipmentType.Chest ));
-                return EquipItem(ref currentChestItem, item);
+                EquipItem(ref currentChestItem, item);
+                break;
             case EquipmentType.Waist:
-                Debug.Log(string.Format("Equipped {0} to :{1}", item.ItemName, EquipmentType.Waist ));
-                return EquipItem(ref currentWaistItem, item);
+                EquipItem(ref currentWaistItem, item);
+                break;
             case EquipmentType.Feet:
-                Debug.Log(string.Format("Equipped {0} to :{1}", item.ItemName, EquipmentType.Feet ));
-                return EquipItem(ref currentFeetItem, item);
+                EquipItem(ref currentFeetItem, item);
+                break;
             case EquipmentType.Neck:
-                Debug.Log(string.Format("Equipped {0} to :{1}", item.ItemName, EquipmentType.Neck ));
-                return EquipItem(ref currentNeckItem, item);
+                EquipItem(ref currentNeckItem, item);
+                break;
             case EquipmentType.Weapon:
-                Debug.Log(string.Format("Equipped {0} to :{1}", item.ItemName, EquipmentType.Weapon ));
-                return EquipItem(ref currentWeaponItem, item);
+                EquipItem(ref currentWeaponItem, item);
+                break;
             case EquipmentType.Shield:
-                Debug.Log(string.Format("Equipped {0} to :{1}", item.ItemName, EquipmentType.Shield ));
-                return EquipItem(ref currentShieldItem, item);
+                EquipItem(ref currentShieldItem, item);
+                break;
         }
         
         Debug.Log("Equipment Type was not found: " + item.EquipmentType);
-        return null;
     }
     
     public void UnassignEquipmentItem(EquipmentType position)
@@ -91,7 +90,7 @@ public class EquipmentManager : MonoBehaviour, IDataPersistence
      * Equips item in slot and returns the unequipped item
      * Returns null if no item was unequipped.
      */
-    private EquipmentItem EquipItem(ref EquipmentItem position, EquipmentItem itemToEquip)
+    private void EquipItem(ref EquipmentItem position, EquipmentItem itemToEquip)
     {
         equipmentUi = FindObjectOfType<UIEquipmentController>();
         
@@ -101,14 +100,13 @@ public class EquipmentManager : MonoBehaviour, IDataPersistence
             position = itemToEquip;
             UpdateStatBonuses(unequippedItem, position);
             equipmentUi.UpdateSelectedSlotOnEquip(itemToEquip); 
-            return unequippedItem;
+            inventoryManager.AddItem(unequippedItem, 1);
         }
         else
         {
             position = itemToEquip;
             UpdateStatBonuses(null, position);
-            equipmentUi.UpdateSelectedSlotOnEquip(itemToEquip); 
-            return null;
+            equipmentUi.UpdateSelectedSlotOnEquip(itemToEquip);
         }
     }
 
