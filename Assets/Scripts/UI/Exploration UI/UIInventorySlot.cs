@@ -1,4 +1,5 @@
-﻿using TMPro;
+﻿using System;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,6 +8,11 @@ public class UIInventorySlot : MonoBehaviour
     [SerializeField] private Image itemImage;
     [SerializeField] private TextMeshProUGUI countText;
     [SerializeField] private Button slotButton;
+
+    private void OnDestroy()
+    {
+        slotButton.onClick.RemoveAllListeners();
+    }
 
     public void InitSlotVisuals(Sprite itemSprite, int count)
     {

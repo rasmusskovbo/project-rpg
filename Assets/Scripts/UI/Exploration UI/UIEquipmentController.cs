@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -33,6 +34,7 @@ public class UIEquipmentController : MonoBehaviour
         };
 
         allSlots.ForEach(uiSlot => uiSlot.EquipmentIcon.gameObject.SetActive(false));
+        
         equipmentManager.GetAllEquippedItems().ForEach(equippedItem =>
         {
             if (equippedItem != null)
@@ -81,5 +83,14 @@ public class UIEquipmentController : MonoBehaviour
         uiSlot.UnequippedIcon.gameObject.SetActive(!hasEquipmentInSlot);
         uiSlot.EquipmentIcon.gameObject.SetActive(hasEquipmentInSlot);
     }
-    
+
+    private void OnDestroy()
+    {
+        allSlots.ForEach(uiSlot =>
+        {
+            uiSlot.EquipmentIcon.gameObject.GetComponent<Button>()?.onClick.RemoveAllListeners();
+        });
+    }
 }
+
+// LIstener på equipped item referer til det et item der er blevet destroyed. Listener skal genskabes ved start.

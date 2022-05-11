@@ -9,9 +9,10 @@ public class UIInventoryController : MonoBehaviour
     private InventoryManager inventoryManager;
     private Dictionary<InventoryItem, UIInventorySlot> itemSlotMap = new Dictionary<InventoryItem, UIInventorySlot>();
 
-    private void Start()
+    IEnumerator Start()
     {
         inventoryManager = FindObjectOfType<InventoryManager>();
+        yield return new WaitForSecondsRealtime(2f);
         InitInventoryUI();
     }
 

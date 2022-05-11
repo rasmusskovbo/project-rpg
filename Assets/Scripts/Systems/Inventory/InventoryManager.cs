@@ -8,7 +8,7 @@ public class InventoryManager : PersistentSingleton<InventoryManager>
     private EquipmentManager equipmentManager;
     private UIInventoryController inventoryUI;
 
-    // Should refetch reference when called as scene changes will not keep it intact (maybe)
+    // Should re-fetch reference when called as scene changes will not keep it intact (maybe)
     private void Start()
     {
         equipmentManager = FindObjectOfType<EquipmentManager>();

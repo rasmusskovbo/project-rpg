@@ -24,6 +24,7 @@ public class UIExplController : MonoBehaviour
 
     private void Start()
     {
+        inventory.GetComponent<UIInventoryController>().InitInventoryUI();
         characterStats.SetActive(false);
         inventory.SetActive(false);
         eventSystem = FindObjectOfType<EventSystem>();
