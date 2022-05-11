@@ -1,5 +1,7 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class UIInventoryController : MonoBehaviour
@@ -9,10 +11,9 @@ public class UIInventoryController : MonoBehaviour
     private InventoryManager inventoryManager;
     private Dictionary<InventoryItem, UIInventorySlot> itemSlotMap = new Dictionary<InventoryItem, UIInventorySlot>();
 
-    IEnumerator Start()
+    void Start()
     {
         inventoryManager = FindObjectOfType<InventoryManager>();
-        yield return new WaitForSecondsRealtime(2f);
         InitInventoryUI();
     }
 

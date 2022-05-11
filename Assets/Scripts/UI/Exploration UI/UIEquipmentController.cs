@@ -42,6 +42,7 @@ public class UIEquipmentController : MonoBehaviour
                 UpdateSelectedSlotOnEquip(equippedItem);
             }
         });
+        
     }
 
     public void UpdateSelectedSlotOnEquip(EquipmentItem item)
@@ -49,6 +50,7 @@ public class UIEquipmentController : MonoBehaviour
         allSlots.ForEach(uiSlot =>
         {
             if (uiSlot.EquipmentType != item.EquipmentType) return;
+           // if (uiSlot.EquipmentIcon == null || uiSlot.UnequippedIcon == null) return;
             
             ToggleUISlot(uiSlot, true);
             uiSlot.EquipmentIcon.GetComponent<Image>().sprite = item.ItemSprite;

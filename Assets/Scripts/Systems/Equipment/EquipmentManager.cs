@@ -26,6 +26,8 @@ public class EquipmentManager : MonoBehaviour, IDataPersistence
 
     public EquipmentItem AssignEquipmentItem(EquipmentItem item)
     {
+        equipmentUi = FindObjectOfType<UIEquipmentController>();
+        
         switch (item.EquipmentType)
         {
             case EquipmentType.Head:
@@ -57,6 +59,8 @@ public class EquipmentManager : MonoBehaviour, IDataPersistence
     
     public void UnassignEquipmentItem(EquipmentType position)
     {
+        equipmentUi = FindObjectOfType<UIEquipmentController>();
+        
         switch (position)
         {
             case EquipmentType.Head:
@@ -89,6 +93,8 @@ public class EquipmentManager : MonoBehaviour, IDataPersistence
      */
     private EquipmentItem EquipItem(ref EquipmentItem position, EquipmentItem itemToEquip)
     {
+        equipmentUi = FindObjectOfType<UIEquipmentController>();
+        
         if (position != null)
         {
             EquipmentItem unequippedItem = position;

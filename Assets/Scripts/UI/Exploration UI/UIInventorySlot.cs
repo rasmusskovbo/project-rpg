@@ -30,5 +30,5 @@ public class UIInventorySlot : MonoBehaviour
         Debug.Log("Assigned callback");
         slotButton.onClick.AddListener(() => onClickCallback());
     }
-    
+
 }
