@@ -8,7 +8,7 @@ public class UIInventorySlot : MonoBehaviour
     [SerializeField] private Image itemImage;
     [SerializeField] private TextMeshProUGUI countText;
     [SerializeField] private Button slotButton;
-    
+
     public void InitSlotVisuals(Sprite itemSprite, int count)
     {
         itemImage.sprite = itemSprite;
@@ -24,6 +24,14 @@ public class UIInventorySlot : MonoBehaviour
     {
         Debug.Log("Assigned callback");
         slotButton.onClick.AddListener(() => onClickCallback());
+    }
+
+    public void SetTooltip(TooltipInfo content)
+    {
+        UITooltipTrigger uiTooltipTrigger = this.gameObject.AddComponent<UITooltipTrigger>();
+        uiTooltipTrigger.title = content.Title;
+        uiTooltipTrigger.subtitle = content.Subtitle;
+        uiTooltipTrigger.body = content.Body;
     }
 
 }

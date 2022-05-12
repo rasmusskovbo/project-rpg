@@ -51,13 +51,12 @@ public class UIEquipmentController : MonoBehaviour
         allSlots.ForEach(uiSlot =>
         {
             if (uiSlot.EquipmentType != item.EquipmentType) return;
-           // if (uiSlot.EquipmentIcon == null || uiSlot.UnequippedIcon == null) return;
             
             ToggleUISlot(uiSlot, true);
+            SetTooltip(uiSlot, item.TooltipInfo);
             uiSlot.EquipmentIcon.GetComponent<Image>().sprite = item.ItemSprite;
 
             GameObject iconGO = uiSlot.EquipmentIcon;
-
             if (iconGO.GetComponent<Button>() != null)
             {
                 Button button = iconGO.GetComponent<Button>();
@@ -85,6 +84,14 @@ public class UIEquipmentController : MonoBehaviour
     {
         uiSlot.UnequippedIcon.SetActive(!hasEquipmentInSlot);
         uiSlot.EquipmentIcon.SetActive(hasEquipmentInSlot);
+    }
+    
+    public void SetTooltip(UIEquipmentSlot slot, TooltipInfo content)
+    {
+        UITooltipTrigger uiTooltipTrigger = slot.EquipmentIcon.gameObject.AddComponent<UITooltipTrigger>();
+        uiTooltipTrigger.title = content.Title;
+        uiTooltipTrigger.subtitle = content.Subtitle;
+        uiTooltipTrigger.body = content.Body;
     }
 
 }

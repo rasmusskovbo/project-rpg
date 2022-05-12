@@ -14,6 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemSprite: {fileID: 8169254880650711489, guid: ad4da72aba31b684490b8b8a3d8c6727, type: 3}
   itemName: Leather Armor
+  tooltipInfo:
+    title: Leather Armor
+    subtitle: Chest
+    body: '+2 Agility
+
+      +1 Speed'
   equipmentType: 1
   statBonuses:
   - statBonusType: 2

@@ -100,6 +100,7 @@ public class EquipmentManager : MonoBehaviour, IDataPersistence, ItemHandler
             UpdateStatBonuses(unequippedItem, position);
             equipmentUi.UpdateSelectedSlotOnEquip(itemToEquip); 
             inventoryManager.AddItem(unequippedItem, 1);
+            
         }
         else
         {

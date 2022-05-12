@@ -6,6 +6,7 @@ public abstract class InventoryItem : ScriptableObject
 {
     [SerializeField] protected Sprite itemSprite;
     [SerializeField] protected string itemName;
+    [SerializeField] protected TooltipInfo tooltipInfo;
     protected ItemType itemType;
 
     public abstract void UseItem();
@@ -20,6 +21,12 @@ public abstract class InventoryItem : ScriptableObject
     {
         get => itemName;
         set => itemName = value;
+    }
+
+    public TooltipInfo TooltipInfo
+    {
+        get => tooltipInfo;
+        set => tooltipInfo = value;
     }
 
     public ItemType ItemType

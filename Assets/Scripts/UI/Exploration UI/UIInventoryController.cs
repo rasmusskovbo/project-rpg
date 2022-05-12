@@ -45,6 +45,7 @@ public class UIInventoryController : MonoBehaviour
     {
         var slot = Instantiate(itemSlotPrefab, itemsContainer);
         slot.InitSlotVisuals(item.ItemSprite, amount);
+        slot.SetTooltip(item.TooltipInfo);
         slot.AssignSlotButtonCallback(() => inventoryManager.UseItem(item));
         return slot;
     }

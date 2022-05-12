@@ -17,7 +17,7 @@ MonoBehaviour:
   unitType: 1
   isPlayerUnit: 1
   idleSprite: {fileID: 4185320103643025961, guid: 5e42d906f00b092489cc6efa44be8318, type: 3}
-  maxHp: 30
+  maxHp: 20
   strength: 1
   agility: 2
   intellect: 3
@@ -25,11 +25,11 @@ MonoBehaviour:
   abilityPower: 2
   physicalCritChance: 0.1
   magicalCritChance: 0.1
-  physicalDefense: 11
+  physicalDefense: 1
   magicalDefense: 5
   physicalBlockPower: 0
   dodgeChance: 0.05
-  speed: 8
+  speed: 5
   strengthApRatio: 2
   agilityApRatio: 1
   intellectAbpRatio: 2

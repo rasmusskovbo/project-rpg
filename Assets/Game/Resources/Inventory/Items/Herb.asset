@@ -14,5 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemSprite: {fileID: -6038832560972137479, guid: ad4da72aba31b684490b8b8a3d8c6727, type: 3}
   itemName: Herb
+  tooltipInfo:
+    title: Herb
+    subtitle: Consumable
+    body: 'A fresh herb.
+
+      Recovers +5 HP.'
   type: 0
   value: 5
