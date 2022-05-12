@@ -40,7 +40,13 @@ public class InventoryManager : PersistentSingleton<InventoryManager>, IDataPers
         if (item.ItemType == ItemType.Equipment)
         {
             RemoveItem(item, 1);
-            item.UseItem(equipmentManager);
+            item.UseItem();
+        }
+
+        if (item.ItemType == ItemType.Consumable)
+        {
+            RemoveItem(item, 1);
+            item.UseItem();
         }
 
     }

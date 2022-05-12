@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-public class EquipmentManager : MonoBehaviour, IDataPersistence
+public class EquipmentManager : MonoBehaviour, IDataPersistence, ItemHandler
 {
     private InventoryManager inventoryManager;
     private UIEquipmentController equipmentUi;

@@ -181,7 +181,6 @@ public class CombatUnit : MonoBehaviour, IComparable
     
     public void Heal(float amount)
     {
-        
         if ((CurrentHp + amount) > CurrentMaxHp)
         {
             CurrentHp = CurrentMaxHp;
@@ -191,7 +190,6 @@ public class CombatUnit : MonoBehaviour, IComparable
             CurrentHp += amount;
             CurrentHp = Mathf.Round(CurrentHp);
         }
-        
     }
     
     // Compare Units by Speed
