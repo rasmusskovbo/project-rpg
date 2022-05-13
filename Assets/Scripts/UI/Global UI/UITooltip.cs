@@ -30,8 +30,6 @@ public class UITooltip : MonoBehaviour
         
         this.GetComponent<RectTransform>().pivot = new Vector2(pivotX, pivotY);
         transform.position = position;
-        
-        
     }
 
     private void ResizePreferredSize()
