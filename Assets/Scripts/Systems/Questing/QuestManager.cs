@@ -5,23 +5,35 @@ using UnityEngine;
 public class QuestManager : PersistentSingleton<QuestManager>
 {
     [SerializeField] private List<Quest> activeQuests;
-    private UIQuestController questUI;
 
     private void Start()
     {
         activeQuests.ForEach(quest => quest.Initialize());
-        questUI = FindObjectOfType<UIQuestController>();
     }
 
     public void AddQuest(Quest quest)
     {
+        quest.Initialize();
         activeQuests.Add(quest);
-        questUI.CreateOrDeleteSlot(quest);
+        UIQuestController.Instance.CreateOrUpdateSlot(quest);
     }
 
     public void RemoveQuest(Quest quest)
     {
         activeQuests.Remove(quest);
+        UIQuestController.Instance.RemoveQuestFromUI(quest);
+    }
+
+    public void CompleteQuest(Quest quest)
+    {
+        Debug.Log("Completing quest: " + quest.info.Name);
+        // Handle other types of rewarsd here.
+        if (quest.reward.type == RewardType.Experience)
+        {
+            GameManager.Instance.PlayerData.exp += quest.reward.amount;
+        }
+        
+        RemoveQuest(quest);
     }
     
     public List<Quest> ActiveQuests

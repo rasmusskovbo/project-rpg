@@ -1193,7 +1193,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -8.471672, y: 1.30425, z: -10}
+  m_LocalPosition: {x: -8.452798, y: 1.3041999, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1796435091}
@@ -7824,7 +7824,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.3318777, y: 1}
+    m_SensorSize: {x: 1.3345724, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -18496,7 +18496,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1914802996}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.49, y: 4.42, z: 0}
+  m_LocalPosition: {x: -12.53, y: 4.42, z: 0}
   m_LocalScale: {x: 0.55, y: 0.55, z: 1}
   m_Children: []
   m_Father: {fileID: 680854145}
@@ -18592,6 +18592,7 @@ MonoBehaviour:
     - I need you to go and clean out the field by the farm!
     - Are you up for the task?
   quest: {fileID: 11400000, guid: 14b27ba7e79a8c948a72c4c1c5a19f6d, type: 2}
+  questHasBeenCompleted: 0
 --- !u!61 &1914803001
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -19894,6 +19895,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Inventory Screen
       objectReference: {fileID: 0}
+    - target: {fileID: 3019232769184350912, guid: e3da3e9a8943389458c207947f081144, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3019232769184350919, guid: e3da3e9a8943389458c207947f081144, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -20661,6 +20666,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Character Screen
       objectReference: {fileID: 0}
+    - target: {fileID: 7868709299118631663, guid: e6c11644f1fb0614badb0476973a40e8, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7868709299168397639, guid: e6c11644f1fb0614badb0476973a40e8, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -20854,10 +20863,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 762920586}
     m_Modifications:
-    - target: {fileID: 8773906511367009115, guid: 85f3526f222268a4dbe73f5d6e0c2160, type: 3}
-      propertyPath: tempFreshPlayerBase
-      value: 
-      objectReference: {fileID: 11400000, guid: 5fa57db649efb1b44ae6d92084290345, type: 2}
     - target: {fileID: 8773906511367009116, guid: 85f3526f222268a4dbe73f5d6e0c2160, type: 3}
       propertyPath: m_RootOrder
       value: 0

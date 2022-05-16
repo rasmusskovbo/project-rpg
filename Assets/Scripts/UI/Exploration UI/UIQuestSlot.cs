@@ -13,7 +13,7 @@ public class UIQuestSlot : MonoBehaviour
 
     public void Init(Quest quest)
     {
-        questCompletedIndicator.SetActive(false);
+        questCompletedIndicator.SetActive(quest.IsQuestComplete());
         title.text = quest.info.Name;
         quest.Goals.ForEach(goal => InitQuestGoal(goal));
     }
@@ -27,12 +27,13 @@ public class UIQuestSlot : MonoBehaviour
     {
         var questGoal = Instantiate(questGoalPrefab, questGoalContainer);
         var texts = questGoal.GetComponentsInChildren<TextMeshProUGUI>();
-        texts[1].text = goal.Description;
+        texts[1].text = goal.IsComplete() ? "<s>goal.Description</s>" : goal.Description;
         texts[2].text = $"{goal.CurrentAmount}/{goal.RequiredAmount}";
     }
 
     public void UpdateProgressOnUI(Quest quest)
     {
+        questCompletedIndicator.SetActive(quest.IsQuestComplete());
         for (int i = 0; i < questGoalContainer.childCount; i++)
         {
             var texts = questGoalContainer.transform.GetChild(i)
@@ -41,5 +42,5 @@ public class UIQuestSlot : MonoBehaviour
             texts[2].text = $"{quest.Goals[i].CurrentAmount}/{quest.Goals[i].RequiredAmount}";
         }
     }
-
+    
 }

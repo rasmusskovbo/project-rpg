@@ -10,28 +10,18 @@ public class Quest : ScriptableObject
     [Header("Info")] [SerializeField] public Info info;
     [Header("Reward")] [SerializeField] public Reward reward;
     [SerializeField] private List<QuestGoal> goals;
-    [SerializeField] private bool completed;
 
     public void Initialize()
     {
-        completed = false;
-
         foreach (QuestGoal goal in goals)
         {
-            goal.Init();
+            goal.Init(this);
         }
     }
-
-    // Check this intermittently (fx everytime quest window is opened or an event is invoked)
-    private void CheckGoals()
+    
+    public bool IsQuestComplete()
     {
-        completed = goals.All(goal => goal.Completed);
-
-        if (completed)
-        {
-            // Give rewards
-            // Destroy/remove quests
-        }
+        return goals.All(goal => goal.IsComplete());
     }
 
     [Serializable]
@@ -47,14 +37,6 @@ public class Quest : ScriptableObject
     {
         [SerializeField] public RewardType type;
         [SerializeField] public int amount;
-        
-        [Serializable]
-        public enum RewardType
-        {
-            Currency,
-            Experience,
-            Item
-        }
     }
 
     public List<QuestGoal> Goals

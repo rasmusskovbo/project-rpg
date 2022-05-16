@@ -2,43 +2,21 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fa8ce64e-188e-4703-b5a4-6b2e025cebde" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Assets/UI/panel_header_nonframe.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Assets/UI/panel_header_nonframe.png.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Assets/UI/panel_title.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Assets/UI/panel_title.png.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Game/Resources/Prefabs/UI/Quest Screen.prefab" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Game/Resources/Prefabs/UI/Quest Screen.prefab.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Game/Resources/Prefabs/UI/Quest Slot.prefab" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Game/Resources/Prefabs/UI/Quest Slot.prefab.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Game/Resources/Prefabs/UI/UI Quest Goal Slot.prefab" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Game/Resources/Prefabs/UI/UI Quest Goal Slot.prefab.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Game/Resources/Quests/Goals/1 Combat Victory 1.asset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Game/Resources/Quests/Goals/1 Combat Victory 1.asset.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Game/Resources/Quests/Goals/3 Combat Victory.asset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Game/Resources/Quests/Goals/3 Combat Victory.asset.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Game/Resources/Quests/Quests/Farm Work.asset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Game/Resources/Quests/Quests/Farm Work.asset.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/UI/Exploration UI/UIQuestController.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/UI/Exploration UI/UIQuestController.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/UI/Exploration UI/UIQuestSlot.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/UI/Exploration UI/UIQuestSlot.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Systems/Questing/RewardType.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Systems/Questing/RewardType.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.project-rpg/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.project-rpg/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Game/Resources/Prefabs/UI/UI Inventory Screen.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Resources/Prefabs/UI/UI Inventory Screen.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Game/Resources/Quests/Goals/1 Combat Victory.asset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Game/Resources/Quests/Goals/1 Combat Victory.asset.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Game/Resources/Quests/Quests/Initiation.asset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Game/Resources/Quests/Quests/Initiation.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Resources/Prefabs/Systems/GameManager.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Resources/Prefabs/Systems/GameManager.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Resources/Prefabs/UI/Quest Slot.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Resources/Prefabs/UI/Quest Slot.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Resources/Quests/Quests/Farm Work.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Resources/Quests/Quests/Farm Work.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Game/Scenes/Exploration.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scenes/Exploration.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Input/PlayerInput.inputactions" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Input/PlayerInput.inputactions" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Systems/Exploration/PlayerController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Systems/Exploration/PlayerController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Systems/Interactable/NPC.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Systems/Interactable/NPC.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Systems/Questing/Quest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Systems/Questing/Quest.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Systems/Questing/QuestGoal.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Systems/Questing/QuestGoal.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Systems/Questing/QuestManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Systems/Questing/QuestManager.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/Exploration UI/UIExplController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/Exploration UI/UIExplController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/Exploration UI/UIInventoryController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/Exploration UI/UIInventoryController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/Exploration UI/UIInventorySlot.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/Exploration UI/UIInventorySlot.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/LiberationSans SDF - Fallback.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/LiberationSans SDF - Fallback.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/GraphicsSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/GraphicsSettings.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/Exploration UI/UIQuestController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/Exploration UI/UIQuestController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/Exploration UI/UIQuestSlot.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/Exploration UI/UIQuestSlot.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -152,10 +130,10 @@
       </option>
       <method v="2" />
     </configuration>
-    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="8236">
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="21764">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
-      <option name="pid" value="8236" />
+      <option name="pid" value="21764" />
       <option name="projectPathOnTarget" />
       <option name="selectedOptions">
         <list />
@@ -269,30 +247,30 @@
           <option name="timeStamp" value="7" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Scripts/UI/Exploration UI/UIQuestController.cs</url>
-          <line>20</line>
-          <properties documentPath="C:\Users\rasmu\Unity Game Development\project-rpg\Assets\Scripts\UI\Exploration UI\UIQuestController.cs" initialLine="20" containingFunctionPresentation="lambda expression inside method 'InitQuestUI'">
+          <url>file://$PROJECT_DIR$/Assets/Scripts/UI/Exploration UI/UICharacterStatsController.cs</url>
+          <line>76</line>
+          <properties documentPath="C:\Users\rasmu\Unity Game Development\project-rpg\Assets\Scripts\UI\Exploration UI\UICharacterStatsController.cs" initialLine="76" containingFunctionPresentation="method 'UpdateStats'">
             <startOffsets>
-              <option value="567" />
+              <option value="2508" />
             </startOffsets>
             <endOffsets>
-              <option value="593" />
+              <option value="2554" />
             </endOffsets>
           </properties>
-          <option name="timeStamp" value="11" />
+          <option name="timeStamp" value="18" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Scripts/UI/Exploration UI/UIQuestController.cs</url>
-          <line>26</line>
-          <properties documentPath="C:\Users\rasmu\Unity Game Development\project-rpg\Assets\Scripts\UI\Exploration UI\UIQuestController.cs" initialLine="26" containingFunctionPresentation="method 'CreateOrDeleteSlot'">
+          <url>file://$PROJECT_DIR$/Assets/Scripts/Systems/Persistence/DataPersistenceManager.cs</url>
+          <line>62</line>
+          <properties documentPath="C:\Users\rasmu\Unity Game Development\project-rpg\Assets\Scripts\Systems\Persistence\DataPersistenceManager.cs" initialLine="62" containingFunctionPresentation="method 'LoadGame'">
             <startOffsets>
-              <option value="675" />
+              <option value="1752" />
             </startOffsets>
             <endOffsets>
-              <option value="708" />
+              <option value="1762" />
             </endOffsets>
           </properties>
-          <option name="timeStamp" value="12" />
+          <option name="timeStamp" value="19" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

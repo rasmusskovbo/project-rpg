@@ -43,4 +43,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ef37f2b68ffbe547aeb1f7247490d73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tempFreshPlayerBase: {fileID: 11400000, guid: 5fa57db649efb1b44ae6d92084290345, type: 2}
+  playerData:
+    level: 0
+    exp: 0
+    nextLvLExp: 0
+    remainingStatPoints: 0
+    sceneIndex: 0
+    position: {x: 0, y: 0, z: 0}
+    playerFacingDirection: 0
+    chestsCollected:
+      keys: []
+      values: 
+    unitBase: {fileID: 0}
+    currentHp: 0
+  explorationState: 0

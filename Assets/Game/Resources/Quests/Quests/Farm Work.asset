@@ -20,5 +20,4 @@ MonoBehaviour:
     type: 1
     amount: 20
   goals:
-  - {fileID: 11400000, guid: e55352199dc86ab43a1da9e743ba9684, type: 2}
-  completed: 0
+  - {fileID: 11400000, guid: 55536614f0fd1b042b4daaf0e9a13edb, type: 2}

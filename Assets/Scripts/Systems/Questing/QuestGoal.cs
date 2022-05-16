@@ -1,6 +1,5 @@
 ﻿using System;
 using UnityEngine;
-using UnityEngine.Events;
 
 [Serializable]
 [CreateAssetMenu(menuName = "Questing/Quest Goal")]
@@ -8,13 +7,17 @@ public class QuestGoal : ScriptableObject
 {
     [SerializeField] protected string description;
     [SerializeField] private int currentAmount;
-    [SerializeField] protected int requiredAmount = 1;
+    [SerializeField] protected int requiredAmount;
     [SerializeField] private bool completed;
     [SerializeField] private QuestGoalType questGoalType;
+    private Quest attachedQuest;
     
-    public virtual void Init()
+    public virtual void Init(Quest quest)
     {
         completed = false;
+        currentAmount = 0;
+
+        attachedQuest = quest;
         
         if (questGoalType == QuestGoalType.Combat)
         {
@@ -27,10 +30,9 @@ public class QuestGoal : ScriptableObject
     {
         Debug.Log("Quest Goal func callback");
         currentAmount++;
-        // Maybe call completion check here
     }
 
-    protected bool isComplete()
+    public bool IsComplete()
     {
         return currentAmount >= requiredAmount;
     }
@@ -51,12 +53,6 @@ public class QuestGoal : ScriptableObject
     {
         get => requiredAmount;
         set => requiredAmount = value;
-    }
-
-    public bool Completed
-    {
-        get => completed;
-        set => completed = value;
     }
     
 }

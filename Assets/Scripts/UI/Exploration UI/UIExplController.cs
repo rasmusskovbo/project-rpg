@@ -44,6 +44,8 @@ public class UIExplController : MonoBehaviour
         {
             characterStatsButtonImage, inventoryStatsButtonImage, questsButtonImage
         };
+        
+        HideUI();
     }
 
     public void HideUI()

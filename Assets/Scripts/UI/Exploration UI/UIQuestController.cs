@@ -1,16 +1,16 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-public class UIQuestController : MonoBehaviour
+public class UIQuestController : Singleton<UIQuestController>
 {
     [SerializeField] private Transform questContainer;
     [SerializeField] private UIQuestSlot questSlotPrefab;
     private QuestManager questManager;
     private Dictionary<Quest, UIQuestSlot> questMap = new Dictionary<Quest, UIQuestSlot>();
-
+    
     private void OnEnable()
     {
-        questManager = QuestManager.Instance;
+        questManager = FindObjectOfType<QuestManager>();
         InitQuestUI();
     }
 
@@ -18,11 +18,11 @@ public class UIQuestController : MonoBehaviour
     {
         questManager.ActiveQuests.ForEach(quest =>
         {
-            CreateOrDeleteSlot(quest);
+            CreateOrUpdateSlot(quest);
         });
     }
 
-    public void CreateOrDeleteSlot(Quest quest)
+    public void CreateOrUpdateSlot(Quest quest)
     {
         if (!questMap.ContainsKey(quest))
         {
@@ -39,7 +39,7 @@ public class UIQuestController : MonoBehaviour
     {
         var slot = Instantiate(questSlotPrefab, questContainer);
         slot.Init(quest);
-        slot.AssignRemoveCallback(() => RemoveQuest(quest));
+        slot.AssignRemoveCallback(() => QuestManager.Instance.RemoveQuest(quest));
         return slot;
     }
 
@@ -48,10 +48,10 @@ public class UIQuestController : MonoBehaviour
         questMap[quest].UpdateProgressOnUI(quest);
     }
 
-    private void RemoveQuest(Quest quest)
+    public void RemoveQuestFromUI(Quest quest)
     {
         Destroy(questMap[quest].gameObject);
         questMap.Remove(quest);
-        questManager.RemoveQuest(quest);
     }
+    
 }

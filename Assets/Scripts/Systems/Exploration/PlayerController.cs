@@ -105,6 +105,7 @@ public class PlayerController : MonoBehaviour
     void OnMove(InputValue input)
     {
         inputDirection = input.Get<Vector2>();
+        Debug.Log("Accepting input");
     }
 
     void OnOpenCharacterStats()
