@@ -21,13 +21,40 @@ public class UIExplController : MonoBehaviour
     [SerializeField] private Image inventoryStatsButtonImage;
 
     private EventSystem eventSystem;
-
+    private List<GameObject> uiObjects;
+    private List<Image> uiImages;
+    
     private void Start()
     {
         inventory.GetComponent<UIInventoryController>().InitInventoryUI();
         characterStats.SetActive(false);
         inventory.SetActive(false);
         eventSystem = FindObjectOfType<EventSystem>();
+        GameEvents.Instance.onShowDialog += () =>
+        {
+            HideUI();
+        };
+
+        uiObjects = new List<GameObject>
+        {
+            characterStats, inventory
+        };
+        uiImages = new List<Image>()
+        {
+            characterStatsButtonImage, inventoryStatsButtonImage
+        };
+    }
+
+    private void HideUI()
+    {
+        if (uiObjects.Count != uiImages.Count) Debug.Log("UI -> Object List and Image List not the same size");
+
+        for (int i = 0; i < uiObjects.Count; i++)
+        {
+            uiObjects[i].SetActive(false);
+            uiImages[i].sprite = inactiveUIButton;
+        }
+        
     }
 
     public void ToggleCharacterStats()

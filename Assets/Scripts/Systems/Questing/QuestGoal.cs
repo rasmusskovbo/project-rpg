@@ -3,38 +3,60 @@ using UnityEngine;
 using UnityEngine.Events;
 
 [Serializable]
-public abstract class QuestGoal : ScriptableObject
+[CreateAssetMenu(menuName = "Questing/Quest Goal")]
+public class QuestGoal : ScriptableObject
 {
     [SerializeField] protected string description;
-    [SerializeField] public int CurrentAmount { get; protected set; }
-    [SerializeField] public int RequiredAmount = 1;
+    [SerializeField] private int currentAmount;
+    [SerializeField] protected int requiredAmount = 1;
+    [SerializeField] private bool completed;
+    [SerializeField] private QuestGoalType questGoalType;
     
-    [SerializeField] public bool Completed { get; protected set; }
-    [SerializeField][HideInInspector] public UnityEvent GoalCompleted;
-    
-    public virtual string Description()
-    {
-        return description;
-    }
-
     public virtual void Init()
     {
-        Completed = false;
-        GoalCompleted = new UnityEvent();
-    }
-
-    protected void Evaluate()
-    {
-        if (CurrentAmount >= RequiredAmount)
+        completed = false;
+        
+        if (questGoalType == QuestGoalType.Combat)
         {
-            Complete();
+            GameEvents.Instance.onCombatVictory += OnCombatVictory;
+            Debug.Log("Subscribed to CombatVictory");
         }
     }
 
-    private void Complete()
+    private void OnCombatVictory()
     {
-        Completed = true;
-        GoalCompleted.Invoke();
-        GoalCompleted.RemoveAllListeners();
+        Debug.Log("Quest Goal func callback");
+        currentAmount++;
+        // Maybe call completion check here
     }
+
+    protected bool isComplete()
+    {
+        return currentAmount >= requiredAmount;
+    }
+
+    public string Description
+    {
+        get => description;
+        set => description = value;
+    }
+
+    public int CurrentAmount
+    {
+        get => currentAmount;
+        set => currentAmount = value;
+    }
+
+    public int RequiredAmount
+    {
+        get => requiredAmount;
+        set => requiredAmount = value;
+    }
+
+    public bool Completed
+    {
+        get => completed;
+        set => completed = value;
+    }
+    
 }

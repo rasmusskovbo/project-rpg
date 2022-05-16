@@ -4,13 +4,14 @@ using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
     [SerializeField] private float movementSpeed;
     [SerializeField] private bool isMoving;
     [SerializeField] private LayerMask blockingLayer;
     [SerializeField] private LayerMask waterLayer;
     [SerializeField] private LayerMask combatLayer;
+    [SerializeField] private LayerMask interactablesLayer;
     
     private Animator animator;
     private UIExplController uiController;
@@ -30,24 +31,30 @@ public class PlayerMovement : MonoBehaviour
         uiController = FindObjectOfType<UIExplController>();
         _combatEncounterManager = FindObjectOfType<CombatEncounterManager>();
     }
-
+    
     void Update()
     {
+        if (GameManager.Instance.ExplorationState != ExplorationState.Explore) return;
+        CheckTargetPosAndMove();
+    }
+
+    private void CheckTargetPosAndMove()
+    {
         animator.SetBool(IsMoving, isMoving);
-        
+
         if (isMoving) return;
         if (inputDirection.Equals(Vector2.zero)) return;
 
         var targetPosition = transform.position;
         animator.SetFloat(MoveX, inputDirection.x);
         animator.SetFloat(MoveY, inputDirection.y);
-            
+
         if (inputDirection.Equals(Vector2.left) || inputDirection.Equals(Vector2.right))
         {
             targetPosition.x += inputDirection.x;
             UpdatePlayerFacing();
         }
-            
+
         if (inputDirection.Equals(Vector2.up) || inputDirection.Equals(Vector2.down))
         {
             targetPosition.y += inputDirection.y;
@@ -55,7 +62,6 @@ public class PlayerMovement : MonoBehaviour
         }
 
         if (IsTargetPositionWalkable(targetPosition)) StartCoroutine(MovePlayer(targetPosition));
-        
     }
 
     public void UpdatePlayerFacing()
@@ -111,6 +117,29 @@ public class PlayerMovement : MonoBehaviour
         uiController.ToggleInventory();
     }
 
+    void OnInteract()
+    {
+        if (GameManager.Instance.ExplorationState == ExplorationState.Explore)
+        {
+            Interact();
+        } else if (GameManager.Instance.ExplorationState == ExplorationState.Dialog)
+        {
+            DialogueManager.Instance.NextLine();
+        }
+        
+    }
+
+    private void Interact()
+    {
+        var facingDir = new Vector3(animator.GetFloat("moveX"), animator.GetFloat("moveY"));
+        var interactPos = transform.position + facingDir;
+        var collider = Physics2D.OverlapCircle(interactPos, 0.3f, interactablesLayer);
+        if (collider != null)
+        {
+            collider.GetComponent<Interactable>()?.Interact();
+        }
+    }
+
     IEnumerator MovePlayer(Vector3 targetPosition)
     {
         isMoving = true;
@@ -130,8 +159,7 @@ public class PlayerMovement : MonoBehaviour
 
     private bool IsTargetPositionWalkable(Vector3 targetPosition)
     {
-        return !Physics2D.OverlapCircle(targetPosition, 0.15f, blockingLayer) 
-               && !Physics2D.OverlapCircle(targetPosition, 0.15f, waterLayer);
+        return !Physics2D.OverlapCircle(targetPosition, 0.15f, blockingLayer | waterLayer | interactablesLayer);
     }
 
     private void CheckForCombat()

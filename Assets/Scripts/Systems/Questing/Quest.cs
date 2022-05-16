@@ -10,30 +10,27 @@ public class Quest : ScriptableObject
     [Header("Info")] [SerializeField] private Info info;
     [Header("Reward")] [SerializeField] private Reward reward;
     [SerializeField] private List<QuestGoal> goals;
-    [SerializeField] public bool Completed { get; protected set; }
-    [SerializeField] public QuestCompletedEvent questCompleted;
+    [SerializeField] private bool completed;
 
     public void Initialize()
     {
-        Completed = false;
-        questCompleted = new QuestCompletedEvent();
+        completed = false;
 
         foreach (QuestGoal goal in goals)
         {
             goal.Init();
-            goal.GoalCompleted.AddListener(() => CheckGoals());
         }
     }
 
+    // Check this intermittently (fx everytime quest window is opened or an event is invoked)
     private void CheckGoals()
     {
-        Completed = goals.All(goal => goal.Completed);
+        completed = goals.All(goal => goal.Completed);
 
-        if (Completed)
+        if (completed)
         {
-            // Give reward here
-            questCompleted.Invoke(this);
-            questCompleted.RemoveAllListeners();
+            // Give rewards
+            // Destroy/remove quests
         }
     }
 

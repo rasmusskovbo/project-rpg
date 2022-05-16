@@ -6,7 +6,7 @@ public class ExplorationLoader : MonoBehaviour
 {
     void Start()
     {
-        PlayerMovement player = FindObjectOfType<PlayerMovement>();
+        PlayerController player = FindObjectOfType<PlayerController>();
         GameManager gameManager = FindObjectOfType<GameManager>();
 
         player.transform.position = gameManager.PlayerData.position;

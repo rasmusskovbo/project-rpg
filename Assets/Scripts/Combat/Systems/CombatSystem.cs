@@ -474,6 +474,7 @@ public class CombatSystem : MonoBehaviour
         combatLog.PlayerWon();
 
         FindObjectOfType<GameManager>().UpdatePlayerDataAfterCombat(new CombatResult(10, player.CurrentHp));
+        FindObjectOfType<GameEvents>().CombatVictoryInvoke();
         
         yield return new WaitForSeconds(3f);
 

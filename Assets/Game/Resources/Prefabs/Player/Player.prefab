@@ -54,6 +54,12 @@ MonoBehaviour:
   waterLayer:
     serializedVersion: 2
     m_Bits: 16
+  combatLayer:
+    serializedVersion: 2
+    m_Bits: 256
+  interactablesLayer:
+    serializedVersion: 2
+    m_Bits: 512
 --- !u!114 &8884341470268170510
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -142,7 +148,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 2114440755
-  m_SortingLayer: 5
+  m_SortingLayer: 7
   m_SortingOrder: 0
   m_Sprite: {fileID: 602823761410830140, guid: e3045349dca65f04ca0239b188c2b572, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
