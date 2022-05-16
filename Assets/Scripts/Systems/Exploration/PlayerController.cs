@@ -111,10 +111,20 @@ public class PlayerController : MonoBehaviour
     {
         uiController.ToggleCharacterStats();
     }
-    
+
     void OnOpenInventory()
     {
         uiController.ToggleInventory();
+    }
+
+    void OnOpenQuests()
+    {
+        uiController.ToggleQuests();
+    }
+
+    void OnCancel()
+    {
+        uiController.HideUI();
     }
 
     void OnInteract()

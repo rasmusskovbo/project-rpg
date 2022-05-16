@@ -22,7 +22,6 @@ public class UIInventorySlot : MonoBehaviour
 
     public void AssignSlotButtonCallback(System.Action onClickCallback)
     {
-        Debug.Log("Assigned callback");
         slotButton.onClick.AddListener(() => onClickCallback());
     }
 

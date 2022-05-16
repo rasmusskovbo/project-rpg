@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a8bc9145464043bebe80f292222f4e09, type: 3}
-  m_Name: 1 Combat Victory
+  m_Name: 1 Combat Victory 1
   m_EditorClassIdentifier: 
-  description: 1 Combat Victory
+  description: Combat Victory
   currentAmount: 0
   requiredAmount: 1
   completed: 0

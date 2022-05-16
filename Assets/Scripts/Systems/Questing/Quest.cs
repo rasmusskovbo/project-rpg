@@ -7,8 +7,8 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Questing/Quest")]
 public class Quest : ScriptableObject
 {
-    [Header("Info")] [SerializeField] private Info info;
-    [Header("Reward")] [SerializeField] private Reward reward;
+    [Header("Info")] [SerializeField] public Info info;
+    [Header("Reward")] [SerializeField] public Reward reward;
     [SerializeField] private List<QuestGoal> goals;
     [SerializeField] private bool completed;
 
@@ -55,6 +55,12 @@ public class Quest : ScriptableObject
             Experience,
             Item
         }
+    }
+
+    public List<QuestGoal> Goals
+    {
+        get => goals;
+        set => goals = value;
     }
     
 }

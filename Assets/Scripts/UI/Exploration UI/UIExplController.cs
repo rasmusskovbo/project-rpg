@@ -19,40 +19,41 @@ public class UIExplController : MonoBehaviour
     [Header("Inventory Screen")]
     [SerializeField] private GameObject inventory;
     [SerializeField] private Image inventoryStatsButtonImage;
+    
+    [Header("Quest Screen")]
+    [SerializeField] private GameObject quests;
+    [SerializeField] private Image questsButtonImage;
 
     private EventSystem eventSystem;
     private List<GameObject> uiObjects;
-    private List<Image> uiImages;
+    private List<Image> uiHUDIcons;
     
     private void Start()
     {
         inventory.GetComponent<UIInventoryController>().InitInventoryUI();
-        characterStats.SetActive(false);
-        inventory.SetActive(false);
         eventSystem = FindObjectOfType<EventSystem>();
         GameEvents.Instance.onShowDialog += () =>
         {
             HideUI();
         };
-
         uiObjects = new List<GameObject>
         {
-            characterStats, inventory
+            characterStats, inventory, quests
         };
-        uiImages = new List<Image>()
+        uiHUDIcons = new List<Image>()
         {
-            characterStatsButtonImage, inventoryStatsButtonImage
+            characterStatsButtonImage, inventoryStatsButtonImage, questsButtonImage
         };
     }
 
-    private void HideUI()
+    public void HideUI()
     {
-        if (uiObjects.Count != uiImages.Count) Debug.Log("UI -> Object List and Image List not the same size");
+        if (uiObjects.Count != uiHUDIcons.Count) Debug.Log("UI -> Object List and Image List not the same size");
 
         for (int i = 0; i < uiObjects.Count; i++)
         {
             uiObjects[i].SetActive(false);
-            uiImages[i].sprite = inactiveUIButton;
+            uiHUDIcons[i].sprite = inactiveUIButton;
         }
         
     }
@@ -70,6 +71,14 @@ public class UIExplController : MonoBehaviour
         inventory.SetActive(!inventory.activeSelf);
         inventoryStatsButtonImage.sprite =
             inventory.activeSelf ? activeUIButton : inactiveUIButton;
+        eventSystem.SetSelectedGameObject(null);
+    }
+    
+    public void ToggleQuests() 
+    {
+        quests.SetActive(!quests.activeSelf);
+        questsButtonImage.sprite =
+            quests.activeSelf ? activeUIButton : inactiveUIButton;
         eventSystem.SetSelectedGameObject(null);
     }
 }

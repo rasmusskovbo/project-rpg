@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 803a525b606a4131a3148a2eb4f95a0d, type: 3}
-  m_Name: Initiation
+  m_Name: Farm Work
   m_EditorClassIdentifier: 
   info:
-    Name: 1 Combat Victory
+    Name: Farm Work
     Icon: {fileID: -3156646959473330154, guid: ad4da72aba31b684490b8b8a3d8c6727, type: 3}
-    Description: Defeat enemies in combat once.
+    Description: Defeat enemies at one of the farm fields.
   reward:
     type: 1
     amount: 20

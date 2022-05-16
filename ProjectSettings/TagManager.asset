@@ -14,7 +14,7 @@ TagManager:
   - Player
   - Blocking Objects
   - Combat Area
-  - 
+  - Interactable
   - 
   - 
   - 
@@ -55,6 +55,9 @@ TagManager:
     locked: 0
   - name: Enemies
     uniqueID: 687554413
+    locked: 0
+  - name: NPCs
+    uniqueID: 4264519681
     locked: 0
   - name: Player
     uniqueID: 2114440755
