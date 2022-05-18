@@ -74,8 +74,6 @@ public class PlayerController : MonoBehaviour
         {
             playerFacingDirection = inputDirection.y > 0 ? PlayerFacing.North : PlayerFacing.South;    
         }
-        
-        Debug.Log(playerFacingDirection);
     }
 
     public void SetPlayerFacing(PlayerFacing direction)
@@ -105,7 +103,6 @@ public class PlayerController : MonoBehaviour
     void OnMove(InputValue input)
     {
         inputDirection = input.Get<Vector2>();
-        Debug.Log("Accepting input");
     }
 
     void OnOpenCharacterStats()

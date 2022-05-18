@@ -22,7 +22,7 @@ public class DialogueManager : Singleton<DialogueManager>
 
     public void ShowDialog(Dialogue dialogue)
     {
-        GameEvents.Instance.OnShowDialogInvoke();
+        FindObjectOfType<GameEvents>().OnShowDialogInvoke();
         
         dialogueBox.SetActive(true);
         currentDialogue = dialogue;
@@ -58,7 +58,7 @@ public class DialogueManager : Singleton<DialogueManager>
         {
             currentLine = 0;
             dialogueBox.SetActive(false);
-            GameEvents.Instance.OnCloseDialogInvoke();
+            FindObjectOfType<GameEvents>().OnCloseDialogInvoke();
         }
     }
 }

@@ -29,7 +29,7 @@ public class QuestGoal : ScriptableObject
     private void OnCombatVictory()
     {
         Debug.Log("Quest Goal func callback");
-        currentAmount++;
+        currentAmount = Mathf.Clamp(currentAmount++, currentAmount, requiredAmount);
     }
 
     public bool IsComplete()

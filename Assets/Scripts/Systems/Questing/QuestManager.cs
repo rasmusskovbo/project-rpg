@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class QuestManager : PersistentSingleton<QuestManager>
+public class QuestManager : Singleton<QuestManager>
 {
     [SerializeField] private List<Quest> activeQuests;
 
@@ -30,7 +30,7 @@ public class QuestManager : PersistentSingleton<QuestManager>
         // Handle other types of rewarsd here.
         if (quest.reward.type == RewardType.Experience)
         {
-            GameManager.Instance.PlayerData.exp += quest.reward.amount;
+            FindObjectOfType<GameManager>().PlayerData.exp += quest.reward.amount;
         }
         
         RemoveQuest(quest);

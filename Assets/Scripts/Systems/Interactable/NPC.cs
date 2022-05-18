@@ -6,24 +6,38 @@ public class NPC : MonoBehaviour, Interactable
 {
     [SerializeField] private Dialogue dialogue;
     [SerializeField] private Quest quest;
-    [SerializeField] private bool questHasBeenCompleted;
+    [SerializeField] private bool questHasBeenTurnedIn;
+    private QuestManager questManager;
     
     public void Interact()
     {
-        // Add this to milanote board
-        // Change references to singletons to use static method instead of "expensive" findobject of type
-        // Esp places where we do not cache the ref.
-        if (!questHasBeenCompleted)
+        Debug.Log("Interacting with NPC");
+        
+        if (questHasBeenTurnedIn)
         {
+            // Play post-turning in quest dialogue here.
+            Debug.Log("This quest has already been turned in");
+            return;
+        }
+
+        if (questManager == null) questManager = FindObjectOfType<QuestManager>();
+        bool isQuestActive = questManager.ActiveQuests.Contains(quest);
+        bool isQuestCompleted = quest.IsQuestComplete();
+        
+        if (!isQuestActive)
+        {
+            // Quest intro dialogue here
             DialogueManager.Instance.ShowDialog(dialogue);
             QuestManager.Instance.AddQuest(quest);
         }
-        else
+        else if (isQuestActive && isQuestCompleted)
         {
-            // Play outro dialogue or sth here
-            questHasBeenCompleted = true;
-            QuestManager.Instance.CompleteQuest(quest);
+            // Turn in the quest and get rewards:
+            // Quest completion dialogue here
+            Debug.Log("Completing quest");
+            questManager.CompleteQuest(quest);
+            questHasBeenTurnedIn = true;
         }
-
     }
 }
+
