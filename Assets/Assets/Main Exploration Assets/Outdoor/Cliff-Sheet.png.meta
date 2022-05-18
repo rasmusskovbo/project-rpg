@@ -534,6 +534,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -2482,6 +2483,95 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      Cliff-Sheet_71: -4248557660908078569
+      Cliff-Sheet_56: -2302170428566864435
+      Cliff-Sheet_61: -6775742399530372814
+      Cliff-Sheet_51: -527185327948324698
+      Cliff-Sheet_9: 1102529435681246972
+      Cliff-Sheet_64: -428922432967662427
+      Cliff-Sheet_60: -8704919861182903656
+      Cliff-Sheet_28: 7504665575053943965
+      Cliff-Sheet_86: -4737674175482382087
+      Cliff-Sheet_30: -1039071074014813061
+      Cliff-Sheet_62: 3084300139240624663
+      Cliff-Sheet_49: -4685251174699832070
+      Cliff-Sheet_50: -7554858708909599833
+      Cliff-Sheet_20: 9183495680419870457
+      Cliff-Sheet_47: -4929131981098066973
+      Cliff-Sheet_76: -2203669740365249788
+      Cliff-Sheet_14: -5709532976165975700
+      Cliff-Sheet_69: -8228678641275882017
+      Cliff-Sheet_29: 1329829266158930050
+      Cliff-Sheet_44: 2696411746879753327
+      Cliff-Sheet_31: -8279544358867597556
+      Cliff-Sheet_58: -7094013419516469237
+      Cliff-Sheet_6: 8875075136970169471
+      Cliff-Sheet_55: -8088918520208030942
+      Cliff-Sheet_33: 6922276733440382045
+      Cliff-Sheet_41: 6282796055960307597
+      Cliff-Sheet_73: 5521547885128854279
+      Cliff-Sheet_74: -5024811483556077516
+      Cliff-Sheet_17: 8835611554229619457
+      Cliff-Sheet_7: 3866302787978592656
+      Cliff-Sheet_26: 8388827718097762515
+      Cliff-Sheet_79: -4991797681573941296
+      Cliff-Sheet_3: 1466939749795872008
+      Cliff-Sheet_15: -3159228465013317675
+      Cliff-Sheet_27: -338910748851293043
+      Cliff-Sheet_43: -5039966673549799116
+      Cliff-Sheet_19: 6254880707376582883
+      Cliff-Sheet_22: 2853584342817758363
+      Cliff-Sheet_72: 5015628860764566201
+      Cliff-Sheet_8: 280169464993708446
+      Cliff-Sheet_13: 9141365081092329260
+      Cliff-Sheet_23: -5564123671597709559
+      Cliff-Sheet_53: 8268717364197818821
+      Cliff-Sheet_54: 581465738721386273
+      Cliff-Sheet_46: 3970291042939496048
+      Cliff-Sheet_5: -3279170291715465162
+      Cliff-Sheet_24: 3809222932190924702
+      Cliff-Sheet_2: -5685676863058887881
+      Cliff-Sheet_4: -5085215945187339177
+      Cliff-Sheet_63: -2187480526767103395
+      Cliff-Sheet_18: -7070666618926741620
+      Cliff-Sheet_38: 3383848282360700193
+      Cliff-Sheet_82: 4490388605968514791
+      Cliff-Sheet_67: -370138773285062317
+      Cliff-Sheet_36: 6101684268495747772
+      Cliff-Sheet_65: 1765153590459442803
+      Cliff-Sheet_75: 7219889133309321690
+      Cliff-Sheet_45: 8220770273932906025
+      Cliff-Sheet_77: 1620561328386102392
+      Cliff-Sheet_78: -7044303346262825011
+      Cliff-Sheet_42: 3359636396252690903
+      Cliff-Sheet_0: -2190096050778077159
+      Cliff-Sheet_21: 353540794684850766
+      Cliff-Sheet_87: -2892588729296810386
+      Cliff-Sheet_10: 8202286653241810642
+      Cliff-Sheet_40: 7310538834054006008
+      Cliff-Sheet_83: 521129308152922043
+      Cliff-Sheet_80: -1177850425659807858
+      Cliff-Sheet_1: -7674734583789424443
+      Cliff-Sheet_34: 3814952265725591524
+      Cliff-Sheet_12: 5958698270383556303
+      Cliff-Sheet_68: 7467478475568261603
+      Cliff-Sheet_11: 4722629809496894487
+      Cliff-Sheet_37: 4408505369870520046
+      Cliff-Sheet_35: 7002594505809096912
+      Cliff-Sheet_59: 1200138999714647745
+      Cliff-Sheet_25: 785022123898927416
+      Cliff-Sheet_70: 5018479586631511004
+      Cliff-Sheet_57: 7600127849015777456
+      Cliff-Sheet_84: -2243536634640150086
+      Cliff-Sheet_39: -5339800712406063775
+      Cliff-Sheet_85: 9079097027577252720
+      Cliff-Sheet_16: 5635946240186002247
+      Cliff-Sheet_48: 8340412423473605232
+      Cliff-Sheet_52: 7671997509046570603
+      Cliff-Sheet_32: 6438445018221997203
+      Cliff-Sheet_81: 5838054163318164668
+      Cliff-Sheet_66: -2870669043501871172
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

@@ -42,6 +42,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -268,6 +269,13 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      Blue_Rupee-Sheet2_1: -6755343074833887033
+      Blue_Rupee-Sheet2_0: 8242423137997255486
+      Blue_Rupee-Sheet2_3: -4639827996535465586
+      Blue_Rupee-Sheet2_4: -5873158398769678662
+      Blue_Rupee-Sheet2_5: -3478537649370224403
+      Blue_Rupee-Sheet2_2: -7389656442160884800
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

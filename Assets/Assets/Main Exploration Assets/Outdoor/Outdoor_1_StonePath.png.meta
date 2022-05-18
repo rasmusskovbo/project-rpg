@@ -246,6 +246,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -1900,6 +1901,81 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      Outdoor_1_StonePath_24: 5024270171434932747
+      Outdoor_1_StonePath_19: -4024945607689254587
+      Outdoor_1_StonePath_21: 1234121160237415504
+      Outdoor_1_StonePath_49: 1505167487725306757
+      Outdoor_1_StonePath_40: -1488842620554447145
+      Outdoor_1_StonePath_2: -6366165598907561373
+      Outdoor_1_StonePath_27: 6717153292557902704
+      Outdoor_1_StonePath_22: -7968072425411559056
+      Outdoor_1_StonePath_33: 8710570237722439737
+      Outdoor_1_StonePath_0: -4763200832327191876
+      Outdoor_1_StonePath_35: -6430920049080438539
+      Outdoor_1_StonePath_70: 4109131364049635211
+      Outdoor_1_StonePath_66: -406825135736972330
+      Outdoor_1_StonePath_53: 4959182319601389130
+      Outdoor_1_StonePath_7: -641776728544999195
+      Outdoor_1_StonePath_52: -6736935743835781606
+      Outdoor_1_StonePath_59: -140105298305719957
+      Outdoor_1_StonePath_69: 1613334061361926927
+      Outdoor_1_StonePath_28: 2791502739985693447
+      Outdoor_1_StonePath_10: 2188580713125059816
+      Outdoor_1_StonePath_3: 641178219973771167
+      Outdoor_1_StonePath_4: -1347699902592575448
+      Outdoor_1_StonePath_34: -8721989980224849459
+      Outdoor_1_StonePath_60: -3078225940281884694
+      Outdoor_1_StonePath_46: -772562977299653021
+      Outdoor_1_StonePath_25: -6367194231161287960
+      Outdoor_1_StonePath_8: -6066664394748070450
+      Outdoor_1_StonePath_36: 8452317244536197843
+      Outdoor_1_StonePath_11: 3682666619007639834
+      Outdoor_1_StonePath_18: 5710044569073139130
+      Outdoor_1_StonePath_1: -1889929435566919520
+      Outdoor_1_StonePath_61: -1677735523153819873
+      Outdoor_1_StonePath_45: 4975321748335063164
+      Outdoor_1_StonePath_32: 6078787089531213271
+      Outdoor_1_StonePath_48: -6482708604145627767
+      Outdoor_1_StonePath_5: -4152065025529841302
+      Outdoor_1_StonePath_13: -2599122264949708304
+      Outdoor_1_StonePath_57: -3305569004392518283
+      Outdoor_1_StonePath_17: -7382057176267036953
+      Outdoor_1_StonePath_58: -1072136316389881536
+      Outdoor_1_StonePath_54: -8351806438329170965
+      Outdoor_1_StonePath_29: -5285253035411829732
+      Outdoor_1_StonePath_15: 5726328988872881282
+      Outdoor_1_StonePath_23: -7523040875170739664
+      Outdoor_1_StonePath_55: 6490653100913982088
+      Outdoor_1_StonePath_64: -1171208863873675590
+      Outdoor_1_StonePath_31: -4438607930139884562
+      Outdoor_1_StonePath_44: -1861390950174813739
+      Outdoor_1_StonePath_41: 1517414876221958318
+      Outdoor_1_StonePath_65: -5534810719508668022
+      Outdoor_1_StonePath_37: 9177605997134831041
+      Outdoor_1_StonePath_47: -2256766641543625232
+      Outdoor_1_StonePath_63: 6515257346788544296
+      Outdoor_1_StonePath_71: -8919685905946831278
+      Outdoor_1_StonePath_20: 5559877818998885268
+      Outdoor_1_StonePath_43: 4024094313881261086
+      Outdoor_1_StonePath_73: -4786512126504283439
+      Outdoor_1_StonePath_38: -3834442674141344847
+      Outdoor_1_StonePath_9: 4078217725639137870
+      Outdoor_1_StonePath_26: -7082124437860078371
+      Outdoor_1_StonePath_30: 8619048513195738739
+      Outdoor_1_StonePath_6: -4882836516627655664
+      Outdoor_1_StonePath_42: 8882012570055546216
+      Outdoor_1_StonePath_50: -8980612029584628971
+      Outdoor_1_StonePath_67: -9091868756289618596
+      Outdoor_1_StonePath_14: -8573688535037004050
+      Outdoor_1_StonePath_16: -1842894514234530773
+      Outdoor_1_StonePath_12: 4261152944196437141
+      Outdoor_1_StonePath_51: -6011706228743184246
+      Outdoor_1_StonePath_39: -1760565591401474424
+      Outdoor_1_StonePath_68: -6865689041853386143
+      Outdoor_1_StonePath_56: 4607656269472078083
+      Outdoor_1_StonePath_62: -7604462732587958059
+      Outdoor_1_StonePath_72: 1990983492420004610
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

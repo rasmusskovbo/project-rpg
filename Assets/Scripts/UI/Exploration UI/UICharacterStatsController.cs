@@ -38,6 +38,8 @@ public class UICharacterStatsController : MonoBehaviour
     [SerializeField] private GameObject agilityUp;
     [SerializeField] private GameObject intellectUp;
 
+    [SerializeField] private UnitBase testUnit;
+
     private CombatUnit unit;
     
     void Start()
@@ -74,7 +76,7 @@ public class UICharacterStatsController : MonoBehaviour
             unit = this.AddComponent<CombatUnit>();          // todo Get this from gamemanager.
         }
         
-        unit.InitiateUnit(unitBase, playerData.level);
+        unit.InitiateUnit(testUnit, playerData.level);
         
         // Header
         unitName.text = unit.UnitName;
