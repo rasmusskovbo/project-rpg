@@ -32,7 +32,7 @@ public class UIExplController : MonoBehaviour
     {
         inventory.GetComponent<UIInventoryController>().InitInventoryUI();
         eventSystem = FindObjectOfType<EventSystem>();
-        GameEvents.Instance.onShowDialog += () =>
+        FindObjectOfType<GameEvents>().onShowDialog += () =>
         {
             HideUI();
         };

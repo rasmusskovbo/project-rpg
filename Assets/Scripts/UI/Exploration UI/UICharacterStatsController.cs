@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -37,13 +38,12 @@ public class UICharacterStatsController : MonoBehaviour
     [SerializeField] private GameObject strengthUp;
     [SerializeField] private GameObject agilityUp;
     [SerializeField] private GameObject intellectUp;
-
-    [SerializeField] private UnitBase testUnit;
-
-    private CombatUnit unit;
     
-    void Start()
+    [SerializeField] private CombatUnit unit;
+    
+    IEnumerator Start()
     {
+        yield return new WaitForEndOfFrame();
         gameManager = FindObjectOfType<GameManager>();
         UpdateStats();
         ToggleLevelUpButtons(false);
@@ -67,16 +67,18 @@ public class UICharacterStatsController : MonoBehaviour
     public void UpdateStats()
     {
         if (!this.isActiveAndEnabled) return;
+        if (gameManager == null) gameManager = FindObjectOfType<GameManager>();
         
-        UnitBase unitBase = gameManager.PlayerData.unitBase;
+        
         PlayerData playerData = gameManager.PlayerData;
+        UnitBase unitBase = playerData.unitBase;
         
         if (unit == null)
         {
             unit = this.AddComponent<CombatUnit>();          // todo Get this from gamemanager.
         }
         
-        unit.InitiateUnit(testUnit, playerData.level);
+        unit.InitiateUnit(unitBase, playerData.level);
         
         // Header
         unitName.text = unit.UnitName;

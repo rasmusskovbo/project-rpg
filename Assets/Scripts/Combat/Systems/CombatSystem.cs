@@ -478,7 +478,7 @@ public class CombatSystem : MonoBehaviour
         
         yield return new WaitForSeconds(3f);
 
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(1);
     }
     
     // Properties

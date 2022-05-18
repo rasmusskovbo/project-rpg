@@ -5,7 +5,7 @@ public class GameManager : PersistentSingleton<GameManager>, IDataPersistence
     [SerializeField] private PlayerData playerData;              // Tracks global player related data such as exp, quests, items.
     [SerializeField] private SettingsData settingsData;          // Tracks setting such as volume, difficulty etc
     [SerializeField] private SkillData skillData;                // Tracks all active player skills and cooldowns
-    //private TalentData talentData;        // Tracks and handles player talents.
+    //private TalentData talentData;                            // Tracks and handles player talents.
 
     // References
     private PlayerController playerControllerUnit;

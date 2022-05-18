@@ -39,16 +39,16 @@ public class DataPersistenceManager : PersistentSingleton<DataPersistenceManager
                 new SerializableDictionary<string, bool>(),
                 playerUnitBase
             ),
-            new SettingsData(),
-            new SkillData(),
-            new LevelUpData(),
-            new InventoryData(null),
-            new EquipmentData(null, null, null, null, null, null, null),
-            new CombatEncounterData()
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
         );
         
         // Test save
-        gameData.playerData.chestsCollected.Add("chest1", true);
+        //gameData.playerData.chestsCollected.Add("chest1", true);
         
         gameManager.LoadData(gameData);
     }

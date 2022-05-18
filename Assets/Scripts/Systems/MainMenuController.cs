@@ -1,11 +1,11 @@
-using System;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class SceneController : PersistentSingleton<SceneController>
+public class MainMenuController : MonoBehaviour
 {
     public void NewGame()
     {
         // Something with data persistence here.
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(1);
     }
 }

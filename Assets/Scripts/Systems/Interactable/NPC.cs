@@ -27,8 +27,8 @@ public class NPC : MonoBehaviour, Interactable
         if (!isQuestActive)
         {
             // Quest intro dialogue here
-            DialogueManager.Instance.ShowDialog(dialogue);
-            QuestManager.Instance.AddQuest(quest);
+            FindObjectOfType<DialogueManager>().ShowDialog(dialogue);
+            FindObjectOfType<QuestManager>().AddQuest(quest);
         }
         else if (isQuestActive && isQuestCompleted)
         {

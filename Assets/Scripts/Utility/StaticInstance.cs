@@ -28,11 +28,13 @@ public abstract class PersistentSingleton<T> : Singleton<T> where T : MonoBehavi
         if (Instance != null) Destroy(gameObject);
         DontDestroyOnLoad(gameObject);
         
+        /*
         T[] allObjectsOfType = FindObjectsOfType<T>();
         if (allObjectsOfType.Length > 1)
         {
             Destroy(allObjectsOfType[1].gameObject);
         }
+        */
         
         base.Awake();
     }

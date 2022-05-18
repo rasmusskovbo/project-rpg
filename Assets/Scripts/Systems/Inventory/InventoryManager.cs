@@ -20,7 +20,7 @@ public class InventoryManager : PersistentSingleton<InventoryManager>, IDataPers
 
     public void InitInventory()
     {
-        SpawnItems();
+        //SpawnItems(); only for debug purposes.
         inventoryUI.InitInventoryUI();
     }
 

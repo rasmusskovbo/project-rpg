@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -15,7 +16,7 @@ public class PlayerController : MonoBehaviour
     
     private Animator animator;
     private UIExplController uiController;
-    private CombatEncounterManager _combatEncounterManager;
+    private CombatEncounterManager combatEncounterManager;
     
     private Vector2 inputDirection;
     private PlayerFacing playerFacingDirection;
@@ -29,9 +30,16 @@ public class PlayerController : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         uiController = FindObjectOfType<UIExplController>();
-        _combatEncounterManager = FindObjectOfType<CombatEncounterManager>();
+        combatEncounterManager = FindObjectOfType<CombatEncounterManager>();
     }
-    
+
+    private IEnumerator Start()
+    {
+        yield return new WaitForEndOfFrame();
+        Debug.Log("Setting player position. DONKEY");
+        transform.position = FindObjectOfType<GameManager>().PlayerData.position;
+    }
+
     void Update()
     {
         if (GameManager.Instance.ExplorationState != ExplorationState.Explore) return;
@@ -174,11 +182,11 @@ public class PlayerController : MonoBehaviour
     {
         if (Physics2D.OverlapCircle(transform.position, 0.2f, combatLayer) != null)
         {
-            if ((Random.Range(1, 101) <= _combatEncounterManager.AreaEncounterRate))
+            if ((Random.Range(1, 101) <= combatEncounterManager.AreaEncounterRate))
             {
                 Debug.Log("Encountered combat!");
                 FindObjectOfType<GameManager>().SavePositionBeforeCombat();
-                SceneManager.LoadScene(1);
+                SceneManager.LoadScene(2);
             }
         }
     }
