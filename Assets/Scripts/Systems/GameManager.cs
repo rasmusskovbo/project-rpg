@@ -31,6 +31,11 @@ public class GameManager : PersistentSingleton<GameManager>, IDataPersistence
             if (explorationState == ExplorationState.Dialog) explorationState = ExplorationState.Explore;
         };
     }
+
+    public void CheckForLevelUpAfterQuest()
+    {
+        if (levelUpManager.PlayerShouldLevelUp(playerData.exp, playerData.nextLvLExp)) levelUpManager.LevelUp();
+    }
     
     public void UpdatePlayerDataAfterCombat(CombatResult result)
     {

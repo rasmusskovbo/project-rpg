@@ -1,7 +1,4 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -32,9 +29,9 @@ public class UIExplController : MonoBehaviour
     {
         inventory.GetComponent<UIInventoryController>().InitInventoryUI();
         eventSystem = FindObjectOfType<EventSystem>();
-        FindObjectOfType<GameEvents>().onShowDialog += () =>
+        GameEvents.Instance.onShowDialog += () =>
         {
-            HideUI();
+            FindObjectOfType<UIExplController>().HideUI();
         };
         uiObjects = new List<GameObject>
         {

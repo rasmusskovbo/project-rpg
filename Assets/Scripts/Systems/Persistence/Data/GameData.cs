@@ -11,8 +11,9 @@ public class GameData
     [SerializeField] private InventoryData inventoryData;
     [SerializeField] private EquipmentData equipmentData;
     [SerializeField] private CombatEncounterData combatEncounterData;
+    [SerializeField] private NPCData npcData;
 
-    public GameData(PlayerData playerData, SettingsData settingsData, SkillData skillData, LevelUpData levelUpData, InventoryData inventoryData, EquipmentData equipmentData, CombatEncounterData combatEncounterData)
+    public GameData(PlayerData playerData, SettingsData settingsData, SkillData skillData, LevelUpData levelUpData, InventoryData inventoryData, EquipmentData equipmentData, CombatEncounterData combatEncounterData, NPCData npcData)
     {
         this.playerData = playerData;
         this.settingsData = settingsData;
@@ -21,6 +22,7 @@ public class GameData
         this.inventoryData = inventoryData;
         this.equipmentData = equipmentData;
         this.combatEncounterData = combatEncounterData;
+        this.npcData = npcData;
     }
 
     public PlayerData PlayerData
@@ -63,5 +65,11 @@ public class GameData
     {
         get => combatEncounterData;
         set => combatEncounterData = value;
+    }
+
+    public NPCData NpcData
+    {
+        get => npcData;
+        set => npcData = value;
     }
 }

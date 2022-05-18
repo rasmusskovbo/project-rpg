@@ -30,7 +30,10 @@ public class QuestManager : Singleton<QuestManager>
         // Handle other types of rewarsd here.
         if (quest.reward.type == RewardType.Experience)
         {
-            FindObjectOfType<GameManager>().PlayerData.exp += quest.reward.amount;
+            GameManager gameManager = FindObjectOfType<GameManager>();
+            gameManager.PlayerData.exp += quest.reward.amount;
+            gameManager.CheckForLevelUpAfterQuest();
+
         }
         
         RemoveQuest(quest);

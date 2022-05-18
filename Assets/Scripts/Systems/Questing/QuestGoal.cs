@@ -3,7 +3,7 @@ using UnityEngine;
 
 [Serializable]
 [CreateAssetMenu(menuName = "Questing/Quest Goal")]
-public class QuestGoal : ScriptableObject
+public class QuestGoal : ScriptableObject, IDataPersistence
 {
     [SerializeField] protected string description;
     [SerializeField] private int currentAmount;
@@ -54,5 +54,14 @@ public class QuestGoal : ScriptableObject
         get => requiredAmount;
         set => requiredAmount = value;
     }
-    
+
+    public void LoadData(GameData data)
+    {
+        throw new NotImplementedException();
+    }
+
+    public void SaveData(GameData data)
+    {
+        throw new NotImplementedException();
+    }
 }

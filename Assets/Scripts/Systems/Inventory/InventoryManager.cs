@@ -5,6 +5,7 @@ using UnityEngine;
 public class InventoryManager : PersistentSingleton<InventoryManager>, IDataPersistence
 {
     [SerializeField] private List<InventoryItemWrapper> items = new List<InventoryItemWrapper>();
+    [SerializeField] private bool isDebug;
     private EquipmentManager equipmentManager;
     private UIInventoryController inventoryUI;
 
@@ -20,7 +21,7 @@ public class InventoryManager : PersistentSingleton<InventoryManager>, IDataPers
 
     public void InitInventory()
     {
-        //SpawnItems(); only for debug purposes.
+        if (isDebug) SpawnItems();
         inventoryUI.InitInventoryUI();
     }
 

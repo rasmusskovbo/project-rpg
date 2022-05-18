@@ -39,12 +39,13 @@ public class DataPersistenceManager : PersistentSingleton<DataPersistenceManager
                 new SerializableDictionary<string, bool>(),
                 playerUnitBase
             ),
-            null,
-            null,
-            null,
-            null,
-            null,
-            null
+            new SettingsData(),
+            new SkillData(),
+            new LevelUpData(),
+            new InventoryData(new SerializableDictionary<InventoryItem, int>()),
+            new EquipmentData(null, null, null,null,null,null,null),
+            new CombatEncounterData(),
+            new NPCData(new SerializableDictionary<string, bool>())
         );
         
         // Test save
@@ -72,7 +73,7 @@ public class DataPersistenceManager : PersistentSingleton<DataPersistenceManager
 
     public void SaveGame()
     {
-        persistenceObjects.ForEach(obj => obj.SaveData(gameData));
+        FindAllDataPersistenceObjects().ForEach(obj => obj.SaveData(gameData));
         fileHandler.Save(gameData);
     }
 

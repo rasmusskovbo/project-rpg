@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour
     private Animator animator;
     private UIExplController uiController;
     private CombatEncounterManager combatEncounterManager;
+    private DialogueManager dialogueManager;
     
     private Vector2 inputDirection;
     private PlayerFacing playerFacingDirection;
@@ -31,6 +32,7 @@ public class PlayerController : MonoBehaviour
         animator = GetComponent<Animator>();
         uiController = FindObjectOfType<UIExplController>();
         combatEncounterManager = FindObjectOfType<CombatEncounterManager>();
+        dialogueManager = FindObjectOfType<DialogueManager>();
     }
 
     private IEnumerator Start()
@@ -121,6 +123,7 @@ public class PlayerController : MonoBehaviour
     void OnOpenInventory()
     {
         uiController.ToggleInventory();
+        FindObjectOfType<DataPersistenceManager>().SaveGame();
     }
 
     void OnOpenQuests()
@@ -140,7 +143,7 @@ public class PlayerController : MonoBehaviour
             Interact();
         } else if (GameManager.Instance.ExplorationState == ExplorationState.Dialog)
         {
-            DialogueManager.Instance.NextLine();
+            dialogueManager.NextLine();
         }
         
     }
