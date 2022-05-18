@@ -11,5 +11,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Game/Scenes/Combat.unity
     guid: fb88fb8d9e659bd489914fab26149af3
+  - enabled: 1
+    path: Assets/Game/Scenes/Main Menu.unity
+    guid: 32a0b72c052be4af491880bf9b86838b
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: b149fdedf7edf954f8b7420b64211b4d, type: 2}

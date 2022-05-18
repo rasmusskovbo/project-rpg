@@ -2,11 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fa8ce64e-188e-4703-b5a4-6b2e025cebde" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Assets/Assets/UI/external-content.duckduckgo.com.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Assets/UI/external-content.duckduckgo.com.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Game/Scenes/Main Menu.unity" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Game/Scenes/Main Menu.unity.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Systems/SceneController.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Systems/SceneController.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/UI/Main Menu UI.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/UI/Main Menu UI/UIMainMenuController.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/UI/Main Menu UI/UIMainMenuController.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.project-rpg/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.project-rpg/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Systems/Dialogue/DialogueManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Systems/Dialogue/DialogueManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Systems/Exploration/PlayerController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Systems/Exploration/PlayerController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Systems/Interactable/NPC.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Systems/Interactable/NPC.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Systems/Questing/QuestManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Systems/Questing/QuestManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Assets/Main Exploration Assets/UI/Button.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Assets/Main Exploration Assets/UI/Button.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scenes/Exploration.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scenes/Exploration.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -160,7 +168,7 @@
       <workItem from="1652432636748" duration="4181000" />
       <workItem from="1652525615650" duration="4065000" />
       <workItem from="1652696652587" duration="12213000" />
-      <workItem from="1652774423575" duration="3628000" />
+      <workItem from="1652774423575" duration="5022000" />
     </task>
     <servers />
   </component>
