@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour
     private Animator animator;
     private UIExplController uiController;
     private CombatEncounterManager combatEncounterManager;
+    private GameManager gameManager;
     private DialogueManager dialogueManager;
     
     private Vector2 inputDirection;
@@ -25,20 +26,18 @@ public class PlayerController : MonoBehaviour
     private static readonly int MoveX = Animator.StringToHash("moveX");
     private static readonly int MoveY = Animator.StringToHash("moveY");
     private static readonly int IsMoving = Animator.StringToHash("isMoving");
-
-    private void Awake()
+    
+    private IEnumerator Start()
     {
         animator = GetComponent<Animator>();
         uiController = FindObjectOfType<UIExplController>();
         combatEncounterManager = FindObjectOfType<CombatEncounterManager>();
         dialogueManager = FindObjectOfType<DialogueManager>();
-    }
-
-    private IEnumerator Start()
-    {
+        gameManager = FindObjectOfType<GameManager>();
+        
         yield return new WaitForEndOfFrame();
-        Debug.Log("Setting player position. DONKEY");
-        transform.position = FindObjectOfType<GameManager>().PlayerData.position;
+        
+        transform.position = gameManager.PlayerData.position;
     }
 
     void Update()
@@ -137,14 +136,15 @@ public class PlayerController : MonoBehaviour
 
     void OnInteract()
     {
-        if (GameManager.Instance.ExplorationState == ExplorationState.Explore)
+        gameManager = FindObjectOfType<GameManager>();
+        
+        if (gameManager.ExplorationState == ExplorationState.Explore)
         {
             Interact();
-        } else if (GameManager.Instance.ExplorationState == ExplorationState.Dialog)
+        } else if (gameManager.ExplorationState == ExplorationState.Dialog)
         {
-            dialogueManager.NextLine();
+            FindObjectOfType<DialogueManager>().NextLine();
         }
-        
     }
 
     private void Interact()

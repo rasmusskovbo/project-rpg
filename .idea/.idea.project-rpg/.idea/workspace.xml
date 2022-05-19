@@ -2,29 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fa8ce64e-188e-4703-b5a4-6b2e025cebde" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Systems/Persistence/Data/QuestData.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Systems/Persistence/Data/QuestData.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Systems/Persistence/SaveData.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Systems/Persistence/SaveData.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Systems/Persistence/IFileHandler.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Systems/Persistence/IFileHandler.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.project-rpg/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.project-rpg/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Game/Scenes/Exploration.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scenes/Exploration.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Combat/CombatEncounterManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Combat/CombatEncounterManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Systems/Interactable/NPC.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Systems/Interactable/NPC.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Systems/Inventory/InventoryManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Systems/Inventory/InventoryManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Systems/Persistence/Data/CombatEncounterData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Systems/Persistence/Data/CombatEncounterData.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Systems/Persistence/Data/EquipmentData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Systems/Persistence/Data/EquipmentData.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Systems/Persistence/Data/GameData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Systems/Persistence/Data/GameData.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Systems/Persistence/Data/InventoryData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Systems/Persistence/Data/InventoryData.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Systems/Persistence/Data/LevelUpData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Systems/Persistence/Data/LevelUpData.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Systems/Persistence/Data/NPCData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Systems/Persistence/Data/NPCData.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Systems/Persistence/Data/PlayerData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Systems/Persistence/Data/PlayerData.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Systems/Persistence/Data/SettingsData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Systems/Persistence/Data/SettingsData.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Systems/Persistence/Data/SkillData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Systems/Persistence/Data/SkillData.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Scenes/Main Menu.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scenes/Main Menu.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Systems/Exploration/PlayerController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Systems/Exploration/PlayerController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Systems/MainMenuController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/Main Menu UI/MainMenuController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Systems/MainMenuController.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/Main Menu UI/MainMenuController.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Systems/Persistence/DataPersistenceManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Systems/Persistence/DataPersistenceManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Systems/Questing/Quest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Systems/Questing/Quest.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Systems/Questing/QuestGoal.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Systems/Questing/QuestGoal.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Systems/Questing/QuestManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Systems/Questing/QuestManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Systems/Persistence/FileHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Systems/Persistence/FileHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/Main Menu UI/UIMainMenuController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/Main Menu UI/UIMainMenuController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Utility/StaticInstance.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Utility/StaticInstance.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ProjectSettings/RiderScriptEditorPersistedState.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/RiderScriptEditorPersistedState.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UserSettings/Layouts/default-2021.dwlt" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/Layouts/default-2021.dwlt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -128,10 +119,10 @@
       </option>
       <method v="2" />
     </configuration>
-    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="9460">
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="17468">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
-      <option name="pid" value="9460" />
+      <option name="pid" value="17468" />
       <option name="projectPathOnTarget" />
       <option name="selectedOptions">
         <list />
@@ -180,7 +171,7 @@
       <workItem from="1652525615650" duration="4065000" />
       <workItem from="1652696652587" duration="12213000" />
       <workItem from="1652774423575" duration="5022000" />
-      <workItem from="1652951299419" duration="5993000" />
+      <workItem from="1652951299419" duration="10982000" />
     </task>
     <servers />
   </component>
@@ -247,40 +238,27 @@
           <option name="timeStamp" value="7" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Scripts/Systems/Persistence/DataPersistenceManager.cs</url>
-          <line>79</line>
-          <properties documentPath="C:\Users\rasmu\Unity Game Development\project-rpg\Assets\Scripts\Systems\Persistence\DataPersistenceManager.cs" initialLine="80" containingFunctionPresentation="method 'SaveGame'">
-            <startOffsets>
-              <option value="2217" />
-            </startOffsets>
-            <endOffsets>
-              <option value="2288" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="10" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/Scripts/Systems/Questing/QuestManager.cs</url>
-          <line>49</line>
+          <line>47</line>
           <properties documentPath="C:\Users\rasmu\Unity Game Development\project-rpg\Assets\Scripts\Systems\Questing\QuestManager.cs" initialLine="56" containingFunctionPresentation="lambda expression inside method 'LoadData'">
             <startOffsets>
-              <option value="1428" />
+              <option value="1305" />
             </startOffsets>
             <endOffsets>
-              <option value="1488" />
+              <option value="1365" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="11" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/Scripts/Systems/Questing/QuestManager.cs</url>
-          <line>52</line>
+          <line>50</line>
           <properties documentPath="C:\Users\rasmu\Unity Game Development\project-rpg\Assets\Scripts\Systems\Questing\QuestManager.cs" initialLine="59" containingFunctionPresentation="lambda expression inside method 'LoadData'">
             <startOffsets>
-              <option value="1530" />
+              <option value="1407" />
             </startOffsets>
             <endOffsets>
-              <option value="1554" />
+              <option value="1431" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="12" />

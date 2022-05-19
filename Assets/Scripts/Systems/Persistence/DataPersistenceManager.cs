@@ -1,7 +1,9 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
-
+/*
+ * Change filehandler to interface (facade)
+ */
 public class DataPersistenceManager : PersistentSingleton<DataPersistenceManager>
 {
     [Header("New Game Settings")]
@@ -11,11 +13,9 @@ public class DataPersistenceManager : PersistentSingleton<DataPersistenceManager
     [SerializeField] private string fileName;
 
     private List<IDataPersistence> persistenceObjects;
-    
     private GameData gameData;
     private GameManager gameManager;
     private FileHandler fileHandler;
-    
 
     private void Start()
     {
@@ -61,8 +61,9 @@ public class DataPersistenceManager : PersistentSingleton<DataPersistenceManager
     public void LoadGame()
     {
         gameData = fileHandler.Load();
-        
-        if (this.gameData == null)
+        bool isNewGame = FindObjectOfType<MainMenuController>().IsNewGame();
+
+        if (this.gameData == null || isNewGame)
         {
             Debug.Log("No data found. Initializing to default");
             NewGame();

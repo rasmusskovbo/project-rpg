@@ -1,3 +1,4 @@
+using System.Security.Cryptography;
 using UnityEngine;
 
 public abstract class StaticInstance<T> : MonoBehaviour where T : MonoBehaviour
@@ -31,7 +32,14 @@ public abstract class PersistentSingleton<T> : Singleton<T> where T : MonoBehavi
         T[] allObjectsOfType = FindObjectsOfType<T>();
         if (allObjectsOfType.Length > 1)
         {
-            Destroy(allObjectsOfType[1].gameObject);
+            if (!allObjectsOfType[1].enabled)
+            {
+                Destroy(allObjectsOfType[1].gameObject);
+            }
+            else if (!allObjectsOfType[0].enabled)
+            {
+                Destroy(allObjectsOfType[0].gameObject);
+            }
         }
 
         base.Awake();
