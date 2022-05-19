@@ -37,7 +37,7 @@ public class PlayerController : MonoBehaviour
         
         yield return new WaitForEndOfFrame();
         
-        transform.position = gameManager.PlayerData.position;
+        transform.position = FindObjectOfType<GameManager>().PlayerData.position;
     }
 
     void Update()
