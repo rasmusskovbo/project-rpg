@@ -2,19 +2,86 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fa8ce64e-188e-4703-b5a4-6b2e025cebde" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Assets/Assets/Tilemap/Trees.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Assets/Tilemap/Trees/Bush-Sheet_0.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Assets/Tilemap/Trees/Bush-Sheet_0.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Assets/Tilemap/Trees/Bush-Sheet_1.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Assets/Tilemap/Trees/Bush-Sheet_1.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Assets/Tilemap/Trees/Bush-Sheet_2.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Assets/Tilemap/Trees/Bush-Sheet_2.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Assets/Tilemap/Trees/Bush-Sheet_3.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Assets/Tilemap/Trees/Bush-Sheet_3.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Assets/Tilemap/Trees/Pots_0.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Assets/Tilemap/Trees/Pots_0.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Assets/Tilemap/Trees/Pots_1.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Assets/Tilemap/Trees/Pots_1.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Assets/Tilemap/Trees/Pots_2.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Assets/Tilemap/Trees/Pots_2.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Assets/Tilemap/Trees/Pots_3.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Assets/Tilemap/Trees/Pots_3.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Assets/Tilemap/Trees/Pots_4.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Assets/Tilemap/Trees/Pots_4.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Assets/Tilemap/Trees/Pots_5.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Assets/Tilemap/Trees/Pots_5.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Assets/Tilemap/Trees/Pots_6.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Assets/Tilemap/Trees/Pots_6.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Assets/Tilemap/Trees/Pots_7.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Assets/Tilemap/Trees/Pots_7.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Assets/Tilemap/Trees/Rock_1_0.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Assets/Tilemap/Trees/Rock_1_0.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Assets/Tilemap/Trees/Rock_1_1.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Assets/Tilemap/Trees/Rock_1_1.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Assets/Tilemap/Trees/Rock_1_2.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Assets/Tilemap/Trees/Rock_1_2.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Assets/Tilemap/Trees/Rock_1_3.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Assets/Tilemap/Trees/Rock_1_3.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Assets/Tilemap/Trees/RoundTree.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Assets/Tilemap/Trees/RoundTree.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Assets/Tilemap/Trees/RoundTree_Fall.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Assets/Tilemap/Trees/RoundTree_Fall.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Assets/Tilemap/Trees/Sign.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Assets/Tilemap/Trees/Sign.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Assets/Tilemap/Trees/Tree.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Assets/Tilemap/Trees/Tree.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Assets/Tilemap/Trees/Tree_1_Fall.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Assets/Tilemap/Trees/Tree_1_Fall.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Assets/Tilemap/Trees/Tree_2.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Assets/Tilemap/Trees/Tree_2.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Assets/Tilemap/Trees/Tree_2_Fall.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Assets/Tilemap/Trees/Tree_2_Fall.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Assets/Tilemap/Trees/Trees.prefab" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Assets/Tilemap/Trees/Trees.prefab.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Game/Resources/Prefabs/NPCs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Game/Resources/Prefabs/NPCs/Man.prefab" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Game/Resources/Prefabs/NPCs/Man.prefab.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Game/Resources/Prefabs/NPCs/Woman.prefab" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Game/Resources/Prefabs/NPCs/Woman.prefab.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Game/Resources/Quests/Quests/Flower Fields.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Game/Resources/Quests/Quests/Flower Fields.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Game/Resources/Quests/Quests/Garden Work.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Game/Resources/Quests/Quests/Garden Work.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UserSettings/Layouts/CurrentMaximizeLayout.dwlt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UserSettings/Search.index" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.project-rpg/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.project-rpg/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Assets/Fonts/ancient-modern-tales-font/AncientModernTales-a7Po SDF.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Assets/Fonts/ancient-modern-tales-font/AncientModernTales-a7Po SDF.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Game/Resources/Prefabs/UI/Scene Transition.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Resources/Prefabs/UI/Scene Transition.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Game/Resources/Prefabs/UI/UI Character Screen.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Resources/Prefabs/UI/UI Character Screen.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Asset Packs/Assorted Tilemaps/Overworld.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Asset Packs/Assorted Tilemaps/Overworld.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Assets/Main Exploration Assets/Environment/Bush-Sheet.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Assets/Main Exploration Assets/Environment/Bush-Sheet.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Assets/Main Exploration Assets/Environment/Pots.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Assets/Main Exploration Assets/Environment/Pots.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Assets/Main Exploration Assets/Environment/Rock_1.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Assets/Main Exploration Assets/Environment/Rock_1.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Assets/Main Exploration Assets/Environment/RoundTree.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Assets/Main Exploration Assets/Environment/RoundTree.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Assets/Main Exploration Assets/Environment/RoundTree_Fall.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Assets/Main Exploration Assets/Environment/RoundTree_Fall.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Assets/Main Exploration Assets/Environment/Sign.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Assets/Main Exploration Assets/Environment/Sign.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Assets/Main Exploration Assets/Environment/Tree.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Assets/Main Exploration Assets/Environment/Tree.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Assets/Main Exploration Assets/Environment/Tree_1_Fall.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Assets/Main Exploration Assets/Environment/Tree_1_Fall.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Assets/Main Exploration Assets/Environment/Tree_2.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Assets/Main Exploration Assets/Environment/Tree_2.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Assets/Main Exploration Assets/Environment/Tree_2_Fall.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Assets/Main Exploration Assets/Environment/Tree_2_Fall.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Assets/Tilemap/Outdoor.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Assets/Tilemap/Outdoor.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Resources/Quests/Goals/1 Combat Victory 1.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Resources/Quests/Goals/1 Combat Victory 1.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Resources/Quests/Quests/Farm Work.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game/Resources/Quests/Quests/Farm Work.asset.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Game/Scenes/Exploration.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scenes/Exploration.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Game/Scenes/Main Menu.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scenes/Main Menu.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Input/PlayerInput.inputactions" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Input/PlayerInput.inputactions" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Systems/Exploration/PlayerController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Systems/Exploration/PlayerController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Systems/ExplorationState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Systems/ExplorationState.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Systems/Persistence/DataPersistenceManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Systems/Persistence/DataPersistenceManager.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/Exploration UI/UIExplController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/Exploration UI/UIExplController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/LiberationSans SDF - Fallback.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/LiberationSans SDF - Fallback.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserSettings/Search.settings" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/Search.settings" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -172,7 +239,7 @@
       <workItem from="1652525615650" duration="4065000" />
       <workItem from="1652696652587" duration="12213000" />
       <workItem from="1652774423575" duration="5022000" />
-      <workItem from="1652951299419" duration="21201000" />
+      <workItem from="1652951299419" duration="23329000" />
     </task>
     <servers />
   </component>

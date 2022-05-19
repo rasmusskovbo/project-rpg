@@ -48,7 +48,7 @@ public class UIExplController : MonoBehaviour
         eventSystem = FindObjectOfType<EventSystem>();
         GameEvents.Instance.onShowDialog += () =>
         {
-            FindObjectOfType<UIExplController>().HideUI();
+            FindObjectOfType<UIExplController>().CloseUIOnDialog();
         };
         uiObjects = new List<GameObject>
         {
@@ -97,8 +97,17 @@ public class UIExplController : MonoBehaviour
                 FindObjectOfType<GameManager>().ExplorationState = ExplorationState.Explore;
             }
         }
-        
-        
+    }
+
+    public void CloseUIOnDialog()
+    {
+        if (uiObjects.Count != uiHUDIcons.Count) Debug.Log("UI -> Object List and Image List not the same size");
+
+        for (int i = 0; i < uiObjects.Count; i++)
+        {
+            uiObjects[i].SetActive(false);
+            uiHUDIcons[i].sprite = inactiveUIButton;
+        }
     }
 
     public void ToggleCharacterStats()
