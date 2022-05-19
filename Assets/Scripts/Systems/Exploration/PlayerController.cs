@@ -1,7 +1,6 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;
 
 public class PlayerController : MonoBehaviour
@@ -188,7 +187,7 @@ public class PlayerController : MonoBehaviour
             {
                 Debug.Log("Encountered combat!");
                 FindObjectOfType<GameManager>().SavePositionBeforeCombat();
-                SceneManager.LoadScene(2);
+                FindObjectOfType<SceneTransition>().LoadScene(SceneIndexType.Combat);
             }
         }
     }

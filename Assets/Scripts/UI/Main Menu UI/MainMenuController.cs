@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class MainMenuController : PersistentSingleton<MainMenuController>
 {
@@ -8,13 +7,13 @@ public class MainMenuController : PersistentSingleton<MainMenuController>
     public void NewGame()
     {
         isNewGame = true;
-        SceneManager.LoadScene(1);
+        StartGame();
     }
     
     public void ContinueGame()
     {
         isNewGame = false;
-        SceneManager.LoadScene(1);
+        StartGame();
     }
 
     public void ExitGame()
@@ -26,5 +25,10 @@ public class MainMenuController : PersistentSingleton<MainMenuController>
     {
         Destroy(this.gameObject);
         return isNewGame;
+    }
+
+    public void StartGame()
+    {
+        FindObjectOfType<SceneTransition>().LoadScene(SceneIndexType.Exploration);
     }
 }
