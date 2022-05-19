@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-public interface IDataPersistence
+﻿public interface IDataPersistence
 {
     void LoadData(GameData data);
     void SaveData(GameData data);

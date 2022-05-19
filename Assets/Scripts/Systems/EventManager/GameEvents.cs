@@ -1,8 +1,5 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-// https://www.youtube.com/watch?v=gx0Lt4tCDE0
+
 public class GameEvents : PersistentSingleton<GameEvents>
 {
     /*

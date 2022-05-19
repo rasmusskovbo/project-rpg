@@ -1,7 +1,6 @@
 using UnityEngine;
 using System;
 using System.IO;
-using Newtonsoft.Json;
 
 public class FileHandler
 {
