@@ -36,8 +36,8 @@ public class DataPersistenceManager : PersistentSingleton<DataPersistenceManager
                 0,
                 new Vector3(-12.5f, 3.75f),
                 PlayerFacing.South,
-                new SerializableDictionary<string, bool>(),
-                playerUnitBase
+                playerUnitBase,
+                playerUnitBase.MaxHp
             ),
             new SettingsData(),
             new SkillData(),
@@ -45,7 +45,11 @@ public class DataPersistenceManager : PersistentSingleton<DataPersistenceManager
             new InventoryData(new SerializableDictionary<InventoryItem, int>()),
             new EquipmentData(null, null, null,null,null,null,null),
             new CombatEncounterData(),
-            new NPCData(new SerializableDictionary<string, bool>())
+            new NPCData(new SerializableDictionary<string, bool>()),
+            new QuestData(
+                new List<Quest>(),
+                new SerializableDictionary<QuestGoal, int>()
+                )
         );
         
         // Test save

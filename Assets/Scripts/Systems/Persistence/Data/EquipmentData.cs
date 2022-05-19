@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 
 [Serializable]
-public class EquipmentData
+public class EquipmentData : SaveData
 {
     [SerializeField] private EquipmentItem currentHeadItem;
     [SerializeField] private EquipmentItem currentChestItem;
@@ -63,5 +63,10 @@ public class EquipmentData
     {
         get => currentShieldItem;
         set => currentShieldItem = value;
+    }
+    
+    public void ResetBeforeSave()
+    {
+        throw new NotImplementedException();
     }
 }

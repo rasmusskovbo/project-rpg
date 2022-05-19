@@ -8,20 +8,7 @@ public class CombatEncounterManager : PersistentSingleton<CombatEncounterManager
 
     // Updating encounter stats logic here.
     
-    public void LoadData(GameData data)
-    {
-        areaEncounterRate = data.CombatEncounterData.AreaEncounterRate;
-        amountOfEnemiesToSpawn = data.CombatEncounterData.AmountOfEnemiesToSpawn;
-        enemyLvl = data.CombatEncounterData.EnemyLvl;
-    }
-
-    public void SaveData(GameData data)
-    {
-        data.CombatEncounterData.AreaEncounterRate = areaEncounterRate;
-        data.CombatEncounterData.AmountOfEnemiesToSpawn = amountOfEnemiesToSpawn;
-        data.CombatEncounterData.EnemyLvl = enemyLvl;
-    }
-
+    // Properties
     public int AreaEncounterRate
     {
         get => areaEncounterRate;
@@ -38,5 +25,19 @@ public class CombatEncounterManager : PersistentSingleton<CombatEncounterManager
     {
         get => enemyLvl;
         set => enemyLvl = value;
+    }
+    
+    public void LoadData(GameData data)
+    {
+        areaEncounterRate = data.CombatEncounterData.AreaEncounterRate;
+        amountOfEnemiesToSpawn = data.CombatEncounterData.AmountOfEnemiesToSpawn;
+        enemyLvl = data.CombatEncounterData.EnemyLvl;
+    }
+
+    public void SaveData(GameData data)
+    {
+        data.CombatEncounterData.AreaEncounterRate = areaEncounterRate;
+        data.CombatEncounterData.AmountOfEnemiesToSpawn = amountOfEnemiesToSpawn;
+        data.CombatEncounterData.EnemyLvl = enemyLvl;
     }
 }

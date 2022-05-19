@@ -49,14 +49,8 @@ public class NPC : MonoBehaviour, Interactable, IDataPersistence
 
     public void SaveData(GameData data)
     {
-        if (data.NpcData.npcQuestTurnedInMap.ContainsKey(npcId))
-        {
-            data.NpcData.npcQuestTurnedInMap[npcId] = this.questHasBeenTurnedIn;
-        }
-        else
-        {
-            data.NpcData.npcQuestTurnedInMap.Add(npcId, this.questHasBeenTurnedIn);    
-        }
+        data.NpcData.ResetBeforeSave();
+        data.NpcData.npcQuestTurnedInMap.Add(npcId, this.questHasBeenTurnedIn);
     }
 }
 

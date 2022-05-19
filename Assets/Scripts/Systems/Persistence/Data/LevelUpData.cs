@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 
 [Serializable]
-public class LevelUpData
+public class LevelUpData : SaveData
 {
     [SerializeField] private int statPointsPrLevel;
     [SerializeField] private int capBaseGrowth;
@@ -31,5 +31,10 @@ public class LevelUpData
     {
         get => capMultiplier;
         set => capMultiplier = value;
+    }
+
+    public void ResetBeforeSave()
+    {
+        throw new NotImplementedException();
     }
 }

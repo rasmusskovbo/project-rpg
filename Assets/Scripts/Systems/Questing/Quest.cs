@@ -5,7 +5,7 @@ using UnityEngine;
 
 [Serializable]
 [CreateAssetMenu(menuName = "Questing/Quest")]
-public class Quest : ScriptableObject, IDataPersistence
+public class Quest : ScriptableObject
 {
     [Header("Info")] [SerializeField] public Info info;
     [Header("Reward")] [SerializeField] public Reward reward;
@@ -46,14 +46,5 @@ public class Quest : ScriptableObject, IDataPersistence
         set => goals = value;
     }
 
-    public void LoadData(GameData data)
-    {
-        // todo implement serializable dictionary <id, iscompleted>
-        throw new NotImplementedException();
-    }
-
-    public void SaveData(GameData data)
-    {
-        throw new NotImplementedException();
-    }
+    
 }

@@ -1,7 +1,10 @@
 using System;
 
 [Serializable]
-public class SettingsData
+public class SettingsData : SaveData
 {
-
+    public void ResetBeforeSave()
+    {
+        throw new NotImplementedException();
+    }
 }

@@ -108,7 +108,7 @@ public class InventoryManager : PersistentSingleton<InventoryManager>, IDataPers
     {
         var inventoryMap = new Dictionary<InventoryItem, int>();
         
-        foreach (var keyValuePair in data.InventoryData.inventoryMap)
+        foreach (var keyValuePair in data.InventoryData.InventoryMap)
         {
             inventoryMap.Add(keyValuePair.Key, keyValuePair.Value);    
         }
@@ -118,11 +118,11 @@ public class InventoryManager : PersistentSingleton<InventoryManager>, IDataPers
 
     public void SaveData(GameData data)
     {
-        SerializableDictionary<InventoryItem, int> dict = new SerializableDictionary<InventoryItem, int>();
+        data.InventoryData.ResetBeforeSave();
+        
         foreach (var keyValuePair in ItemCountMap)
         {
-            dict.Add(keyValuePair.Key, keyValuePair.Value);
+            data.InventoryData.InventoryMap.Add(keyValuePair.Key, keyValuePair.Value);
         }
-        data.InventoryData.inventoryMap = dict;
     }
 }
