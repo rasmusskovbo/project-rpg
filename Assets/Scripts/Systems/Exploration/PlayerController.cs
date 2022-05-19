@@ -132,6 +132,11 @@ public class PlayerController : MonoBehaviour
         uiController.ToggleSkills();
     }
 
+    void OnOpenTalents()
+    {
+        uiController.ToggleTalentsMenu();
+    }
+
     void OnCancel()
     {
         uiController.HideUI();

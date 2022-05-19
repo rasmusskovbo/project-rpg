@@ -6230,7 +6230,7 @@ MonoBehaviour:
   strengthUp: {fileID: 7868709298544039031}
   agilityUp: {fileID: 8029403895387126406}
   intellectUp: {fileID: 8029403895949616651}
-  testUnit: {fileID: 11400000, guid: 5fa57db649efb1b44ae6d92084290345, type: 2}
+  unit: {fileID: 0}
 --- !u!1 &7868709299168397632
 GameObject:
   m_ObjectHideFlags: 0

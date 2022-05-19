@@ -1,5 +1,6 @@
 ﻿public enum ExplorationState
 {
     Explore,
-    Dialog
+    Dialog,
+    Pause
 }

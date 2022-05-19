@@ -61,9 +61,9 @@ public class DataPersistenceManager : PersistentSingleton<DataPersistenceManager
     public void LoadGame()
     {
         gameData = fileHandler.Load();
-        //bool isNewGame = FindObjectOfType<MainMenuController>().IsNewGame();
+        bool isNewGame = FindObjectOfType<MainMenuController>().IsNewGame();
 
-        if (this.gameData == null)// || isNewGame)
+        if (this.gameData == null || isNewGame)
         {
             Debug.Log("No data found. Initializing to default");
             NewGame();

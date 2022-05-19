@@ -14,24 +14,29 @@ public class UIExplController : MonoBehaviour
     [SerializeField] private GameObject characterStats;
     [SerializeField] private Image characterStatsButtonImage;
     
-    [Header("Inventory Screen")]
-    [SerializeField] private GameObject inventory;
-    [SerializeField] private Image inventoryStatsButtonImage;
+    [Header("Skills Screen")]
+    [SerializeField] private GameObject skills;
+    [SerializeField] private Image skillsButtonImage;
+    
+    [Header("Talents Screen")]
+    [SerializeField] private GameObject talents;
+    [SerializeField] private Image talentsButtonImage;
     
     [Header("Quest Screen")]
     [SerializeField] private GameObject quests;
     [SerializeField] private Image questsButtonImage;
-
-    [Header("Skills Screen")]
-    [SerializeField] private GameObject skills;
-    [SerializeField] private Image skillsButtonImage;
+    
+    [Header("Inventory Screen")]
+    [SerializeField] private GameObject inventory;
+    [SerializeField] private Image inventoryStatsButtonImage;
     
     [Header("Pause Screen")]
     [SerializeField] private GameObject pauseMenu;
     [SerializeField] private Image pauseMenuButtonImage;
 
-    [SerializeField] private bool areAllElementsHidden = true;
+    private bool areAllElementsHidden = true;
     private bool firstSetup = true;
+    private bool pauseGame;
     
     private EventSystem eventSystem;
     private List<GameObject> uiObjects;
@@ -47,11 +52,11 @@ public class UIExplController : MonoBehaviour
         };
         uiObjects = new List<GameObject>
         {
-            characterStats, inventory, quests, skills, pauseMenu
+            characterStats, inventory, quests, skills, pauseMenu, talents
         };
         uiHUDIcons = new List<Image>()
         {
-            characterStatsButtonImage, inventoryStatsButtonImage, questsButtonImage, skillsButtonImage, pauseMenuButtonImage
+            characterStatsButtonImage, inventoryStatsButtonImage, questsButtonImage, skillsButtonImage, pauseMenuButtonImage, talentsButtonImage
         };
         
         HideUI();
@@ -77,6 +82,7 @@ public class UIExplController : MonoBehaviour
             
             if (areAllElementsHidden)
             {
+                FindObjectOfType<GameManager>().ExplorationState = ExplorationState.Pause;
                 TogglePauseMenu();
             }
             else
@@ -88,6 +94,7 @@ public class UIExplController : MonoBehaviour
                     uiObjects[i].SetActive(false);
                     uiHUDIcons[i].sprite = inactiveUIButton;
                 }
+                FindObjectOfType<GameManager>().ExplorationState = ExplorationState.Explore;
             }
         }
         
@@ -126,12 +133,19 @@ public class UIExplController : MonoBehaviour
         eventSystem.SetSelectedGameObject(null);
     }
     
-    // TODO When Pause menu is ON changed explorationstatus, e.g. no moving.
     public void TogglePauseMenu()
     {
         pauseMenu.SetActive(!pauseMenu.activeSelf);
         pauseMenuButtonImage.sprite =
             pauseMenu.activeSelf ? activeUIButton : inactiveUIButton;
+        eventSystem.SetSelectedGameObject(null);
+    }
+
+    public void ToggleTalentsMenu()
+    {
+        talents.SetActive(!talents.activeSelf);
+        talentsButtonImage.sprite =
+            talents.activeSelf ? activeUIButton : inactiveUIButton;
         eventSystem.SetSelectedGameObject(null);
     }
 }
