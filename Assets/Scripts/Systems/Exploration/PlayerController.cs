@@ -120,12 +120,16 @@ public class PlayerController : MonoBehaviour
     void OnOpenInventory()
     {
         uiController.ToggleInventory();
-        FindObjectOfType<DataPersistenceManager>().SaveGame();
     }
 
     void OnOpenQuests()
     {
         uiController.ToggleQuests();
+    }
+
+    void OnOpenSkills()
+    {
+        uiController.ToggleSkills();
     }
 
     void OnCancel()

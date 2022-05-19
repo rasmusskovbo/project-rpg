@@ -61,9 +61,9 @@ public class DataPersistenceManager : PersistentSingleton<DataPersistenceManager
     public void LoadGame()
     {
         gameData = fileHandler.Load();
-        bool isNewGame = FindObjectOfType<MainMenuController>().IsNewGame();
+        //bool isNewGame = FindObjectOfType<MainMenuController>().IsNewGame();
 
-        if (this.gameData == null || isNewGame)
+        if (this.gameData == null)// || isNewGame)
         {
             Debug.Log("No data found. Initializing to default");
             NewGame();
@@ -80,14 +80,16 @@ public class DataPersistenceManager : PersistentSingleton<DataPersistenceManager
     {
         FindAllDataPersistenceObjects().ForEach(obj => obj.SaveData(gameData));
         fileHandler.Save(gameData);
+        Debug.Log("Game saved");
     }
 
-    // Saves game on exit as default.
-    private void OnApplicationQuit()
+    /*
+     private void OnApplicationQuit()
     {
         SaveGame();
-    }
-
+    } 
+     */
+    
     private List<IDataPersistence> FindAllDataPersistenceObjects()
     {
         IEnumerable<IDataPersistence> dataPersistenceObjects =

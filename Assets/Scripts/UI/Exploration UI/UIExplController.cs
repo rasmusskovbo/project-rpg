@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -21,6 +22,17 @@ public class UIExplController : MonoBehaviour
     [SerializeField] private GameObject quests;
     [SerializeField] private Image questsButtonImage;
 
+    [Header("Skills Screen")]
+    [SerializeField] private GameObject skills;
+    [SerializeField] private Image skillsButtonImage;
+    
+    [Header("Pause Screen")]
+    [SerializeField] private GameObject pauseMenu;
+    [SerializeField] private Image pauseMenuButtonImage;
+
+    [SerializeField] private bool areAllElementsHidden = true;
+    private bool firstSetup = true;
+    
     private EventSystem eventSystem;
     private List<GameObject> uiObjects;
     private List<Image> uiHUDIcons;
@@ -35,11 +47,11 @@ public class UIExplController : MonoBehaviour
         };
         uiObjects = new List<GameObject>
         {
-            characterStats, inventory, quests
+            characterStats, inventory, quests, skills, pauseMenu
         };
         uiHUDIcons = new List<Image>()
         {
-            characterStatsButtonImage, inventoryStatsButtonImage, questsButtonImage
+            characterStatsButtonImage, inventoryStatsButtonImage, questsButtonImage, skillsButtonImage, pauseMenuButtonImage
         };
         
         HideUI();
@@ -47,13 +59,38 @@ public class UIExplController : MonoBehaviour
 
     public void HideUI()
     {
-        if (uiObjects.Count != uiHUDIcons.Count) Debug.Log("UI -> Object List and Image List not the same size");
-
-        for (int i = 0; i < uiObjects.Count; i++)
+        if (firstSetup)
         {
-            uiObjects[i].SetActive(false);
-            uiHUDIcons[i].sprite = inactiveUIButton;
+            if (uiObjects.Count != uiHUDIcons.Count) Debug.Log("UI -> Object List and Image List not the same size");
+
+            for (int i = 0; i < uiObjects.Count; i++)
+            {
+                uiObjects[i].SetActive(false);
+                uiHUDIcons[i].sprite = inactiveUIButton;
+            }
+            
+            firstSetup = false;
         }
+        else
+        {
+            areAllElementsHidden = uiObjects.All(obj => !obj.activeSelf);
+            
+            if (areAllElementsHidden)
+            {
+                TogglePauseMenu();
+            }
+            else
+            {
+                if (uiObjects.Count != uiHUDIcons.Count) Debug.Log("UI -> Object List and Image List not the same size");
+
+                for (int i = 0; i < uiObjects.Count; i++)
+                {
+                    uiObjects[i].SetActive(false);
+                    uiHUDIcons[i].sprite = inactiveUIButton;
+                }
+            }
+        }
+        
         
     }
 
@@ -78,6 +115,23 @@ public class UIExplController : MonoBehaviour
         quests.SetActive(!quests.activeSelf);
         questsButtonImage.sprite =
             quests.activeSelf ? activeUIButton : inactiveUIButton;
+        eventSystem.SetSelectedGameObject(null);
+    }
+    
+    public void ToggleSkills()
+    {
+        skills.SetActive(!skills.activeSelf);
+        skillsButtonImage.sprite =
+            skills.activeSelf ? activeUIButton : inactiveUIButton;
+        eventSystem.SetSelectedGameObject(null);
+    }
+    
+    // TODO When Pause menu is ON changed explorationstatus, e.g. no moving.
+    public void TogglePauseMenu()
+    {
+        pauseMenu.SetActive(!pauseMenu.activeSelf);
+        pauseMenuButtonImage.sprite =
+            pauseMenu.activeSelf ? activeUIButton : inactiveUIButton;
         eventSystem.SetSelectedGameObject(null);
     }
 }
