@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ff4c2730e9547809bbbd89934d8737e, type: 3}
+  m_Name: Wooden Stick
+  m_EditorClassIdentifier: 
+  itemSprite: {fileID: 1378570990754131754, guid: ad4da72aba31b684490b8b8a3d8c6727, type: 3}
+  itemName: Wooden Stick
+  tooltipInfo:
+    title: Wooden Stick
+    subtitle: Weapon
+    body: '+1 Strength
+
+      +1 Agility
+
+      +2 Attack Power'
+  equipmentType: 5
+  statBonuses:
+  - statBonusType: 1
+    value: 1
+  - statBonusType: 2
+    value: 1
+  - statBonusType: 4
+    value: 2

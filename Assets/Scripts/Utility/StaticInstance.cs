@@ -32,14 +32,7 @@ public abstract class PersistentSingleton<T> : Singleton<T> where T : MonoBehavi
         T[] allObjectsOfType = FindObjectsOfType<T>();
         if (allObjectsOfType.Length > 1)
         {
-            if (!allObjectsOfType[1].enabled)
-            {
-                Destroy(allObjectsOfType[1].gameObject);
-            }
-            else if (!allObjectsOfType[0].enabled)
-            {
-                Destroy(allObjectsOfType[0].gameObject);
-            }
+            Destroy(allObjectsOfType[1].gameObject);
         }
 
         base.Awake();

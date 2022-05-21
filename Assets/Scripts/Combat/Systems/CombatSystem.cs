@@ -7,6 +7,7 @@ public class CombatSystem : MonoBehaviour
     // Variables
     private CombatState state;
     private CombatMove chosenSkill;
+    private int spawnedEnemies;
     
     // Systems
     private UICombatLog combatLog;
@@ -103,6 +104,7 @@ public class CombatSystem : MonoBehaviour
 
         CombatEncounterManager combatEncounterManager = FindObjectOfType<CombatEncounterManager>();
         int amountToSpawn = combatEncounterManager.AmountOfEnemiesToSpawn;
+        spawnedEnemies = amountToSpawn;
         int levelOfEnemies = combatEncounterManager.EnemyLvl;
         
         switch (amountToSpawn)
@@ -497,5 +499,10 @@ public class CombatSystem : MonoBehaviour
     {
         get => player;
     }
-    
+
+    public int SpawnedEnemies
+    {
+        get => spawnedEnemies;
+        set => spawnedEnemies = value;
+    }
 }

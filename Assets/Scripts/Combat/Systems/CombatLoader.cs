@@ -35,7 +35,7 @@ public class CombatLoader : MonoBehaviour
     // Amount should come from battlestarter script.
     public void ResizeStatDisplayContainer()
     {
-        int amountOfDisplays = FindObjectOfType<CombatEncounterManager>().AmountOfEnemiesToSpawn;
+        int amountOfDisplays = FindObjectOfType<CombatSystem>().SpawnedEnemies;
         float width = 500 - basicOffset - (widthPrStatDisplay * (amountOfDisplays - 1)); 
         statDisplayContainer.GetComponent<RectTransform>().offsetMax = new Vector2(-width , 0);
     }
@@ -67,16 +67,27 @@ public class CombatLoader : MonoBehaviour
     // Get level and enemybases pool from gamemanager
     public GameObject SpawnEnemy(Transform station, int level)
     {
-        var spawnCombatUnit = SpawnCombatUnit(GetRandomEnemyBase(), enemyPrefab, station, level);
+        UnitBase randomEnemyBase = GetRandomEnemyBase();
+        
+        var spawnCombatUnit = SpawnCombatUnit(randomEnemyBase, enemyPrefab, station, level);
+        spawnCombatUnit.GetComponentInChildren<SpriteRenderer>().transform.localScale = new Vector3(randomEnemyBase.SpriteLocalScale, randomEnemyBase.SpriteLocalScale);
         AddStatDisplayForEnemyUnit(spawnCombatUnit.GetComponent<CombatUnit>());
+        
         return spawnCombatUnit;;
     }
 
     public GameObject SpawnCombatUnit(UnitBase unitBase, GameObject unitPrefab, Transform station, int level)
     {
         GameObject spawnedUnit = Instantiate(unitPrefab, station);
+        
+        float offsetAdjustedY = station.position.y - unitBase.SpriteVerticalOffset;
+        Debug.Log("Adjusted Y result: " + station.position.y + " - " +unitBase.SpriteVerticalOffset + " = " + offsetAdjustedY);
+        Vector3 offsetAdjustedPosition = new Vector3(station.position.x, offsetAdjustedY);
+        spawnedUnit.transform.position = offsetAdjustedPosition;
+        
         spawnedUnit.GetComponentInChildren<SpriteRenderer>().sprite = unitBase.IdleSprite;
         spawnedUnit.GetComponent<CombatUnit>().InitiateUnit(unitBase, level);
+        
         return spawnedUnit;
     }
 

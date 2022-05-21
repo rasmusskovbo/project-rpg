@@ -11,6 +11,11 @@ public class CombatMove
         cooldownTracker = new CooldownTracker(0);
     }
 
+    public string GetDescription()
+    {
+        return _base.Description;
+    }
+
     public CooldownTracker GetCooldownTracker()
     {
         return cooldownTracker;

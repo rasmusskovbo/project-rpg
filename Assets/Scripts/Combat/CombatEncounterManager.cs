@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class CombatEncounterManager : PersistentSingleton<CombatEncounterManager>, IDataPersistence
 {
-    [SerializeField] int areaEncounterRate = 20;
+    [SerializeField] int areaEncounterRate = 15;
     [SerializeField] private int amountOfEnemiesToSpawn = 1;
     [SerializeField] private int enemyLvl = 1;
 
@@ -17,7 +17,11 @@ public class CombatEncounterManager : PersistentSingleton<CombatEncounterManager
 
     public int AmountOfEnemiesToSpawn
     {
-        get => amountOfEnemiesToSpawn;
+        get
+        {
+            var randomSpawn = Random.Range(1, amountOfEnemiesToSpawn);
+            return randomSpawn;
+        }
         set => amountOfEnemiesToSpawn = value;
     }
 
