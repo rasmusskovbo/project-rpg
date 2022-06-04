@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 public class CombatMove
@@ -10,6 +9,11 @@ public class CombatMove
     {
         _base = mBase;
         cooldownTracker = new CooldownTracker(0);
+    }
+
+    public string GetDescription()
+    {
+        return _base.Description;
     }
 
     public CooldownTracker GetCooldownTracker()

@@ -2,12 +2,23 @@
 using UnityEngine;
 
 [Serializable]
-public class InventoryData
+public class InventoryData : SaveData
 {
-    [SerializeField] public SerializableDictionary<InventoryItem, int> inventoryMap;
+    [SerializeField] private SerializableDictionary<InventoryItem, int> inventoryMap;
 
     public InventoryData(SerializableDictionary<InventoryItem, int> inventoryMap)
     {
         this.inventoryMap = inventoryMap;
+    }
+
+    public SerializableDictionary<InventoryItem, int> InventoryMap
+    {
+        get => inventoryMap;
+        set => inventoryMap = value;
+    }
+
+    public void ResetBeforeSave()
+    {
+        inventoryMap = new SerializableDictionary<InventoryItem, int>();
     }
 }

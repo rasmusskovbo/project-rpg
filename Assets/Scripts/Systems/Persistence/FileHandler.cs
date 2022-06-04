@@ -1,9 +1,8 @@
 using UnityEngine;
 using System;
 using System.IO;
-using Newtonsoft.Json;
 
-public class FileHandler
+public class FileHandler : IFileHandler
 {
     private string path = "";
     private string filename = "";
@@ -72,7 +71,7 @@ public class FileHandler
         }
     }
 
-    private String EncryptDecrypt(string data)
+    public String EncryptDecrypt(string data)
     {
         string modifiedData = "";
         

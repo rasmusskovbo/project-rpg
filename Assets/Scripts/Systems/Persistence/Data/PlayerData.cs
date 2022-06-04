@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 
 [Serializable]
-public class PlayerData
+public class PlayerData : SaveData
 {
     // Progress stats
     [SerializeField] public int level;
@@ -14,14 +14,13 @@ public class PlayerData
     [SerializeField] public int sceneIndex;
     [SerializeField] public Vector3 position;
     [SerializeField] public PlayerFacing playerFacingDirection;
-    [SerializeField] public SerializableDictionary<string, bool> chestsCollected;
 
     // Combat Stats
     [SerializeField] public UnitBase unitBase;
     [SerializeField] public float currentHp;
     //private CombatEffectManager effectManager;
 
-    public PlayerData(int level, int exp, int nextLvLExp, int remainingStatPoints, int sceneIndex, Vector3 position, PlayerFacing playerFacingDirection, SerializableDictionary<string, bool> chestsCollected, UnitBase unitBase)
+    public PlayerData(int level, int exp, int nextLvLExp, int remainingStatPoints, int sceneIndex, Vector3 position, PlayerFacing playerFacingDirection, UnitBase unitBase, float currentHp)
     {
         this.level = level;
         this.exp = exp;
@@ -30,8 +29,12 @@ public class PlayerData
         this.sceneIndex = sceneIndex;
         this.position = position;
         this.playerFacingDirection = playerFacingDirection;
-        this.chestsCollected = chestsCollected;
         this.unitBase = unitBase;
-        this.currentHp = unitBase.MaxHp;
+        this.currentHp = currentHp;
+    }
+
+    public void ResetBeforeSave()
+    {
+        throw new NotImplementedException();
     }
 }

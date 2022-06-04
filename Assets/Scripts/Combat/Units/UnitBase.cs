@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [Serializable]
@@ -15,6 +13,8 @@ public class UnitBase : ScriptableObject
     
     [Header("VFX")] 
     [SerializeField] private Sprite idleSprite;
+    [SerializeField] private float spriteLocalScale = 1;
+    [SerializeField] private float spriteVerticalOffset = 0;
     
     [Header("Base Stats")]
     [SerializeField] private int maxHp;
@@ -75,6 +75,18 @@ public class UnitBase : ScriptableObject
     {
         get => idleSprite;
         set => idleSprite = value;
+    }
+
+    public float SpriteLocalScale
+    {
+        get => spriteLocalScale;
+        set => spriteLocalScale = value;
+    }
+
+    public float SpriteVerticalOffset
+    {
+        get => spriteVerticalOffset;
+        set => spriteVerticalOffset = value;
     }
 
     public int MaxHp

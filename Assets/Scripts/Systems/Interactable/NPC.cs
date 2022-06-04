@@ -2,11 +2,12 @@
 using UnityEngine;
 
 [Serializable]
-public class NPC : MonoBehaviour, Interactable
+public class NPC : MonoBehaviour, Interactable, IDataPersistence
 {
     [SerializeField] private Dialogue dialogue;
     [SerializeField] private Quest quest;
     [SerializeField] private bool questHasBeenTurnedIn;
+    [SerializeField] private string npcId;
     private QuestManager questManager;
     
     public void Interact()
@@ -27,8 +28,8 @@ public class NPC : MonoBehaviour, Interactable
         if (!isQuestActive)
         {
             // Quest intro dialogue here
-            DialogueManager.Instance.ShowDialog(dialogue);
-            QuestManager.Instance.AddQuest(quest);
+            FindObjectOfType<DialogueManager>().ShowDialog(dialogue);
+            FindObjectOfType<QuestManager>().AddQuest(quest);
         }
         else if (isQuestActive && isQuestCompleted)
         {
@@ -38,6 +39,18 @@ public class NPC : MonoBehaviour, Interactable
             questManager.CompleteQuest(quest);
             questHasBeenTurnedIn = true;
         }
+    }
+
+    public void LoadData(GameData data)
+    {
+        if (data.NpcData.npcQuestTurnedInMap.ContainsKey(npcId)) 
+            this.questHasBeenTurnedIn = data.NpcData.npcQuestTurnedInMap[npcId];
+    }
+
+    public void SaveData(GameData data)
+    {
+        data.NpcData.ResetBeforeSave();
+        data.NpcData.npcQuestTurnedInMap.Add(npcId, this.questHasBeenTurnedIn);
     }
 }
 

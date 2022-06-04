@@ -1,7 +1,9 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
-
+/*
+ * Change filehandler to interface (facade)
+ */
 public class DataPersistenceManager : PersistentSingleton<DataPersistenceManager>
 {
     [Header("New Game Settings")]
@@ -11,11 +13,9 @@ public class DataPersistenceManager : PersistentSingleton<DataPersistenceManager
     [SerializeField] private string fileName;
 
     private List<IDataPersistence> persistenceObjects;
-    
     private GameData gameData;
     private GameManager gameManager;
     private FileHandler fileHandler;
-    
 
     private void Start()
     {
@@ -36,19 +36,24 @@ public class DataPersistenceManager : PersistentSingleton<DataPersistenceManager
                 0,
                 new Vector3(-12.5f, 3.75f),
                 PlayerFacing.South,
-                new SerializableDictionary<string, bool>(),
-                playerUnitBase
+                playerUnitBase,
+                playerUnitBase.MaxHp
             ),
             new SettingsData(),
             new SkillData(),
             new LevelUpData(),
-            new InventoryData(null),
-            new EquipmentData(null, null, null, null, null, null, null),
-            new CombatEncounterData()
+            new InventoryData(new SerializableDictionary<InventoryItem, int>()),
+            new EquipmentData(null, null, null,null,null,null,null),
+            new CombatEncounterData(),
+            new NPCData(new SerializableDictionary<string, bool>()),
+            new QuestData(
+                new List<Quest>(),
+                new SerializableDictionary<QuestGoal, int>()
+                )
         );
         
         // Test save
-        gameData.playerData.chestsCollected.Add("chest1", true);
+        //gameData.playerData.chestsCollected.Add("chest1", true);
         
         gameManager.LoadData(gameData);
     }
@@ -56,8 +61,14 @@ public class DataPersistenceManager : PersistentSingleton<DataPersistenceManager
     public void LoadGame()
     {
         gameData = fileHandler.Load();
+        bool isNewGame = false;
         
-        if (this.gameData == null)
+        if (FindObjectOfType<MainMenuController>() != null)
+        {
+            isNewGame = FindObjectOfType<MainMenuController>().IsNewGame();  
+        }
+        
+        if (this.gameData == null || isNewGame)
         {
             Debug.Log("No data found. Initializing to default");
             NewGame();
@@ -72,16 +83,18 @@ public class DataPersistenceManager : PersistentSingleton<DataPersistenceManager
 
     public void SaveGame()
     {
-        persistenceObjects.ForEach(obj => obj.SaveData(gameData));
+        FindAllDataPersistenceObjects().ForEach(obj => obj.SaveData(gameData));
         fileHandler.Save(gameData);
+        Debug.Log("Game saved");
     }
 
-    // Saves game on exit as default.
-    private void OnApplicationQuit()
+    /*
+     private void OnApplicationQuit()
     {
         SaveGame();
-    }
-
+    } 
+     */
+    
     private List<IDataPersistence> FindAllDataPersistenceObjects()
     {
         IEnumerable<IDataPersistence> dataPersistenceObjects =

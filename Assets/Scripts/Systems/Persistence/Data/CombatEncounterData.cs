@@ -2,7 +2,7 @@
 using UnityEngine;
 
 [Serializable]
-public class CombatEncounterData
+public class CombatEncounterData : SaveData
 {
     [SerializeField] private int areaEncounterRate;
     [SerializeField] private int amountOfEnemiesToSpawn;
@@ -24,5 +24,10 @@ public class CombatEncounterData
     {
         get => enemyLvl;
         set => enemyLvl = value;
+    }
+    
+    public void ResetBeforeSave()
+    {
+        throw new NotImplementedException();
     }
 }

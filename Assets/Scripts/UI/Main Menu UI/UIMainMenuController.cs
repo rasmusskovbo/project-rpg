@@ -1,23 +1,22 @@
-using System;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class UIMainMenuController : MonoBehaviour
 {
     [SerializeField] private Button continueBtn;
-    [SerializeField] private Button newGameBtn;
     [SerializeField] private Button settingsBtn;
+    [SerializeField] private string fileName = "data.game";
+    public bool loadGameFound;
+    private IFileHandler fileHandler;
+    
 
     private void Start()
     {
-        continueBtn.gameObject.SetActive(false);
+        fileHandler = new FileHandler(Application.persistentDataPath, fileName);
+        GameData gd = fileHandler.Load();
+        loadGameFound = gd != null;
         
-        /*
-         * if (gameData.exists) {
-         *  enable continueBtn
-         * else disable
-         */
-        
+        continueBtn.gameObject.SetActive(loadGameFound);
         settingsBtn.gameObject.SetActive(false);
     }
 }

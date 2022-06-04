@@ -96,6 +96,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -712,6 +713,31 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      pixlr-bg-result(1)_20: 5673856464660611198
+      pixlr-bg-result(1)_7: 4837250347218973469
+      pixlr-bg-result(1)_3: 5723055626565565443
+      pixlr-bg-result(1)_5: 3689569447494672518
+      pixlr-bg-result(1)_19: -220758124443290521
+      pixlr-bg-result(1)_1: 602823761410830140
+      pixlr-bg-result(1)_2: 1797829103641329020
+      pixlr-bg-result(1)_10: -6662210258390778639
+      pixlr-bg-result(1)_13: -5599354304171463620
+      pixlr-bg-result(1)_17: -1393880542293245054
+      pixlr-bg-result(1)_4: 5022811004646151334
+      pixlr-bg-result(1)_9: 5716203546106971160
+      pixlr-bg-result(1)_0: -6470450864233259833
+      pixlr-bg-result(1)_8: -3199870941049145967
+      pixlr-bg-result(1)_23: 7542832754188842966
+      pixlr-bg-result(1)_12: -7290519310510577638
+      pixlr-bg-result(1)_15: 8169474341677078369
+      pixlr-bg-result(1)_18: 5699003052960227760
+      pixlr-bg-result(1)_6: 8377942606797580124
+      pixlr-bg-result(1)_21: -7389764053401147521
+      pixlr-bg-result(1)_11: 8090274331094950979
+      pixlr-bg-result(1)_14: -5835679039060718420
+      pixlr-bg-result(1)_16: 3792144090998415547
+      pixlr-bg-result(1)_22: 135423299071946658
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

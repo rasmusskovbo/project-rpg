@@ -10,6 +10,7 @@ public class Quest : ScriptableObject
     [Header("Info")] [SerializeField] public Info info;
     [Header("Reward")] [SerializeField] public Reward reward;
     [SerializeField] private List<QuestGoal> goals;
+    [SerializeField] private string questId;
 
     public void Initialize()
     {
@@ -44,5 +45,6 @@ public class Quest : ScriptableObject
         get => goals;
         set => goals = value;
     }
+
     
 }

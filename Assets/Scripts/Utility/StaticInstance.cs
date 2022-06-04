@@ -1,3 +1,4 @@
+using System.Security.Cryptography;
 using UnityEngine;
 
 public abstract class StaticInstance<T> : MonoBehaviour where T : MonoBehaviour
@@ -33,7 +34,7 @@ public abstract class PersistentSingleton<T> : Singleton<T> where T : MonoBehavi
         {
             Destroy(allObjectsOfType[1].gameObject);
         }
-        
+
         base.Awake();
     }
 }

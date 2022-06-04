@@ -156,6 +156,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -1180,6 +1181,51 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      Outdoor_1_Water_10: -8423395184850271170
+      Outdoor_1_Water_4: 6385286348507005950
+      Outdoor_1_Water_16: -8155793541530635240
+      Outdoor_1_Water_39: 3599647699304147869
+      Outdoor_1_Water_20: -1393245861867552193
+      Outdoor_1_Water_25: 2490470491940198724
+      Outdoor_1_Water_15: -3208227255188776944
+      Outdoor_1_Water_31: 4771138614240838136
+      Outdoor_1_Water_3: -696596797212953741
+      Outdoor_1_Water_29: -2107160557658477463
+      Outdoor_1_Water_36: -2158436263830216420
+      Outdoor_1_Water_5: 4679789651433061065
+      Outdoor_1_Water_6: 7330676473324006809
+      Outdoor_1_Water_14: -1947859822001036010
+      Outdoor_1_Water_1: 4336674278597433261
+      Outdoor_1_Water_42: 6858306102231500418
+      Outdoor_1_Water_23: 1231788882225925508
+      Outdoor_1_Water_35: 4768674917676619296
+      Outdoor_1_Water_13: 7459675412100318654
+      Outdoor_1_Water_37: 4012901973452539058
+      Outdoor_1_Water_30: 5029430709426549831
+      Outdoor_1_Water_28: -6731474579138173364
+      Outdoor_1_Water_0: 7175987793394107353
+      Outdoor_1_Water_9: -4213705211745843720
+      Outdoor_1_Water_24: 7175773784268135612
+      Outdoor_1_Water_40: -3447709898972137230
+      Outdoor_1_Water_7: -3928128734317974511
+      Outdoor_1_Water_21: 2555658298196494966
+      Outdoor_1_Water_33: 5544117436259186017
+      Outdoor_1_Water_22: -3568004377484287146
+      Outdoor_1_Water_32: -4982554075429660363
+      Outdoor_1_Water_12: -6761500895927423454
+      Outdoor_1_Water_43: -8787611233201032954
+      Outdoor_1_Water_2: 2173031198336675839
+      Outdoor_1_Water_27: 1093842731249014447
+      Outdoor_1_Water_17: -4782104338754849430
+      Outdoor_1_Water_8: 124905414117885061
+      Outdoor_1_Water_11: -8417695721179990963
+      Outdoor_1_Water_19: 8599708675843381631
+      Outdoor_1_Water_26: 5382825764617973114
+      Outdoor_1_Water_34: -4160355268441377817
+      Outdoor_1_Water_41: 967199036837868422
+      Outdoor_1_Water_18: -2370469960294792186
+      Outdoor_1_Water_38: 2749870363768176759
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

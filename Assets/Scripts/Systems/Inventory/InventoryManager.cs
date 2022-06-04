@@ -1,10 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class InventoryManager : PersistentSingleton<InventoryManager>, IDataPersistence
 {
     [SerializeField] private List<InventoryItemWrapper> items = new List<InventoryItemWrapper>();
+    [SerializeField] private bool isDebug;
     private EquipmentManager equipmentManager;
     private UIInventoryController inventoryUI;
 
@@ -20,7 +20,7 @@ public class InventoryManager : PersistentSingleton<InventoryManager>, IDataPers
 
     public void InitInventory()
     {
-        SpawnItems();
+        if (isDebug || itemCountMap.Count == 0) SpawnItems();
         inventoryUI.InitInventoryUI();
     }
 
@@ -107,7 +107,7 @@ public class InventoryManager : PersistentSingleton<InventoryManager>, IDataPers
     {
         var inventoryMap = new Dictionary<InventoryItem, int>();
         
-        foreach (var keyValuePair in data.InventoryData.inventoryMap)
+        foreach (var keyValuePair in data.InventoryData.InventoryMap)
         {
             inventoryMap.Add(keyValuePair.Key, keyValuePair.Value);    
         }
@@ -117,11 +117,11 @@ public class InventoryManager : PersistentSingleton<InventoryManager>, IDataPers
 
     public void SaveData(GameData data)
     {
-        SerializableDictionary<InventoryItem, int> dict = new SerializableDictionary<InventoryItem, int>();
+        data.InventoryData.ResetBeforeSave();
+        
         foreach (var keyValuePair in ItemCountMap)
         {
-            dict.Add(keyValuePair.Key, keyValuePair.Value);
+            data.InventoryData.InventoryMap.Add(keyValuePair.Key, keyValuePair.Value);
         }
-        data.InventoryData.inventoryMap = dict;
     }
 }

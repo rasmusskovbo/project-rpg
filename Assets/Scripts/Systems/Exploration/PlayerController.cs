@@ -1,7 +1,6 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;
 
 public class PlayerController : MonoBehaviour
@@ -15,7 +14,9 @@ public class PlayerController : MonoBehaviour
     
     private Animator animator;
     private UIExplController uiController;
-    private CombatEncounterManager _combatEncounterManager;
+    private CombatEncounterManager combatEncounterManager;
+    private GameManager gameManager;
+    private DialogueManager dialogueManager;
     
     private Vector2 inputDirection;
     private PlayerFacing playerFacingDirection;
@@ -24,14 +25,20 @@ public class PlayerController : MonoBehaviour
     private static readonly int MoveX = Animator.StringToHash("moveX");
     private static readonly int MoveY = Animator.StringToHash("moveY");
     private static readonly int IsMoving = Animator.StringToHash("isMoving");
-
-    private void Awake()
+    
+    private IEnumerator Start()
     {
         animator = GetComponent<Animator>();
         uiController = FindObjectOfType<UIExplController>();
-        _combatEncounterManager = FindObjectOfType<CombatEncounterManager>();
+        combatEncounterManager = FindObjectOfType<CombatEncounterManager>();
+        dialogueManager = FindObjectOfType<DialogueManager>();
+        gameManager = FindObjectOfType<GameManager>();
+        
+        yield return new WaitForEndOfFrame();
+        
+        transform.position = FindObjectOfType<GameManager>().PlayerData.position;
     }
-    
+
     void Update()
     {
         if (GameManager.Instance.ExplorationState != ExplorationState.Explore) return;
@@ -120,6 +127,16 @@ public class PlayerController : MonoBehaviour
         uiController.ToggleQuests();
     }
 
+    void OnOpenSkills()
+    {
+        uiController.ToggleSkills();
+    }
+
+    void OnOpenTalents()
+    {
+        uiController.ToggleTalentsMenu();
+    }
+
     void OnCancel()
     {
         uiController.HideUI();
@@ -127,14 +144,15 @@ public class PlayerController : MonoBehaviour
 
     void OnInteract()
     {
-        if (GameManager.Instance.ExplorationState == ExplorationState.Explore)
+        gameManager = FindObjectOfType<GameManager>();
+        
+        if (gameManager.ExplorationState == ExplorationState.Explore)
         {
             Interact();
-        } else if (GameManager.Instance.ExplorationState == ExplorationState.Dialog)
+        } else if (gameManager.ExplorationState == ExplorationState.Dialog)
         {
-            DialogueManager.Instance.NextLine();
+            FindObjectOfType<DialogueManager>().NextLine();
         }
-        
     }
 
     private void Interact()
@@ -174,11 +192,11 @@ public class PlayerController : MonoBehaviour
     {
         if (Physics2D.OverlapCircle(transform.position, 0.2f, combatLayer) != null)
         {
-            if ((Random.Range(1, 101) <= _combatEncounterManager.AreaEncounterRate))
+            if ((Random.Range(1, 101) <= combatEncounterManager.AreaEncounterRate))
             {
                 Debug.Log("Encountered combat!");
                 FindObjectOfType<GameManager>().SavePositionBeforeCombat();
-                SceneManager.LoadScene(1);
+                FindObjectOfType<SceneTransition>().LoadScene(SceneIndexType.Combat);
             }
         }
     }

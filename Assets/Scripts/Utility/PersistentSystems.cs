@@ -1,5 +1,4 @@
-﻿
-public class PersistentSystems : PersistentSingleton<PersistentSystems>
+﻿public class PersistentSystems : PersistentSingleton<PersistentSystems>
 { 
     
 }

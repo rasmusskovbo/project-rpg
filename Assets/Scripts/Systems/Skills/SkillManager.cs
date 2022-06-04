@@ -1,9 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-/*
- * Should be a singleton, to keep track of ability cooldowns in exploring mode as well.
- */
 public class SkillManager : PersistentSingleton<SkillManager>
 {
     [SerializeField] private List<CombatMoveBase> combatMoveBases; // A comprehensive list of all combat moves in the game to draw from

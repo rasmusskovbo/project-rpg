@@ -46,7 +46,7 @@ public class CombatUnit : MonoBehaviour, IComparable
     {
         Level = spawnLevel;
         this.unitBase = unitbase;
-        
+
         CurrentHp = MaxHp;
         CurrentMaxHp = MaxHp;
         CurrentStrength = Strength;

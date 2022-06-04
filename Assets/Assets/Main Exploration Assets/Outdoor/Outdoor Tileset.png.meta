@@ -261,6 +261,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -1999,6 +2000,85 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      Outdoor Tileset_39: 8910335385730361960
+      Outdoor Tileset_34: 8838142293066178163
+      Outdoor Tileset_62: -3734127232368769691
+      Outdoor Tileset_50: 1466931768267009328
+      Outdoor Tileset_68: 8342723452869238835
+      Outdoor Tileset_19: -7090298148795294634
+      Outdoor Tileset_18: -7168777632457119151
+      Outdoor Tileset_26: 258834532862447952
+      Outdoor Tileset_32: -8200467623678769224
+      Outdoor Tileset_7: 2125149051349910541
+      Outdoor Tileset_24: -795150695766849909
+      Outdoor Tileset_25: 8351258467492029602
+      Outdoor Tileset_27: 6825500319801618538
+      Outdoor Tileset_42: -3401983982472566598
+      Outdoor Tileset_0: -4793786755836938124
+      Outdoor Tileset_74: -6582844902459321911
+      Outdoor Tileset_2: 8013330418841814370
+      Outdoor Tileset_54: -973005987722382817
+      Outdoor Tileset_56: 811305157903158030
+      Outdoor Tileset_1: -7664501482853698396
+      Outdoor Tileset_15: 6922324881134130670
+      Outdoor Tileset_31: -2194546029673276442
+      Outdoor Tileset_33: -4932535568368119042
+      Outdoor Tileset_14: 141171655775552237
+      Outdoor Tileset_40: 715318253154583079
+      Outdoor Tileset_36: 7423123613415414849
+      Outdoor Tileset_5: -651073709598633501
+      Outdoor Tileset_75: -8767757101131744066
+      Outdoor Tileset_11: 2186043423800679619
+      Outdoor Tileset_43: 6559666242471956644
+      Outdoor Tileset_20: 7873484748006186965
+      Outdoor Tileset_9: -6687774173405799247
+      Outdoor Tileset_29: -7392838920190057010
+      Outdoor Tileset_12: -8956782477242339864
+      Outdoor Tileset_60: 4747322945405187901
+      Outdoor Tileset_59: 2699096762513514785
+      Outdoor Tileset_23: 5775216349878516822
+      Outdoor Tileset_44: -7325731694709721450
+      Outdoor Tileset_63: -373102659479510111
+      Outdoor Tileset_16: 3637329786492777034
+      Outdoor Tileset_8: -7167888240214224372
+      Outdoor Tileset_21: 2361974607548599699
+      Outdoor Tileset_10: -946072459494554497
+      Outdoor Tileset_71: 520776555046112328
+      Outdoor Tileset_76: -4669899221112104036
+      Outdoor Tileset_13: -4978370378544807527
+      Outdoor Tileset_53: -3411102227189814000
+      Outdoor Tileset_47: 8678999455341543180
+      Outdoor Tileset_58: -8103809595723963930
+      Outdoor Tileset_73: 2201601232803287783
+      Outdoor Tileset_64: 4421475250831596109
+      Outdoor Tileset_72: 3640407152979337308
+      Outdoor Tileset_69: 3029549766778287262
+      Outdoor Tileset_55: -5539238746050582905
+      Outdoor Tileset_38: -414479834852088647
+      Outdoor Tileset_17: -4181190680937663748
+      Outdoor Tileset_77: 8873534476979027440
+      Outdoor Tileset_41: 5774707262936815763
+      Outdoor Tileset_65: 4248936580000746076
+      Outdoor Tileset_70: 5165929445348328491
+      Outdoor Tileset_22: 1123665750666549789
+      Outdoor Tileset_30: 6426333466286193862
+      Outdoor Tileset_51: -6393918915837751734
+      Outdoor Tileset_67: 4424987145735555250
+      Outdoor Tileset_35: -6296217187353896508
+      Outdoor Tileset_57: 2154890923909226157
+      Outdoor Tileset_45: -3285940967449709893
+      Outdoor Tileset_52: 703743379870765040
+      Outdoor Tileset_66: -5653042765507030067
+      Outdoor Tileset_37: 3462727308301733615
+      Outdoor Tileset_4: -7783110038235505494
+      Outdoor Tileset_28: 7115785250924952355
+      Outdoor Tileset_46: -4449096858818545099
+      Outdoor Tileset_61: 1627856381161867861
+      Outdoor Tileset_3: 2765464722477833628
+      Outdoor Tileset_48: -2015203935734291770
+      Outdoor Tileset_6: 5911925534904164050
+      Outdoor Tileset_49: 7002457916592770625
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

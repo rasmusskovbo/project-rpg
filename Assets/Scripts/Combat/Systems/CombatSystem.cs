@@ -1,13 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class CombatSystem : MonoBehaviour
 {
     // Variables
     private CombatState state;
     private CombatMove chosenSkill;
+    private int spawnedEnemies;
     
     // Systems
     private UICombatLog combatLog;
@@ -104,6 +104,7 @@ public class CombatSystem : MonoBehaviour
 
         CombatEncounterManager combatEncounterManager = FindObjectOfType<CombatEncounterManager>();
         int amountToSpawn = combatEncounterManager.AmountOfEnemiesToSpawn;
+        spawnedEnemies = amountToSpawn;
         int levelOfEnemies = combatEncounterManager.EnemyLvl;
         
         switch (amountToSpawn)
@@ -476,9 +477,9 @@ public class CombatSystem : MonoBehaviour
         FindObjectOfType<GameManager>().UpdatePlayerDataAfterCombat(new CombatResult(10, player.CurrentHp));
         FindObjectOfType<GameEvents>().CombatVictoryInvoke();
         
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(2f);
 
-        SceneManager.LoadScene(0);
+        FindObjectOfType<SceneTransition>().LoadScene(SceneIndexType.Exploration);
     }
     
     // Properties
@@ -498,5 +499,10 @@ public class CombatSystem : MonoBehaviour
     {
         get => player;
     }
-    
+
+    public int SpawnedEnemies
+    {
+        get => spawnedEnemies;
+        set => spawnedEnemies = value;
+    }
 }

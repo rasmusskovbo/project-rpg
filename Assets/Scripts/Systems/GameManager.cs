@@ -5,7 +5,7 @@ public class GameManager : PersistentSingleton<GameManager>, IDataPersistence
     [SerializeField] private PlayerData playerData;              // Tracks global player related data such as exp, quests, items.
     [SerializeField] private SettingsData settingsData;          // Tracks setting such as volume, difficulty etc
     [SerializeField] private SkillData skillData;                // Tracks all active player skills and cooldowns
-    //private TalentData talentData;        // Tracks and handles player talents.
+    //private TalentData talentData;                            // Tracks and handles player talents.
 
     // References
     private PlayerController playerControllerUnit;
@@ -30,6 +30,11 @@ public class GameManager : PersistentSingleton<GameManager>, IDataPersistence
         {
             if (explorationState == ExplorationState.Dialog) explorationState = ExplorationState.Explore;
         };
+    }
+
+    public void CheckForLevelUpAfterQuest()
+    {
+        if (levelUpManager.PlayerShouldLevelUp(playerData.exp, playerData.nextLvLExp)) levelUpManager.LevelUp();
     }
     
     public void UpdatePlayerDataAfterCombat(CombatResult result)

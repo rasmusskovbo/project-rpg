@@ -1,7 +1,5 @@
 using System.Collections.Generic;
-using System.Linq;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 using Vector2 = UnityEngine.Vector2;
@@ -57,6 +55,10 @@ public class UISkillLoader : MonoBehaviour
         item.GetComponentsInChildren<TextMeshProUGUI>()[0].SetText(combatMove.GetName());
         item.GetComponentsInChildren<TextMeshProUGUI>()[1].SetText(combatMove.GetPower().ToString());
         item.GetComponentsInChildren<TextMeshProUGUI>()[2].SetText(combatMove.GetCooldown().ToString());
+        UITooltipTrigger uiTooltipTrigger = item.AddComponent<UITooltipTrigger>();
+        uiTooltipTrigger.title = combatMove.GetName();
+        uiTooltipTrigger.subtitle = combatMove.GetType().ToString();
+        uiTooltipTrigger.body = combatMove.GetDescription();
 
         var formattedDuration = combatMove.GetDuration() > 0 ? combatMove.GetDuration().ToString() : "-";
         item.GetComponentsInChildren<TextMeshProUGUI>()[3].SetText(formattedDuration);
@@ -66,8 +68,6 @@ public class UISkillLoader : MonoBehaviour
         item.transform.localScale = Vector2.one;
 
         combatMovesInUI.Add(combatMove);
-        
-        //Debug.Log("Is move on CD: " + combatMove.GetName() + ", " + combatMove.GetCooldownTracker().isMoveOnCooldown());
         
         if (combatMove.GetCooldownTracker().isMoveOnCooldown() || combatSystem.Player.CombatEffectsManager.IsEffectActive(CombatEffectType.Silence))
         {
