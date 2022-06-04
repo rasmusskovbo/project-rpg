@@ -2,58 +2,22 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fa8ce64e-188e-4703-b5a4-6b2e025cebde" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Assets/UI/WaldheimGames.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Assets/UI/WaldheimGames.png.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Game/Resources/Enemies/Scorpion.asset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Game/Resources/Enemies/Scorpion.asset.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Game/Resources/Enemies/Slime.asset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Game/Resources/Enemies/Slime.asset.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Game/Resources/Enemies/Worm.asset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Game/Resources/Enemies/Worm.asset.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Game/Resources/Inventory/Items/Iron Shield.asset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Game/Resources/Inventory/Items/Iron Shield.asset.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Game/Resources/Inventory/Items/Nike Quest II.asset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Game/Resources/Inventory/Items/Nike Quest II.asset.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Game/Resources/Inventory/Items/Pearl Necklace.asset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Game/Resources/Inventory/Items/Pearl Necklace.asset.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Game/Resources/Inventory/Items/The Sword of a Thousand Truths.asset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Game/Resources/Inventory/Items/The Sword of a Thousand Truths.asset.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Game/Resources/Inventory/Items/Wooden Stick.asset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Game/Resources/Inventory/Items/Wooden Stick.asset.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Game/Resources/Prefabs/UI/Tooltip UI.prefab" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Game/Resources/Prefabs/UI/Tooltip UI.prefab.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/StreamingAssets.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ProjectSettings/BurstAotSettings_StandaloneWindows.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ProjectSettings/CommonBurstAotSettings.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Game/Resources/Prefabs/Title (1).prefab" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Game/Resources/Prefabs/Title (1).prefab.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Diagrams/Action &amp; CombatTypes overview.drawio" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Diagrams/Action &amp; CombatTypes overview.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Diagrams/Combat Flow.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Diagrams/NPC_state_machine.drawio" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Diagrams/NPC_state_machine.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Diagrams/SystemsOverview.drawio" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Diagrams/SystemsOverview.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Diagrams/~$NPC_state_machine.drawio.bkp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ProjectSettings/BurstAotSettings_StandaloneOSX.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.project-rpg/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.project-rpg/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Game/Resources/Combat Moves/Ring of Fire.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Resources/Combat Moves/Ring of Fire.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Game/Resources/Combat Moves/Slam.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Resources/Combat Moves/Slam.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Game/Resources/Combat Moves/Smash.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Resources/Combat Moves/Smash.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Game/Resources/Prefabs/Enemies/Blue Skull.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Game/Resources/Prefabs/Enemies/Blue Skull.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Game/Resources/Prefabs/Enemies/Green Slime.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Game/Resources/Prefabs/Enemies/Green Slime.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Game/Resources/Prefabs/Enemies/Red Worm.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Game/Resources/Prefabs/Enemies/Red Worm.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Game/Scenes/Combat.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scenes/Combat.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Game/Scenes/Exploration.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scenes/Exploration.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Combat/CombatEncounterManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Combat/CombatEncounterManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Combat/CombatMoves/CombatMove.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Combat/CombatMoves/CombatMove.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Combat/Systems/CombatLoader.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Combat/Systems/CombatLoader.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Combat/Units/UnitBase.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Combat/Units/UnitBase.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Systems/Exploration/ExplorationLoader.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Systems/Exploration/ExplorationLoader.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Systems/Exploration/PlayerController.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Systems/Exploration/PlayerController.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Systems/Inventory/InventoryManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Systems/Inventory/InventoryManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Systems/Inventory/InventoryManager.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Systems/Inventory/InventoryManager.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/Combat UI/UISkillLoader.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/Combat UI/UISkillLoader.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/Exploration UI/UIExplController.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/Exploration UI/UIExplController.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/Exploration UI/UIInventoryController.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/Exploration UI/UIInventoryController.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Utility/PersistentSystems.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Utility/PersistentSystems.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Utility/SceneTransition.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Utility/SceneTransition.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Utility/StaticInstance.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Utility/StaticInstance.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/LiberationSans SDF - Fallback.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/LiberationSans SDF - Fallback.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/Exploration UI/UISkillsController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/Exploration UI/UISkillsController.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ProjectSettings/RiderScriptEditorPersistedState.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/RiderScriptEditorPersistedState.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UserSettings/Layouts/default-2021.dwlt" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/Layouts/default-2021.dwlt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -221,7 +185,10 @@
       <workItem from="1652696652587" duration="12213000" />
       <workItem from="1652774423575" duration="5022000" />
       <workItem from="1652951299419" duration="23470000" />
-      <workItem from="1653128294312" duration="5636000" />
+      <workItem from="1653128294312" duration="6546000" />
+      <workItem from="1653915614361" duration="4976000" />
+      <workItem from="1654086082319" duration="2498000" />
+      <workItem from="1654347617286" duration="1248000" />
     </task>
     <servers />
   </component>

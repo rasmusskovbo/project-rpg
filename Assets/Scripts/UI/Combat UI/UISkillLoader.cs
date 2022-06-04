@@ -69,8 +69,6 @@ public class UISkillLoader : MonoBehaviour
 
         combatMovesInUI.Add(combatMove);
         
-        //Debug.Log("Is move on CD: " + combatMove.GetName() + ", " + combatMove.GetCooldownTracker().isMoveOnCooldown());
-        
         if (combatMove.GetCooldownTracker().isMoveOnCooldown() || combatSystem.Player.CombatEffectsManager.IsEffectActive(CombatEffectType.Silence))
         {
             item.GetComponentsInChildren<Image>()[0].color = Color.black;
