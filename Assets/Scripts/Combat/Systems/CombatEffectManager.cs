@@ -23,7 +23,6 @@ public class CombatEffectManager : MonoBehaviour
     public void ProcessActiveEffects(bool isStartOfTurn)
     {
         List<CombatEffect> expiredEffects = new List<CombatEffect>();
-        Debug.Log("Unit's active effect list: " + unit.UnitName + ", "+ ActiveEffects.Count);
         
         ActiveEffects.ForEach(activeEffect =>
         {
@@ -31,10 +30,8 @@ public class CombatEffectManager : MonoBehaviour
             {
                 if (activeEffect.CombatEffectType.Equals(CombatEffectType.Renew))
                 {
-                    Debug.Log("Applying renew's heal!");
                     unit.Heal(activeEffect.Power);
                     DecreaseDurationOrExpire(activeEffect, expiredEffects);
-                    Debug.Log("Remaining duration: " + activeEffect.DurationTracker.GetRemainingDuration());
                 }
             
                 if (activeEffect.CombatEffectType.Equals(CombatEffectType.Poison))
@@ -66,7 +63,6 @@ public class CombatEffectManager : MonoBehaviour
         });
         
         // done after-the-fact to avoid list manipulation.
-        Debug.Log("Expired effects size: " + expiredEffects.Count);
         expiredEffects.ForEach(expiredEffect => ActiveEffects.Remove(expiredEffect));
     }
 

@@ -219,7 +219,6 @@ public class UIPlayerInputController : MonoBehaviour
         {
             MoveTargetCursor();
         }
-        
     }
     
     /*
@@ -248,11 +247,6 @@ public class UIPlayerInputController : MonoBehaviour
      */
     void OnCancel()
     {
-        if (combatSystem.State == CombatState.PLAYER_ACTION_SELECT)
-        {
-            // Open menu or do nothing
-        }
-        
         if (combatSystem.State == CombatState.PLAYER_SKILL_SELECT)
         {
             combatSystem.State = CombatState.PLAYER_ACTION_SELECT;
