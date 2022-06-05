@@ -55,7 +55,7 @@ public class FileHandler : IFileHandler
             Directory.CreateDirectory(Path.GetDirectoryName(fullPath));
             
             string dataToStore = JsonUtility.ToJson(data, true);
-            //dataToStore = EncryptDecrypt(dataToStore);
+            dataToStore = EncryptDecrypt(dataToStore);
 
             using (FileStream stream = new FileStream(fullPath, FileMode.Create))
             {

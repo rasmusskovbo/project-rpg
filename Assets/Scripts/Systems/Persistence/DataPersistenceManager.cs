@@ -15,7 +15,7 @@ public class DataPersistenceManager : PersistentSingleton<DataPersistenceManager
     private List<IDataPersistence> persistenceObjects;
     private GameData gameData;
     private GameManager gameManager;
-    private FileHandler fileHandler;
+    private IFileHandler fileHandler;
 
     private void Start()
     {
@@ -25,7 +25,7 @@ public class DataPersistenceManager : PersistentSingleton<DataPersistenceManager
         LoadGame();
     }
 
-    public void NewGame()
+    private void NewGame()
     {
         gameData = new GameData(
             new PlayerData(
@@ -57,8 +57,8 @@ public class DataPersistenceManager : PersistentSingleton<DataPersistenceManager
         
         gameManager.LoadData(gameData);
     }
-    
-    public void LoadGame()
+
+    private void LoadGame()
     {
         gameData = fileHandler.Load();
         bool isNewGame = false;

@@ -88,7 +88,6 @@ public class TurnManager
             currentTurn++;
             return GetNextTurn();
         }
-        
     }
 
     public void RemoveFromActiveUnits(CombatUnit disabledUnit)

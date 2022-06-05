@@ -10,5 +10,4 @@
     PhysMitigation,
     MagicMitigation,
     AllMitigation
-    // Weakened, Strengthened, Burning, etc
 }
