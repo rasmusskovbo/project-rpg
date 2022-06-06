@@ -33,7 +33,7 @@ public class FileHandler : IFileHandler
                     }
                 }
 
-                //dataToLoad = EncryptDecrypt(dataToLoad);
+                dataToLoad = EncryptDecrypt(dataToLoad);
                 
                 loadedData = JsonUtility.FromJson<GameData>(dataToLoad);
             }
